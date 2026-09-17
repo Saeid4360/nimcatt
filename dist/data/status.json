@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-09-17T05:13:21.004306+00:00",
+  "count": 47,
+  "sources": [
+    {
+      "source": "BBC Sport",
+      "ok": true,
+      "items": 8
+    },
+    {
+      "source": "The Guardian",
+      "ok": true,
+      "items": 8
+    },
+    {
+      "source": "Sky Sports",
+      "ok": true,
+      "items": 8
+    },
+    {
+      "source": "Kicker",
+      "ok": true,
+      "items": 8
+    },
+    {
+      "source": "ESPN",
+      "ok": true,
+      "items": 8
+    }
+  ]
+}

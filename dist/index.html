@@ -1,139 +1,342 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#07131f" />
-  <title>فوتبال‌نما — خبر فوتبال، از منبع تا فارسی</title>
-  <meta name="description" content="نمونه MVP پلتفرم گردآوری، ترجمه و انتشار شفاف اخبار فوتبال" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307131f'/%3E%3Cpath d='M13 38 24 18h13L26 46H13l7-8h-7Zm23-20h15L38 46H24l12-28Z' fill='%23c8ff45'/%3E%3C/svg%3E" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#161616">
+  <title>فوتبال‌نما | خبر فوتبال جهان</title>
+  <meta name="description" content="خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.">
   <style>
-    :root{--ink:#07131f;--ink2:#0d2234;--lime:#c8ff45;--paper:#f5f7f2;--white:#fff;--muted:#64727d;--line:#dce3df;--red:#e74646;--amber:#f6b943;--green:#168b62;--shadow:0 20px 55px rgba(7,19,31,.13);--radius:22px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,"Segoe UI",Arial,sans-serif;line-height:1.75}button,input{font:inherit}button{cursor:pointer}.shell{max-width:1320px;margin:auto;padding:0 26px}.hidden{display:none!important}
-    .demo-bar{background:var(--lime);color:var(--ink);text-align:center;padding:6px 14px;font-size:12px;font-weight:800;letter-spacing:.1px}
-    header{position:sticky;top:0;z-index:40;background:rgba(7,19,31,.96);backdrop-filter:blur(14px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}.head{height:76px;display:flex;align-items:center;gap:30px}.brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-weight:900;font-size:21px;white-space:nowrap}.brand-mark{width:38px;height:38px;border-radius:11px;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-size:22px;transform:skew(-7deg)}nav{display:flex;gap:6px}.nav-btn{border:0;background:transparent;color:#aebbc5;padding:10px 15px;border-radius:11px;font-weight:700}.nav-btn.active,.nav-btn:hover{color:#fff;background:rgba(255,255,255,.08)}.head-actions{margin-right:auto;display:flex;align-items:center;gap:10px}.search-toggle,.icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:transparent;color:#fff;display:grid;place-items:center}.editor-btn{border:0;border-radius:12px;background:var(--lime);color:var(--ink);padding:10px 17px;font-weight:900}.mobile-menu{display:none}
-    .breaking{background:var(--white);border-bottom:1px solid var(--line)}.breaking-inner{display:flex;align-items:center;min-height:46px;overflow:hidden}.breaking-label{align-self:stretch;background:var(--red);color:#fff;display:flex;align-items:center;padding:0 20px;font-weight:900;white-space:nowrap;clip-path:polygon(10% 0,100% 0,100% 100%,0 100%,0 0)}.ticker{white-space:nowrap;overflow:hidden;color:#2f3e49;font-size:13px;font-weight:700;padding:0 18px}.ticker span{margin-left:34px}.ticker i{color:var(--red);font-style:normal;margin-left:7px}
-    .hero{background:var(--ink);color:white;padding:36px 0 42px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;inset:-40% 52% -70% -10%;background:radial-gradient(circle,var(--lime) 0,transparent 60%);opacity:.08;pointer-events:none}.hero-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(300px,.75fr);gap:22px;position:relative;z-index:1}.lead{min-height:400px;border-radius:28px;overflow:hidden;position:relative;background:#142b3e}.lead img{position:absolute;width:100%;height:100%;object-fit:cover;filter:saturate(.8)}.lead:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,12,19,.97) 4%,rgba(4,12,19,.22) 78%)}.lead-content{position:absolute;z-index:2;bottom:0;right:0;left:0;padding:31px}.eyebrow{display:flex;align-items:center;gap:8px;color:var(--lime);font-size:12px;font-weight:900}.dot{width:7px;height:7px;border-radius:50%;background:currentColor}.lead h1{font-size:clamp(26px,3vw,44px);line-height:1.35;margin:10px 0 12px;max-width:820px}.lead p{color:#cad4db;margin:0;max-width:710px}.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:15px;font-size:12px;color:#c0ccd4}.source-mark{display:inline-flex;align-items:center;gap:6px}.source-logo{width:25px;height:25px;border-radius:8px;background:white;color:var(--ink);display:grid;place-items:center;font-weight:900}.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:900}.official{color:#9df2d0;background:rgba(22,139,98,.2);border:1px solid rgba(157,242,208,.2)}.trusted{color:#ffe08c;background:rgba(246,185,67,.17);border:1px solid rgba(255,224,140,.2)}.rumor{color:#ffb0b0;background:rgba(231,70,70,.17);border:1px solid rgba(255,176,176,.2)}
-    .hero-side{display:grid;grid-template-rows:1fr 1fr;gap:16px}.mini-feature{background:var(--ink2);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:23px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.mini-feature:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:25px solid rgba(200,255,69,.05);left:-30px;bottom:-42px}.mini-feature small{color:#93a5b2;font-weight:700}.mini-feature h3{margin:9px 0;font-size:18px;line-height:1.55}.mini-feature .country{font-size:34px;line-height:1}.pulse{width:9px;height:9px;background:var(--red);border-radius:50%;box-shadow:0 0 0 7px rgba(231,70,70,.15);display:inline-block;margin-left:8px}
-    main{padding:34px 0 60px}.tools{display:flex;align-items:flex-end;gap:16px;margin-bottom:24px}.section-title{margin-left:auto}.kicker{color:var(--green);font-size:11px;font-weight:900;letter-spacing:.4px}.section-title h2{margin:2px 0 0;font-size:28px;line-height:1.4}.search{width:min(340px,100%);position:relative}.search input{width:100%;background:white;border:1px solid var(--line);border-radius:14px;padding:13px 45px 13px 14px;outline:none}.search input:focus{border-color:#87a22e;box-shadow:0 0 0 4px rgba(200,255,69,.25)}.search svg{position:absolute;right:15px;top:15px;color:var(--muted)}
-    .filters{display:flex;gap:8px;overflow:auto;padding-bottom:12px;margin-bottom:14px;scrollbar-width:none}.chip{white-space:nowrap;border:1px solid var(--line);background:white;color:#41505b;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:800}.chip.active{background:var(--ink);color:var(--lime);border-color:var(--ink)}
-    .content-grid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:26px}.news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:white;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.25s;cursor:pointer;outline:none}.card:hover,.card:focus{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}.thumb{height:205px;position:relative;background:#18344b;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover;transition:.5s}.card:hover .thumb img{transform:scale(1.045)}.thumb:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,19,31,.5),transparent 65%)}.flag{position:absolute;left:14px;top:14px;z-index:2;background:rgba(7,19,31,.82);color:#fff;border:1px solid rgba(255,255,255,.18);padding:5px 9px;border-radius:10px;font-size:11px;font-weight:800}.card-body{padding:19px}.card h3{font-size:18px;line-height:1.6;margin:0 0 8px}.card p{font-size:13px;color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.card .meta{color:#7b8993;margin-top:14px;border-top:1px solid #edf0ee;padding-top:13px}.card .badge{margin-right:auto}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tag{background:#f0f3ef;color:#52616b;border-radius:8px;padding:4px 8px;font-size:10px;font-weight:800}
-    aside{display:flex;flex-direction:column;gap:18px}.panel{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:20px}.panel-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.panel-title h3{font-size:16px;margin:0}.panel-title span{font-size:11px;color:var(--muted)}.trend{display:grid;grid-template-columns:31px 1fr;gap:10px;padding:13px 0;border-bottom:1px solid #edf0ee}.trend:last-child{border:0}.trend-num{font-weight:900;color:#aab5bb;font-size:22px;line-height:1.3}.trend b{font-size:13px;line-height:1.6}.trend small{display:block;color:var(--muted);margin-top:3px}.source-row{display:flex;align-items:center;gap:10px;padding:10px 0}.source-row+.source-row{border-top:1px solid #edf0ee}.source-icon{width:35px;height:35px;background:var(--ink);color:var(--lime);display:grid;place-items:center;border-radius:10px;font-weight:900;font-size:11px}.source-row b{font-size:12px}.source-row small{display:block;color:var(--muted)}.health{margin-right:auto;width:8px;height:8px;background:#20b67e;border-radius:50%}
-    .empty{grid-column:1/-1;text-align:center;background:white;border:1px dashed #b8c2bd;border-radius:20px;padding:50px;color:var(--muted)}
-    .editor-view{padding:38px 0 70px}.editor-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:24px}.editor-head h1{margin:3px 0;font-size:31px}.editor-head p{margin:0;color:var(--muted)}.queue-stats{display:flex;gap:10px}.stat{background:white;border:1px solid var(--line);border-radius:15px;padding:10px 15px;min-width:90px}.stat strong{display:block;font-size:22px}.stat small{color:var(--muted)}.editor-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:20px}.queue,.workspace{background:white;border:1px solid var(--line);border-radius:22px;overflow:hidden}.queue h3{margin:0;padding:18px;border-bottom:1px solid var(--line);font-size:15px}.queue-item{padding:15px 17px;border-bottom:1px solid #edf0ee;cursor:pointer;position:relative}.queue-item:hover,.queue-item.active{background:#f5f8ef}.queue-item.active:before{content:"";position:absolute;right:0;top:0;bottom:0;width:4px;background:var(--lime)}.queue-item b{font-size:12px;line-height:1.7;display:block}.queue-item small{color:var(--muted)}.queue-status{float:left;width:8px;height:8px;border-radius:50%;background:var(--amber);margin-top:8px}.queue-status.done{background:var(--green)}.workspace-top{padding:19px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}.workspace-top b{margin-left:auto}.lang-pill{font-size:11px;font-weight:900;background:#eef2ef;padding:5px 9px;border-radius:8px}.editor-columns{display:grid;grid-template-columns:1fr 1fr;min-height:390px}.copy{padding:22px}.copy+.copy{border-right:1px solid var(--line)}.copy label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:800;margin-bottom:12px}.copy textarea{border:0;resize:none;width:100%;height:280px;line-height:2;outline:none;background:transparent;color:var(--ink);font:14px/2 Tahoma,Arial}.copy.original textarea{direction:ltr;text-align:left;color:#5c6972;font-family:Arial,sans-serif;line-height:1.8}.editor-actions{border-top:1px solid var(--line);padding:16px 22px;display:flex;align-items:center;gap:10px}.action{border-radius:11px;padding:9px 15px;font-weight:900;border:1px solid var(--line);background:#fff}.action.approve{background:var(--ink);color:var(--lime);border-color:var(--ink)}.action.reject{color:var(--red)}.auto-tags{margin-right:auto;font-size:11px;color:var(--muted)}
-    footer{background:var(--ink);color:#c0ccd4;padding:38px 0}.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:35px}.foot p{font-size:12px;max-width:420px}.foot h4{color:#fff;margin:0 0 10px}.foot a{display:block;color:#b6c4cc;text-decoration:none;font-size:12px;margin:6px 0}.foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:25px;padding-top:16px;font-size:11px;color:#71828e;display:flex;justify-content:space-between}
-    .drawer-wrap{position:fixed;inset:0;z-index:80;display:none}.drawer-wrap.open{display:block}.scrim{position:absolute;inset:0;background:rgba(2,9,14,.68);backdrop-filter:blur(3px)}.drawer{position:absolute;top:0;bottom:0;left:0;width:min(650px,94vw);background:var(--white);padding:0 0 35px;overflow:auto;box-shadow:30px 0 70px rgba(0,0,0,.2);animation:slide .3s ease}.drawer-cover{height:275px;position:relative}.drawer-cover img{width:100%;height:100%;object-fit:cover}.drawer-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,19,31,.8),transparent)}.close{position:absolute;z-index:2;left:18px;top:18px;width:42px;height:42px;border:0;border-radius:50%;background:rgba(7,19,31,.75);color:white;font-size:22px}.drawer-content{padding:27px 34px}.drawer-content h2{font-size:29px;line-height:1.55;margin:8px 0 12px}.drawer-summary{font-size:15px;color:#42525d}.why{background:#f1f5eb;border-right:4px solid var(--lime);padding:14px 17px;border-radius:12px;margin:20px 0}.why b{display:block;font-size:12px;margin-bottom:5px}.source-box{border:1px solid var(--line);border-radius:16px;padding:15px;display:flex;align-items:center;gap:12px}.source-box .source-icon{width:44px;height:44px}.source-box a{margin-right:auto;color:var(--green);font-size:12px;font-weight:900;text-decoration:none}.fine{font-size:11px;color:var(--muted);margin-top:13px}.toast{position:fixed;z-index:100;bottom:24px;left:24px;background:var(--ink);color:white;padding:13px 17px;border-radius:13px;box-shadow:var(--shadow);transform:translateY(100px);opacity:0;transition:.25s;font-size:12px;font-weight:800}.toast.show{transform:none;opacity:1}@keyframes slide{from{transform:translateX(-100%)}to{transform:none}}
-    @media(max-width:980px){.hero-grid,.content-grid,.editor-grid{grid-template-columns:1fr}.hero-side{grid-template-columns:1fr 1fr;grid-template-rows:auto}.content-grid aside{display:grid;grid-template-columns:1fr 1fr}.editor-grid{grid-template-columns:1fr}.queue{display:grid;grid-template-columns:repeat(3,1fr)}.queue h3{grid-column:1/-1}.queue-item{border-left:1px solid #edf0ee}.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
-    @media(max-width:700px){.shell{padding:0 16px}.head{height:66px}.head nav,.editor-btn{display:none}.mobile-menu{display:grid}.hero{padding:20px 0 27px}.hero-grid{gap:14px}.lead{min-height:410px}.lead-content{padding:21px}.lead h1{font-size:27px}.hero-side{grid-template-columns:1fr}.mini-feature{min-height:145px}.tools{align-items:stretch;flex-direction:column}.section-title{margin:0}.search{width:100%}.news-grid{grid-template-columns:1fr}.content-grid aside{display:block}.content-grid aside .panel{margin-top:16px}.thumb{height:220px}.editor-head{align-items:flex-start;flex-direction:column;gap:15px}.queue-stats{width:100%}.stat{flex:1}.queue{display:block}.queue-item:nth-of-type(n+4){display:none}.editor-columns{grid-template-columns:1fr}.copy+.copy{border-right:0;border-top:1px solid var(--line)}.editor-actions{flex-wrap:wrap}.auto-tags{width:100%;margin:0}.foot{grid-template-columns:1fr}.foot>div:first-child{grid-column:auto}.drawer-content{padding:23px 20px}.drawer-content h2{font-size:24px}.breaking-label{padding:0 12px}.ticker{font-size:11px}.foot-bottom{gap:12px;flex-direction:column}.search-toggle{display:none}}
+    :root { --red:#d71920; --red-dark:#b91016; --ink:#171717; --muted:#6d7278; --line:#e3e5e8; --surface:#fff; --canvas:#f3f4f5; --header:#151515; --success:#19734a; --warning:#9b6400; --radius:6px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--canvas); color:var(--ink); font-family:Tahoma,Arial,sans-serif; font-size:15px; line-height:1.75; }
+    button,input,textarea { font:inherit; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; width:100%; }
+    .container { width:min(1180px,calc(100% - 32px)); margin-inline:auto; }
+    .hidden { display:none !important; }
+
+    .site-header { position:sticky; top:0; z-index:50; height:68px; background:var(--header); color:#fff; border-bottom:4px solid var(--red); }
+    .header-inner { height:64px; display:flex; align-items:center; gap:28px; }
+    .brand { display:flex; align-items:center; gap:10px; flex:0 0 auto; }
+    .brand-mark { width:34px; height:34px; display:grid; place-items:center; background:var(--red); color:#fff; font-weight:900; font-size:19px; transform:skew(-8deg); }
+    .brand-name { font-size:20px; font-weight:900; letter-spacing:-.5px; }
+    .main-nav { display:flex; align-items:stretch; height:100%; gap:4px; }
+    .nav-link { position:relative; display:flex; align-items:center; padding:0 13px; color:#d7d7d7; font-size:13px; font-weight:700; border:0; background:transparent; cursor:pointer; }
+    .nav-link:hover,.nav-link.active { color:#fff; }
+    .nav-link.active::after { content:""; position:absolute; right:13px; left:13px; bottom:0; height:3px; background:var(--red); }
+    .header-actions { margin-right:auto; display:flex; align-items:center; gap:8px; }
+    .icon-button,.editor-button { height:36px; border:1px solid #3d3d3d; background:transparent; color:#fff; cursor:pointer; border-radius:4px; }
+    .icon-button { width:38px; display:grid; place-items:center; }
+    .editor-button { padding:0 15px; font-size:12px; font-weight:700; }
+    .icon-button:hover,.editor-button:hover { background:#292929; }
+
+    .score-strip { background:#fff; border-bottom:1px solid var(--line); }
+    .score-inner { display:flex; align-items:stretch; min-height:76px; overflow-x:auto; scrollbar-width:none; }
+    .score-inner::-webkit-scrollbar { display:none; }
+    .score-label { flex:0 0 112px; display:grid; align-content:center; padding:12px 0; color:var(--red); font-size:12px; font-weight:900; }
+    .score-label small { display:block; color:var(--muted); font-size:10px; font-weight:400; }
+    .score-item { flex:0 0 225px; display:grid; align-content:center; padding:10px 18px; border-right:1px solid var(--line); }
+    .score-meta { display:flex; justify-content:space-between; color:var(--muted); font-size:10px; }
+    .score-teams { margin-top:4px; display:flex; justify-content:space-between; gap:12px; font-size:12px; font-weight:700; }
+    .score-result { direction:ltr; color:var(--red); font-weight:900; }
+
+    main { padding:28px 0 48px; }
+    .hero-layout { display:grid; grid-template-columns:minmax(0,2fr) minmax(280px,.8fr); gap:20px; }
+    .feature,.panel,.feed-shell { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); }
+    .feature { overflow:hidden; min-height:430px; display:grid; grid-template-columns:58% 42%; }
+    .feature-media { position:relative; min-height:430px; background:#252525; overflow:hidden; }
+    .feature-media img { height:100%; object-fit:cover; }
+    .feature-media::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,.06); }
+    .feature-copy { padding:34px; display:flex; flex-direction:column; justify-content:center; }
+    .kicker { color:var(--red); font-size:12px; font-weight:900; }
+    .feature h1 { margin:10px 0 14px; font-size:clamp(25px,3vw,38px); line-height:1.45; letter-spacing:-.8px; }
+    .feature p { margin:0; color:#555c63; font-size:14px; }
+    .story-meta { margin-top:22px; display:flex; flex-wrap:wrap; gap:9px 14px; color:var(--muted); font-size:11px; }
+    .source-name { color:var(--ink); font-weight:900; }
+    .read-button { align-self:flex-start; margin-top:24px; padding:9px 18px; border:0; border-radius:4px; background:var(--red); color:#fff; font-size:12px; font-weight:900; cursor:pointer; }
+    .read-button:hover { background:var(--red-dark); }
+
+    .panel { padding:18px; }
+    .panel-header,.section-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .panel-title,.section-title { margin:0; font-size:17px; line-height:1.4; }
+    .panel-title::before,.section-title::before { content:""; display:inline-block; width:4px; height:18px; margin-left:8px; background:var(--red); vertical-align:-4px; }
+    .tiny-status { color:var(--muted); font-size:10px; }
+    .latest-list { margin-top:10px; }
+    .latest-item { display:grid; grid-template-columns:66px minmax(0,1fr); gap:10px; padding:12px 0; border-bottom:1px solid var(--line); cursor:pointer; }
+    .latest-item:last-child { border-bottom:0; }
+    .latest-thumb { height:54px; object-fit:cover; background:#e8eaec; border-radius:3px; }
+    .latest-item h3 { margin:0; font-size:12px; line-height:1.65; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .latest-item small { color:var(--muted); font-size:9px; }
+
+    .content-layout { margin-top:22px; display:grid; grid-template-columns:minmax(0,1fr) 270px; gap:20px; align-items:start; }
+    .feed-shell { padding:20px; }
+    .section-header { padding-bottom:16px; border-bottom:1px solid var(--line); }
+    .result-count { color:var(--muted); font-size:11px; }
+    .controls { padding:14px 0; display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--line); }
+    .search-wrap { position:relative; width:min(290px,100%); }
+    .search-wrap svg { position:absolute; right:11px; top:50%; transform:translateY(-50%); color:#7c8288; }
+    .search-input { width:100%; height:38px; padding:0 36px 0 12px; border:1px solid #d6d9dc; border-radius:4px; outline:none; background:#fafafa; color:var(--ink); font-size:12px; }
+    .search-input:focus { border-color:var(--red); background:#fff; }
+    .filters { display:flex; gap:5px; overflow-x:auto; scrollbar-width:none; }
+    .filters::-webkit-scrollbar { display:none; }
+    .filter-button { flex:0 0 auto; height:34px; padding:0 11px; border:1px solid #dedfe1; border-radius:4px; background:#fff; color:#555b61; font-size:11px; cursor:pointer; }
+    .filter-button:hover,.filter-button.active { border-color:var(--ink); background:var(--ink); color:#fff; }
+
+    .news-list { display:grid; }
+    .news-card { display:grid; grid-template-columns:214px minmax(0,1fr); gap:18px; padding:20px 0; border-bottom:1px solid var(--line); }
+    .news-card:last-child { border-bottom:0; }
+    .card-media { position:relative; height:132px; overflow:hidden; border-radius:4px; background:#e6e8ea; cursor:pointer; }
+    .card-media img { height:100%; object-fit:cover; transition:transform .25s ease; }
+    .news-card:hover .card-media img { transform:scale(1.025); }
+    .media-fallback { height:100%; display:grid; place-items:center; color:#92979c; font-weight:900; font-size:12px; }
+    .card-label { margin-bottom:5px; color:var(--red); font-size:10px; font-weight:900; }
+    .news-card h3 { margin:0; font-size:17px; line-height:1.65; cursor:pointer; }
+    .news-card h3:hover { color:var(--red); }
+    .card-summary { margin:7px 0 0; color:#656b71; font-size:12px; line-height:1.8; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .card-footer { margin-top:11px; display:flex; align-items:center; flex-wrap:wrap; gap:7px 12px; color:var(--muted); font-size:10px; }
+    .status { padding:2px 7px; border-radius:3px; background:#f1f2f3; }
+    .status.trusted { color:var(--success); background:#eaf6f0; }
+    .status.rumor { color:var(--warning); background:#fff4df; }
+    .load-more { width:100%; height:42px; margin-top:12px; border:1px solid #d7dade; border-radius:4px; background:#fff; color:#3d4349; font-size:12px; font-weight:700; cursor:pointer; }
+    .load-more:hover { border-color:var(--ink); }
+    .empty { padding:60px 10px; text-align:center; color:var(--muted); }
+
+    .sidebar { display:grid; gap:14px; }
+    .source-list { margin-top:12px; }
+    .source-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); }
+    .source-row:last-child { border-bottom:0; }
+    .source-logo { width:36px; height:36px; display:grid; place-items:center; flex:0 0 auto; border-radius:4px; background:#eceeef; color:#232323; font-size:10px; font-weight:900; }
+    .source-copy { min-width:0; }
+    .source-copy strong { display:block; font-size:12px; }
+    .source-copy small { display:block; color:var(--muted); font-size:9px; }
+    .source-state { margin-right:auto; color:var(--success); font-size:9px; }
+    .standards { margin:14px 0 0; padding-top:14px; border-top:1px solid var(--line); color:#656b71; font-size:10px; }
+    .standards strong { color:var(--ink); }
+
+    .editor-view { min-height:calc(100vh - 145px); }
+    .editor-shell { max-width:900px; margin-inline:auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px; }
+    .editor-shell h1 { margin:0 0 6px; font-size:24px; }
+    .editor-shell>p { margin:0 0 22px; color:var(--muted); font-size:12px; }
+    .editor-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .field { display:grid; gap:7px; }
+    .field.full { grid-column:1/-1; }
+    .field label { font-size:11px; font-weight:900; }
+    .field input,.field textarea { width:100%; padding:10px 12px; border:1px solid #d7dade; border-radius:4px; background:#fafafa; resize:vertical; }
+    .editor-actions { margin-top:20px; display:flex; gap:8px; }
+    .action-primary,.action-secondary,.action-danger { min-height:40px; padding:0 18px; border-radius:4px; font-size:12px; font-weight:900; cursor:pointer; }
+    .action-primary { border:1px solid var(--red); background:var(--red); color:#fff; }
+    .action-secondary { border:1px solid #ccd0d4; background:#fff; color:var(--ink); }
+    .action-danger { margin-right:auto; border:1px solid #e5b7b8; background:#fff; color:#b21d22; }
+
+    footer { border-top:1px solid #2b2b2b; background:#171717; color:#a8aaad; }
+    .footer-inner { min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:18px; font-size:10px; }
+    .footer-brand { color:#fff; font-size:15px; font-weight:900; }
+
+    .drawer-backdrop { position:fixed; inset:0; z-index:90; background:rgba(0,0,0,.48); opacity:0; pointer-events:none; transition:opacity .2s ease; }
+    .drawer-backdrop.open { opacity:1; pointer-events:auto; }
+    .drawer { position:fixed; top:0; right:0; z-index:100; width:min(520px,100%); height:100%; overflow-y:auto; padding:26px; background:#fff; transform:translateX(102%); transition:transform .25s ease; box-shadow:-14px 0 45px rgba(0,0,0,.18); }
+    .drawer.open { transform:translateX(0); }
+    .drawer-close { width:36px; height:36px; border:1px solid var(--line); border-radius:4px; background:#fff; cursor:pointer; }
+    .drawer-image { margin-top:18px; height:245px; object-fit:cover; border-radius:4px; background:#e5e7e9; }
+    .drawer .kicker { margin-top:20px; }
+    .drawer h2 { margin:8px 0 10px; font-size:26px; line-height:1.55; }
+    .drawer-summary { color:#41474d; font-size:16px; line-height:2; font-weight:700; }
+    .drawer-article { margin-top:24px; color:#30363b; font-size:15px; line-height:2.15; }
+    .drawer-article section { padding:0 0 18px; }
+    .drawer-article h3 { margin:0 0 7px; color:var(--ink); font-size:18px; line-height:1.7; }
+    .drawer-article p { margin:0; }
+    .drawer-sources { margin-top:20px; padding-top:18px; border-top:1px solid var(--line); }
+    .drawer-sources h3 { margin:0 0 10px; font-size:15px; }
+    .drawer-sources a { display:block; padding:7px 0; color:#285d9c; font-size:12px; line-height:1.7; }
+    .drawer-sources a:hover { color:var(--red); }
+    .drawer-note { margin-top:20px; padding:14px; border-right:3px solid var(--red); background:#f5f6f7; color:#50565c; font-size:12px; }
+    .drawer-source { display:inline-flex; margin-top:18px; padding:9px 14px; border-radius:4px; background:var(--ink); color:#fff; font-size:11px; font-weight:900; }
+
+    @media(max-width:980px) {
+      .main-nav { display:none; }
+      .hero-layout { grid-template-columns:1fr; }
+      .feature { min-height:0; }
+      .latest-list { display:grid; grid-template-columns:repeat(2,1fr); gap:0 18px; }
+      .content-layout { grid-template-columns:1fr; }
+    }
+    @media(max-width:720px) {
+      .container { width:min(100% - 22px,1180px); }
+      .site-header { height:60px; }
+      .header-inner { height:56px; gap:12px; }
+      .brand-name { font-size:17px; }
+      .brand-mark { width:30px; height:30px; font-size:16px; }
+      .editor-button { padding:0 10px; }
+      main { padding-top:16px; }
+      .feature { grid-template-columns:1fr; }
+      .feature-media { min-height:245px; }
+      .feature-copy { padding:24px 20px; }
+      .feature h1 { font-size:25px; }
+      .latest-list { display:block; }
+      .feed-shell { padding:16px; }
+      .section-header { align-items:flex-end; }
+      .controls { align-items:stretch; flex-direction:column; }
+      .search-wrap { width:100%; }
+      .news-card { grid-template-columns:112px minmax(0,1fr); gap:12px; }
+      .card-media { height:90px; }
+      .news-card h3 { font-size:14px; line-height:1.7; }
+      .card-summary { display:none; }
+      .card-footer { margin-top:7px; }
+      .editor-grid { grid-template-columns:1fr; }
+      .field.full { grid-column:auto; }
+      .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
+    }
   </style>
 </head>
 <body>
-  <div class="demo-bar">نسخه نمایشی MVP — تمام خبرها و آمار این صفحه ساختگی هستند</div>
-  <header>
-    <div class="shell head">
-      <a class="brand" href="#" aria-label="فوتبال نما"><span class="brand-mark">ف</span><span>فوتبال‌نما</span></a>
-      <nav aria-label="ناوبری اصلی">
-        <button class="nav-btn active" data-view="news">خبرها</button>
-        <button class="nav-btn" data-filter="transfer">نقل‌وانتقالات</button>
-        <button class="nav-btn" data-filter="analysis">تحلیل</button>
-        <button class="nav-btn" data-view="sources">منابع</button>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" data-go-home><span class="brand-mark">ف</span><span class="brand-name">فوتبال‌نما</span></a>
+      <nav class="main-nav" aria-label="منوی اصلی">
+        <button class="nav-link active" data-filter="all">خانه</button><button class="nav-link" data-filter="transfer">نقل‌وانتقالات</button><button class="nav-link" data-filter="analysis">تحلیل</button><button class="nav-link" data-filter="international">ESPN</button>
       </nav>
-      <div class="head-actions">
-        <button class="search-toggle" aria-label="جست‌وجو" onclick="document.querySelector('#searchInput').focus()">⌕</button>
-        <button class="editor-btn" data-view="editor">ورود به تحریریه</button>
-        <button class="icon-btn mobile-menu" aria-label="منو">☰</button>
+      <div class="header-actions">
+        <button class="icon-button" id="focusSearch" aria-label="جست‌وجو"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></button>
+        <button class="editor-button" data-view="editor">تحریریه</button>
       </div>
     </div>
   </header>
 
-  <section id="newsView">
-    <div class="breaking"><div class="shell breaking-inner"><div class="breaking-label"><span class="pulse"></span>روی خط</div><div class="ticker"><span><i>●</i>رصد هم‌زمان ۱۲ منبع محلی اروپایی</span><span><i>●</i>۳ خبر در صف بازبینی انسانی</span><span><i>●</i>آخرین به‌روزرسانی: ۲ دقیقه پیش</span></div></div></div>
-    <section class="hero">
-      <div class="shell hero-grid">
-        <article class="lead" tabindex="0" data-open="1">
-          <img src="https://www.laufen.de/files/laufen.de/000_NEU/021_SEO_Beitraege_Fotos/2022_10_15_thomas-serer-r-xKieMqL34-unsplash.jpg" alt="نمای عمومی یک مسابقه فوتبال در ورزشگاه" />
-          <div class="lead-content">
-            <div class="eyebrow"><span class="dot"></span>انتخاب سردبیر · بوندس‌لیگا</div>
-            <h1>باشگاه آلمانی برنامه تازه‌ای برای حفظ ستاره خط میانی ارائه کرد</h1>
-            <p>رسانه محلی نزدیک به باشگاه از آغاز گفت‌وگوهای رسمی و پیشنهاد قراردادی بلندمدت خبر داده است.</p>
-            <div class="meta"><span class="source-mark"><span class="source-logo">K</span>Kicker</span><span>آلمانی ← فارسی</span><span>۱۸ دقیقه پیش</span><span class="badge trusted">● گزارش معتبر</span></div>
-          </div>
-        </article>
-        <div class="hero-side">
-          <article class="mini-feature" tabindex="0" data-open="2"><div><div class="country">🇪🇸</div><small>لالیگا · رسانه محلی</small></div><h3>تمرکز کادر فنی روی بازگشت هافبک جوان پیش از بازی حساس</h3><div class="meta"><span>Diario AS</span><span class="badge official">● تأیید رسمی</span></div></article>
-          <article class="mini-feature" tabindex="0" data-open="3"><div><div class="country">🇮🇹</div><small>سری‌آ · نقل‌وانتقالات</small></div><h3>دو باشگاه برای مدافع ۲۳ ساله وارد مذاکره اولیه شدند</h3><div class="meta"><span>Calciomercato</span><span class="badge rumor">● در حد شایعه</span></div></article>
-        </div>
-      </div>
-    </section>
-
-    <main>
-      <div class="shell">
-        <div class="tools">
-          <div class="section-title"><div class="kicker">آخرین ترجمه‌های تأییدشده</div><h2>امروز در فوتبال اروپا</h2></div>
-          <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2"/></svg><input id="searchInput" type="search" placeholder="جست‌وجوی تیم، بازیکن یا منبع…" aria-label="جست‌وجوی خبر" /></label>
-        </div>
-        <div class="filters" id="filters">
-          <button class="chip active" data-filter="all">همه خبرها</button><button class="chip" data-filter="transfer">نقل‌وانتقالات</button><button class="chip" data-filter="germany">🇩🇪 آلمان</button><button class="chip" data-filter="spain">🇪🇸 اسپانیا</button><button class="chip" data-filter="italy">🇮🇹 ایتالیا</button><button class="chip" data-filter="france">🇫🇷 فرانسه</button><button class="chip" data-filter="netherlands">🇳🇱 هلند</button><button class="chip" data-filter="analysis">تحلیل</button>
-        </div>
-        <div class="content-grid">
-          <div class="news-grid" id="newsGrid"></div>
-          <aside>
-            <section class="panel"><div class="panel-title"><h3>بیشترین دنبال‌شده‌ها</h3><span>۲۴ ساعت اخیر</span></div><div class="trend"><span class="trend-num">۰۱</span><div><b>بازار نقل‌وانتقالات تابستانی</b><small>۲۸ خبر از ۹ منبع</small></div></div><div class="trend"><span class="trend-num">۰۲</span><div><b>آماده‌سازی تیم‌های لالیگا</b><small>۱۶ خبر از ۶ منبع</small></div></div><div class="trend"><span class="trend-num">۰۳</span><div><b>استعدادهای تازه اردیویسه</b><small>۹ خبر از ۴ منبع</small></div></div></section>
-            <section class="panel" id="sourcesPanel"><div class="panel-title"><h3>وضعیت منابع</h3><span>نمونه MVP</span></div><div class="source-row"><span class="source-icon">K</span><div><b>Kicker</b><small>آلمان · وب‌سایت</small></div><span class="health"></span></div><div class="source-row"><span class="source-icon">AS</span><div><b>Diario AS</b><small>اسپانیا · RSS</small></div><span class="health"></span></div><div class="source-row"><span class="source-icon">CM</span><div><b>Calciomercato</b><small>ایتالیا · وب‌سایت</small></div><span class="health"></span></div><div class="source-row"><span class="source-icon">LE</span><div><b>L'Équipe</b><small>فرانسه · RSS</small></div><span class="health"></span></div><div class="source-row"><span class="source-icon">VI</span><div><b>Voetbal International</b><small>هلند · وب‌سایت</small></div><span class="health"></span></div></section>
-          </aside>
-        </div>
-      </div>
-    </main>
-  </section>
-
-  <section id="editorView" class="editor-view hidden">
-    <div class="shell">
-      <div class="editor-head"><div><div class="kicker">کنترل انسانی پیش از انتشار</div><h1>میز تحریریه</h1><p>ترجمه را با متن منبع تطبیق دهید، تگ‌ها را بررسی و سپس منتشر کنید.</p></div><div class="queue-stats"><div class="stat"><strong id="pendingCount">۳</strong><small>در انتظار</small></div><div class="stat"><strong>۱۲</strong><small>امروز منتشرشده</small></div></div></div>
-      <div class="editor-grid">
-        <div class="queue"><h3>صف ورودی خبر</h3><div class="queue-item active"><span class="queue-status"></span><b>گفت‌وگو برای تمدید قرارداد هافبک ادامه دارد</b><small>Kicker · ۴ دقیقه پیش</small></div><div class="queue-item"><span class="queue-status"></span><b>مدافع هلندی به تمرین گروهی بازگشت</b><small>Voetbal International · ۹ دقیقه پیش</small></div><div class="queue-item"><span class="queue-status"></span><b>باشگاه فرانسوی پیشنهاد نخست را رد کرد</b><small>L'Équipe · ۱۳ دقیقه پیش</small></div><div class="queue-item"><span class="queue-status done"></span><b>برنامه اردوی پیش‌فصل اعلام شد</b><small>Marca · منتشرشده</small></div></div>
-        <div class="workspace">
-          <div class="workspace-top"><b>بازبینی ترجمه #FNM-1042</b><span class="lang-pill">DE → FA</span><span class="badge trusted">● گزارش معتبر</span></div>
-          <div class="editor-columns"><div class="copy original"><label><span>متن منبع</span><span>آلمانی</span></label><textarea aria-label="متن اصلی">Der Verein hat die Gespräche über eine Vertragsverlängerung mit dem jungen Mittelfeldspieler aufgenommen. Nach Angaben vereinsnaher Quellen liegt bereits ein erstes Angebot vor. Eine Entscheidung wird in den kommenden Wochen erwartet.</textarea></div><div class="copy"><label><span>ترجمه پیشنهادی</span><span>قابل ویرایش</span></label><textarea aria-label="ترجمه فارسی">باشگاه گفت‌وگوها برای تمدید قرارداد هافبک جوان خود را آغاز کرده است. به نوشته منابع نزدیک به باشگاه، نخستین پیشنهاد رسمی نیز ارائه شده و انتظار می‌رود تصمیم نهایی طی هفته‌های آینده گرفته شود.</textarea></div></div>
-          <div class="editor-actions"><button class="action approve" id="approveBtn">تأیید و انتشار</button><button class="action" id="saveBtn">ذخیره پیش‌نویس</button><button class="action reject" id="rejectBtn">رد ترجمه</button><span class="auto-tags">تگ پیشنهادی: #بوندس‌لیگا #تمدید_قرارداد #هافبک</span></div>
-        </div>
-      </div>
+  <section class="score-strip" aria-label="نتایج نمونه">
+    <div class="container score-inner">
+      <div class="score-label">نتایج منتخب <small>داده نمایشی MVP</small></div>
+      <div class="score-item"><div class="score-meta"><span>لیگ قهرمانان</span><span>پایان</span></div><div class="score-teams"><span>بارسلونا ـ آرسنال</span><span class="score-result">2 - 2</span></div></div>
+      <div class="score-item"><div class="score-meta"><span>لیگ برتر انگلیس</span><span>پایان</span></div><div class="score-teams"><span>لیورپول ـ چلسی</span><span class="score-result">1 - 0</span></div></div>
+      <div class="score-item"><div class="score-meta"><span>بوندس‌لیگا</span><span>۲۲:۱۵</span></div><div class="score-teams"><span>بایرن ـ دورتموند</span><span class="score-result">-</span></div></div>
     </div>
   </section>
 
-  <footer><div class="shell"><div class="foot"><div><a class="brand" href="#"><span class="brand-mark">ف</span><span>فوتبال‌نما</span></a><p>خبرهای فوتبال جهان را از رسانه‌های معتبر و محلی می‌خوانیم، به فارسی روان برمی‌گردانیم و با ذکر شفاف منبع در اختیار شما می‌گذاریم.</p></div><div><h4>محصول</h4><a href="#">آخرین خبرها</a><a href="#">نقل‌وانتقالات</a><a href="#sourcesPanel">فهرست منابع</a></div><div><h4>استاندارد انتشار</h4><a href="#">سیاست تصحیح خبر</a><a href="#">نشان‌های اعتبار</a><a href="#">حقوق محتوا و تصاویر</a></div></div><div class="foot-bottom"><span>© ۱۴۰۵ فوتبال‌نما — نسخه نمایشی</span><span>منبع روشن · ترجمه استاندارد · تأیید انسانی</span></div></div></footer>
+  <main>
+    <section id="newsView" class="container">
+      <div class="hero-layout">
+        <article id="featured" class="feature" aria-label="خبر شاخص"></article>
+        <aside class="panel"><div class="panel-header"><h2 class="panel-title">آخرین خبرها</h2><span class="tiny-status">به‌روزرسانی خودکار</span></div><div id="latestList" class="latest-list"></div></aside>
+      </div>
+      <div class="content-layout">
+        <section class="feed-shell">
+          <div class="section-header"><h2 class="section-title">اخبار فوتبال جهان</h2><span class="result-count" id="resultCount"></span></div>
+          <div class="controls">
+            <label class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input class="search-input" id="searchInput" type="search" placeholder="جست‌وجو در خبرها، تیم‌ها و بازیکنان" aria-label="جست‌وجو"></label>
+            <div class="filters" aria-label="فیلتر خبرها"><button class="filter-button active" data-filter="all">همه</button><button class="filter-button" data-filter="england">انگلیس</button><button class="filter-button" data-filter="germany">آلمان</button><button class="filter-button" data-filter="international">ESPN</button><button class="filter-button" data-filter="transfer">نقل‌وانتقالات</button><button class="filter-button" data-filter="analysis">تحلیل</button></div>
+          </div>
+          <div id="newsGrid" class="news-list"></div><button id="loadMore" class="load-more">نمایش خبرهای بیشتر</button>
+        </section>
+        <aside class="sidebar">
+          <section class="panel" id="sourcesPanel">
+            <div class="panel-header"><h2 class="panel-title">منابع فعال</h2><span class="tiny-status" id="sourceCount">۵ منبع</span></div>
+            <div class="source-list">
+              <a class="source-row" href="https://www.espn.com/soccer/" target="_blank" rel="noopener"><span class="source-logo">ESPN</span><span class="source-copy"><strong>ESPN Soccer</strong><small>بین‌المللی · انگلیسی</small></span><span class="source-state">فعال</span></a>
+              <a class="source-row" href="https://www.bbc.com/sport/football" target="_blank" rel="noopener"><span class="source-logo">BBC</span><span class="source-copy"><strong>BBC Sport</strong><small>انگلیس · انگلیسی</small></span><span class="source-state">فعال</span></a>
+              <a class="source-row" href="https://www.theguardian.com/football" target="_blank" rel="noopener"><span class="source-logo">G</span><span class="source-copy"><strong>The Guardian</strong><small>انگلیس · انگلیسی</small></span><span class="source-state">فعال</span></a>
+              <a class="source-row" href="https://www.skysports.com/football" target="_blank" rel="noopener"><span class="source-logo">SKY</span><span class="source-copy"><strong>Sky Sports</strong><small>انگلیس · انگلیسی</small></span><span class="source-state">فعال</span></a>
+              <a class="source-row" href="https://www.kicker.de/" target="_blank" rel="noopener"><span class="source-logo">K</span><span class="source-copy"><strong>Kicker</strong><small>آلمان · آلمانی</small></span><span class="source-state">فعال</span></a>
+            </div>
+            <p class="standards"><strong>استاندارد انتشار:</strong> نام و لینک منبع همیشه نمایش داده می‌شود. محتوای ESPN مطابق شرایط ارائه‌دهنده بدون ترجمه خودکار منتشر می‌شود.</p>
+          </section>
+        </aside>
+      </div>
+    </section>
 
-  <div class="drawer-wrap" id="drawer" aria-hidden="true"><div class="scrim" data-close></div><article class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle"><div class="drawer-cover"><img id="drawerImage" alt="تصویر خبر"/><button class="close" data-close aria-label="بستن">×</button></div><div class="drawer-content"><div class="eyebrow" id="drawerEyebrow"></div><h2 id="drawerTitle"></h2><p class="drawer-summary" id="drawerSummary"></p><div class="why"><b>چرا این خبر مهم است؟</b><span id="drawerWhy"></span></div><div class="tags" id="drawerTags"></div><h3>شفافیت منبع</h3><div class="source-box"><span class="source-icon" id="drawerSourceIcon"></span><div><b id="drawerSource"></b><small id="drawerSourceMeta"></small></div><a id="drawerLink" href="#" target="_blank" rel="noopener">مشاهده منبع ↗</a></div><p class="fine">این متن یک خلاصه ترجمه‌شده است، نه بازنشر کامل. برای بررسی جزئیات و زمینه خبر به منبع اصلی مراجعه کنید.</p></div></article></div>
-  <div class="toast" id="toast"></div>
+    <section id="editorView" class="container editor-view hidden">
+      <div class="editor-shell">
+        <h1>میز تحریریه</h1><p>نمونه ساده برای بازبینی و ویرایش خبر پیش از انتشار.</p>
+        <div class="editor-grid">
+          <div class="field full"><label for="editTitle">عنوان فارسی</label><input id="editTitle" value="آرسنال برای تقویت خط میانی وارد بازار نقل‌وانتقالات شد"></div>
+          <div class="field"><label for="editSource">منبع</label><input id="editSource" value="BBC Sport"></div>
+          <div class="field"><label for="editTags">برچسب‌ها</label><input id="editTags" value="آرسنال، نقل‌وانتقالات، لیگ برتر"></div>
+          <div class="field full"><label for="editSummary">خلاصه خبر</label><textarea id="editSummary" rows="5">باشگاه آرسنال گزینه‌های تازه‌ای را برای تقویت خط میانی بررسی می‌کند. این خبر پس از تطبیق با منبع اصلی آماده انتشار می‌شود.</textarea></div>
+        </div>
+        <div class="editor-actions"><button class="action-primary" id="approveBtn">تأیید و انتشار</button><button class="action-secondary" id="saveBtn">ذخیره پیش‌نویس</button><button class="action-danger" id="rejectBtn">رد خبر</button></div>
+      </div>
+    </section>
+  </main>
 
+  <footer><div class="container footer-inner"><span class="footer-brand">فوتبال‌نما</span><span>خبر فوتبال جهان با منبع شفاف · نسخه MVP</span><span id="liveTicker">آخرین دریافت: —</span></div></footer>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true"><button class="drawer-close" id="drawerClose" aria-label="بستن">×</button><div id="drawerContent"></div></aside>
+
+  <script src="data/news.js"></script>
   <script>
-    const images={stadium:'https://www.laufen.de/files/laufen.de/000_NEU/021_SEO_Beitraege_Fotos/2022_10_15_thomas-serer-r-xKieMqL34-unsplash.jpg',training:'https://cdn.cctoday.co.kr/news/photo/202110/2152076_583948_4709.jpg',press:'https://statics-maker.llt-services.com/mll/images/2022/11/15/xlarge/bebd0f532548b694606fd33c675de16b.jpeg',locker:'https://melbournecityfc.com.au/wp-content/uploads/sites/6/2024/04/CaseyFieldsB_036.jpg?w=1200'};
-    const news=[
-      {id:1,country:'germany',flag:'🇩🇪 آلمان',cat:'transfer',eyebrow:'بوندس‌لیگا · نقل‌وانتقالات',title:'باشگاه آلمانی برنامه تازه‌ای برای حفظ ستاره خط میانی ارائه کرد',summary:'رسانه محلی نزدیک به باشگاه از آغاز گفت‌وگوهای رسمی و پیشنهاد قراردادی بلندمدت خبر داده است.',why:'تمدید این قرارداد می‌تواند برنامه نقل‌وانتقالاتی باشگاه را برای فصل بعد تغییر دهد.',source:'Kicker',icon:'K',lang:'آلمانی',time:'۱۸ دقیقه پیش',cred:'گزارش معتبر',credClass:'trusted',tags:['بوندس‌لیگا','تمدید قرارداد','هافبک'],image:images.stadium,url:'https://www.kicker.de/'},
-      {id:2,country:'spain',flag:'🇪🇸 اسپانیا',cat:'analysis',eyebrow:'لالیگا · گزارش تمرین',title:'تمرکز کادر فنی روی بازگشت هافبک جوان پیش از بازی حساس',summary:'این بازیکن پس از دو هفته تمرین انفرادی بخشی از جلسه گروهی را بدون مشکل پشت سر گذاشت.',why:'بازگشت او گزینه‌های تاکتیکی بیشتری در میانه میدان در اختیار سرمربی می‌گذارد.',source:'Diario AS',icon:'AS',lang:'اسپانیایی',time:'۲۶ دقیقه پیش',cred:'تأیید رسمی',credClass:'official',tags:['لالیگا','تمرین','مصدومیت'],image:images.training,url:'https://as.com/'},
-      {id:3,country:'italy',flag:'🇮🇹 ایتالیا',cat:'transfer',eyebrow:'سری‌آ · بازار انتقال',title:'دو باشگاه برای مدافع ۲۳ ساله وارد مذاکره اولیه شدند',summary:'گفت‌وگوها هنوز در مرحله ارزیابی است و هیچ پیشنهاد رسمی به باشگاه بازیکن نرسیده است.',why:'رقابت دو باشگاه می‌تواند روی ارزش‌گذاری و زمان نهایی‌شدن انتقال اثر بگذارد.',source:'Calciomercato',icon:'CM',lang:'ایتالیایی',time:'۳۴ دقیقه پیش',cred:'در حد شایعه',credClass:'rumor',tags:['سری‌آ','مدافع','شایعه نقل‌وانتقال'],image:images.press,url:'https://www.calciomercato.com/'},
-      {id:4,country:'france',flag:'🇫🇷 فرانسه',cat:'transfer',eyebrow:'لیگ ۱ · مذاکره باشگاهی',title:'پیشنهاد نخست برای مهاجم جوان با پاسخ منفی روبه‌رو شد',summary:'باشگاه فرانسوی رقم اولیه را کافی نمی‌داند، اما مسیر مذاکره هنوز باز گزارش شده است.',why:'منبع محلی از احتمال ارائه پیشنهاد دوم تا پایان هفته خبر داده است.',source:"L'Équipe",icon:'LE',lang:'فرانسوی',time:'۴۱ دقیقه پیش',cred:'گزارش معتبر',credClass:'trusted',tags:['لیگ ۱','مهاجم','پیشنهاد رسمی'],image:images.locker,url:'https://www.lequipe.fr/'},
-      {id:5,country:'netherlands',flag:'🇳🇱 هلند',cat:'analysis',eyebrow:'اردیویسه · پرورش استعداد',title:'پدیده ۱۹ ساله در آستانه حضور ثابت در ترکیب اصلی',summary:'عملکرد او در تمرین‌های پیش‌فصل کادر فنی را برای دادن نقش بزرگ‌تر متقاعد کرده است.',why:'این بازیکن یکی از استعدادهای قابل پیگیری فصل جدید فوتبال هلند است.',source:'Voetbal International',icon:'VI',lang:'هلندی',time:'۵۵ دقیقه پیش',cred:'گزارش معتبر',credClass:'trusted',tags:['اردیویسه','استعداد جوان','ترکیب اصلی'],image:images.training,url:'https://www.vi.nl/'},
-      {id:6,country:'spain',flag:'🇪🇸 اسپانیا',cat:'transfer',eyebrow:'لالیگا · خبر باشگاه',title:'دروازه‌بان ذخیره برای جدایی قرضی چراغ سبز گرفت',summary:'باشگاه ترجیح می‌دهد بازیکن جوان فصل آینده فرصت بازی منظم‌تری در تیم دیگری داشته باشد.',why:'مقصد قرضی می‌تواند مسیر رشد و جایگاه فصل بعد او را تعیین کند.',source:'Marca',icon:'M',lang:'اسپانیایی',time:'۱ ساعت پیش',cred:'تأیید رسمی',credClass:'official',tags:['لالیگا','قرضی','دروازه‌بان'],image:images.stadium,url:'https://www.marca.com/'},
-      {id:7,country:'germany',flag:'🇩🇪 آلمان',cat:'analysis',eyebrow:'بوندس‌لیگا · آنالیز',title:'تغییر نقش مدافع کناری در سیستم تازه سرمربی',summary:'آمار مسابقات دوستانه نشان می‌دهد او در زمان مالکیت توپ بیشتر به خط میانی اضافه می‌شود.',why:'این تغییر می‌تواند الگوی حمله تیم را در فصل جدید کاملاً متفاوت کند.',source:'Sport1',icon:'S1',lang:'آلمانی',time:'۱ ساعت پیش',cred:'تحلیل رسانه',credClass:'trusted',tags:['بوندس‌لیگا','تاکتیک','آنالیز'],image:images.press,url:'https://www.sport1.de/'},
-      {id:8,country:'italy',flag:'🇮🇹 ایتالیا',cat:'analysis',eyebrow:'سری‌آ · پیش‌فصل',title:'کادر فنی از پیشرفت بدنی مهاجم باتجربه رضایت دارد',summary:'داده‌های تمرینی نشان می‌دهد بازیکن زودتر از برنامه به آمادگی مطلوب نزدیک شده است.',why:'آمادگی او روی تصمیم باشگاه برای خرید مهاجم تازه اثر مستقیم دارد.',source:'Sky Sport Italia',icon:'SKY',lang:'ایتالیایی',time:'۲ ساعت پیش',cred:'گزارش معتبر',credClass:'trusted',tags:['سری‌آ','آمادگی بدنی','پیش‌فصل'],image:images.locker,url:'https://sport.sky.it/calcio'}
+    const demoNews=[
+      {
+        id:'analysis-man-utd-carrick-2026',country:'england',cat:'analysis',flag:'🏴 انگلیس',eyebrow:'تحلیل ویژه · منچستر یونایتد',
+        title:'منچستر یونایتد در لبه بحران؛ اولین آزمون واقعی مایکل کریک',
+        summary:'کریک فصل گذشته یونایتد را به لیگ قهرمانان رساند، اما شروع پرنوسان فصل جدید، فروپاشی مقابل برایتون و فشار سکوهای اولدترافورد او را مقابل مهم‌ترین آزمون دوران مربیگری‌اش قرار داده است.',
+        source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل تحریریه',credClass:'trusted',
+        tags:['منچستریونایتد','مایکل کریک','لیگ برتر انگلیس','تحلیل'],
+        why:'این گزارش با تطبیق گزارش‌های رسمی منچستر یونایتد، لیگ برتر، گاردین، اسکای اسپورتس و NBC تهیه شده است. سناریوهای آینده تحلیل تحریریه‌اند و خبر قطعی محسوب نمی‌شوند.',
+        image:'https://e0.365dm.com/26/09/1920x1080/skysports-michael-carrick-man-utd_7354061.jpg?20260916221141',url:'#',
+        body:[
+          {heading:'از ناجی موقت تا مربی زیر فشار',text:'مایکل کریک فصل گذشته منچستر یونایتد را از آشفتگی بیرون کشید، سهمیه لیگ قهرمانان را گرفت و با ۱۲ پیروزی، سه تساوی و تنها دو شکست در ۱۷ مسابقه، مدیران باشگاه را متقاعد کرد قراردادی تا سال ۲۰۲۸ به او بدهند. کمتر از چهار ماه بعد، آرام‌ترین چهره نیمکت اولدترافورد وارد اولین بحران واقعی دوران مربیگری‌اش شده است. یونایتد در شش مسابقه رسمی این فصل فقط دو بار پیروز شده و نرخ برد کریک از ۷۰.۶ درصد فصل گذشته به ۳۳.۳ درصد رسیده است.'},
+          {heading:'شبی که بحران شکل واقعی گرفت',text:'شکست ۳ بر ۲ مقابل برایتون فقط حذف از جام اتحادیه نبود؛ تصویری فشرده از مشکلات فعلی یونایتد بود. تیم کریک پس از ۱۰ دقیقه با گل‌های شیا لیسی و میسون مونت دو بر صفر جلو افتاد، اما بعد از گل دوم تا دقیقه ۷۶ حتی یک شوت در چارچوب دیگر نزد. برایتون بازی را برگرداند و یونایتد برای نخستین بار در ۵۰ سال گذشته در اولدترافورد، با وجود برتری دوگله، شکست خورد. هواداران تیم را هو کردند و کریک مسئولیت نمایش نیمه دوم را پذیرفت.'},
+          {heading:'نشانه‌های یک مشکل تکرارشونده',text:'این فروپاشی سه روز پس از شکست در دربی رخ داد؛ مسابقه‌ای که یونایتد با وجود ۶۷ دقیقه بازی مقابل منچسترسیتی ده‌نفره، نتوانست نتیجه را برگرداند. پیش از آن نیز تیم برابر اورتون در وقت‌های تلف‌شده برتری خود را از دست داده بود. مسئله فقط خط دفاع یا تمام‌کنندگی نیست؛ یونایتد هنوز نمی‌تواند ریتم مسابقه را مطابق شرایط کنترل کند. تیم کریک وقتی فضا برای ضدحمله دارد خطرناک است، اما هنگام حفظ برتری یا شکستن دفاع فشرده حریف، فاصله خطوط افزایش می‌یابد و ابتکار عمل از دست می‌رود.'},
+          {heading:'وابستگی به برونو و انتظار برای مصدومان',text:'وابستگی به برونو فرناندز همچنان شدید است. او در پیروزی ۵ بر ۲ مقابل ایپسویچ هت‌تریک کرد و یونایتد در آن مسابقه ۳۳ شوت داشت؛ اما وقتی برونو مهار می‌شود، جریان خلق موقعیت افت محسوسی پیدا می‌کند. مصدومیت کارلوس بالبا، آماد دیالو و ناپایداری ترکیب دفاعی نیز انتخاب‌های کریک را محدود کرده است. بازگشت بالبا می‌تواند برای تیمی که در مهار انتقال‌های حریف و دفاع از فضای میانی مشکل دارد، نقطه عطف باشد.'},
+          {heading:'پرونده جی‌جی گابریل؛ بحران هویت',text:'هم‌زمان، گزارش‌ها درباره درخواست جدایی جی‌جی گابریل، استعداد ۱۵ساله آکادمی، به بحران ورزشی باشگاه بُعد دیگری داده است. کریک بر سن پایین بازیکن و ضرورت حفاظت از او تأکید کرده، اما برای باشگاهی که هویت خود را بر آکادمی بنا کرده، ایجاد یک مسیر روشن از تیم‌های پایه تا ترکیب اصلی اهمیت نمادین و عملی دارد.'},
+          {heading:'فولام؛ مسابقه‌ای بزرگ‌تر از سه امتیاز',text:'یونایتد در نخستین بازی پیش رو میهمان فولام است و سپس با تاتنهام، لیدز، بورنموث و چلسی روبه‌رو می‌شود. پیروزی برابر فولام می‌تواند فضای روانی تیم را آرام کند و به کریک فرصت بازسازی بدهد؛ اما یک شکست دیگر، هر مسابقه ماه اکتبر را به آزمونی درباره آینده سرمربی تبدیل خواهد کرد.'},
+          {heading:'سه سناریوی پیش رو',text:'سناریوی احیا با برد مقابل فولام، بازگشت مهره‌های کلیدی و کسب دست‌کم هفت امتیاز از سه مسابقه بعدی شکل می‌گیرد. در سناریوی فرسایش، نتایج متوسط ادامه پیدا می‌کند؛ مدیران احتمالاً به قرارداد تازه کریک وفادار می‌مانند، اما اعتماد سکوها کاهش می‌یابد. سناریوی سقوط زمانی جدی می‌شود که شکست مقابل فولام با نتایج ضعیف برابر تاتنهام و لیدز همراه شود؛ آن‌وقت مدیریت باید تصمیم بگیرد موفقیت فصل گذشته یک پایه پایدار بوده یا اثر کوتاه‌مدت تغییر مربی.'},
+          {heading:'جمع‌بندی',text:'کریک هنوز در آستانه اخراج نیست، اما باید چیزی مهم‌تر از یک نتیجه را ثابت کند: توانایی متوقف‌کردن سقوط روانی تیم. فصل گذشته نشان داد می‌تواند یک تیم بحران‌زده را آزاد کند؛ این فصل باید نشان دهد می‌تواند تیم خودش را کنترل کند. بازی‌های پیش رو مشخص خواهند کرد این بحران، یک لغزش زودهنگام است یا آغاز فرسایش دوباره در اولدترافورد.'}
+        ],
+        sources:[
+          {title:'اسکای اسپورتس؛ ریشه‌های شروع ضعیف یونایتد',url:'https://www.skysports.com/football/news/11095/13588890/manchester-united-whats-to-blame-for-latest-problems-and-results-increasing-scrutiny-on-michael-carrick-after-carabao-cup-exit'},
+          {title:'گاردین؛ واکنش کریک پس از فروپاشی مقابل برایتون',url:'https://www.theguardian.com/football/2026/sep/16/michael-carrick-manchester-united-carabao-cup-third-round-defeat-brighton'},
+          {title:'NBC Sports؛ مرور نتایج و شروع فصل یونایتد',url:'https://www.nbcsports.com/soccer/news/michael-carrick-latest-is-manchester-united-boss-on-hot-seat-red-devils-capitulate-in-league-cup'},
+          {title:'منچستر یونایتد؛ آخرین اخبار رسمی تیم',url:'https://www.manutd.com/en/news'},
+          {title:'لیگ برتر؛ برنامه مسابقات منچستر یونایتد',url:'https://www.premierleague.com/ar/news/4675130/all-of-manchester-uniteds-fixtures-for-202627-premier-league-season'}
+        ]
+      },
+      {id:'demo-2',country:'italy',cat:'transfer',flag:'🇮🇹 ایتالیا',eyebrow:'ایتالیا · نقل‌وانتقالات',title:'باشگاه‌های سری آ برنامه تابستانی خود را نهایی می‌کنند',summary:'مدیران ورزشی چند باشگاه بزرگ ایتالیا مذاکره برای جذب بازیکنان جوان را آغاز کرده‌اند.',source:'نمونه تحریریه',lang:'فارسی',time:'امروز',cred:'نمونه',credClass:'trusted',tags:['سری آ','نقل‌وانتقالات'],why:'خبر نمایشی برای نسخه MVP.',image:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80',url:'#'}
     ];
-    let activeFilter='all';
-    const grid=document.querySelector('#newsGrid'),search=document.querySelector('#searchInput');
-    const fa=n=>new Intl.NumberFormat('fa-IR').format(n);
-    function card(n){return `<article class="card" tabindex="0" data-open="${n.id}"><div class="thumb"><img loading="lazy" src="${n.image}" alt="تصویر عمومی مرتبط با فوتبال"/><span class="flag">${n.flag}</span></div><div class="card-body"><div class="kicker">${n.eyebrow}</div><h3>${n.title}</h3><p>${n.summary}</p><div class="tags">${n.tags.slice(0,2).map(t=>`<span class="tag">#${t}</span>`).join('')}</div><div class="meta"><span class="source-mark"><span class="source-logo">${n.icon}</span>${n.source}</span><span>${n.time}</span><span class="badge ${n.credClass}">● ${n.cred}</span></div></div></article>`}
-    function render(){const q=search.value.trim();const list=news.filter(n=>(activeFilter==='all'||n.country===activeFilter||n.cat===activeFilter)&&(!q||[n.title,n.summary,n.source,...n.tags].join(' ').includes(q)));grid.innerHTML=list.length?list.map(card).join(''):`<div class="empty">خبری با این فیلتر پیدا نشد. عبارت دیگری را امتحان کنید.</div>`;bindCards()}
-    function bindCards(){document.querySelectorAll('[data-open]').forEach(el=>{el.onclick=()=>openNews(+el.dataset.open);el.onkeydown=e=>{if(e.key==='Enter')openNews(+el.dataset.open)}})}
-    document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
-    search.addEventListener('input',render);
-    const drawer=document.querySelector('#drawer');
-    function openNews(id){const n=news.find(x=>x.id===id);if(!n)return;drawer.querySelector('#drawerImage').src=n.image;drawer.querySelector('#drawerEyebrow').innerHTML=`<span class="dot"></span>${n.eyebrow}`;drawer.querySelector('#drawerTitle').textContent=n.title;drawer.querySelector('#drawerSummary').textContent=n.summary;drawer.querySelector('#drawerWhy').textContent=n.why;drawer.querySelector('#drawerTags').innerHTML=n.tags.map(t=>`<span class="tag">#${t}</span>`).join('');drawer.querySelector('#drawerSourceIcon').textContent=n.icon;drawer.querySelector('#drawerSource').textContent=n.source;drawer.querySelector('#drawerSourceMeta').textContent=`زبان اصلی: ${n.lang} · ${n.cred}`;drawer.querySelector('#drawerLink').href=n.url;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
-    function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');document.body.style.overflow=''}document.querySelectorAll('[data-close]').forEach(x=>x.onclick=closeDrawer);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
-    function showView(view){const editor=view==='editor';document.querySelector('#newsView').classList.toggle('hidden',editor);document.querySelector('#editorView').classList.toggle('hidden',!editor);document.querySelectorAll('.nav-btn').forEach(x=>x.classList.toggle('active',(editor&&x.dataset.view==='editor')||(!editor&&x.dataset.view==='news')));window.scrollTo({top:0,behavior:'smooth'})}
-    document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(b.dataset.view==='sources'){showView('news');setTimeout(()=>document.querySelector('#sourcesPanel').scrollIntoView({behavior:'smooth'}),100)}else showView(b.dataset.view)});
-    document.querySelectorAll('nav [data-filter]').forEach(b=>b.onclick=()=>{showView('news');activeFilter=b.dataset.filter;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.filter===activeFilter));render();setTimeout(()=>document.querySelector('#filters').scrollIntoView({behavior:'smooth'}),100)});
-    function toast(msg){const t=document.querySelector('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
-    document.querySelector('#approveBtn').onclick=()=>{const c=document.querySelector('#pendingCount');c.textContent=Math.max(0,+c.textContent-1);toast('خبر تأیید شد و برای انتشار رفت ✓')};document.querySelector('#saveBtn').onclick=()=>toast('پیش‌نویس ذخیره شد');document.querySelector('#rejectBtn').onclick=()=>toast('ترجمه برای اصلاح برگشت داده شد');
-    render();
+    const liveNews=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
+    const news=[...liveNews,...demoNews];
+    let activeFilter='all',query='',visibleCount=10;
+    const esc=(value='')=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+    const safeImage=value=>/^https?:\/\//i.test(value||'')?value:'';
+
+    function renderFeatured(){
+      const item=demoNews[0];
+      document.getElementById('featured').innerHTML=`<div class="feature-media"><img src="${esc(item.image)}" alt="${esc(item.title)}"></div><div class="feature-copy"><span class="kicker">${esc(item.eyebrow)}</span><h1>${esc(item.title)}</h1><p>${esc(item.summary)}</p><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang)}</span></div><button class="read-button" data-open-id="${esc(item.id)}">مشاهده خبر</button></div>`;
+    }
+    function renderLatest(){
+      const items=liveNews.slice(0,6),root=document.getElementById('latestList');
+      if(!items.length){root.innerHTML='<div class="empty">هنوز خبری دریافت نشده است.</div>';return;}
+      root.innerHTML=items.map(item=>{const image=safeImage(item.image);return `<article class="latest-item" data-open-id="${esc(item.id)}">${image?`<img class="latest-thumb" src="${esc(image)}" alt="" loading="lazy" onerror="this.outerHTML='<span class=&quot;latest-thumb media-fallback&quot;>خبر</span>'">`:'<span class="latest-thumb media-fallback">خبر</span>'}<div><h3>${esc(item.title)}</h3><small>${esc(item.source)} · ${esc(item.time)}</small></div></article>`;}).join('');
+    }
+    function matches(item){const filterMatch=activeFilter==='all'||item.country===activeFilter||item.cat===activeFilter;const haystack=[item.title,item.summary,item.source,...(item.tags||[])].join(' ').toLowerCase();return filterMatch&&haystack.includes(query.toLowerCase());}
+    function card(item){
+      const image=safeImage(item.image),statusText=item.providerOnly?'ارائه‌شده توسط منبع':(item.cred||'نیازمند بازبینی'),label=item.eyebrow||item.flag||'خبر فوتبال';
+      return `<article class="news-card"><div class="card-media" data-open-id="${esc(item.id)}">${image?`<img src="${esc(image)}" alt="${esc(item.title)}" loading="lazy" onerror="this.outerHTML='<span class=&quot;media-fallback&quot;>فوتبال‌نما</span>'">`:'<span class="media-fallback">فوتبال‌نما</span>'}</div><div><div class="card-label">${esc(label)}</div><h3 data-open-id="${esc(item.id)}">${esc(item.title)}</h3><p class="card-summary">${esc(item.summary||'برای جزئیات بیشتر، خبر را باز کنید.')}</p><div class="card-footer"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span class="status ${esc(item.credClass||'')}">${esc(statusText)}</span></div></div></article>`;
+    }
+    function render(){
+      const filtered=news.filter(matches),shown=filtered.slice(0,visibleCount),grid=document.getElementById('newsGrid');
+      grid.innerHTML=shown.length?shown.map(card).join(''):'<div class="empty">خبری با این مشخصات پیدا نشد.</div>';
+      document.getElementById('resultCount').textContent=`${filtered.length.toLocaleString('fa-IR')} خبر`;
+      document.getElementById('loadMore').classList.toggle('hidden',shown.length>=filtered.length);
+    }
+    function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
+    function showView(view){const editing=view==='editor';document.getElementById('newsView').classList.toggle('hidden',editing);document.getElementById('editorView').classList.toggle('hidden',!editing);window.scrollTo({top:0,behavior:'smooth'});}
+    function openDrawer(id){
+      const item=news.find(entry=>entry.id===id);if(!item)return;const image=safeImage(item.image);
+      const article=Array.isArray(item.body)?`<div class="drawer-article">${item.body.map(block=>`<section>${block.heading?`<h3>${esc(block.heading)}</h3>`:''}<p>${esc(block.text||'')}</p></section>`).join('')}</div>`:'';
+      const sources=Array.isArray(item.sources)?`<div class="drawer-sources"><h3>منابع گزارش</h3>${item.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)} ←</a>`).join('')}</div>`:'';
+      document.getElementById('drawerContent').innerHTML=`${image?`<img class="drawer-image" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h2>${esc(item.title)}</h2><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="drawer-summary">${esc(item.summary||'')}</p>${article}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${sources}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}`;
+      document.getElementById('drawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('open');document.getElementById('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+    }
+    function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerBackdrop').classList.remove('open');document.getElementById('drawer').setAttribute('aria-hidden','true');document.body.style.overflow='';}
+    document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]'),opener=event.target.closest('[data-open-id]');if(filter)setFilter(filter.dataset.filter);if(view)showView(view.dataset.view);if(opener)openDrawer(opener.dataset.openId);if(event.target.closest('[data-go-home]')){event.preventDefault();setFilter('all');}});
+    document.getElementById('searchInput').addEventListener('input',event=>{query=event.target.value.trim();visibleCount=10;render();});
+    document.getElementById('focusSearch').addEventListener('click',()=>{showView('news');document.getElementById('searchInput').focus();document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});});
+    document.getElementById('loadMore').addEventListener('click',()=>{visibleCount+=10;render();});
+    document.getElementById('drawerClose').addEventListener('click',closeDrawer);document.getElementById('drawerBackdrop').addEventListener('click',closeDrawer);document.addEventListener('keydown',event=>{if(event.key==='Escape')closeDrawer();});
+    ['approveBtn','saveBtn','rejectBtn'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{const messages={approveBtn:'خبر برای انتشار تأیید شد.',saveBtn:'پیش‌نویس ذخیره شد.',rejectBtn:'خبر از صف بررسی خارج شد.'};alert(messages[id]);}));
+    if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
+    renderFeatured();renderLatest();render();
   </script>
 </body>
 </html>

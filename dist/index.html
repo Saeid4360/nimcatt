@@ -144,6 +144,10 @@
     .drawer .kicker { margin-top:20px; }
     .drawer h2 { margin:8px 0 10px; font-size:26px; line-height:1.55; }
     .drawer-summary { color:#41474d; font-size:16px; line-height:2; font-weight:700; }
+    .drawer-metrics { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:22px 0 26px; }
+    .drawer-metric { padding:13px 14px; border:1px solid var(--line); border-top:3px solid var(--red); border-radius:4px; background:#f8f9fa; }
+    .drawer-metric strong { display:block; color:var(--ink); font-size:20px; line-height:1.4; direction:ltr; text-align:right; }
+    .drawer-metric span { display:block; margin-top:3px; color:var(--muted); font-size:11px; line-height:1.7; }
     .drawer-article { margin-top:24px; color:#30363b; font-size:15px; line-height:2.15; }
     .drawer-article section { padding:0 0 18px; }
     .drawer-article h3 { margin:0 0 7px; color:var(--ink); font-size:18px; line-height:1.7; }
@@ -184,6 +188,7 @@
       .news-card h3 { font-size:14px; line-height:1.7; }
       .card-summary { display:none; }
       .card-footer { margin-top:7px; }
+      .drawer-metrics { grid-template-columns:1fr; }
       .editor-grid { grid-template-columns:1fr; }
       .field.full { grid-column:auto; }
       .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
@@ -265,6 +270,50 @@
   <script src="data/news.js"></script>
   <script>
     const demoNews=[
+      {
+        id:'analysis-future-european-leagues-2026',country:'europe',cat:'analysis',flag:'🇪🇺 اروپا',eyebrow:'تحلیل داده‌محور · آینده لیگ‌های اروپا',
+        title:'نقشه قدرت فوتبال اروپا تا ۲۰۳۰؛ کدام لیگ‌ها جذاب‌تر می‌شوند؟',
+        summary:'پول در انگلیس، رشد ساختاری در آلمان و اسپانیا، احیای ورزشی در ایتالیا و یک آزمایش پرریسک در فرانسه؛ داده‌ها نشان می‌دهند رقابت آینده اروپا فقط بر سر ستاره‌ها نیست، بلکه بر سر ورزشگاه، پخش مستقیم و پرورش استعداد است.',
+        source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل داده‌محور',credClass:'trusted',
+        tags:['لیگ برتر انگلیس','بوندس‌لیگا','لالیگا','سری آ','لیگ یک فرانسه','اردیویژه','فوتبال اروپا','اقتصاد فوتبال','تحلیل'],
+        why:'اعداد این گزارش عمدتاً به فصل مالی ۲۰۲۴/۲۵ و تازه‌ترین گزارش‌های منتشرشده تا شهریور ۱۴۰۵ مربوط‌اند. رتبه‌بندی آینده‌نگر و سناریوهای ۲۰۳۰ تحلیل تحریریه‌اند، نه پیش‌بینی قطعی.',
+        image:'https://www.vfb.de/images/redaktion/images/profis/2425-Bildergalerien/CL-4-VfB-Atalanta-Bergamo/24-11-06-VfB-Bergamo-007_MHP-Arena_00000_x_0x0.jpeg',url:'#',
+        metrics:[
+          {value:'€۳۰+ میلیارد',label:'درآمد پیش‌بینی‌شده باشگاه‌های سطح اول اروپا در ۲۰۲۵'},
+          {value:'£۶.۸ میلیارد',label:'درآمد لیگ برتر در ۲۰۲۴/۲۵؛ رشد ۸ درصدی'},
+          {value:'€۴.۳ میلیارد',label:'درآمد بوندس‌لیگا؛ رشد ۱۲ درصدی'},
+          {value:'€۴.۱ میلیارد',label:'درآمد لالیگا؛ رشد ۹ درصدی'},
+          {value:'€۳.۰ میلیارد',label:'درآمد سری A؛ رشد ۴ درصدی'},
+          {value:'€۲.۲ میلیارد',label:'درآمد لیگ ۱؛ افت ۱۵ درصدی'},
+          {value:'۴۰.۴ هزار',label:'میانگین تماشاگر هر بازی در سطح اول انگلیس'},
+          {value:'۲۰ هزار',label:'میانگین تماشاگر اردیویژه؛ رشد ۱۰ درصدی'}
+        ],
+        body:[
+          {heading:'اروپا بزرگ‌تر شده، اما برابرتر نشده است',text:'فوتبال باشگاهی اروپا از نظر اندازه بازار در حال عقب‌نشینی نیست. یوفا درآمد باشگاه‌های سطح اول را برای سال ۲۰۲۵ بیش از ۳۰ میلیارد یورو پیش‌بینی کرده؛ در سال ۲۰۲۴ این رقم ۲۸.۶ میلیارد یورو بود و از ۲۰۱۵ بیش از ۱۳ میلیارد یورو رشد کرده است. هم‌زمان ۲۴۰ میلیون نفر در فصل ۲۰۲۴/۲۵ مسابقات باشگاهی و ملی اروپا را از نزدیک دیدند. مسئله آینده بنابراین کمبود تقاضا نیست؛ مسئله این است که پول، ستاره و توجه با سرعتی یکسان میان لیگ‌ها توزیع نمی‌شود.'},
+          {heading:'یک جدول ساده از توازن قوا',text:'در فصل ۲۰۲۴/۲۵ لیگ برتر انگلیس ۶.۸ میلیارد پوند درآمد داشت. پس از آن بوندس‌لیگا با ۴.۳ میلیارد یورو، لالیگا با ۴.۱ میلیارد، سری A با ۳ میلیارد و لیگ ۱ فرانسه با ۲.۲ میلیارد یورو قرار گرفتند. مقایسه ارزها کاملاً هم‌مقیاس نیست، اما شکاف روشن است: درآمد انگلیس به‌تنهایی تقریباً هم‌اندازه مجموع دو لیگ بزرگ بعدی است. در رتبه پنج‌ساله یوفا نیز انگلیس با ۱۱۹.۵۱۹ امتیاز اول است؛ ایتالیا ۹۹.۹۴۶، اسپانیا ۹۷.۰۴۶، آلمان ۹۲.۹۰۲ و فرانسه ۸۳.۴۹۸ امتیاز دارند.'},
+          {heading:'انگلیس؛ جذاب‌ترین محصول، نه لزوماً بهترین قصه',text:'لیگ برتر همچنان امن‌ترین پاسخ برای سرمایه‌گذار، ستاره و مخاطب جهانی است. درآمدش در یک فصل ۸ درصد رشد کرد، قرارداد داخلی چهار‌ساله جدید ۶.۷ میلیارد پوند ارزش دارد و از ۲۰۲۵/۲۶ تعداد بیشتری مسابقه زنده پخش می‌شود. میانگین تماشاگر سطح اول انگلیس ۴۰.۴ هزار نفر و رشد سالانه آن ۲ درصد بوده است. با این حال هزینه دستمزد به ۴.۴ میلیارد پوند و زیان پیش از مالیات باشگاه‌ها به ۹۴۸ میلیون پوند رسیده؛ یعنی موتور درآمد بی‌رقیب است، اما رقابت برای ماندن در آن موتور نیز بسیار گران شده است. تا ۲۰۳۰ لیگ برتر احتمالاً همچنان بزرگ‌ترین لیگ می‌ماند، ولی جذابیتش بیش از «غافلگیری» از عمق تیم‌ها، سرعت بازی و امکان خرید بهترین بازیکنان می‌آید.'},
+          {heading:'آلمان؛ کامل‌ترین مسیر پیشرفت',text:'اگر معیار پیشرفت را ترکیب رشد مالی، سلامت هزینه و تجربه ورزشگاه بدانیم، بوندس‌لیگا برنده فعلی است. درآمد ۴.۳ میلیارد یورویی آن در ۲۰۲۴/۲۵ دوازده درصد بالا رفت؛ سریع‌ترین رشد میان پنج لیگ بزرگ. نسبت دستمزد به درآمد با وجود رکورد ۲.۳ میلیارد یورویی دستمزدها، از ۵۸ به ۵۴ درصد کاهش یافت و پایین‌ترین عدد میان پنج لیگ شد. سود عملیاتی مجموع باشگاه‌ها به رکورد ۴۰۰ میلیون یورو رسید. قرارداد داخلی ۲۰۲۵ تا ۲۰۲۹ نیز سالانه ۱.۱۲۱ میلیارد یورو، حدود ۲ درصد بیشتر از چرخه قبلی، تضمین می‌کند. نقطه قوت واقعی اما هوادار است: ۱۱.۶۵ میلیون بلیت و میانگین ۳۸,۰۸۲ نفر در فصل ۲۰۲۴/۲۵، با ضریب اشغال ۹۵.۹ درصد. اگر تنوع قهرمانان افزایش یابد، آلمان محتمل‌ترین نام برای تبدیل‌شدن به جذاب‌ترین تجربه هفتگی اروپاست.'},
+          {heading:'اسپانیا؛ بازسازی قدرت با ورزشگاه و تجارت',text:'لالیگا پس از چند سال محدودیت مالی دوباره شتاب گرفته است. درآمد باشگاه‌ها ۹ درصد رشد کرده و به ۴.۱ میلیارد یورو رسیده؛ درآمد تجاری ۲۲ درصد بالا رفته و درآمد روز مسابقه نیز با رشد ۲۲ درصدی به ۸۰۰ میلیون یورو رسیده است. بازسازی برنابئو و بازگشت تدریجی بارسلونا به نیوکمپ بخش بزرگی از این جهش را توضیح می‌دهد. قرارداد داخلی ۲۰۲۷ تا ۲۰۳۲ بیش از ۶.۱۳۵ میلیارد یورو ارزش دارد؛ ۹ درصد بیشتر از چرخه قبل. ضعف اصلی تمرکز است: رئال و بارسا ۲.۱ میلیارد یورو، یعنی ۵۲ درصد کل درآمد لیگ را تولید کرده‌اند. آینده لالیگا درخشان است اگر رشد ورزشگاه‌ها به باشگاه‌های میانی هم برسد؛ وگرنه محصول جهانی قوی خواهد ماند اما رقابت داخلی بیش از حد به دو قطب وابسته می‌شود.'},
+          {heading:'ایتالیا؛ بازگشت در زمین، توقف پشت گیت ورزشگاه',text:'سری A از نظر ورزشی دوباره معتبر شده است: ایتالیا در جدول پنج‌ساله یوفا دوم است و باشگاه‌هایش در سه رقابت اروپایی عمق قابل‌توجهی نشان داده‌اند. درآمد لیگ در ۲۰۲۴/۲۵ با رشد ۴ درصدی به ۳ میلیارد یورو رسید و میانگین تماشاگر ۳۰.۷ هزار نفر بود؛ سوم اروپا. با این حال درآمد روز مسابقه فقط ۵۰۰ میلیون یورو و سود عملیاتی مجموع باشگاه‌ها تنها ۹ میلیون یورو بود. قرارداد تلویزیونی و ورزشگاه‌های قدیمی سقف رشد را پایین نگه می‌دارند. ایتالیا تا ۲۰۳۰ می‌تواند از نظر کیفیت تاکتیکی و رقابت قهرمانی جذاب‌ترین لیگ باشد، اما برای تبدیل این جذابیت به پول باید پروژه‌های ورزشگاهی میلان، رم و چند شهر دیگر واقعاً از کاغذ به زمین برسند.'},
+          {heading:'فرانسه؛ پرریسک‌ترین و شاید تحول‌آفرین‌ترین آزمایش',text:'لیگ ۱ یک تناقض بزرگ است. میانگین تماشاگرش با رشد ۴ درصدی به حدود ۲۸.۹ هزار نفر رسیده و پلتفرم مستقیم Ligue 1+ در ماه اول از یک میلیون مشترک عبور کرد؛ مخاطبان بین‌المللی فصل ۲۰۲۵/۲۶ نیز با رشد ۲۸ درصدی به برآورد تجمعی ۵۲۰ میلیون رسیدند. اما درآمد ۲۰۲۴/۲۵ پانزده درصد سقوط کرد و به ۲.۲ میلیارد یورو رسید، نسبت دستمزد به درآمد به ۸۰ درصد رسید و باشگاه‌ها ۶۰۰ میلیون یورو زیان عملیاتی ثبت کردند. پاری‌سن‌ژرمن به‌تنهایی ۳۹ درصد درآمد لیگ را می‌سازد. اگر مالکیت مستقیم پخش به یک کسب‌وکار پایدار تبدیل شود، فرانسه الگوی تازه‌ای برای دورزدن واسطه‌ها خواهد داشت؛ اگر نرخ حفظ مشترک پایین بماند، فروش استعداد برای بسیاری از باشگاه‌ها از انتخاب به اجبار تبدیل می‌شود.'},
+          {heading:'هلند و پرتغال؛ لیگ‌های کوچک‌تر، اثر بزرگ‌تر',text:'اردیویژه و لیگ پرتغال از نظر پول با پنج لیگ بزرگ رقابت نمی‌کنند، اما در اقتصاد آینده فوتبال نقش کارخانه تحقیق و توسعه را دارند. میانگین تماشاگر هلند در ۲۰۲۴/۲۵ به ۲۰ هزار نفر رسید؛ رشد ۱۰ درصدی، بالاترین رشد میان شش لیگ پرتماشاگر اروپا. پرتغال نیز در ضریب همان فصل یوفا چهارم شد و نشان داد باشگاه‌هایش فراتر از بودجه خود نتیجه می‌گیرند. وقتی بیش از نیمی از ۹.۱ میلیارد یورو هزینه نقل‌وانتقالات تابستان ۲۰۲۵ صرف بازیکنان ۲۳ ساله یا جوان‌تر شده، لیگ‌هایی که زودتر استعداد می‌دهند، داده تولید می‌کنند و فرصت بازی واقعی فراهم می‌سازند ارزش بیشتری پیدا می‌کنند. این دو لیگ برای مخاطبی که می‌خواهد ستاره بعدی را پیش از مشهورشدن ببیند، جذاب‌تر خواهند شد.'},
+          {heading:'چه چیزی جذابیت را تا ۲۰۳۰ تعیین می‌کند؟',text:'چهار متغیر تعیین‌کننده‌اند. اول، توازن رقابتی: لیگ باید بیش از یک مدعی واقعی داشته باشد. دوم، ورزشگاه: درآمد روز مسابقه در پنج لیگ بزرگ ۱۶ درصد رشد کرده و تنها جریان درآمدی بود که در هر پنج لیگ بالا رفت. سوم، توزیع دیجیتال: نسل بعدی مخاطب با بسته‌های گران و پراکنده تلویزیونی وفادار نمی‌ماند؛ موفقیت یا شکست Ligue 1+ به همین دلیل برای همه اروپا مهم است. چهارم، مسیر بازیکن جوان: یوفا می‌گوید باشگاه‌های اروپا در تابستان ۲۰۲۵ رکورد ۹.۱ میلیارد یورو خرج کردند و بیش از نیمی از آن برای بازیکنان ۲۳ ساله یا جوان‌تر بود. لیگ‌هایی که دقیقه بازی، مربی و شبکه استعدادیابی بهتری دارند سهم بیشتری از این بازار می‌گیرند.'},
+          {heading:'رتبه‌بندی آینده‌نگر فوتبال‌نما',text:'برای قدرت اقتصادی و کیفیت کلی، لیگ برتر انگلیس تا ۲۰۳۰ شماره یک می‌ماند. برای سریع‌ترین بهبود ساختاری، بوندس‌لیگا و لالیگا جلوترند: آلمان با سودآوری و هوادار، اسپانیا با ورزشگاه‌های نوسازی‌شده و رشد حقوق پخش. برای هیجان ورزشی، سری A بیشترین ظرفیت جهش را دارد؛ مشروط به نوسازی زیرساخت. برای کشف استعداد، اردیویژه و پرتغال بهترین ارزش را ارائه می‌کنند. فرانسه بیشترین دامنه نتیجه را دارد: می‌تواند پیشگام پخش مستقیم شود یا زیر فشار هزینه و تمرکز درآمد عقب بیفتد.'},
+          {heading:'جمع‌بندی؛ آینده یک لیگ واحد ندارد',text:'دهه بعد احتمالاً شکاف مالی لیگ برتر با بقیه را از بین نمی‌برد، اما جذابیت فوتبال فقط تابع درآمد نیست. انگلیس بزرگ‌ترین ویترین می‌ماند؛ آلمان بهترین تجربه ورزشگاه را می‌سازد؛ اسپانیا دوباره قدرت تجاری خود را بالا می‌برد؛ ایتالیا قصه رقابتی و تاکتیکی می‌فروشد؛ فرانسه آینده پخش مستقیم را آزمایش می‌کند؛ و هلند و پرتغال ستاره‌های بعدی را معرفی می‌کنند. برنده واقعی لیگی خواهد بود که سه چیز را هم‌زمان حفظ کند: هوادار حاضر در ورزشگاه، درآمد قابل‌اتکا و این باور که نتیجه مسابقه از قبل معلوم نیست.'}
+        ],
+        sources:[
+          {title:'یوفا؛ گزارش مالی و سرمایه‌گذاری باشگاه‌های اروپا ۲۰۲۶',url:'https://www.uefa.com/news-media/news/02a2-200452a66064-0cfd3f86b94f-1000/'},
+          {title:'Deloitte؛ درآمد و هزینه پنج لیگ بزرگ در فصل ۲۰۲۴/۲۵',url:'https://www.deloitte.com/uk/en/services/consulting/research/annual-review-of-football-finance-europe-premier-league.html'},
+          {title:'Deloitte؛ گزارش مالی لیگ برتر انگلیس',url:'https://www.deloitte.com/uk/en/services/consulting/research/annual-review-of-football-finance-premier-league-clubs.html'},
+          {title:'یوفا؛ تماشاگران، نقل‌وانتقالات و استعدادهای فوتبال اروپا',url:'https://www.uefa.com/news-media/news/029d-1ebb17a852a6-fa4e86c59d7d-1000/'},
+          {title:'یوفا؛ جدول ضریب لیگ‌های اروپایی',url:'https://www.uefa.com/nationalassociations/uefarankings/'},
+          {title:'بوندس‌لیگا؛ رکورد تماشاگر و ضریب اشغال فصل ۲۰۲۴/۲۵',url:'https://www.bundesliga.com/en/bundesliga/news/german-professional-football-sets-ticket-record-in-2024-25-33131'},
+          {title:'بوندس‌لیگا؛ قرارداد رسانه‌ای ۴.۴۸۴ میلیارد یورویی',url:'https://www.bundesliga.com/en/bundesliga/news/dfl-increases-national-media-revenue-to-1121-billion-per-season-from-2025-26-29981'},
+          {title:'لالیگا؛ رشد ۹ درصدی حقوق داخلی دوره ۲۰۲۷ تا ۲۰۳۲',url:'https://www.laliga.com/en-GB/news/laliga-secures-over-euro6135-billion-in-domestic-audiovisual-revenue-for-2027-28-2031-32-up-9percent-over-previous-cycle'},
+          {title:'LFP؛ عبور Ligue 1+ از یک میلیون مشترک',url:'https://www.lfp.fr/article/ligue-1-la-plateforme-des-clubs-franchit-le-cap-du-million-d-abonnes'},
+          {title:'LFP؛ رشد ۲۸ درصدی مخاطبان بین‌المللی لیگ ۱',url:'https://www.lfp.fr/article/saison-2025-2026-les-audiences-internationales-de-la-ligue-1-mc-donald-s-en-nette-hausse'}
+        ]
+      },
       {
         id:'analysis-real-madrid-mourinho-2026',country:'spain',cat:'analysis',flag:'🇪🇸 اسپانیا',eyebrow:'تحلیل ویژه · رئال مادرید',
         title:'رئال مادریدِ مورینیو؛ تیمی که می‌برد اما هنوز کنترل نمی‌کند',
@@ -351,9 +400,10 @@
     function showView(view){const editing=view==='editor';document.getElementById('newsView').classList.toggle('hidden',editing);document.getElementById('editorView').classList.toggle('hidden',!editing);window.scrollTo({top:0,behavior:'smooth'});}
     function openDrawer(id){
       const item=news.find(entry=>entry.id===id);if(!item)return;const image=safeImage(item.image);
+      const metrics=Array.isArray(item.metrics)?`<div class="drawer-metrics">${item.metrics.map(metric=>`<div class="drawer-metric"><strong>${esc(metric.value)}</strong><span>${esc(metric.label)}</span></div>`).join('')}</div>`:'';
       const article=Array.isArray(item.body)?`<div class="drawer-article">${item.body.map(block=>`<section>${block.heading?`<h3>${esc(block.heading)}</h3>`:''}<p>${esc(block.text||'')}</p></section>`).join('')}</div>`:'';
       const sources=Array.isArray(item.sources)?`<div class="drawer-sources"><h3>منابع گزارش</h3>${item.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)} ←</a>`).join('')}</div>`:'';
-      document.getElementById('drawerContent').innerHTML=`${image?`<img class="drawer-image" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h2>${esc(item.title)}</h2><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="drawer-summary">${esc(item.summary||'')}</p>${article}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${sources}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}`;
+      document.getElementById('drawerContent').innerHTML=`${image?`<img class="drawer-image" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h2>${esc(item.title)}</h2><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="drawer-summary">${esc(item.summary||'')}</p>${metrics}${article}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${sources}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}`;
       document.getElementById('drawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('open');document.getElementById('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
     }
     function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerBackdrop').classList.remove('open');document.getElementById('drawer').setAttribute('aria-hidden','true');document.body.style.overflow='';}

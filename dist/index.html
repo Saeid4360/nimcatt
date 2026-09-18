@@ -142,19 +142,49 @@
     .article-page-body .drawer-note { padding:18px; font-size:14px; line-height:2; }
 
     .editor-view { min-height:calc(100vh - 145px); }
-    .editor-shell { max-width:900px; margin-inline:auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px; }
-    .editor-shell h1 { margin:0 0 6px; font-size:24px; }
-    .editor-shell>p { margin:0 0 22px; color:var(--muted); font-size:14px; }
-    .editor-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    .field { display:grid; gap:7px; }
+    .editor-shell { overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 18px 45px rgba(18,22,28,.07); }
+    .editor-toolbar { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 28px; border-bottom:1px solid var(--line); background:#fff; }
+    .editor-heading { display:flex; align-items:center; gap:14px; }
+    .editor-heading-mark { width:42px; height:42px; display:grid; place-items:center; border-radius:8px; background:var(--ink); color:#fff; font-weight:900; }
+    .editor-heading h1 { margin:0; font-size:24px; line-height:1.45; }
+    .editor-heading p { margin:2px 0 0; color:var(--muted); font-size:12px; }
+    .editor-workspace { display:grid; grid-template-columns:280px minmax(0,1fr); min-height:650px; }
+    .editor-sidebar { padding:24px; border-left:1px solid var(--line); background:#f7f8fa; }
+    .editor-sidebar label,.field label { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px; font-weight:900; }
+    .editor-sidebar select { width:100%; min-height:46px; margin-top:8px; padding:0 11px; border:1px solid #cfd3d7; border-radius:6px; background:#fff; color:var(--ink); font:inherit; font-size:13px; }
+    .editor-preview-card { overflow:hidden; margin-top:20px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .editor-preview-card img { height:148px; object-fit:cover; background:#e4e7ea; }
+    .editor-preview-copy { padding:14px; }
+    .editor-preview-copy strong { display:block; font-size:14px; line-height:1.75; }
+    .editor-preview-copy span { display:block; margin-top:5px; color:var(--muted); font-size:11px; }
+    .editor-local-note { margin:18px 0 0; padding:13px; border-right:3px solid var(--red); background:#fff; color:#60676e; font-size:12px; line-height:1.9; }
+    .editor-form { min-width:0; padding:28px; }
+    .editor-form-title { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px; }
+    .editor-form-title h2 { margin:0; font-size:19px; }
+    .editor-state { padding:4px 9px; border-radius:20px; background:#eaf6f0; color:var(--success); font-size:11px; font-weight:800; }
+    .editor-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; }
+    .field { display:grid; align-content:start; gap:7px; }
     .field.full { grid-column:1/-1; }
-    .field label { font-size:13px; font-weight:900; }
-    .field input,.field textarea { width:100%; padding:10px 12px; border:1px solid #d7dade; border-radius:4px; background:#fafafa; resize:vertical; }
-    .editor-actions { margin-top:20px; display:flex; gap:8px; }
-    .action-primary,.action-secondary,.action-danger { min-height:42px; padding:0 18px; border-radius:5px; font-size:13px; font-weight:900; cursor:pointer; }
+    .field label small { color:#93989d; font-size:11px; font-weight:500; }
+    .field input,.field textarea,.field select { width:100%; padding:10px 12px; border:1px solid #d4d8dc; border-radius:6px; outline:none; background:#fbfbfc; color:var(--ink); resize:vertical; }
+    .field input:focus,.field textarea:focus,.field select:focus { border-color:var(--ink); background:#fff; box-shadow:0 0 0 3px rgba(21,23,26,.06); }
+    .field textarea { line-height:2; }
+    .editor-section-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:26px; padding-top:22px; border-top:1px solid var(--line); }
+    .editor-section-head h3 { margin:0; font-size:17px; }
+    .text-button { border:0; background:transparent; color:var(--red); font-size:12px; font-weight:900; cursor:pointer; }
+    .editor-sections { display:grid; gap:12px; margin-top:13px; }
+    .editor-section-row { padding:16px; border:1px solid var(--line); border-radius:8px; background:#f8f9fa; }
+    .editor-section-row-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:11px; color:var(--muted); font-size:11px; font-weight:800; }
+    .editor-section-row input,.editor-section-row textarea { width:100%; padding:10px 12px; border:1px solid #d8dce0; border-radius:5px; background:#fff; resize:vertical; }
+    .editor-section-row textarea { margin-top:9px; line-height:2; }
+    .editor-actions { position:sticky; bottom:0; z-index:4; margin:28px -28px -28px; padding:16px 28px; display:flex; gap:9px; border-top:1px solid var(--line); background:rgba(255,255,255,.96); backdrop-filter:blur(10px); }
+    .action-primary,.action-secondary,.action-danger { min-height:43px; padding:0 18px; border-radius:5px; font-size:13px; font-weight:900; cursor:pointer; }
     .action-primary { border:1px solid var(--red); background:var(--red); color:#fff; }
+    .action-primary:hover { background:var(--red-dark); }
     .action-secondary { border:1px solid #ccd0d4; background:#fff; color:var(--ink); }
     .action-danger { margin-right:auto; border:1px solid #e5b7b8; background:#fff; color:#b21d22; }
+    .editor-toast { position:fixed; right:50%; bottom:28px; z-index:120; min-width:280px; padding:13px 18px; border-radius:7px; background:#17191c; color:#fff; text-align:center; font-size:13px; font-weight:700; transform:translate(50%,20px); opacity:0; pointer-events:none; transition:.2s ease; box-shadow:0 12px 30px rgba(0,0,0,.22); }
+    .editor-toast.show { transform:translate(50%,0); opacity:1; }
 
     footer { border-top:1px solid #2b2b2b; background:#171717; color:#a8aaad; }
     .footer-inner { min-height:80px; display:flex; align-items:center; justify-content:space-between; gap:18px; font-size:12px; }
@@ -195,6 +225,10 @@
       .feature,.feature-media,.feature-copy { min-height:500px; }
       .latest-list { display:grid; grid-template-columns:repeat(2,1fr); gap:0 18px; }
       .content-layout { grid-template-columns:1fr; }
+      .editor-workspace { grid-template-columns:1fr; }
+      .editor-sidebar { border-left:0; border-bottom:1px solid var(--line); }
+      .editor-preview-card { display:grid; grid-template-columns:170px 1fr; }
+      .editor-preview-card img { height:100%; min-height:120px; }
     }
     @media(max-width:720px) {
       .container { width:min(100% - 24px,1240px); }
@@ -230,6 +264,12 @@
       .article-page-body .drawer-article h3 { font-size:20px; }
       .editor-grid { grid-template-columns:1fr; }
       .field.full { grid-column:auto; }
+      .editor-toolbar { align-items:flex-start; padding:20px; }
+      .editor-toolbar .action-secondary { display:none; }
+      .editor-sidebar,.editor-form { padding:20px; }
+      .editor-preview-card { grid-template-columns:110px 1fr; }
+      .editor-actions { margin:24px -20px -20px; padding:14px 20px; flex-wrap:wrap; }
+      .action-danger { margin-right:0; }
       .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
     }
   </style>
@@ -295,14 +335,36 @@
 
     <section id="editorView" class="container editor-view hidden">
       <div class="editor-shell">
-        <h1>میز تحریریه</h1><p>نمونه ساده برای بازبینی و ویرایش خبر پیش از انتشار.</p>
-        <div class="editor-grid">
-          <div class="field full"><label for="editTitle">عنوان فارسی</label><input id="editTitle" value="آرسنال برای تقویت خط میانی وارد بازار نقل‌وانتقالات شد"></div>
-          <div class="field"><label for="editSource">منبع</label><input id="editSource" value="BBC Sport"></div>
-          <div class="field"><label for="editTags">برچسب‌ها</label><input id="editTags" value="آرسنال، نقل‌وانتقالات، لیگ برتر"></div>
-          <div class="field full"><label for="editSummary">خلاصه خبر</label><textarea id="editSummary" rows="5">باشگاه آرسنال گزینه‌های تازه‌ای را برای تقویت خط میانی بررسی می‌کند. این خبر پس از تطبیق با منبع اصلی آماده انتشار می‌شود.</textarea></div>
+        <header class="editor-toolbar">
+          <div class="editor-heading"><span class="editor-heading-mark">ت</span><div><h1>میز تحریریه</h1><p>ویرایش و پیش‌نمایش خبرهای فوتبال‌نما</p></div></div>
+          <button class="action-secondary" id="editorHomeBtn">بازگشت به سایت</button>
+        </header>
+        <div class="editor-workspace">
+          <aside class="editor-sidebar">
+            <label for="editNewsSelect">انتخاب خبر</label>
+            <select id="editNewsSelect" aria-label="انتخاب خبر برای ویرایش"></select>
+            <div class="editor-preview-card"><img id="editorThumb" alt="تصویر خبر انتخاب‌شده"><div class="editor-preview-copy"><strong id="editorPreviewTitle">—</strong><span id="editorPreviewMeta">—</span></div></div>
+            <p class="editor-local-note">تغییرات این نسخه روی همین مرورگر ذخیره می‌شود و بلافاصله در صفحه خبر و فهرست اصلی قابل مشاهده است.</p>
+          </aside>
+          <section class="editor-form">
+            <div class="editor-form-title"><h2>اطلاعات خبر</h2><span class="editor-state" id="editorState">آماده ویرایش</span></div>
+            <div class="editor-grid">
+              <div class="field full"><label for="editTitle">تیتر خبر <small id="titleCount">۰ نویسه</small></label><input id="editTitle" autocomplete="off"></div>
+              <div class="field full"><label for="editSummary">خلاصه خبر <small id="summaryCount">۰ نویسه</small></label><textarea id="editSummary" rows="4"></textarea></div>
+              <div class="field"><label for="editEyebrow">روتیتر</label><input id="editEyebrow" autocomplete="off"></div>
+              <div class="field"><label for="editSource">نام منبع</label><input id="editSource" autocomplete="off"></div>
+              <div class="field"><label for="editTime">تاریخ انتشار</label><input id="editTime" autocomplete="off"></div>
+              <div class="field"><label for="editCred">نوع محتوا</label><input id="editCred" autocomplete="off"></div>
+              <div class="field full"><label for="editImage">نشانی تصویر اصلی</label><input id="editImage" type="url" dir="ltr" autocomplete="off"></div>
+              <div class="field full"><label for="editUrl">لینک منبع اصلی</label><input id="editUrl" type="url" dir="ltr" autocomplete="off"></div>
+              <div class="field full"><label for="editTags">برچسب‌ها <small>با ویرگول جدا کنید</small></label><input id="editTags" autocomplete="off"></div>
+              <div class="field full"><label for="editWhy">یادداشت شفافیت و اعتبارسنجی</label><textarea id="editWhy" rows="3"></textarea></div>
+            </div>
+            <div class="editor-section-head"><h3>متن کامل خبر</h3><button class="text-button" id="addSectionBtn">＋ افزودن بخش</button></div>
+            <div class="editor-sections" id="editorSections"></div>
+            <div class="editor-actions"><button class="action-primary" id="saveBtn">ذخیره تغییرات</button><button class="action-secondary" id="previewBtn">پیش‌نمایش خبر</button><button class="action-danger" id="resetBtn">بازگردانی نسخه اصلی</button></div>
+          </section>
         </div>
-        <div class="editor-actions"><button class="action-primary" id="approveBtn">تأیید و انتشار</button><button class="action-secondary" id="saveBtn">ذخیره پیش‌نویس</button><button class="action-danger" id="rejectBtn">رد خبر</button></div>
       </div>
     </section>
   </main>
@@ -310,6 +372,7 @@
   <footer><div class="container footer-inner"><span class="footer-brand">فوتبال‌نما</span><span>خبر و تحلیل فوتبال جهان با منبع شفاف</span><span id="liveTicker">آخرین دریافت: —</span></div></footer>
   <div class="drawer-backdrop" id="drawerBackdrop"></div>
   <aside class="drawer" id="drawer" aria-hidden="true"><button class="drawer-close" id="drawerClose" aria-label="بستن">×</button><div id="drawerContent"></div></aside>
+  <div class="editor-toast" id="editorToast" role="status" aria-live="polite"></div>
 
   <script src="data/news.js"></script>
   <script>
@@ -475,8 +538,12 @@
       {id:'demo-2',country:'italy',cat:'transfer',flag:'🇮🇹 ایتالیا',eyebrow:'بازار ایتالیا · نسل تازه',title:'بازار سری A زودتر از تابستان داغ شد؛ رقابت برای ستاره‌های فردا',summary:'مدیران ورزشی باشگاه‌های بزرگ ایتالیا، پیش از شلوغ‌شدن بازار، مذاکره برای جذب استعدادهای جوان را آغاز کرده‌اند؛ مسابقه‌ای که برنده‌اش شاید آینده لیگ را بسازد.',source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'امروز',cred:'خبر تحریریه',credClass:'trusted',tags:['سری آ','نقل‌وانتقالات'],why:'این خبر برای نمایش جریان کاری نسخه آزمایشی سایت تهیه شده است.',image:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80',url:'#'}
     ];
     const liveNews=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
-    const news=[...demoNews,...liveNews];
-    let activeFilter='all',query='',visibleCount=10;
+    const EDITOR_STORAGE_KEY='footballNamaArticleEditsV1';
+    let editorOverrides={};
+    try{editorOverrides=JSON.parse(localStorage.getItem(EDITOR_STORAGE_KEY)||'{}')||{};}catch(error){editorOverrides={};}
+    const baseNews=[...demoNews,...liveNews];
+    const news=baseNews.map(item=>({...item,...(editorOverrides[item.id]||{})}));
+    let activeFilter='all',query='',visibleCount=10,selectedEditorId=news[0]?.id||'',toastTimer;
     const esc=(value='')=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
     const safeImage=value=>/^https?:\/\//i.test(value||'')?value:'';
     const safeArticleImage=value=>/^(?:https?:\/\/|assets\/images\/)/i.test(value||'')?value:'';
@@ -486,8 +553,47 @@
     const articleMetrics=item=>Array.isArray(item.metrics)?`<div class="drawer-metrics">${item.metrics.map(metric=>`<div class="drawer-metric"><strong>${esc(metric.value)}</strong><span>${esc(metric.label)}</span></div>`).join('')}</div>`:'';
     const articleSources=item=>Array.isArray(item.sources)?`<div class="drawer-sources"><h3>منابع گزارش</h3>${item.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)} ←</a>`).join('')}</div>`:'';
 
+    const editorField=id=>document.getElementById(id);
+    function toast(message){const root=editorField('editorToast');root.textContent=message;root.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>root.classList.remove('show'),2600);}
+    function refreshEditorCounts(){editorField('titleCount').textContent=`${editorField('editTitle').value.length.toLocaleString('fa-IR')} نویسه`;editorField('summaryCount').textContent=`${editorField('editSummary').value.length.toLocaleString('fa-IR')} نویسه`;}
+    function renderEditorSections(blocks=[]){
+      const list=blocks.length?blocks:[{heading:'',text:''}];
+      editorField('editorSections').innerHTML=list.map((block,index)=>`<article class="editor-section-row"><div class="editor-section-row-head"><span>بخش ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-section>حذف</button></div><input class="edit-section-heading" value="${esc(block.heading||'')}" placeholder="میان‌تیتر بخش"><textarea class="edit-section-text" rows="5" placeholder="متن این بخش">${esc(block.text||'')}</textarea></article>`).join('');
+    }
+    function updateEditorPreview(item){
+      const image=safeArticleImage(item.image);const thumb=editorField('editorThumb');
+      thumb.src=image||'';thumb.classList.toggle('hidden',!image);
+      editorField('editorPreviewTitle').textContent=item.title||'بدون عنوان';
+      editorField('editorPreviewMeta').textContent=`${item.source||'بدون منبع'} · ${item.time||'بدون تاریخ'}`;
+      editorField('editorState').textContent=editorOverrides[item.id]?'ویرایش‌شده':'نسخه اصلی';
+    }
+    function fillEditor(item){
+      if(!item)return;selectedEditorId=item.id;editorField('editNewsSelect').value=item.id;
+      editorField('editTitle').value=item.title||'';editorField('editSummary').value=item.summary||'';editorField('editEyebrow').value=item.eyebrow||'';
+      editorField('editSource').value=item.source||'';editorField('editTime').value=item.time||'';editorField('editCred').value=item.cred||'';
+      editorField('editImage').value=item.image||'';editorField('editUrl').value=item.url&&item.url!=='#'?item.url:'';editorField('editTags').value=(item.tags||[]).join('، ');editorField('editWhy').value=item.why||'';
+      renderEditorSections(Array.isArray(item.body)?item.body:[]);refreshEditorCounts();updateEditorPreview(item);
+    }
+    function setupEditorOptions(){
+      editorField('editNewsSelect').innerHTML=news.map(item=>`<option value="${esc(item.id)}">${esc(item.title)}</option>`).join('');
+    }
+    function collectEditorChanges(){
+      const body=[...document.querySelectorAll('.editor-section-row')].map(row=>({heading:row.querySelector('.edit-section-heading').value.trim(),text:row.querySelector('.edit-section-text').value.trim()})).filter(block=>block.heading||block.text);
+      return {title:editorField('editTitle').value.trim(),summary:editorField('editSummary').value.trim(),eyebrow:editorField('editEyebrow').value.trim(),source:editorField('editSource').value.trim(),time:editorField('editTime').value.trim(),cred:editorField('editCred').value.trim(),image:editorField('editImage').value.trim(),url:editorField('editUrl').value.trim()||'#',tags:editorField('editTags').value.split(/[،,]/).map(tag=>tag.trim()).filter(Boolean),why:editorField('editWhy').value.trim(),body};
+    }
+    function saveEditorChanges(showMessage=true){
+      const item=news.find(entry=>entry.id===selectedEditorId),changes=collectEditorChanges();
+      if(!item||!changes.title){toast('تیتر خبر نمی‌تواند خالی باشد.');editorField('editTitle').focus();return false;}
+      editorOverrides[item.id]={...(editorOverrides[item.id]||{}),...changes};localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));Object.assign(item,changes);
+      renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);if(showMessage)toast('تغییرات ذخیره شد و در سایت نمایش داده می‌شود.');return true;
+    }
+    function showEditor(id){
+      const item=news.find(entry=>entry.id===(id||selectedEditorId))||news[0];if(!item)return;
+      setupEditorOptions();fillEditor(item);document.title='میز تحریریه | فوتبال‌نما';showView('editor');
+    }
+
     function renderFeatured(){
-      const item=demoNews[0];
+      const item=news[0];
       document.getElementById('featured').innerHTML=`<a class="feature-media" href="${esc(articleHref(item))}"><img src="${esc(item.image)}" alt="${esc(item.title)}"></a><div class="feature-copy"><span class="kicker">${esc(item.eyebrow)}</span><h1><a href="${esc(articleHref(item))}">${esc(item.title)}</a></h1><p>${esc(item.summary)}</p><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang)}</span></div><a class="read-button" href="${esc(articleHref(item))}">مشاهده گزارش</a></div>`;
     }
     function renderLatest(){
@@ -509,21 +615,30 @@
     function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
     function showView(view){document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
     function renderArticlePage(id){
-      const item=news.find(entry=>entry.id===id);if(!item)return false;const image=safeImage(item.image);
+      const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeImage(item.image);
       document.title=`${item.title} | فوتبال‌نما`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش فوتبال‌نما');
       document.getElementById('articleContent').innerHTML=`${image?`<img class="article-page-hero" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p></header><div class="article-page-body">${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
       showView('article');return true;
     }
     function showHome(){document.title='فوتبال‌نما | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');showView('news');}
-    function route(){const id=new URLSearchParams(location.search).get('article');if(!id||!renderArticlePage(id))showHome();}
-    document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]');if(filter){history.pushState({},'',location.pathname);setFilter(filter.dataset.filter);}if(view){history.pushState({},'',location.pathname);showView(view.dataset.view);}if(event.target.closest('[data-go-home]')){event.preventDefault();history.pushState({},'',location.pathname);setFilter('all');showHome();}});
+    function route(){const params=new URLSearchParams(location.search),id=params.get('article');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(!id||!renderArticlePage(id))showHome();}
+    document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]');if(filter){history.pushState({},'',location.pathname);setFilter(filter.dataset.filter);}if(view){history.pushState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(selectedEditorId)}`);showEditor(selectedEditorId);}if(event.target.closest('[data-go-home]')){event.preventDefault();history.pushState({},'',location.pathname);setFilter('all');showHome();}});
     document.getElementById('searchInput').addEventListener('input',event=>{query=event.target.value.trim();visibleCount=10;render();});
-    document.getElementById('focusSearch').addEventListener('click',()=>{showView('news');document.getElementById('searchInput').focus();document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});});
+    document.getElementById('focusSearch').addEventListener('click',()=>{history.pushState({},'',location.pathname);showView('news');document.getElementById('searchInput').focus();document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});});
     document.getElementById('loadMore').addEventListener('click',()=>{visibleCount+=10;render();});
     window.addEventListener('popstate',route);
-    ['approveBtn','saveBtn','rejectBtn'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{const messages={approveBtn:'خبر برای انتشار تأیید شد.',saveBtn:'پیش‌نویس ذخیره شد.',rejectBtn:'خبر از صف بررسی خارج شد.'};alert(messages[id]);}));
+    document.getElementById('editNewsSelect').addEventListener('change',event=>{const item=news.find(entry=>entry.id===event.target.value);if(item){history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(item.id)}`);fillEditor(item);}});
+    ['editTitle','editSummary'].forEach(id=>document.getElementById(id).addEventListener('input',refreshEditorCounts));
+    document.getElementById('editTitle').addEventListener('input',event=>{editorField('editorPreviewTitle').textContent=event.target.value||'بدون عنوان';});
+    document.getElementById('editImage').addEventListener('change',event=>{const src=safeArticleImage(event.target.value.trim()),thumb=editorField('editorThumb');thumb.src=src||'';thumb.classList.toggle('hidden',!src);});
+    document.getElementById('addSectionBtn').addEventListener('click',()=>{const root=editorField('editorSections'),index=root.children.length;root.insertAdjacentHTML('beforeend',`<article class="editor-section-row"><div class="editor-section-row-head"><span>بخش ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-section>حذف</button></div><input class="edit-section-heading" placeholder="میان‌تیتر بخش"><textarea class="edit-section-text" rows="5" placeholder="متن این بخش"></textarea></article>`);root.lastElementChild.querySelector('input').focus();});
+    document.getElementById('editorSections').addEventListener('click',event=>{const remove=event.target.closest('[data-remove-section]');if(remove&&document.querySelectorAll('.editor-section-row').length>1){remove.closest('.editor-section-row').remove();[...document.querySelectorAll('.editor-section-row')].forEach((row,index)=>row.querySelector('.editor-section-row-head span').textContent=`بخش ${Number(index+1).toLocaleString('fa-IR')}`);}});
+    document.getElementById('saveBtn').addEventListener('click',()=>saveEditorChanges(true));
+    document.getElementById('previewBtn').addEventListener('click',()=>{if(saveEditorChanges(false)){const item=news.find(entry=>entry.id===selectedEditorId);history.pushState({},'',articleHref(item));renderArticlePage(item.id);}});
+    document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!original||!item||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','time','cred','image','url','tags','why','body'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
+    document.getElementById('editorHomeBtn').addEventListener('click',()=>{history.pushState({},'',location.pathname);showHome();});
     if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
-    renderFeatured();renderLatest();render();route();
+    setupEditorOptions();renderFeatured();renderLatest();render();route();
   </script>
 </body>
 </html>

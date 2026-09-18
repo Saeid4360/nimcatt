@@ -125,6 +125,9 @@
     .latest-item small { color:var(--muted); font-size:11px; }
 
     .league-center { margin-top:24px; overflow:hidden; scroll-margin-top:92px; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:0 8px 26px rgba(22,26,32,.035); }
+    .league-view { max-width:1180px; }
+    .league-view .league-center { margin-top:0; }
+    .league-view .article-back { margin-bottom:14px; }
     .league-center-header { min-height:76px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; gap:18px; border-bottom:1px solid var(--line); }
     .league-center-heading { min-width:0; }
     .league-center-heading p { margin:3px 13px 0 0; color:var(--muted); font-size:11px; }
@@ -569,25 +572,6 @@
         <article id="featured" class="feature" aria-label="خبر شاخص"></article>
         <aside class="panel"><div class="panel-header"><h2 class="panel-title">منتخب تحریریه</h2><span class="tiny-status">خواندنی‌های فارسی</span></div><div id="latestList" class="latest-list"></div></aside>
       </div>
-      <section class="league-center" id="leagueCenter" aria-label="جدول و برنامه بازی‌ها">
-        <header class="league-center-header">
-          <div class="league-center-heading"><h2 class="section-title">جدول و برنامه بازی‌ها</h2><p>لیگ‌های معتبر و رقابت‌های اروپایی؛ رتبه‌بندی و ساعت‌ها به وقت ایران</p></div>
-          <div class="league-center-actions">
-            <label class="league-select-label"><span>انتخاب لیگ</span><select class="league-select" id="leagueSelect" aria-label="انتخاب جدول لیگ"></select></label>
-            <a class="league-data-source" id="leagueSource" href="https://www.espn.com/soccer/table" target="_blank" rel="noopener">داده رسمی ESPN ↗</a>
-          </div>
-        </header>
-        <div class="league-center-grid">
-          <article class="standings-panel">
-            <div class="league-panel-head"><div><h3 id="standingsTitle">جدول لیگ برتر انگلیس</h3><small id="standingsSeason">در حال دریافت فصل…</small></div><div class="table-legend" id="tableLegend"><span class="legend-item"><i class="legend-dot"></i>سهمیه اروپا</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span></div></div>
-            <div id="standingsTable" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت جدول…</span></div></div>
-          </article>
-          <aside class="fixtures-panel">
-            <div class="league-panel-head"><div><h3 id="fixturesTitle">بازی‌های هفته</h3><small id="fixturesRange">برنامه میزبان و میهمان</small></div><div class="week-navigation" aria-label="تغییر هفته"><button class="week-button" id="previousLeagueWeek" type="button" aria-label="هفته قبل">‹</button><button class="week-button" id="nextLeagueWeek" type="button" aria-label="هفته بعد">›</button></div></div>
-            <div class="fixture-list" id="leagueFixtures" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت بازی‌ها…</span></div></div>
-          </aside>
-        </div>
-      </section>
       <div class="content-layout">
         <section class="feed-shell">
           <div class="section-header"><h2 class="section-title">آخرین اخبار و تحلیل‌ها</h2><span class="result-count" id="resultCount"></span></div>
@@ -611,6 +595,29 @@
           </section>
         </aside>
       </div>
+    </section>
+
+    <section id="leagueView" class="container league-view hidden" aria-live="polite">
+      <a class="article-back" href="./" data-go-home>← بازگشت به صفحه خبرها</a>
+      <section class="league-center" id="leagueCenter" aria-label="جدول و برنامه بازی‌ها">
+        <header class="league-center-header">
+          <div class="league-center-heading"><h1 class="section-title">جدول لیگ‌ها و برنامه بازی‌ها</h1><p>لیگ‌های معتبر و رقابت‌های اروپایی؛ رتبه‌بندی، بازی‌های هفته و ساعت‌ها به وقت ایران</p></div>
+          <div class="league-center-actions">
+            <label class="league-select-label"><span>انتخاب لیگ</span><select class="league-select" id="leagueSelect" aria-label="انتخاب جدول لیگ"></select></label>
+            <a class="league-data-source" id="leagueSource" href="https://www.espn.com/soccer/table" target="_blank" rel="noopener">داده رسمی ESPN ↗</a>
+          </div>
+        </header>
+        <div class="league-center-grid">
+          <article class="standings-panel">
+            <div class="league-panel-head"><div><h3 id="standingsTitle">جدول لیگ برتر انگلیس</h3><small id="standingsSeason">در حال دریافت فصل…</small></div><div class="table-legend" id="tableLegend"><span class="legend-item"><i class="legend-dot"></i>سهمیه اروپا</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span></div></div>
+            <div id="standingsTable" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت جدول…</span></div></div>
+          </article>
+          <aside class="fixtures-panel">
+            <div class="league-panel-head"><div><h3 id="fixturesTitle">بازی‌های هفته</h3><small id="fixturesRange">برنامه میزبان و میهمان</small></div><div class="week-navigation" aria-label="تغییر هفته"><button class="week-button" id="previousLeagueWeek" type="button" aria-label="هفته قبل">‹</button><button class="week-button" id="nextLeagueWeek" type="button" aria-label="هفته بعد">›</button></div></div>
+            <div class="fixture-list" id="leagueFixtures" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت بازی‌ها…</span></div></div>
+          </aside>
+        </div>
+      </section>
     </section>
 
     <section id="articleView" class="container article-view hidden" aria-live="polite">
@@ -1098,7 +1105,7 @@
       'uefa.europa':{name:'لیگ اروپا',kind:'europe',table:'https://www.espn.com/soccer/table/_/league/uefa.europa'},
       'uefa.europa.conf':{name:'لیگ کنفرانس اروپا',kind:'europe',table:'https://www.espn.com/soccer/table/_/league/uefa.europa.conf'}
     };
-    const leagueDataCache=new Map(),requestedLeague=new URLSearchParams(location.search).get('league');let selectedLeague=Object.hasOwn(LEAGUE_CONFIG,requestedLeague)?requestedLeague:'eng.1',leagueWeekOffset=0,leagueRequestId=0;
+    const leagueDataCache=new Map(),requestedLeague=new URLSearchParams(location.search).get('league');let selectedLeague=Object.hasOwn(LEAGUE_CONFIG,requestedLeague)?requestedLeague:'eng.1',leagueWeekOffset=0,leagueRequestId=0,leagueCenterLoaded=false;
     function leagueStat(entry,name){return entry.stats?.find(stat=>stat.name===name)?.value??0;}
     function leagueWeekRange(offset=0){const today=new Date(`${tehranDateKey(new Date())}T12:00:00Z`),daysFromMonday=(today.getUTCDay()+6)%7;today.setUTCDate(today.getUTCDate()-daysFromMonday+(offset*7));const end=new Date(today);end.setUTCDate(end.getUTCDate()+6);return {start:today.toISOString().slice(0,10),end:end.toISOString().slice(0,10)};}
     function leagueRangeLabel(range){const format=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{day:'numeric',month:'short',timeZone:IRAN_TIME_ZONE});return `${format.format(new Date(`${range.start}T12:00:00Z`))} تا ${format.format(new Date(`${range.end}T12:00:00Z`))}`;}
@@ -1116,7 +1123,7 @@
       const months=[...new Set([range.start.slice(0,7),range.end.slice(0,7)])].map(value=>value.replace('-','')),standingsUrl=`${ESPN_STANDINGS_API}/${selectedLeague}/standings?region=us&lang=en&contentorigin=espn&type=0&level=3&sort=rank%3Aasc`,fixtureUrls=months.map(month=>`${ESPN_SOCCER_API}/${selectedLeague}/scoreboard?dates=${month}&limit=100`);
       try{const [standingsData,...fixtureData]=await Promise.all([fetchLeagueJson(standingsUrl),...fixtureUrls.map(fetchLeagueJson)]);if(requestId!==leagueRequestId)return;const child=standingsData.children?.find(item=>item.standings?.entries?.length)||standingsData.children?.[0],entries=child?.standings?.entries||[],season=child?.standings?.seasonDisplayName||child?.name||'',games=entries.map(entry=>Number(leagueStat(entry,'gamesPlayed'))).filter(Number.isFinite),baseWeek=(games.length?Math.min(...games):0)+1,eventMap=new Map();fixtureData.flatMap(data=>data.events||[]).forEach(event=>eventMap.set(event.id,event));const events=[...eventMap.values()].filter(event=>{const key=tehranDateKey(new Date(event.date));return key>=range.start&&key<=range.end;}).sort((a,b)=>new Date(a.date)-new Date(b.date));document.getElementById('standingsSeason').textContent=`${leagueSeasonLabel(season)}${config.kind==='europe'?' · مرحله لیگ':''}`;renderStandings(entries,config);renderLeagueFixtures(events,baseWeek+leagueWeekOffset,range);}catch(error){if(requestId!==leagueRequestId)return;standingsRoot.innerHTML='<div class="league-empty">دریافت جدول ممکن نشد.</div>';fixturesRoot.innerHTML='<div class="league-empty"><span>دریافت برنامه ممکن نشد.</span><button class="score-retry" type="button" data-league-retry>تلاش دوباره</button></div>';}
     }
-    function initLeagueCenter(){const select=document.getElementById('leagueSelect'),options=kind=>Object.entries(LEAGUE_CONFIG).filter(([,league])=>league.kind===kind).map(([id,league])=>`<option value="${id}">${league.name}</option>`).join('');select.innerHTML=`<optgroup label="لیگ‌های داخلی">${options('domestic')}</optgroup><optgroup label="رقابت‌های اروپایی">${options('europe')}</optgroup>`;select.value=selectedLeague;select.addEventListener('change',event=>{selectedLeague=event.target.value;leagueWeekOffset=0;const url=new URL(location.href);url.searchParams.set('league',selectedLeague);url.hash='leagueCenter';history.replaceState({},'',url);loadLeagueCenter();});document.getElementById('previousLeagueWeek').addEventListener('click',()=>{leagueWeekOffset=Math.max(-4,leagueWeekOffset-1);loadLeagueCenter();});document.getElementById('nextLeagueWeek').addEventListener('click',()=>{leagueWeekOffset=Math.min(4,leagueWeekOffset+1);loadLeagueCenter();});document.querySelector('.league-center').addEventListener('click',event=>{if(event.target.closest('[data-league-retry]'))loadLeagueCenter();});loadLeagueCenter();}
+    function initLeagueCenter(){const select=document.getElementById('leagueSelect'),options=kind=>Object.entries(LEAGUE_CONFIG).filter(([,league])=>league.kind===kind).map(([id,league])=>`<option value="${id}">${league.name}</option>`).join('');select.innerHTML=`<optgroup label="لیگ‌های داخلی">${options('domestic')}</optgroup><optgroup label="رقابت‌های اروپایی">${options('europe')}</optgroup>`;select.value=selectedLeague;select.addEventListener('change',event=>{selectedLeague=event.target.value;leagueWeekOffset=0;leagueCenterLoaded=true;const url=new URL(location.href);url.search='';url.searchParams.set('page','leagues');url.searchParams.set('league',selectedLeague);history.replaceState({},'',url);loadLeagueCenter();});document.getElementById('previousLeagueWeek').addEventListener('click',()=>{leagueWeekOffset=Math.max(-4,leagueWeekOffset-1);loadLeagueCenter();});document.getElementById('nextLeagueWeek').addEventListener('click',()=>{leagueWeekOffset=Math.min(4,leagueWeekOffset+1);loadLeagueCenter();});document.querySelector('.league-center').addEventListener('click',event=>{if(event.target.closest('[data-league-retry]'))loadLeagueCenter();});}
     function renderLatest(){
       const items=news.filter(item=>!item.isDraft&&item.lang==='فارسی').slice(0,6),root=document.getElementById('latestList');
       if(!items.length){root.innerHTML='<div class="empty">هنوز خبری دریافت نشده است.</div>';return;}
@@ -1134,16 +1141,16 @@
       document.getElementById('loadMore').classList.toggle('hidden',shown.length>=filtered.length);
     }
     function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-league-center]').forEach(button=>button.classList.remove('active'));document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
-    function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
+    function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('leagueView').classList.toggle('hidden',view!=='league');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
     function renderArticlePage(id){
       const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
       document.title=`${item.title} | فوتبال‌نما`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش فوتبال‌نما');
       document.getElementById('articleContent').innerHTML=`${image&&placement==='hero'?`<img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p></header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
       showView('article');return true;
     }
-    function showHome(){document.title='فوتبال‌نما | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');showView('news');}
-    function scrollToLeagueCenter(behavior='smooth'){setTimeout(()=>{const section=document.getElementById('leagueCenter');window.scrollTo({top:Math.max(0,section.getBoundingClientRect().top+window.scrollY-88),behavior});},450);}
-    function route(){const params=new URLSearchParams(location.search),id=params.get('article');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(!id||!renderArticlePage(id)){showHome();if(location.hash==='#leagueCenter'){document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-league-center')));scrollToLeagueCenter('auto');}}}
+    function showHome(){document.title='فوتبال‌نما | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));showView('news');}
+    function showLeagues(){const requested=new URLSearchParams(location.search).get('league');if(Object.hasOwn(LEAGUE_CONFIG,requested)&&requested!==selectedLeague){selectedLeague=requested;leagueWeekOffset=0;document.getElementById('leagueSelect').value=selectedLeague;leagueCenterLoaded=false;}document.title='جدول لیگ‌ها و برنامه بازی‌ها | فوتبال‌نما';document.querySelector('meta[name="description"]').setAttribute('content','جدول لیگ‌های معتبر فوتبال و برنامه بازی‌های هفته به وقت ایران.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-league-center')));showView('league');if(!leagueCenterLoaded){leagueCenterLoaded=true;loadLeagueCenter();}}
+    function route(){const params=new URLSearchParams(location.search),id=params.get('article');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(params.get('page')==='leagues'){showLeagues();return;}if(!id||!renderArticlePage(id))showHome();}
     const featuredRoot=document.getElementById('featured');
     featuredRoot.addEventListener('click',event=>{const dot=event.target.closest('[data-feature-index]'),arrow=event.target.closest('[data-feature-step]');if(!dot&&!arrow)return;renderFeatured(dot?Number(dot.dataset.featureIndex):featuredIndex+Number(arrow.dataset.featureStep));startFeaturedRotation();});
     featuredRoot.addEventListener('mouseenter',stopFeaturedRotation);
@@ -1151,7 +1158,7 @@
     featuredRoot.addEventListener('focusin',stopFeaturedRotation);
     featuredRoot.addEventListener('focusout',event=>{if(!featuredRoot.contains(event.relatedTarget))startFeaturedRotation();});
     document.addEventListener('visibilitychange',()=>{if(document.hidden)stopFeaturedRotation();else startFeaturedRotation();});
-    document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]'),leagueLink=event.target.closest('[data-league-center]');if(filter){history.pushState({},'',location.pathname);setFilter(filter.dataset.filter);}if(leagueLink){event.preventDefault();history.pushState({},'',`${location.pathname}#leagueCenter`);showHome();document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-league-center')));scrollToLeagueCenter();}if(view){history.pushState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(selectedEditorId)}`);showEditor(selectedEditorId);}if(event.target.closest('[data-go-home]')){event.preventDefault();history.pushState({},'',location.pathname);setFilter('all');showHome();}});
+    document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]'),leagueLink=event.target.closest('[data-league-center]');if(filter){history.pushState({},'',location.pathname);setFilter(filter.dataset.filter);}if(leagueLink){event.preventDefault();history.pushState({},'',`${location.pathname}?page=leagues&league=${encodeURIComponent(selectedLeague)}`);showLeagues();}if(view){history.pushState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(selectedEditorId)}`);showEditor(selectedEditorId);}if(event.target.closest('[data-go-home]')){event.preventDefault();history.pushState({},'',location.pathname);setFilter('all');showHome();}});
     document.getElementById('searchInput').addEventListener('input',event=>{query=event.target.value.trim();visibleCount=10;render();});
     document.getElementById('focusSearch').addEventListener('click',()=>{history.pushState({},'',location.pathname);showView('news');document.getElementById('searchInput').focus();document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});});
     document.getElementById('loadMore').addEventListener('click',()=>{visibleCount+=10;render();});

@@ -156,6 +156,11 @@
     .drawer-article section { padding:0 0 18px; }
     .drawer-article h3 { margin:0 0 7px; color:var(--ink); font-size:18px; line-height:1.7; }
     .drawer-article p { margin:0; }
+    .drawer-figure { margin:6px 0 28px; overflow:hidden; border:1px solid var(--line); border-radius:6px; background:#f7f8f9; }
+    .drawer-figure img { width:100%; max-height:360px; object-fit:cover; background:#e5e7e9; }
+    .drawer-figure figcaption { padding:10px 12px 11px; color:#5f666d; font-size:11px; line-height:1.8; }
+    .drawer-figure figcaption a { color:#285d9c; font-weight:700; }
+    .drawer-figure figcaption a:hover { color:var(--red); }
     .drawer-sources { margin-top:20px; padding-top:18px; border-top:1px solid var(--line); }
     .drawer-sources h3 { margin:0 0 10px; font-size:15px; }
     .drawer-sources a { display:block; padding:7px 0; color:#285d9c; font-size:12px; line-height:1.7; }
@@ -290,6 +295,11 @@
           {value:'£۷۹۱.۲m',label:'ارزش تخمینی ترکیب؛ پنجمین ترکیب گران لیگ'},
           {value:'۵۰ سال',label:'از آخرین باخت خانگی پس از برتری دوگله'}
         ],
+        media:[
+          {after:0,src:'assets/images/old-trafford.jpg',alt:'نمای داخلی ورزشگاه اولدترافورد',caption:'اولدترافورد؛ جایی که برتری دوگله یونایتد مقابل برایتون به نخستین شکست خانگی از این موقعیت طی نیم قرن تبدیل شد.',credit:'عکس: Stacey MacNaught · Wikimedia Commons · CC BY 2.0',creditUrl:'https://commons.wikimedia.org/wiki/File:Old_Trafford_(interior),_Manchester_United.jpg'},
+          {after:3,src:'assets/images/man-utd-training.jpg',alt:'بازیکنان منچستر یونایتد در تمرین',caption:'تصویر آرشیوی از تمرین منچستر یونایتد؛ شدت حرکت، هماهنگی پرس و فاصله خطوط از محورهای اصلی این تحلیل هستند.',credit:'عکس: Allison Pasciuto · Wikimedia Commons · CC BY 2.0',creditUrl:'https://commons.wikimedia.org/wiki/File:Manchester_United_training.jpg'},
+          {after:5,src:'assets/images/michael-carrick.jpg',alt:'مایکل کریک با پیراهن منچستر یونایتد',caption:'مایکل کریک در دوران بازی برای یونایتد؛ محبوبیت و موفقیت فصل گذشته هنوز برای او سرمایه است، اما نتایج این فصل فشار را بالا برده‌اند.',credit:'عکس: Matt Janzer · Wikimedia Commons · CC BY-SA 2.0',creditUrl:'https://commons.wikimedia.org/wiki/File:Michael_Carrick_-_July_2015.jpg'}
+        ],
         body:[
           {heading:'ده دقیقه درخشش، هشتاد دقیقه هشدار',text:'یونایتد مقابل برایتون در ده دقیقه نخست دو گل زد و ظاهراً شبی آرام در پیش داشت. نتیجه نهایی اما شکست ۳ بر ۲، حذف دوباره در نخستین مرحله جام اتحادیه و هوشدن تیم در اولدترافورد بود. باشگاه در ۱۴۵ مسابقه قبلی که در خانه دو گل جلو افتاده بود، ۱۴۳ بار پیروز شده و فقط دو بار مساوی کرده بود؛ این نخستین شکست در چنین وضعیتی طی نیم قرن بود. مهم‌تر اینکه از گل دوم میسون مونت تا دقیقه ۷۶ هیچ شوت دیگری در چارچوب ثبت نشد. فروپاشی، ناگهانی به نظر می‌رسید اما داده‌ها می‌گویند ریشه آن از قبل وجود داشته است.'},
           {heading:'یک: یونایتد می‌دود، اما با سرعت لازم نه',text:'مسافت کل دوندگی به‌تنهایی تصویر فاجعه‌باری نمی‌دهد: ۴۴۹.۱ کیلومتر و رتبه چهاردهم لیگ برتر. مشکل وقتی آشکار می‌شود که شدت حرکت اندازه‌گیری شود. یونایتد با ۳۷۹ اسپرینت هجدهم و با ۱۳۶۴ دویدن پرفشار نوزدهم است؛ در شاخص اسپرینت و حرکت پرفشار به‌ازای هر کیلومتر نیز نزدیک انتهای جدول قرار دارد. این یعنی بازیکنان موقعیت عوض می‌کنند، اما نه با انفجاری که برای پرس، بستن مسیر پاس یا بازگشت پس از لو رفتن توپ لازم است. نتیجه، فاصله‌های بزرگ میان خطوط و دفاع‌کردن در زمین باز است؛ شرایطی که مدافعان جوان را بی‌رحمانه در معرض اشتباه قرار می‌دهد.'},
@@ -410,6 +420,7 @@
     let activeFilter='all',query='',visibleCount=10;
     const esc=(value='')=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
     const safeImage=value=>/^https?:\/\//i.test(value||'')?value:'';
+    const safeArticleImage=value=>/^(?:https?:\/\/|assets\/images\/)/i.test(value||'')?value:'';
 
     function renderFeatured(){
       const item=demoNews[0];
@@ -436,7 +447,9 @@
     function openDrawer(id){
       const item=news.find(entry=>entry.id===id);if(!item)return;const image=safeImage(item.image);
       const metrics=Array.isArray(item.metrics)?`<div class="drawer-metrics">${item.metrics.map(metric=>`<div class="drawer-metric"><strong>${esc(metric.value)}</strong><span>${esc(metric.label)}</span></div>`).join('')}</div>`:'';
-      const article=Array.isArray(item.body)?`<div class="drawer-article">${item.body.map(block=>`<section>${block.heading?`<h3>${esc(block.heading)}</h3>`:''}<p>${esc(block.text||'')}</p></section>`).join('')}</div>`:'';
+      const articleMedia=Array.isArray(item.media)?item.media:[];
+      const figure=media=>{const src=safeArticleImage(media.src),creditUrl=/^https?:\/\//i.test(media.creditUrl||'')?media.creditUrl:'';if(!src)return'';return `<figure class="drawer-figure"><img src="${esc(src)}" alt="${esc(media.alt||'')}" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>${esc(media.caption||'')}${media.credit?`<br>${creditUrl?`<a href="${esc(creditUrl)}" target="_blank" rel="noopener">${esc(media.credit)}</a>`:esc(media.credit)}`:''}</figcaption></figure>`;};
+      const article=Array.isArray(item.body)?`<div class="drawer-article">${item.body.map((block,index)=>`<section>${block.heading?`<h3>${esc(block.heading)}</h3>`:''}<p>${esc(block.text||'')}</p></section>${articleMedia.filter(media=>media.after===index).map(figure).join('')}`).join('')}</div>`:'';
       const sources=Array.isArray(item.sources)?`<div class="drawer-sources"><h3>منابع گزارش</h3>${item.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)} ←</a>`).join('')}</div>`:'';
       document.getElementById('drawerContent').innerHTML=`${image?`<img class="drawer-image" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h2>${esc(item.title)}</h2><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="drawer-summary">${esc(item.summary||'')}</p>${metrics}${article}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${sources}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}`;
       document.getElementById('drawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('open');document.getElementById('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';

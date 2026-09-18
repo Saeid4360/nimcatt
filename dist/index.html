@@ -136,14 +136,15 @@
     .article-page-body .drawer-article section { padding-bottom:24px; }
     .article-page-body .drawer-article h3 { position:relative; margin:12px 0 12px; padding-right:16px; font-size:23px; line-height:1.7; letter-spacing:-.35px; }
     .article-page-body .drawer-article h3::before { content:""; position:absolute; right:0; top:.45em; width:5px; height:1.05em; border-radius:5px; background:var(--red); }
-    .article-page-body .drawer-figure { margin:12px 0 34px; }
-    .article-page-body .drawer-figure img { max-height:none; aspect-ratio:16/9; }
+    .article-page-body .drawer-figure { margin-top:12px; margin-bottom:34px; }
+    .article-page-body .drawer-figure img { max-height:none; }
     .article-page-body .drawer-figure figcaption { padding:12px 14px; font-size:12px; }
     .article-page-body .drawer-note { padding:18px; font-size:14px; line-height:2; }
 
     .editor-view { min-height:calc(100vh - 145px); }
     .editor-shell { overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 18px 45px rgba(18,22,28,.07); }
     .editor-toolbar { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 28px; border-bottom:1px solid var(--line); background:#fff; }
+    .editor-toolbar-actions { display:flex; align-items:center; gap:8px; }
     .editor-heading { display:flex; align-items:center; gap:14px; }
     .editor-heading-mark { width:42px; height:42px; display:grid; place-items:center; border-radius:8px; background:var(--ink); color:#fff; font-weight:900; }
     .editor-heading h1 { margin:0; font-size:24px; line-height:1.45; }
@@ -177,6 +178,20 @@
     .editor-section-row-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:11px; color:var(--muted); font-size:11px; font-weight:800; }
     .editor-section-row input,.editor-section-row textarea { width:100%; padding:10px 12px; border:1px solid #d8dce0; border-radius:5px; background:#fff; resize:vertical; }
     .editor-section-row textarea { margin-top:9px; line-height:2; }
+    .image-control-panel { grid-column:1/-1; padding:16px; border:1px solid var(--line); border-radius:8px; background:#f7f8fa; }
+    .image-control-panel>strong { display:block; margin-bottom:12px; font-size:13px; }
+    .image-settings-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+    .compact-field { display:grid; gap:5px; }
+    .compact-field label { color:#5f666d; font-size:11px; font-weight:800; }
+    .compact-field select,.compact-field input { width:100%; min-height:40px; padding:7px 9px; border:1px solid #d4d8dc; border-radius:5px; background:#fff; color:var(--ink); font:inherit; font-size:12px; }
+    .editor-media { display:grid; gap:12px; margin-top:13px; }
+    .editor-media-empty { padding:20px; border:1px dashed #cdd1d5; border-radius:8px; color:var(--muted); text-align:center; font-size:12px; }
+    .editor-media-row { padding:16px; border:1px solid var(--line); border-radius:8px; background:#f8f9fa; }
+    .editor-media-row-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; color:var(--muted); font-size:11px; font-weight:800; }
+    .editor-media-row .media-url { width:100%; min-height:42px; padding:9px 11px; border:1px solid #d4d8dc; border-radius:5px; background:#fff; font:inherit; font-size:12px; }
+    .media-copy-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:10px; margin-top:10px; }
+    .media-copy-grid input { width:100%; min-height:40px; padding:8px 10px; border:1px solid #d4d8dc; border-radius:5px; background:#fff; font:inherit; font-size:12px; }
+    .editor-media-row .image-settings-grid { margin-top:10px; }
     .editor-actions { position:sticky; bottom:0; z-index:4; margin:28px -28px -28px; padding:16px 28px; display:flex; gap:9px; border-top:1px solid var(--line); background:rgba(255,255,255,.96); backdrop-filter:blur(10px); }
     .action-primary,.action-secondary,.action-danger { min-height:43px; padding:0 18px; border-radius:5px; font-size:13px; font-weight:900; cursor:pointer; }
     .action-primary { border:1px solid var(--red); background:var(--red); color:#fff; }
@@ -209,6 +224,26 @@
     .drawer-article p { margin:0; }
     .drawer-figure { margin:6px 0 28px; overflow:hidden; border:1px solid var(--line); border-radius:6px; background:#f7f8f9; }
     .drawer-figure img { width:100%; max-height:360px; object-fit:cover; background:#e5e7e9; }
+    .drawer-figure.figure-size-full { width:100%; }
+    .drawer-figure.figure-size-wide { width:82%; }
+    .drawer-figure.figure-size-medium { width:58%; }
+    .drawer-figure.figure-size-small { width:38%; }
+    .drawer-figure.figure-align-center { margin-right:auto; margin-left:auto; }
+    .drawer-figure.figure-align-right { margin-left:auto; }
+    .drawer-figure.figure-align-left { margin-right:auto; }
+    .drawer-figure.figure-ratio-16x9 img { aspect-ratio:16/9; }
+    .drawer-figure.figure-ratio-4x3 img { aspect-ratio:4/3; }
+    .drawer-figure.figure-ratio-1x1 img { aspect-ratio:1/1; }
+    .drawer-figure.figure-ratio-natural img { aspect-ratio:auto; object-fit:contain; }
+    .article-page-hero.hero-ratio-4x3 { aspect-ratio:4/3; }
+    .article-page-hero.hero-ratio-1x1 { aspect-ratio:1/1; max-height:780px; }
+    .article-page-hero.hero-ratio-natural { aspect-ratio:auto; max-height:780px; object-fit:contain; background:#f0f1f2; }
+    .article-page-hero.hero-size-wide { width:82%; }
+    .article-page-hero.hero-size-medium { width:58%; }
+    .article-page-hero.hero-size-small { width:38%; }
+    .article-page-hero.hero-align-center { margin-right:auto; margin-left:auto; }
+    .article-page-hero.hero-align-right { margin-left:auto; }
+    .article-page-hero.hero-align-left { margin-right:auto; }
     .drawer-figure figcaption { padding:10px 12px 11px; color:#5f666d; font-size:11px; line-height:1.8; }
     .drawer-figure figcaption a { color:#285d9c; font-weight:700; }
     .drawer-figure figcaption a:hover { color:var(--red); }
@@ -229,6 +264,7 @@
       .editor-sidebar { border-left:0; border-bottom:1px solid var(--line); }
       .editor-preview-card { display:grid; grid-template-columns:170px 1fr; }
       .editor-preview-card img { height:100%; min-height:120px; }
+      .image-settings-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
     }
     @media(max-width:720px) {
       .container { width:min(100% - 24px,1240px); }
@@ -265,11 +301,14 @@
       .editor-grid { grid-template-columns:1fr; }
       .field.full { grid-column:auto; }
       .editor-toolbar { align-items:flex-start; padding:20px; }
-      .editor-toolbar .action-secondary { display:none; }
+      .editor-toolbar-actions .action-secondary { display:none; }
       .editor-sidebar,.editor-form { padding:20px; }
       .editor-preview-card { grid-template-columns:110px 1fr; }
+      .media-copy-grid,.image-settings-grid { grid-template-columns:1fr; }
       .editor-actions { margin:24px -20px -20px; padding:14px 20px; flex-wrap:wrap; }
       .action-danger { margin-right:0; }
+      .drawer-figure.figure-size-wide,.drawer-figure.figure-size-medium,.drawer-figure.figure-size-small { width:100%; }
+      .article-page-hero.hero-size-wide,.article-page-hero.hero-size-medium,.article-page-hero.hero-size-small { width:100%; }
       .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
     }
   </style>
@@ -337,7 +376,7 @@
       <div class="editor-shell">
         <header class="editor-toolbar">
           <div class="editor-heading"><span class="editor-heading-mark">ت</span><div><h1>میز تحریریه</h1><p>ویرایش و پیش‌نمایش خبرهای فوتبال‌نما</p></div></div>
-          <button class="action-secondary" id="editorHomeBtn">بازگشت به سایت</button>
+          <div class="editor-toolbar-actions"><button class="action-primary" id="newArticleBtn">＋ ساخت خبر جدید</button><button class="action-secondary" id="editorHomeBtn">بازگشت به سایت</button></div>
         </header>
         <div class="editor-workspace">
           <aside class="editor-sidebar">
@@ -353,15 +392,25 @@
               <div class="field full"><label for="editSummary">خلاصه خبر <small id="summaryCount">۰ نویسه</small></label><textarea id="editSummary" rows="4"></textarea></div>
               <div class="field"><label for="editEyebrow">روتیتر</label><input id="editEyebrow" autocomplete="off"></div>
               <div class="field"><label for="editSource">نام منبع</label><input id="editSource" autocomplete="off"></div>
+              <div class="field"><label for="editCategory">نوع خبر</label><select id="editCategory"><option value="news">خبر</option><option value="analysis">تحلیل</option><option value="transfer">نقل‌وانتقالات</option></select></div>
+              <div class="field"><label for="editCountry">بخش سایت</label><select id="editCountry"><option value="international">بین‌المللی</option><option value="england">انگلیس</option><option value="spain">اسپانیا</option><option value="italy">ایتالیا</option><option value="germany">آلمان</option><option value="france">فرانسه</option><option value="netherlands">هلند</option></select></div>
               <div class="field"><label for="editTime">تاریخ انتشار</label><input id="editTime" autocomplete="off"></div>
               <div class="field"><label for="editCred">نوع محتوا</label><input id="editCred" autocomplete="off"></div>
               <div class="field full"><label for="editImage">نشانی تصویر اصلی</label><input id="editImage" type="url" dir="ltr" autocomplete="off"></div>
+              <div class="image-control-panel"><strong>چیدمان تصویر اصلی</strong><div class="image-settings-grid">
+                <div class="compact-field"><label for="editImagePlacement">محل نمایش</label><select id="editImagePlacement"><option value="hero">بالای صفحه خبر</option><option value="inline">پس از خلاصه</option><option value="hidden">فقط در کارت خبر</option></select></div>
+                <div class="compact-field"><label for="editImageSize">عرض تصویر</label><select id="editImageSize"><option value="full">تمام عرض</option><option value="wide">عریض</option><option value="medium">متوسط</option><option value="small">کوچک</option></select></div>
+                <div class="compact-field"><label for="editImageRatio">نسبت تصویر</label><select id="editImageRatio"><option value="16x9">۱۶:۹</option><option value="4x3">۴:۳</option><option value="1x1">مربع</option><option value="natural">اندازه طبیعی</option></select></div>
+                <div class="compact-field"><label for="editImageAlign">تراز</label><select id="editImageAlign"><option value="center">وسط</option><option value="right">راست</option><option value="left">چپ</option></select></div>
+              </div>
               <div class="field full"><label for="editUrl">لینک منبع اصلی</label><input id="editUrl" type="url" dir="ltr" autocomplete="off"></div>
               <div class="field full"><label for="editTags">برچسب‌ها <small>با ویرگول جدا کنید</small></label><input id="editTags" autocomplete="off"></div>
               <div class="field full"><label for="editWhy">یادداشت شفافیت و اعتبارسنجی</label><textarea id="editWhy" rows="3"></textarea></div>
             </div>
             <div class="editor-section-head"><h3>متن کامل خبر</h3><button class="text-button" id="addSectionBtn">＋ افزودن بخش</button></div>
             <div class="editor-sections" id="editorSections"></div>
+            <div class="editor-section-head"><h3>تصاویر داخل متن</h3><button class="text-button" id="addMediaBtn">＋ افزودن تصویر</button></div>
+            <div class="editor-media" id="editorMedia"></div>
             <div class="editor-actions"><button class="action-primary" id="saveBtn">ذخیره تغییرات</button><button class="action-secondary" id="previewBtn">پیش‌نمایش خبر</button><button class="action-danger" id="resetBtn">بازگردانی نسخه اصلی</button></div>
           </section>
         </div>
@@ -539,17 +588,21 @@
     ];
     const liveNews=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
     const EDITOR_STORAGE_KEY='footballNamaArticleEditsV1';
+    const CREATED_STORAGE_KEY='footballNamaCreatedArticlesV1';
     let editorOverrides={};
     try{editorOverrides=JSON.parse(localStorage.getItem(EDITOR_STORAGE_KEY)||'{}')||{};}catch(error){editorOverrides={};}
+    let createdNews=[];
+    try{createdNews=JSON.parse(localStorage.getItem(CREATED_STORAGE_KEY)||'[]')||[];}catch(error){createdNews=[];}
     const baseNews=[...demoNews,...liveNews];
-    const news=baseNews.map(item=>({...item,...(editorOverrides[item.id]||{})}));
+    const news=[...createdNews.map(item=>({...item,isCustom:true})),...baseNews.map(item=>({...item,...(editorOverrides[item.id]||{})}))];
     let activeFilter='all',query='',visibleCount=10,selectedEditorId=news[0]?.id||'',toastTimer;
     const esc=(value='')=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
     const safeImage=value=>/^https?:\/\//i.test(value||'')?value:'';
     const safeArticleImage=value=>/^(?:https?:\/\/|assets\/images\/)/i.test(value||'')?value:'';
     const articleHref=item=>`${location.pathname}?article=${encodeURIComponent(item.id)}`;
-    const figure=media=>{const src=safeArticleImage(media.src),creditUrl=/^https?:\/\//i.test(media.creditUrl||'')?media.creditUrl:'';if(!src)return'';return `<figure class="drawer-figure"><img src="${esc(src)}" alt="${esc(media.alt||'')}" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>${esc(media.caption||'')}${media.credit?`<br>${creditUrl?`<a href="${esc(creditUrl)}" target="_blank" rel="noopener">${esc(media.credit)}</a>`:esc(media.credit)}`:''}</figcaption></figure>`;};
-    const articleBody=item=>{const media=Array.isArray(item.media)?item.media:[];return Array.isArray(item.body)?`<div class="drawer-article">${item.body.map((block,index)=>`<section>${block.heading?`<h3>${esc(block.heading)}</h3>`:''}<p>${esc(block.text||'')}</p></section>${media.filter(entry=>entry.after===index).map(figure).join('')}`).join('')}</div>`:'';};
+    const imageChoice=(value,allowed,fallback)=>allowed.includes(value)?value:fallback;
+    const figure=media=>{const src=safeArticleImage(media.src),creditUrl=/^https?:\/\//i.test(media.creditUrl||'')?media.creditUrl:'';if(!src)return'';const size=imageChoice(media.size,['full','wide','medium','small'],'full'),align=imageChoice(media.align,['center','right','left'],'center'),ratio=imageChoice(media.ratio,['16x9','4x3','1x1','natural'],'16x9'),caption=media.caption||media.credit;return `<figure class="drawer-figure figure-size-${size} figure-align-${align} figure-ratio-${ratio}"><img src="${esc(src)}" alt="${esc(media.alt||'')}" loading="lazy" onerror="this.closest('figure').remove()">${caption?`<figcaption>${esc(media.caption||'')}${media.credit?`<br>${creditUrl?`<a href="${esc(creditUrl)}" target="_blank" rel="noopener">${esc(media.credit)}</a>`:esc(media.credit)}`:''}</figcaption>`:''}</figure>`;};
+    const articleBody=item=>{const media=Array.isArray(item.media)?item.media:[],body=Array.isArray(item.body)?item.body:[];if(!body.length&&!media.length)return'';return `<div class="drawer-article">${media.filter(entry=>Number(entry.after)<0).map(figure).join('')}${body.map((block,index)=>`<section>${block.heading?`<h3>${esc(block.heading)}</h3>`:''}<p>${esc(block.text||'')}</p></section>${media.filter(entry=>Number(entry.after)===index).map(figure).join('')}`).join('')}</div>`;};
     const articleMetrics=item=>Array.isArray(item.metrics)?`<div class="drawer-metrics">${item.metrics.map(metric=>`<div class="drawer-metric"><strong>${esc(metric.value)}</strong><span>${esc(metric.label)}</span></div>`).join('')}</div>`:'';
     const articleSources=item=>Array.isArray(item.sources)?`<div class="drawer-sources"><h3>منابع گزارش</h3>${item.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)} ←</a>`).join('')}</div>`:'';
 
@@ -560,32 +613,46 @@
       const list=blocks.length?blocks:[{heading:'',text:''}];
       editorField('editorSections').innerHTML=list.map((block,index)=>`<article class="editor-section-row"><div class="editor-section-row-head"><span>بخش ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-section>حذف</button></div><input class="edit-section-heading" value="${esc(block.heading||'')}" placeholder="میان‌تیتر بخش"><textarea class="edit-section-text" rows="5" placeholder="متن این بخش">${esc(block.text||'')}</textarea></article>`).join('');
     }
+    function mediaPositionOptions(selected=-1){const count=Math.max(1,document.querySelectorAll('.editor-section-row').length);return [`<option value="-1" ${Number(selected)<0?'selected':''}>قبل از بخش اول</option>`,...Array.from({length:count},(_,index)=>`<option value="${index}" ${Number(selected)===index?'selected':''}>بعد از بخش ${Number(index+1).toLocaleString('fa-IR')}</option>`)].join('');}
+    function renderEditorMedia(media=[]){
+      const root=editorField('editorMedia');if(!media.length){root.innerHTML='<div class="editor-media-empty">هنوز تصویری داخل متن قرار نگرفته است.</div>';return;}
+      root.innerHTML=media.map((entry,index)=>`<article class="editor-media-row"><div class="editor-media-row-head"><span>تصویر ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-media>حذف تصویر</button></div><input class="media-url" type="url" dir="ltr" value="${esc(entry.src||'')}" placeholder="https://example.com/image.jpg"><div class="media-copy-grid"><input class="media-caption" value="${esc(entry.caption||'')}" placeholder="توضیح زیر تصویر"><input class="media-alt" value="${esc(entry.alt||'')}" placeholder="متن جایگزین تصویر"><input class="media-credit" value="${esc(entry.credit||'')}" placeholder="نام عکاس یا منبع تصویر"><input class="media-credit-url" dir="ltr" value="${esc(entry.creditUrl||'')}" placeholder="لینک اعتبار تصویر"></div><div class="image-settings-grid"><div class="compact-field"><label>جای تصویر</label><select class="media-after">${mediaPositionOptions(entry.after)}</select></div><div class="compact-field"><label>عرض</label><select class="media-size"><option value="full" ${entry.size==='full'||!entry.size?'selected':''}>تمام عرض</option><option value="wide" ${entry.size==='wide'?'selected':''}>عریض</option><option value="medium" ${entry.size==='medium'?'selected':''}>متوسط</option><option value="small" ${entry.size==='small'?'selected':''}>کوچک</option></select></div><div class="compact-field"><label>نسبت</label><select class="media-ratio"><option value="16x9" ${entry.ratio==='16x9'||!entry.ratio?'selected':''}>۱۶:۹</option><option value="4x3" ${entry.ratio==='4x3'?'selected':''}>۴:۳</option><option value="1x1" ${entry.ratio==='1x1'?'selected':''}>مربع</option><option value="natural" ${entry.ratio==='natural'?'selected':''}>طبیعی</option></select></div><div class="compact-field"><label>تراز</label><select class="media-align"><option value="center" ${entry.align==='center'||!entry.align?'selected':''}>وسط</option><option value="right" ${entry.align==='right'?'selected':''}>راست</option><option value="left" ${entry.align==='left'?'selected':''}>چپ</option></select></div></div></article>`).join('');
+    }
     function updateEditorPreview(item){
       const image=safeArticleImage(item.image);const thumb=editorField('editorThumb');
       thumb.src=image||'';thumb.classList.toggle('hidden',!image);
       editorField('editorPreviewTitle').textContent=item.title||'بدون عنوان';
       editorField('editorPreviewMeta').textContent=`${item.source||'بدون منبع'} · ${item.time||'بدون تاریخ'}`;
-      editorField('editorState').textContent=editorOverrides[item.id]?'ویرایش‌شده':'نسخه اصلی';
+      editorField('editorState').textContent=item.isDraft?'پیش‌نویس تازه':item.isCustom?'خبر ساخته‌شده':editorOverrides[item.id]?'ویرایش‌شده':'نسخه اصلی';
+      editorField('saveBtn').textContent=item.isDraft?'ذخیره و انتشار':'ذخیره تغییرات';
+      editorField('resetBtn').textContent=item.isCustom?'حذف این خبر':'بازگردانی نسخه اصلی';
     }
     function fillEditor(item){
       if(!item)return;selectedEditorId=item.id;editorField('editNewsSelect').value=item.id;
       editorField('editTitle').value=item.title||'';editorField('editSummary').value=item.summary||'';editorField('editEyebrow').value=item.eyebrow||'';
-      editorField('editSource').value=item.source||'';editorField('editTime').value=item.time||'';editorField('editCred').value=item.cred||'';
+      editorField('editSource').value=item.source||'';editorField('editCategory').value=item.cat||'news';editorField('editCountry').value=item.country||'international';editorField('editTime').value=item.time||'';editorField('editCred').value=item.cred||'';
       editorField('editImage').value=item.image||'';editorField('editUrl').value=item.url&&item.url!=='#'?item.url:'';editorField('editTags').value=(item.tags||[]).join('، ');editorField('editWhy').value=item.why||'';
-      renderEditorSections(Array.isArray(item.body)?item.body:[]);refreshEditorCounts();updateEditorPreview(item);
+      const settings=item.imageSettings||{};editorField('editImagePlacement').value=settings.placement||'hero';editorField('editImageSize').value=settings.size||'full';editorField('editImageRatio').value=settings.ratio||'16x9';editorField('editImageAlign').value=settings.align||'center';
+      renderEditorSections(Array.isArray(item.body)?item.body:[]);renderEditorMedia(Array.isArray(item.media)?item.media:[]);refreshEditorCounts();updateEditorPreview(item);
     }
     function setupEditorOptions(){
-      editorField('editNewsSelect').innerHTML=news.map(item=>`<option value="${esc(item.id)}">${esc(item.title)}</option>`).join('');
+      editorField('editNewsSelect').innerHTML=news.map(item=>`<option value="${esc(item.id)}">${item.isDraft?'پیش‌نویس — ':''}${esc(item.title)}</option>`).join('');
     }
     function collectEditorChanges(){
       const body=[...document.querySelectorAll('.editor-section-row')].map(row=>({heading:row.querySelector('.edit-section-heading').value.trim(),text:row.querySelector('.edit-section-text').value.trim()})).filter(block=>block.heading||block.text);
-      return {title:editorField('editTitle').value.trim(),summary:editorField('editSummary').value.trim(),eyebrow:editorField('editEyebrow').value.trim(),source:editorField('editSource').value.trim(),time:editorField('editTime').value.trim(),cred:editorField('editCred').value.trim(),image:editorField('editImage').value.trim(),url:editorField('editUrl').value.trim()||'#',tags:editorField('editTags').value.split(/[،,]/).map(tag=>tag.trim()).filter(Boolean),why:editorField('editWhy').value.trim(),body};
+      const media=[...document.querySelectorAll('.editor-media-row')].map(row=>({src:row.querySelector('.media-url').value.trim(),caption:row.querySelector('.media-caption').value.trim(),alt:row.querySelector('.media-alt').value.trim(),credit:row.querySelector('.media-credit').value.trim(),creditUrl:row.querySelector('.media-credit-url').value.trim(),after:Math.min(Number(row.querySelector('.media-after').value),Math.max(-1,body.length-1)),size:row.querySelector('.media-size').value,ratio:row.querySelector('.media-ratio').value,align:row.querySelector('.media-align').value})).filter(entry=>entry.src);
+      return {title:editorField('editTitle').value.trim(),summary:editorField('editSummary').value.trim(),eyebrow:editorField('editEyebrow').value.trim(),source:editorField('editSource').value.trim(),cat:editorField('editCategory').value,country:editorField('editCountry').value,time:editorField('editTime').value.trim(),cred:editorField('editCred').value.trim(),image:editorField('editImage').value.trim(),imageSettings:{placement:editorField('editImagePlacement').value,size:editorField('editImageSize').value,ratio:editorField('editImageRatio').value,align:editorField('editImageAlign').value},url:editorField('editUrl').value.trim()||'#',tags:editorField('editTags').value.split(/[،,]/).map(tag=>tag.trim()).filter(Boolean),why:editorField('editWhy').value.trim(),body,media};
     }
+    function persistCreatedNews(){localStorage.setItem(CREATED_STORAGE_KEY,JSON.stringify(news.filter(item=>item.isCustom)));}
     function saveEditorChanges(showMessage=true){
       const item=news.find(entry=>entry.id===selectedEditorId),changes=collectEditorChanges();
       if(!item||!changes.title){toast('تیتر خبر نمی‌تواند خالی باشد.');editorField('editTitle').focus();return false;}
-      editorOverrides[item.id]={...(editorOverrides[item.id]||{}),...changes};localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));Object.assign(item,changes);
+      Object.assign(item,changes,{isDraft:false});if(item.isCustom){persistCreatedNews();}else{editorOverrides[item.id]={...(editorOverrides[item.id]||{}),...changes};localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));}
       renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);if(showMessage)toast('تغییرات ذخیره شد و در سایت نمایش داده می‌شود.');return true;
+    }
+    function createNewArticle(){
+      const item={id:`custom-${Date.now()}`,isCustom:true,isDraft:true,country:'international',cat:'news',flag:'🌍 بین‌المللی',eyebrow:'خبر تازه',title:'خبر جدید بدون عنوان',summary:'خلاصه خبر را اینجا بنویسید.',source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'امروز',cred:'پیش‌نویس',credClass:'trusted',tags:[],why:'منابع و شیوه آماده‌سازی این خبر را توضیح دهید.',image:'',imageSettings:{placement:'hero',size:'full',ratio:'16x9',align:'center'},url:'#',body:[{heading:'',text:''}],media:[]};
+      news.unshift(item);persistCreatedNews();setupEditorOptions();fillEditor(item);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(item.id)}`);editorField('editTitle').focus();editorField('editTitle').select();toast('خبر تازه ساخته شد؛ اطلاعات آن را کامل کنید.');
     }
     function showEditor(id){
       const item=news.find(entry=>entry.id===(id||selectedEditorId))||news[0];if(!item)return;
@@ -593,11 +660,11 @@
     }
 
     function renderFeatured(){
-      const item=news[0];
+      const item=news.find(entry=>!entry.isDraft);if(!item)return;
       document.getElementById('featured').innerHTML=`<a class="feature-media" href="${esc(articleHref(item))}"><img src="${esc(item.image)}" alt="${esc(item.title)}"></a><div class="feature-copy"><span class="kicker">${esc(item.eyebrow)}</span><h1><a href="${esc(articleHref(item))}">${esc(item.title)}</a></h1><p>${esc(item.summary)}</p><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang)}</span></div><a class="read-button" href="${esc(articleHref(item))}">مشاهده گزارش</a></div>`;
     }
     function renderLatest(){
-      const items=news.filter(item=>item.lang==='فارسی').slice(0,6),root=document.getElementById('latestList');
+      const items=news.filter(item=>!item.isDraft&&item.lang==='فارسی').slice(0,6),root=document.getElementById('latestList');
       if(!items.length){root.innerHTML='<div class="empty">هنوز خبری دریافت نشده است.</div>';return;}
       root.innerHTML=items.map(item=>{const image=safeImage(item.image);return `<a class="latest-item" href="${esc(articleHref(item))}">${image?`<img class="latest-thumb" src="${esc(image)}" alt="" loading="lazy" onerror="this.outerHTML='<span class=&quot;latest-thumb media-fallback&quot;>خبر</span>'">`:'<span class="latest-thumb media-fallback">خبر</span>'}<div><h3>${esc(item.title)}</h3><small>${esc(item.source)} · ${esc(item.time)}</small></div></a>`;}).join('');
     }
@@ -607,7 +674,7 @@
       return `<article class="news-card"><a class="card-media" href="${esc(articleHref(item))}">${image?`<img src="${esc(image)}" alt="${esc(item.title)}" loading="lazy" onerror="this.outerHTML='<span class=&quot;media-fallback&quot;>فوتبال‌نما</span>'">`:'<span class="media-fallback">فوتبال‌نما</span>'}</a><div><div class="card-label">${esc(label)}</div><h3><a href="${esc(articleHref(item))}">${esc(item.title)}</a></h3><p class="card-summary">${esc(item.summary||'برای جزئیات بیشتر، خبر را باز کنید.')}</p><div class="card-footer"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span class="status ${esc(item.credClass||'')}">${esc(statusText)}</span></div></div></article>`;
     }
     function render(){
-      const filtered=news.filter(matches),shown=filtered.slice(0,visibleCount),grid=document.getElementById('newsGrid');
+      const filtered=news.filter(item=>!item.isDraft).filter(matches),shown=filtered.slice(0,visibleCount),grid=document.getElementById('newsGrid');
       grid.innerHTML=shown.length?shown.map(card).join(''):'<div class="empty">خبری با این مشخصات پیدا نشد.</div>';
       document.getElementById('resultCount').textContent=`${filtered.length.toLocaleString('fa-IR')} خبر`;
       document.getElementById('loadMore').classList.toggle('hidden',shown.length>=filtered.length);
@@ -615,9 +682,9 @@
     function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
     function showView(view){document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
     function renderArticlePage(id){
-      const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeImage(item.image);
+      const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
       document.title=`${item.title} | فوتبال‌نما`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش فوتبال‌نما');
-      document.getElementById('articleContent').innerHTML=`${image?`<img class="article-page-hero" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p></header><div class="article-page-body">${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
+      document.getElementById('articleContent').innerHTML=`${image&&placement==='hero'?`<img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p></header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
       showView('article');return true;
     }
     function showHome(){document.title='فوتبال‌نما | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');showView('news');}
@@ -631,11 +698,14 @@
     ['editTitle','editSummary'].forEach(id=>document.getElementById(id).addEventListener('input',refreshEditorCounts));
     document.getElementById('editTitle').addEventListener('input',event=>{editorField('editorPreviewTitle').textContent=event.target.value||'بدون عنوان';});
     document.getElementById('editImage').addEventListener('change',event=>{const src=safeArticleImage(event.target.value.trim()),thumb=editorField('editorThumb');thumb.src=src||'';thumb.classList.toggle('hidden',!src);});
+    document.getElementById('newArticleBtn').addEventListener('click',createNewArticle);
     document.getElementById('addSectionBtn').addEventListener('click',()=>{const root=editorField('editorSections'),index=root.children.length;root.insertAdjacentHTML('beforeend',`<article class="editor-section-row"><div class="editor-section-row-head"><span>بخش ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-section>حذف</button></div><input class="edit-section-heading" placeholder="میان‌تیتر بخش"><textarea class="edit-section-text" rows="5" placeholder="متن این بخش"></textarea></article>`);root.lastElementChild.querySelector('input').focus();});
     document.getElementById('editorSections').addEventListener('click',event=>{const remove=event.target.closest('[data-remove-section]');if(remove&&document.querySelectorAll('.editor-section-row').length>1){remove.closest('.editor-section-row').remove();[...document.querySelectorAll('.editor-section-row')].forEach((row,index)=>row.querySelector('.editor-section-row-head span').textContent=`بخش ${Number(index+1).toLocaleString('fa-IR')}`);}});
+    document.getElementById('addMediaBtn').addEventListener('click',()=>{const existing=collectEditorChanges().media;existing.push({src:'',caption:'',alt:'',after:Math.max(-1,document.querySelectorAll('.editor-section-row').length-1),size:'full',ratio:'16x9',align:'center'});renderEditorMedia(existing);const rows=document.querySelectorAll('.editor-media-row');rows[rows.length-1].querySelector('.media-url').focus();});
+    document.getElementById('editorMedia').addEventListener('click',event=>{const remove=event.target.closest('[data-remove-media]');if(remove){remove.closest('.editor-media-row').remove();if(!document.querySelector('.editor-media-row'))renderEditorMedia([]);}});
     document.getElementById('saveBtn').addEventListener('click',()=>saveEditorChanges(true));
     document.getElementById('previewBtn').addEventListener('click',()=>{if(saveEditorChanges(false)){const item=news.find(entry=>entry.id===selectedEditorId);history.pushState({},'',articleHref(item));renderArticlePage(item.id);}});
-    document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!original||!item||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','time','cred','image','url','tags','why','body'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
+    document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!item)return;if(item.isCustom){if(!confirm('این خبر ساخته‌شده حذف شود؟'))return;const index=news.indexOf(item);news.splice(index,1);persistCreatedNews();const next=news[Math.min(index,news.length-1)]||news[0];renderFeatured();renderLatest();render();setupEditorOptions();if(next){fillEditor(next);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(next.id)}`);}toast('خبر ساخته‌شده حذف شد.');return;}if(!original||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','cat','country','time','cred','image','imageSettings','url','tags','why','body','media'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
     document.getElementById('editorHomeBtn').addEventListener('click',()=>{history.pushState({},'',location.pathname);showHome();});
     if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
     setupEditorOptions();renderFeatured();renderLatest();render();route();

@@ -311,6 +311,94 @@
       .article-page-hero.hero-size-wide,.article-page-hero.hero-size-medium,.article-page-hero.hero-size-small { width:100%; }
       .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
     }
+    /* Visual editor workspace */
+    body.editor-mode { overflow:hidden; }
+    body.editor-mode .score-strip,body.editor-mode footer { display:none; }
+    body.editor-mode main { padding:0; }
+    body.editor-mode .editor-view { width:100%; min-height:0; }
+    body.editor-mode .editor-shell { border:0; border-radius:0; box-shadow:none; }
+    body.editor-mode .editor-toolbar { height:72px; padding:12px 22px; background:#fff; }
+    body.editor-mode .editor-heading-mark { width:38px; height:38px; border-radius:7px; }
+    body.editor-mode .editor-heading h1 { font-size:18px; }
+    body.editor-mode .editor-heading p { max-width:280px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    body.editor-mode .editor-toolbar-actions button { min-height:38px; padding-inline:14px; }
+    body.editor-mode .editor-workspace { height:calc(100vh - 146px); min-height:0; grid-template-columns:235px minmax(430px,1fr) 370px; background:#e8eaed; }
+    body.editor-mode .editor-sidebar { display:flex; flex-direction:column; min-width:0; overflow:auto; padding:16px; border-left:1px solid #d8dbdf; background:#f5f6f8; }
+    body.editor-mode .editor-sidebar select { min-height:42px; margin-top:6px; }
+    .editor-outline { display:grid; gap:9px; margin-top:18px; }
+    .outline-item { width:100%; display:grid; grid-template-columns:34px minmax(0,1fr); gap:10px; align-items:center; padding:11px; border:1px solid #dfe2e5; border-radius:8px; background:#fff; color:var(--ink); text-align:right; cursor:pointer; }
+    .outline-item:hover { border-color:#b9bec4; }
+    .outline-item.active { border-color:var(--red); box-shadow:0 0 0 2px rgba(226,27,45,.08); }
+    .outline-number { width:30px; height:38px; display:grid; place-items:center; border-radius:4px; background:#eceef1; color:#747a81; font-size:12px; font-weight:900; }
+    .outline-item.active .outline-number { background:var(--red); color:#fff; }
+    .outline-item strong,.outline-item small { display:block; }
+    .outline-item strong { font-size:13px; line-height:1.6; }
+    .outline-item small { margin-top:2px; color:var(--muted); font-size:10px; }
+    .editor-sidebar-footer { margin-top:auto; padding-top:16px; }
+    .editor-sidebar-footer .editor-state { display:inline-flex; }
+    .editor-sidebar-footer .danger-text { display:block; margin-top:10px; padding:0; }
+    .editor-sidebar-footer p { margin:13px 0 0; color:#858b91; font-size:10px; line-height:1.8; }
+    .danger-text { color:#b21d22; }
+    .editor-stage { min-width:0; display:flex; flex-direction:column; overflow:hidden; background:#dfe2e6; }
+    .stage-toolbar { height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 18px; border-bottom:1px solid #d0d4d8; background:#f6f7f8; color:#565d64; font-size:11px; font-weight:800; }
+    .stage-zoom { display:flex; align-items:center; gap:8px; direction:ltr; }
+    .stage-zoom button { width:27px; height:27px; border:1px solid #d2d6da; border-radius:5px; background:#fff; color:#333; cursor:pointer; }
+    .stage-zoom span { min-width:38px; text-align:center; font-size:10px; }
+    .stage-viewport { flex:1; overflow:auto; display:grid; place-items:start center; padding:34px; }
+    .editor-canvas { --canvas-scale:.9; width:760px; min-height:960px; overflow:hidden; border-radius:3px; background:#fff; box-shadow:0 14px 42px rgba(25,30,36,.18); transform:scale(var(--canvas-scale)); transform-origin:top center; }
+    .canvas-hero { width:100%; aspect-ratio:16/9; object-fit:cover; background:#e8eaed; cursor:pointer; }
+    .canvas-head { padding:42px 48px 28px; border-bottom:1px solid var(--line); }
+    .canvas-kicker { color:var(--red); font-size:12px; font-weight:900; cursor:pointer; }
+    .canvas-head h1 { margin:9px 0 12px; font-size:34px; line-height:1.55; letter-spacing:-.7px; cursor:pointer; }
+    .canvas-summary { margin:18px 0 0; color:#3e454c; font-size:16px; line-height:2; font-weight:700; cursor:pointer; }
+    .canvas-meta { display:flex; gap:12px; color:var(--muted); font-size:11px; }
+    .canvas-body { padding:30px 60px 70px; color:#30363b; font-size:15px; line-height:2.2; }
+    .canvas-section { position:relative; padding:10px 12px 22px; border:1px solid transparent; border-radius:6px; cursor:pointer; }
+    .canvas-section:hover,.canvas-clickable:hover { border-color:#f0a6ad; background:#fff8f8; outline:2px solid rgba(226,27,45,.08); }
+    .canvas-section h3 { margin:0 0 7px; font-size:20px; }
+    .canvas-section p { margin:0; }
+    .canvas-image { overflow:hidden; margin:10px auto 26px; border:1px solid var(--line); border-radius:6px; cursor:pointer; }
+    .canvas-image img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .canvas-image figcaption { padding:8px 10px; color:var(--muted); font-size:10px; }
+    .canvas-image.size-wide { width:82%; }.canvas-image.size-medium { width:58%; }.canvas-image.size-small { width:38%; }
+    .canvas-image.align-right { margin-left:auto; margin-right:0; }.canvas-image.align-left { margin-right:auto; margin-left:0; }
+    .canvas-image.ratio-4x3 img { aspect-ratio:4/3; }.canvas-image.ratio-1x1 img { aspect-ratio:1/1; }.canvas-image.ratio-natural img { aspect-ratio:auto; object-fit:contain; }
+    .canvas-empty { padding:80px 30px; color:#8c9298; text-align:center; }
+    .stage-hint { height:34px; flex:0 0 auto; display:grid; place-items:center; border-top:1px solid #d0d4d8; background:#f6f7f8; color:#747b82; font-size:10px; }
+    body.editor-mode .editor-form { min-width:0; overflow:auto; padding:18px; border-right:1px solid #d8dbdf; background:#fff; }
+    body.editor-mode .editor-form-title { position:sticky; top:-18px; z-index:3; margin:-18px -18px 17px; padding:16px 18px; border-bottom:1px solid var(--line); background:rgba(255,255,255,.96); backdrop-filter:blur(8px); }
+    body.editor-mode .editor-form-title h2 { font-size:17px; }
+    body.editor-mode .editor-form-title>span { color:var(--muted); font-size:11px; }
+    .editor-panel { display:none; }
+    .editor-panel.active { display:block; }
+    body.editor-mode .editor-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+    body.editor-mode .field input,body.editor-mode .field textarea,body.editor-mode .field select { padding:9px 10px; font-size:13px; }
+    body.editor-mode .field textarea { line-height:1.85; }
+    body.editor-mode .editor-section-head { margin-top:0; padding-top:0; border:0; }
+    body.editor-mode .editor-section-row,body.editor-mode .editor-media-row { padding:13px; background:#f7f8f9; }
+    body.editor-mode .image-settings-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    body.editor-mode .image-control-panel { margin-top:14px; }
+
+    @media(max-width:1180px) {
+      body.editor-mode { overflow:auto; }
+      body.editor-mode .editor-workspace { height:auto; min-height:calc(100vh - 146px); grid-template-columns:210px minmax(0,1fr); }
+      body.editor-mode .editor-form { grid-column:1/-1; max-height:none; border-top:1px solid var(--line); }
+      .editor-stage { min-height:760px; }
+    }
+    @media(max-width:760px) {
+      body.editor-mode .editor-toolbar { height:auto; min-height:98px; align-items:flex-start; flex-direction:column; }
+      body.editor-mode .editor-toolbar-actions { width:100%; overflow-x:auto; }
+      body.editor-mode .editor-toolbar-actions .action-secondary { display:inline-flex; align-items:center; }
+      body.editor-mode .editor-workspace { grid-template-columns:1fr; height:auto; }
+      body.editor-mode .editor-sidebar { max-height:none; border-bottom:1px solid var(--line); }
+      .editor-outline { grid-template-columns:repeat(3,1fr); }
+      .outline-item { grid-template-columns:1fr; text-align:center; }
+      .outline-number { margin:auto; }
+      .editor-stage { min-height:660px; }
+      .stage-viewport { padding:18px 4px; }
+      .editor-canvas { width:720px; --canvas-scale:.48; }
+      body.editor-mode .editor-grid { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
@@ -375,43 +463,48 @@
     <section id="editorView" class="container editor-view hidden">
       <div class="editor-shell">
         <header class="editor-toolbar">
-          <div class="editor-heading"><span class="editor-heading-mark">ت</span><div><h1>میز تحریریه</h1><p>ویرایش و پیش‌نمایش خبرهای فوتبال‌نما</p></div></div>
-          <div class="editor-toolbar-actions"><button class="action-primary" id="newArticleBtn">＋ ساخت خبر جدید</button><button class="action-secondary" id="editorHomeBtn">بازگشت به سایت</button></div>
+          <div class="editor-heading"><span class="editor-heading-mark">ت</span><div><h1>میز تحریریه</h1><p id="editorDocumentName">بدون عنوان</p></div></div>
+          <div class="editor-toolbar-actions"><button class="action-secondary" id="newArticleBtn">＋ خبر جدید</button><button class="action-primary" id="saveBtn">ذخیره تغییرات</button><button class="action-secondary" id="previewBtn">پیش‌نمایش</button><button class="action-secondary" id="editorHomeBtn">خروج</button></div>
         </header>
         <div class="editor-workspace">
           <aside class="editor-sidebar">
             <label for="editNewsSelect">انتخاب خبر</label>
             <select id="editNewsSelect" aria-label="انتخاب خبر برای ویرایش"></select>
-            <div class="editor-preview-card"><img id="editorThumb" alt="تصویر خبر انتخاب‌شده"><div class="editor-preview-copy"><strong id="editorPreviewTitle">—</strong><span id="editorPreviewMeta">—</span></div></div>
-            <p class="editor-local-note">تغییرات این نسخه روی همین مرورگر ذخیره می‌شود و بلافاصله در صفحه خبر و فهرست اصلی قابل مشاهده است.</p>
-          </aside>
-          <section class="editor-form">
-            <div class="editor-form-title"><h2>اطلاعات خبر</h2><span class="editor-state" id="editorState">آماده ویرایش</span></div>
-            <div class="editor-grid">
-              <div class="field full"><label for="editTitle">تیتر خبر <small id="titleCount">۰ نویسه</small></label><input id="editTitle" autocomplete="off"></div>
-              <div class="field full"><label for="editSummary">خلاصه خبر <small id="summaryCount">۰ نویسه</small></label><textarea id="editSummary" rows="4"></textarea></div>
-              <div class="field"><label for="editEyebrow">روتیتر</label><input id="editEyebrow" autocomplete="off"></div>
-              <div class="field"><label for="editSource">نام منبع</label><input id="editSource" autocomplete="off"></div>
-              <div class="field"><label for="editCategory">نوع خبر</label><select id="editCategory"><option value="news">خبر</option><option value="analysis">تحلیل</option><option value="transfer">نقل‌وانتقالات</option></select></div>
-              <div class="field"><label for="editCountry">بخش سایت</label><select id="editCountry"><option value="international">بین‌المللی</option><option value="england">انگلیس</option><option value="spain">اسپانیا</option><option value="italy">ایتالیا</option><option value="germany">آلمان</option><option value="france">فرانسه</option><option value="netherlands">هلند</option></select></div>
-              <div class="field"><label for="editTime">تاریخ انتشار</label><input id="editTime" autocomplete="off"></div>
-              <div class="field"><label for="editCred">نوع محتوا</label><input id="editCred" autocomplete="off"></div>
-              <div class="field full"><label for="editImage">نشانی تصویر اصلی</label><input id="editImage" type="url" dir="ltr" autocomplete="off"></div>
-              <div class="image-control-panel"><strong>چیدمان تصویر اصلی</strong><div class="image-settings-grid">
-                <div class="compact-field"><label for="editImagePlacement">محل نمایش</label><select id="editImagePlacement"><option value="hero">بالای صفحه خبر</option><option value="inline">پس از خلاصه</option><option value="hidden">فقط در کارت خبر</option></select></div>
-                <div class="compact-field"><label for="editImageSize">عرض تصویر</label><select id="editImageSize"><option value="full">تمام عرض</option><option value="wide">عریض</option><option value="medium">متوسط</option><option value="small">کوچک</option></select></div>
-                <div class="compact-field"><label for="editImageRatio">نسبت تصویر</label><select id="editImageRatio"><option value="16x9">۱۶:۹</option><option value="4x3">۴:۳</option><option value="1x1">مربع</option><option value="natural">اندازه طبیعی</option></select></div>
-                <div class="compact-field"><label for="editImageAlign">تراز</label><select id="editImageAlign"><option value="center">وسط</option><option value="right">راست</option><option value="left">چپ</option></select></div>
-              </div>
-              <div class="field full"><label for="editUrl">لینک منبع اصلی</label><input id="editUrl" type="url" dir="ltr" autocomplete="off"></div>
-              <div class="field full"><label for="editTags">برچسب‌ها <small>با ویرگول جدا کنید</small></label><input id="editTags" autocomplete="off"></div>
-              <div class="field full"><label for="editWhy">یادداشت شفافیت و اعتبارسنجی</label><textarea id="editWhy" rows="3"></textarea></div>
+            <div class="editor-outline" aria-label="ساختار خبر">
+              <button class="outline-item active" data-editor-panel="meta"><span class="outline-number">۱</span><span><strong>جلد و مشخصات</strong><small>تیتر، خلاصه و منبع</small></span></button>
+              <button class="outline-item" data-editor-panel="content"><span class="outline-number">۲</span><span><strong>متن گزارش</strong><small id="outlineSectionCount">۰ بخش</small></span></button>
+              <button class="outline-item" data-editor-panel="images"><span class="outline-number">۳</span><span><strong>تصاویر</strong><small id="outlineImageCount">۰ تصویر</small></span></button>
             </div>
-            <div class="editor-section-head"><h3>متن کامل خبر</h3><button class="text-button" id="addSectionBtn">＋ افزودن بخش</button></div>
-            <div class="editor-sections" id="editorSections"></div>
-            <div class="editor-section-head"><h3>تصاویر داخل متن</h3><button class="text-button" id="addMediaBtn">＋ افزودن تصویر</button></div>
-            <div class="editor-media" id="editorMedia"></div>
-            <div class="editor-actions"><button class="action-primary" id="saveBtn">ذخیره تغییرات</button><button class="action-secondary" id="previewBtn">پیش‌نمایش خبر</button><button class="action-danger" id="resetBtn">بازگردانی نسخه اصلی</button></div>
+            <div class="editor-sidebar-footer"><span class="editor-state" id="editorState">آماده ویرایش</span><button class="text-button danger-text" id="resetBtn">بازگردانی نسخه اصلی</button><p>ذخیره‌سازی روی همین مرورگر انجام می‌شود.</p></div>
+          </aside>
+          <section class="editor-stage">
+            <div class="stage-toolbar"><span>پیش‌نمایش زنده صفحه خبر</span><div class="stage-zoom"><button id="zoomOutBtn" aria-label="کوچک‌کردن پیش‌نمایش">−</button><span id="zoomLabel">۹۰٪</span><button id="zoomInBtn" aria-label="بزرگ‌کردن پیش‌نمایش">＋</button></div></div>
+            <div class="stage-viewport"><article class="editor-canvas" id="editorCanvas" aria-label="پیش‌نمایش زنده خبر"></article></div>
+            <div class="stage-hint">روی هر بخش از پیش‌نمایش بزنید تا تنظیمات همان قسمت باز شود.</div>
+          </section>
+          <section class="editor-form">
+            <div class="editor-form-title"><h2 id="inspectorTitle">جلد و مشخصات</h2><span>تنظیمات</span></div>
+            <div class="editor-panel active" data-panel="meta">
+              <div class="editor-grid">
+                <div class="field full"><label for="editTitle">تیتر خبر <small id="titleCount">۰ نویسه</small></label><input id="editTitle" autocomplete="off"></div>
+                <div class="field full"><label for="editSummary">خلاصه خبر <small id="summaryCount">۰ نویسه</small></label><textarea id="editSummary" rows="4"></textarea></div>
+                <div class="field full"><label for="editEyebrow">روتیتر</label><input id="editEyebrow" autocomplete="off"></div>
+                <div class="field full"><label for="editSource">نام منبع</label><input id="editSource" autocomplete="off"></div>
+                <div class="field"><label for="editCategory">نوع خبر</label><select id="editCategory"><option value="news">خبر</option><option value="analysis">تحلیل</option><option value="transfer">نقل‌وانتقالات</option></select></div>
+                <div class="field"><label for="editCountry">بخش سایت</label><select id="editCountry"><option value="international">بین‌المللی</option><option value="england">انگلیس</option><option value="spain">اسپانیا</option><option value="italy">ایتالیا</option><option value="germany">آلمان</option><option value="france">فرانسه</option><option value="netherlands">هلند</option></select></div>
+                <div class="field"><label for="editTime">تاریخ انتشار</label><input id="editTime" autocomplete="off"></div>
+                <div class="field"><label for="editCred">نوع محتوا</label><input id="editCred" autocomplete="off"></div>
+                <div class="field full"><label for="editUrl">لینک منبع اصلی</label><input id="editUrl" type="url" dir="ltr" autocomplete="off"></div>
+                <div class="field full"><label for="editTags">برچسب‌ها <small>با ویرگول جدا کنید</small></label><input id="editTags" autocomplete="off"></div>
+                <div class="field full"><label for="editWhy">یادداشت شفافیت</label><textarea id="editWhy" rows="3"></textarea></div>
+              </div>
+            </div>
+            <div class="editor-panel" data-panel="content"><div class="editor-section-head"><h3>بخش‌های متن</h3><button class="text-button" id="addSectionBtn">＋ افزودن بخش</button></div><div class="editor-sections" id="editorSections"></div></div>
+            <div class="editor-panel" data-panel="images">
+              <div class="field full"><label for="editImage">تصویر اصلی</label><input id="editImage" type="url" dir="ltr" autocomplete="off"></div>
+              <div class="image-control-panel"><strong>چیدمان تصویر اصلی</strong><div class="image-settings-grid"><div class="compact-field"><label for="editImagePlacement">محل نمایش</label><select id="editImagePlacement"><option value="hero">بالای صفحه خبر</option><option value="inline">پس از خلاصه</option><option value="hidden">فقط در کارت خبر</option></select></div><div class="compact-field"><label for="editImageSize">عرض تصویر</label><select id="editImageSize"><option value="full">تمام عرض</option><option value="wide">عریض</option><option value="medium">متوسط</option><option value="small">کوچک</option></select></div><div class="compact-field"><label for="editImageRatio">نسبت تصویر</label><select id="editImageRatio"><option value="16x9">۱۶:۹</option><option value="4x3">۴:۳</option><option value="1x1">مربع</option><option value="natural">طبیعی</option></select></div><div class="compact-field"><label for="editImageAlign">تراز</label><select id="editImageAlign"><option value="center">وسط</option><option value="right">راست</option><option value="left">چپ</option></select></div></div></div>
+              <div class="editor-section-head"><h3>تصاویر داخل متن</h3><button class="text-button" id="addMediaBtn">＋ افزودن تصویر</button></div><div class="editor-media" id="editorMedia"></div>
+            </div>
           </section>
         </div>
       </div>
@@ -595,7 +688,7 @@
     try{createdNews=JSON.parse(localStorage.getItem(CREATED_STORAGE_KEY)||'[]')||[];}catch(error){createdNews=[];}
     const baseNews=[...demoNews,...liveNews];
     const news=[...createdNews.map(item=>({...item,isCustom:true})),...baseNews.map(item=>({...item,...(editorOverrides[item.id]||{})}))];
-    let activeFilter='all',query='',visibleCount=10,selectedEditorId=news[0]?.id||'',toastTimer;
+    let activeFilter='all',query='',visibleCount=10,selectedEditorId=news[0]?.id||'',toastTimer,editorZoom=.9;
     const esc=(value='')=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
     const safeImage=value=>/^https?:\/\//i.test(value||'')?value:'';
     const safeArticleImage=value=>/^(?:https?:\/\/|assets\/images\/)/i.test(value||'')?value:'';
@@ -618,14 +711,29 @@
       const root=editorField('editorMedia');if(!media.length){root.innerHTML='<div class="editor-media-empty">هنوز تصویری داخل متن قرار نگرفته است.</div>';return;}
       root.innerHTML=media.map((entry,index)=>`<article class="editor-media-row"><div class="editor-media-row-head"><span>تصویر ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-media>حذف تصویر</button></div><input class="media-url" type="url" dir="ltr" value="${esc(entry.src||'')}" placeholder="https://example.com/image.jpg"><div class="media-copy-grid"><input class="media-caption" value="${esc(entry.caption||'')}" placeholder="توضیح زیر تصویر"><input class="media-alt" value="${esc(entry.alt||'')}" placeholder="متن جایگزین تصویر"><input class="media-credit" value="${esc(entry.credit||'')}" placeholder="نام عکاس یا منبع تصویر"><input class="media-credit-url" dir="ltr" value="${esc(entry.creditUrl||'')}" placeholder="لینک اعتبار تصویر"></div><div class="image-settings-grid"><div class="compact-field"><label>جای تصویر</label><select class="media-after">${mediaPositionOptions(entry.after)}</select></div><div class="compact-field"><label>عرض</label><select class="media-size"><option value="full" ${entry.size==='full'||!entry.size?'selected':''}>تمام عرض</option><option value="wide" ${entry.size==='wide'?'selected':''}>عریض</option><option value="medium" ${entry.size==='medium'?'selected':''}>متوسط</option><option value="small" ${entry.size==='small'?'selected':''}>کوچک</option></select></div><div class="compact-field"><label>نسبت</label><select class="media-ratio"><option value="16x9" ${entry.ratio==='16x9'||!entry.ratio?'selected':''}>۱۶:۹</option><option value="4x3" ${entry.ratio==='4x3'?'selected':''}>۴:۳</option><option value="1x1" ${entry.ratio==='1x1'?'selected':''}>مربع</option><option value="natural" ${entry.ratio==='natural'?'selected':''}>طبیعی</option></select></div><div class="compact-field"><label>تراز</label><select class="media-align"><option value="center" ${entry.align==='center'||!entry.align?'selected':''}>وسط</option><option value="right" ${entry.align==='right'?'selected':''}>راست</option><option value="left" ${entry.align==='left'?'selected':''}>چپ</option></select></div></div></article>`).join('');
     }
+    function updateOutlineCounts(){const sections=document.querySelectorAll('.editor-section-row').length,images=document.querySelectorAll('.editor-media-row').length+(editorField('editImage').value.trim()?1:0);editorField('outlineSectionCount').textContent=`${sections.toLocaleString('fa-IR')} بخش`;editorField('outlineImageCount').textContent=`${images.toLocaleString('fa-IR')} تصویر`;}
+    function selectEditorPanel(name='meta'){
+      const titles={meta:'جلد و مشخصات',content:'متن گزارش',images:'تصاویر'};
+      document.querySelectorAll('.outline-item').forEach(button=>button.classList.toggle('active',button.dataset.editorPanel===name));
+      document.querySelectorAll('.editor-panel').forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===name));
+      editorField('inspectorTitle').textContent=titles[name]||titles.meta;
+    }
+    function canvasImage(media,index='main'){
+      const src=safeArticleImage(media.src);if(!src)return'';const size=imageChoice(media.size,['full','wide','medium','small'],'full'),ratio=imageChoice(media.ratio,['16x9','4x3','1x1','natural'],'16x9'),align=imageChoice(media.align,['center','right','left'],'center');
+      return `<figure class="canvas-image canvas-clickable size-${size} ratio-${ratio} align-${align}" data-editor-panel="images" data-media-index="${index}"><img src="${esc(src)}" alt="${esc(media.alt||'')}" onerror="this.closest('figure').remove()">${media.caption?`<figcaption>${esc(media.caption)}</figcaption>`:''}</figure>`;
+    }
+    function renderEditorCanvas(){
+      const canvas=editorField('editorCanvas');if(!canvas)return;const item=collectEditorChanges(),settings=item.imageSettings||{},placement=settings.placement||'hero',main=canvasImage({src:item.image,alt:item.title,size:settings.size,ratio:settings.ratio,align:settings.align}),media=item.media||[],sections=item.body||[];
+      const imagesAt=after=>media.map((entry,index)=>({entry,index})).filter(pair=>Number(pair.entry.after)===after).map(pair=>canvasImage(pair.entry,pair.index)).join('');
+      const body=`${imagesAt(-1)}${sections.map((block,index)=>`<section class="canvas-section" data-editor-panel="content" data-section-index="${index}"><h3>${esc(block.heading||`میان‌تیتر بخش ${index+1}`)}</h3><p>${esc(block.text||'متن این بخش را از پنل تنظیمات وارد کنید.')}</p></section>${imagesAt(index)}`).join('')}`;
+      canvas.innerHTML=`${placement==='hero'?main:''}<header class="canvas-head"><div class="canvas-kicker canvas-clickable" data-editor-panel="meta" data-focus="editEyebrow">${esc(item.eyebrow||'روتیتر خبر')}</div><h1 class="canvas-clickable" data-editor-panel="meta" data-focus="editTitle">${esc(item.title||'تیتر خبر')}</h1><div class="canvas-meta"><span>${esc(item.source||'نام منبع')}</span><span>${esc(item.time||'تاریخ انتشار')}</span></div><p class="canvas-summary canvas-clickable" data-editor-panel="meta" data-focus="editSummary">${esc(item.summary||'خلاصه خبر را اینجا می‌بینید.')}</p></header><div class="canvas-body">${placement==='inline'?main:''}${body||'<div class="canvas-empty">برای شروع، از ستون ساختار یک بخش متنی یا تصویر اضافه کنید.</div>'}</div>`;
+      editorField('editorDocumentName').textContent=item.title||'خبر بدون عنوان';updateOutlineCounts();
+    }
     function updateEditorPreview(item){
-      const image=safeArticleImage(item.image);const thumb=editorField('editorThumb');
-      thumb.src=image||'';thumb.classList.toggle('hidden',!image);
-      editorField('editorPreviewTitle').textContent=item.title||'بدون عنوان';
-      editorField('editorPreviewMeta').textContent=`${item.source||'بدون منبع'} · ${item.time||'بدون تاریخ'}`;
       editorField('editorState').textContent=item.isDraft?'پیش‌نویس تازه':item.isCustom?'خبر ساخته‌شده':editorOverrides[item.id]?'ویرایش‌شده':'نسخه اصلی';
       editorField('saveBtn').textContent=item.isDraft?'ذخیره و انتشار':'ذخیره تغییرات';
       editorField('resetBtn').textContent=item.isCustom?'حذف این خبر':'بازگردانی نسخه اصلی';
+      editorField('editorDocumentName').textContent=item.title||'خبر بدون عنوان';
     }
     function fillEditor(item){
       if(!item)return;selectedEditorId=item.id;editorField('editNewsSelect').value=item.id;
@@ -633,7 +741,7 @@
       editorField('editSource').value=item.source||'';editorField('editCategory').value=item.cat||'news';editorField('editCountry').value=item.country||'international';editorField('editTime').value=item.time||'';editorField('editCred').value=item.cred||'';
       editorField('editImage').value=item.image||'';editorField('editUrl').value=item.url&&item.url!=='#'?item.url:'';editorField('editTags').value=(item.tags||[]).join('، ');editorField('editWhy').value=item.why||'';
       const settings=item.imageSettings||{};editorField('editImagePlacement').value=settings.placement||'hero';editorField('editImageSize').value=settings.size||'full';editorField('editImageRatio').value=settings.ratio||'16x9';editorField('editImageAlign').value=settings.align||'center';
-      renderEditorSections(Array.isArray(item.body)?item.body:[]);renderEditorMedia(Array.isArray(item.media)?item.media:[]);refreshEditorCounts();updateEditorPreview(item);
+      renderEditorSections(Array.isArray(item.body)?item.body:[]);renderEditorMedia(Array.isArray(item.media)?item.media:[]);refreshEditorCounts();updateEditorPreview(item);selectEditorPanel('meta');renderEditorCanvas();const viewport=document.querySelector('.stage-viewport');if(viewport)viewport.scrollTop=0;
     }
     function setupEditorOptions(){
       editorField('editNewsSelect').innerHTML=news.map(item=>`<option value="${esc(item.id)}">${item.isDraft?'پیش‌نویس — ':''}${esc(item.title)}</option>`).join('');
@@ -680,7 +788,7 @@
       document.getElementById('loadMore').classList.toggle('hidden',shown.length>=filtered.length);
     }
     function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
-    function showView(view){document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
+    function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
     function renderArticlePage(id){
       const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
       document.title=`${item.title} | فوتبال‌نما`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش فوتبال‌نما');
@@ -696,13 +804,18 @@
     window.addEventListener('popstate',route);
     document.getElementById('editNewsSelect').addEventListener('change',event=>{const item=news.find(entry=>entry.id===event.target.value);if(item){history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(item.id)}`);fillEditor(item);}});
     ['editTitle','editSummary'].forEach(id=>document.getElementById(id).addEventListener('input',refreshEditorCounts));
-    document.getElementById('editTitle').addEventListener('input',event=>{editorField('editorPreviewTitle').textContent=event.target.value||'بدون عنوان';});
-    document.getElementById('editImage').addEventListener('change',event=>{const src=safeArticleImage(event.target.value.trim()),thumb=editorField('editorThumb');thumb.src=src||'';thumb.classList.toggle('hidden',!src);});
+    document.getElementById('editorView').addEventListener('input',()=>{refreshEditorCounts();renderEditorCanvas();});
+    document.getElementById('editorView').addEventListener('change',()=>renderEditorCanvas());
+    document.querySelector('.editor-outline').addEventListener('click',event=>{const button=event.target.closest('.outline-item');if(button)selectEditorPanel(button.dataset.editorPanel);});
+    document.getElementById('editorCanvas').addEventListener('click',event=>{const target=event.target.closest('[data-editor-panel]');if(!target)return;const panel=target.dataset.editorPanel;selectEditorPanel(panel);if(panel==='meta'&&target.dataset.focus){editorField(target.dataset.focus)?.focus();}if(panel==='content'){const row=document.querySelectorAll('.editor-section-row')[Number(target.dataset.sectionIndex)];row?.querySelector('input')?.focus();}if(panel==='images'&&target.dataset.mediaIndex!=='main'){const row=document.querySelectorAll('.editor-media-row')[Number(target.dataset.mediaIndex)];row?.querySelector('.media-url')?.focus();}});
+    function setEditorZoom(value){editorZoom=Math.max(.55,Math.min(1.15,value));editorField('editorCanvas').style.setProperty('--canvas-scale',editorZoom);editorField('zoomLabel').textContent=`${Math.round(editorZoom*100).toLocaleString('fa-IR')}٪`;}
+    document.getElementById('zoomOutBtn').addEventListener('click',()=>setEditorZoom(editorZoom-.1));
+    document.getElementById('zoomInBtn').addEventListener('click',()=>setEditorZoom(editorZoom+.1));
     document.getElementById('newArticleBtn').addEventListener('click',createNewArticle);
-    document.getElementById('addSectionBtn').addEventListener('click',()=>{const root=editorField('editorSections'),index=root.children.length;root.insertAdjacentHTML('beforeend',`<article class="editor-section-row"><div class="editor-section-row-head"><span>بخش ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-section>حذف</button></div><input class="edit-section-heading" placeholder="میان‌تیتر بخش"><textarea class="edit-section-text" rows="5" placeholder="متن این بخش"></textarea></article>`);root.lastElementChild.querySelector('input').focus();});
-    document.getElementById('editorSections').addEventListener('click',event=>{const remove=event.target.closest('[data-remove-section]');if(remove&&document.querySelectorAll('.editor-section-row').length>1){remove.closest('.editor-section-row').remove();[...document.querySelectorAll('.editor-section-row')].forEach((row,index)=>row.querySelector('.editor-section-row-head span').textContent=`بخش ${Number(index+1).toLocaleString('fa-IR')}`);}});
-    document.getElementById('addMediaBtn').addEventListener('click',()=>{const existing=collectEditorChanges().media;existing.push({src:'',caption:'',alt:'',after:Math.max(-1,document.querySelectorAll('.editor-section-row').length-1),size:'full',ratio:'16x9',align:'center'});renderEditorMedia(existing);const rows=document.querySelectorAll('.editor-media-row');rows[rows.length-1].querySelector('.media-url').focus();});
-    document.getElementById('editorMedia').addEventListener('click',event=>{const remove=event.target.closest('[data-remove-media]');if(remove){remove.closest('.editor-media-row').remove();if(!document.querySelector('.editor-media-row'))renderEditorMedia([]);}});
+    document.getElementById('addSectionBtn').addEventListener('click',()=>{const root=editorField('editorSections'),index=root.children.length;root.insertAdjacentHTML('beforeend',`<article class="editor-section-row"><div class="editor-section-row-head"><span>بخش ${Number(index+1).toLocaleString('fa-IR')}</span><button class="text-button" type="button" data-remove-section>حذف</button></div><input class="edit-section-heading" placeholder="میان‌تیتر بخش"><textarea class="edit-section-text" rows="5" placeholder="متن این بخش"></textarea></article>`);root.lastElementChild.querySelector('input').focus();renderEditorCanvas();});
+    document.getElementById('editorSections').addEventListener('click',event=>{const remove=event.target.closest('[data-remove-section]');if(remove&&document.querySelectorAll('.editor-section-row').length>1){remove.closest('.editor-section-row').remove();[...document.querySelectorAll('.editor-section-row')].forEach((row,index)=>row.querySelector('.editor-section-row-head span').textContent=`بخش ${Number(index+1).toLocaleString('fa-IR')}`);renderEditorCanvas();}});
+    document.getElementById('addMediaBtn').addEventListener('click',()=>{const existing=collectEditorChanges().media;existing.push({src:'',caption:'',alt:'',after:Math.max(-1,document.querySelectorAll('.editor-section-row').length-1),size:'full',ratio:'16x9',align:'center'});renderEditorMedia(existing);const rows=document.querySelectorAll('.editor-media-row');rows[rows.length-1].querySelector('.media-url').focus();renderEditorCanvas();});
+    document.getElementById('editorMedia').addEventListener('click',event=>{const remove=event.target.closest('[data-remove-media]');if(remove){remove.closest('.editor-media-row').remove();if(!document.querySelector('.editor-media-row'))renderEditorMedia([]);renderEditorCanvas();}});
     document.getElementById('saveBtn').addEventListener('click',()=>saveEditorChanges(true));
     document.getElementById('previewBtn').addEventListener('click',()=>{if(saveEditorChanges(false)){const item=news.find(entry=>entry.id===selectedEditorId);history.pushState({},'',articleHref(item));renderArticlePage(item.id);}});
     document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!item)return;if(item.isCustom){if(!confirm('این خبر ساخته‌شده حذف شود؟'))return;const index=news.indexOf(item);news.splice(index,1);persistCreatedNews();const next=news[Math.min(index,news.length-1)]||news[0];renderFeatured();renderLatest();render();setupEditorOptions();if(next){fillEditor(next);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(next.id)}`);}toast('خبر ساخته‌شده حذف شد.');return;}if(!original||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','cat','country','time','cred','image','imageSettings','url','tags','why','body','media'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});

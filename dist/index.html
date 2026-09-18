@@ -37,15 +37,41 @@
     .editor-button { padding:0 15px; font-size:13px; font-weight:700; }
     .icon-button:hover,.editor-button:hover { background:#292929; }
 
-    .score-strip { background:#fff; border-bottom:1px solid var(--line); }
-    .score-inner { display:flex; align-items:stretch; min-height:82px; overflow-x:auto; scrollbar-width:none; }
+    .score-strip { background:#fff; border-bottom:1px solid var(--line); box-shadow:0 5px 18px rgba(18,22,28,.025); }
+    .score-toolbar { min-height:58px; display:flex; align-items:center; gap:18px; }
+    .score-heading { min-width:190px; display:flex; align-items:center; gap:10px; }
+    .score-heading-copy { display:grid; gap:1px; }
+    .score-heading strong { font-size:14px; }
+    .score-heading small { color:var(--muted); font-size:11px; }
+    .live-pulse { width:9px; height:9px; border-radius:50%; background:var(--red); box-shadow:0 0 0 5px rgba(226,27,45,.1); }
+    .score-date-nav { display:flex; align-items:center; gap:4px; padding:4px; border-radius:7px; background:#f1f2f4; }
+    .score-date-button { min-width:74px; padding:6px 10px; border:0; border-radius:5px; background:transparent; color:#5c626a; cursor:pointer; font:inherit; }
+    .score-date-button strong,.score-date-button small { display:block; }
+    .score-date-button strong { font-size:12px; }
+    .score-date-button small { margin-top:1px; font-size:10px; }
+    .score-date-button.active { background:#fff; color:var(--ink); box-shadow:0 2px 8px rgba(20,24,30,.08); }
+    .score-source { margin-right:auto; display:flex; align-items:center; gap:9px; color:var(--muted); font-size:11px; white-space:nowrap; }
+    .score-source a { padding-right:9px; border-right:1px solid var(--line); color:#252a31; font-weight:900; }
+    .score-board-shell { border-top:1px solid var(--line); }
+    .score-inner { display:flex; align-items:stretch; min-height:96px; overflow-x:auto; scrollbar-width:none; scroll-snap-type:x proximity; }
     .score-inner::-webkit-scrollbar { display:none; }
-    .score-label { flex:0 0 124px; display:grid; align-content:center; padding:12px 0; color:var(--red); font-size:13px; font-weight:900; }
-    .score-label small { display:block; color:var(--muted); font-size:11px; font-weight:400; }
-    .score-item { flex:0 0 244px; display:grid; align-content:center; padding:12px 20px; border-right:1px solid var(--line); }
-    .score-meta { display:flex; justify-content:space-between; color:var(--muted); font-size:11px; }
-    .score-teams { margin-top:5px; display:flex; justify-content:space-between; gap:12px; font-size:13px; font-weight:700; }
-    .score-result { direction:ltr; color:var(--red); font-weight:900; }
+    .score-item { flex:0 0 238px; padding:11px 16px; border-left:1px solid var(--line); color:var(--ink); scroll-snap-align:start; transition:background .2s ease; }
+    .score-item:hover { background:#f7f8f9; }
+    .score-item.is-live { background:linear-gradient(180deg,#fff6f6,#fff); }
+    .score-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:10px; }
+    .score-league { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .score-status { flex:none; font-weight:800; }
+    .score-status.live { color:var(--red); }
+    .score-team-row { margin-top:7px; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:12px; }
+    .score-team { min-width:0; display:flex; align-items:center; gap:7px; font-weight:800; }
+    .score-team img { flex:none; width:21px; height:21px; object-fit:contain; }
+    .score-team span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .score-result { min-width:18px; direction:ltr; text-align:center; font-size:14px; font-weight:900; }
+    .score-item.is-live .score-result { color:var(--red); }
+    .score-state { min-height:95px; width:100%; display:flex; align-items:center; justify-content:center; gap:10px; color:var(--muted); font-size:12px; }
+    .score-loader { width:17px; height:17px; border:2px solid #ddd; border-top-color:var(--red); border-radius:50%; animation:score-spin .8s linear infinite; }
+    .score-retry { padding:7px 11px; border:1px solid var(--line); border-radius:5px; background:#fff; cursor:pointer; font:inherit; }
+    @keyframes score-spin { to { transform:rotate(360deg); } }
 
     main { padding:30px 0 64px; }
     .hero-layout { display:grid; grid-template-columns:minmax(0,2.2fr) minmax(300px,.8fr); align-items:start; gap:22px; }
@@ -289,8 +315,13 @@
       .brand-mark { width:32px; height:32px; font-size:17px; }
       .editor-button { padding:0 10px; }
       main { padding-top:18px; }
-      .score-inner { min-height:72px; }
-      .score-item { flex-basis:220px; padding-inline:15px; }
+      .score-toolbar { padding:10px 0; flex-wrap:wrap; gap:10px 14px; }
+      .score-heading { min-width:0; }
+      .score-date-nav { order:3; width:100%; }
+      .score-date-button { flex:1; min-width:0; }
+      .score-source { margin-right:auto; }
+      .score-inner { min-height:92px; }
+      .score-item { flex-basis:216px; padding-inline:13px; }
       .feature,.feature-media,.feature-copy { min-height:390px; }
       .feature-media::after { background:linear-gradient(0deg,rgba(10,11,14,.95) 0%,rgba(10,11,14,.44) 58%,rgba(10,11,14,.08) 100%); }
       .feature-copy { width:100%; padding:26px 22px; }
@@ -435,13 +466,13 @@
     </div>
   </header>
 
-  <section class="score-strip" aria-label="نتایج نمونه">
-    <div class="container score-inner">
-      <div class="score-label">تابلوی مسابقات <small>نمایش آزمایشی</small></div>
-      <div class="score-item"><div class="score-meta"><span>لیگ قهرمانان</span><span>پایان</span></div><div class="score-teams"><span>بارسلونا ـ آرسنال</span><span class="score-result">2 - 2</span></div></div>
-      <div class="score-item"><div class="score-meta"><span>لیگ برتر انگلیس</span><span>پایان</span></div><div class="score-teams"><span>لیورپول ـ چلسی</span><span class="score-result">1 - 0</span></div></div>
-      <div class="score-item"><div class="score-meta"><span>بوندس‌لیگا</span><span>۲۲:۱۵</span></div><div class="score-teams"><span>بایرن ـ دورتموند</span><span class="score-result">-</span></div></div>
+  <section class="score-strip" aria-label="نتایج زنده و برنامه مسابقات فوتبال">
+    <div class="container score-toolbar">
+      <div class="score-heading"><span class="live-pulse" aria-hidden="true"></span><div class="score-heading-copy"><strong>نتایج و برنامه بازی‌ها</strong><small>همه زمان‌ها به وقت ایران</small></div></div>
+      <div class="score-date-nav" id="scoreDateNav" aria-label="انتخاب روز مسابقات"></div>
+      <div class="score-source"><span id="scoreUpdated">در حال دریافت…</span><a href="https://www.espn.com/soccer/scoreboard" target="_blank" rel="noopener">داده زنده: ESPN</a></div>
     </div>
+    <div class="score-board-shell"><div class="container score-inner" id="scoreBoard" aria-live="polite"><div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات…</span></div></div></div>
   </section>
 
   <main>
@@ -803,6 +834,42 @@
       stopFeaturedRotation();if(featuredItems().length<2||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
       featuredTimer=setInterval(()=>{if(!document.hidden)renderFeatured(featuredIndex+1);},6500);
     }
+    const IRAN_TIME_ZONE='Asia/Tehran',ESPN_SCOREBOARD_URL='https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard';
+    let selectedScoreDate=tehranDateKey(new Date()),scoreRequestId=0;
+    function tehranDateKey(date){const parts=new Intl.DateTimeFormat('en-CA',{timeZone:IRAN_TIME_ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date),value=type=>parts.find(part=>part.type===type)?.value;return `${value('year')}-${value('month')}-${value('day')}`;}
+    function addScoreDays(key,amount){const date=new Date(`${key}T12:00:00Z`);date.setUTCDate(date.getUTCDate()+amount);return date.toISOString().slice(0,10);}
+    function scoreDateLabel(key){return new Intl.DateTimeFormat('fa-IR-u-ca-persian',{day:'numeric',month:'short',timeZone:IRAN_TIME_ZONE}).format(new Date(`${key}T12:00:00Z`));}
+    function scoreTime(date){return new Intl.DateTimeFormat('fa-IR',{hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZone:IRAN_TIME_ZONE}).format(date);}
+    function faNumber(value){return String(value??'').replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);}
+    function renderScoreDateNav(){
+      const today=tehranDateKey(new Date()),labels=['دیروز','امروز','فردا'];
+      document.getElementById('scoreDateNav').innerHTML=[-1,0,1].map((offset,index)=>{const key=addScoreDays(today,offset);return `<button class="score-date-button${key===selectedScoreDate?' active':''}" type="button" data-score-date="${key}" aria-pressed="${key===selectedScoreDate?'true':'false'}"><strong>${labels[index]}</strong><small>${scoreDateLabel(key)}</small></button>`;}).join('');
+    }
+    function translatedLeague(name=''){const leagues=[[/UEFA Champions League/i,'لیگ قهرمانان اروپا'],[/UEFA Europa League/i,'لیگ اروپا'],[/UEFA Conference League/i,'لیگ کنفرانس اروپا'],[/English Premier League/i,'لیگ برتر انگلیس'],[/LALIGA 2|LaLiga 2/i,'لالیگا ۲ اسپانیا'],[/Spanish (?:LALIGA|LaLiga)|^LALIGA$/i,'لالیگا اسپانیا'],[/Italian Serie A|^Serie A$/i,'سری آ ایتالیا'],[/2\. Bundesliga/i,'بوندس‌لیگا ۲ آلمان'],[/German Bundesliga|^Bundesliga$/i,'بوندس‌لیگا آلمان'],[/French Ligue 1|^Ligue 1$/i,'لیگ یک فرانسه'],[/Dutch Eredivisie|^Eredivisie$/i,'اردیویژه هلند'],[/FIFA World Cup/i,'جام جهانی'],[/Saudi Pro League/i,'لیگ حرفه‌ای عربستان'],[/Major League Soccer|^MLS$/i,'لیگ فوتبال آمریکا']];return leagues.find(([pattern])=>pattern.test(name))?.[1]||name||'فوتبال';}
+    function leaguePriority(name=''){const priorities=[/Champions League/i,/Premier League/i,/LALIGA|LaLiga/i,/Serie A/i,/Bundesliga/i,/Ligue 1/i,/Europa League/i,/Conference League/i,/World Cup/i,/Saudi Pro League/i,/MLS|Major League/i];const index=priorities.findIndex(pattern=>pattern.test(name));return index<0?99:index;}
+    function scoreState(event){return event.competitions?.[0]?.status?.type?.state||'pre';}
+    function scoreStatus(event){
+      const status=event.competitions?.[0]?.status||{},type=status.type||{},name=type.name||'';
+      if(/POSTPONED/i.test(name))return {label:'تعویق',className:''};if(/CANCELED|CANCELLED/i.test(name))return {label:'لغو',className:''};
+      if(type.state==='in'){const label=/HALFTIME/i.test(name)?'بین دو نیمه':faNumber(status.displayClock||'زنده');return {label,className:'live'};}
+      if(type.state==='post'||type.completed)return {label:'پایان',className:''};
+      return {label:scoreTime(new Date(event.date)),className:''};
+    }
+    function scoreCard(event){
+      const competition=event.competitions?.[0]||{},teams=competition.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!home||!away)return '';
+      const state=scoreState(event),status=scoreStatus(event),league=competition.altGameNote||event.league?.name||event.season?.slug||'',link=event.links?.find(item=>(item.rel||[]).includes('summary'))?.href||'https://www.espn.com/soccer/scoreboard',row=team=>`<div class="score-team-row"><span class="score-team">${team.team?.logo?`<img src="${esc(team.team.logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span>${esc(team.team?.shortDisplayName||team.team?.displayName||'—')}</span></span><strong class="score-result">${state==='pre'?'–':faNumber(team.score||'۰')}</strong></div>`;
+      return `<a class="score-item${state==='in'?' is-live':''}" href="${esc(link)}" target="_blank" rel="noopener"><div class="score-meta"><span class="score-league">${esc(translatedLeague(league))}</span><span class="score-status ${status.className}">${status.label}</span></div>${row(home)}${row(away)}</a>`;
+    }
+    function sortScoreEvents(events){return [...events].sort((a,b)=>{const rank=event=>({in:0,pre:1,post:2}[scoreState(event)]??3),rankDiff=rank(a)-rank(b);if(rankDiff)return rankDiff;const aLeague=a.competitions?.[0]?.altGameNote||'',bLeague=b.competitions?.[0]?.altGameNote||'',leagueDiff=leaguePriority(aLeague)-leaguePriority(bLeague);if(leagueDiff)return leagueDiff;const timeDiff=new Date(a.date)-new Date(b.date);return scoreState(a)==='post'?-timeDiff:timeDiff;});}
+    async function loadScores(showLoading=true){
+      const root=document.getElementById('scoreBoard'),updated=document.getElementById('scoreUpdated'),requestId=++scoreRequestId;if(showLoading)root.innerHTML='<div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات از ESPN…</span></div>';
+      try{
+        const apiDates=[addScoreDays(selectedScoreDate,-1),selectedScoreDate],responses=await Promise.all(apiDates.map(key=>fetch(`${ESPN_SCOREBOARD_URL}?dates=${key.replaceAll('-','')}&limit=100`).then(response=>{if(!response.ok)throw new Error(`ESPN ${response.status}`);return response.json();})));if(requestId!==scoreRequestId)return;
+        const eventMap=new Map();responses.flatMap(data=>data.events||[]).forEach(event=>eventMap.set(event.id,event));const events=sortScoreEvents([...eventMap.values()].filter(event=>event.date&&tehranDateKey(new Date(event.date))===selectedScoreDate&&event.competitions?.[0]?.competitors?.length>=2)).slice(0,18);
+        root.innerHTML=events.length?events.map(scoreCard).join(''):'<div class="score-state">برای این روز مسابقه‌ای در فهرست ESPN ثبت نشده است.</div>';updated.textContent=`${events.length.toLocaleString('fa-IR')} بازی · بروزرسانی ${scoreTime(new Date())}`;
+      }catch(error){if(requestId!==scoreRequestId)return;root.innerHTML='<div class="score-state"><span>دریافت نتایج ممکن نشد.</span><button class="score-retry" type="button" data-score-retry>تلاش دوباره</button></div>';updated.textContent='ارتباط با ESPN برقرار نشد';}
+    }
+    function initScores(){renderScoreDateNav();loadScores();document.getElementById('scoreDateNav').addEventListener('click',event=>{const button=event.target.closest('[data-score-date]');if(!button)return;selectedScoreDate=button.dataset.scoreDate;renderScoreDateNav();loadScores();});document.getElementById('scoreBoard').addEventListener('click',event=>{if(event.target.closest('[data-score-retry]'))loadScores();});setInterval(()=>{if(!document.hidden&&selectedScoreDate===tehranDateKey(new Date()))loadScores(false);},30000);}
     function renderLatest(){
       const items=news.filter(item=>!item.isDraft&&item.lang==='فارسی').slice(0,6),root=document.getElementById('latestList');
       if(!items.length){root.innerHTML='<div class="empty">هنوز خبری دریافت نشده است.</div>';return;}
@@ -860,7 +927,7 @@
     document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!item)return;if(item.isCustom){if(!confirm('این خبر ساخته‌شده حذف شود؟'))return;const index=news.indexOf(item);news.splice(index,1);persistCreatedNews();const next=news[Math.min(index,news.length-1)]||news[0];renderFeatured();renderLatest();render();setupEditorOptions();if(next){fillEditor(next);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(next.id)}`);}toast('خبر ساخته‌شده حذف شد.');return;}if(!original||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','cat','country','time','cred','image','imageSettings','url','tags','why','body','media'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
     document.getElementById('editorHomeBtn').addEventListener('click',()=>{history.pushState({},'',location.pathname);showHome();});
     if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
-    setupEditorOptions();renderFeatured();startFeaturedRotation();renderLatest();render();route();
+    setupEditorOptions();renderFeatured();startFeaturedRotation();initScores();renderLatest();render();route();
   </script>
 </body>
 </html>

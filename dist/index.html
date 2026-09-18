@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#161616">
-  <title>فوتبال‌نما | خبر فوتبال جهان</title>
+  <title>نیمکت | خبر فوتبال جهان</title>
   <meta name="description" content="خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.">
   <style>
     @font-face { font-family:'IRANSansXFaNum'; src:url('assets/fonts/IRANSansXFaNum-Regular.woff2') format('woff2'); font-style:normal; font-weight:400; font-display:swap; }
@@ -23,21 +23,21 @@
     .container { width:min(1240px,calc(100% - 40px)); margin-inline:auto; }
     .hidden { display:none !important; }
 
-    .site-header { position:sticky; top:0; z-index:50; height:74px; background:rgba(16,17,20,.98); color:#fff; border-bottom:3px solid var(--red); box-shadow:0 8px 28px rgba(10,12,15,.12); }
-    .header-inner { height:71px; display:flex; align-items:center; gap:34px; }
-    .brand { display:flex; align-items:center; gap:10px; flex:0 0 auto; }
-    .brand-mark { width:38px; height:38px; display:grid; place-items:center; border-radius:4px; background:var(--red); color:#fff; font-weight:900; font-size:20px; transform:skew(-8deg); box-shadow:0 5px 16px rgba(226,27,45,.28); }
-    .brand-name { font-size:22px; font-weight:900; letter-spacing:-.7px; }
+    .site-header { position:sticky; top:0; z-index:50; height:58px; background:rgba(15,16,18,.97); color:#fff; border-top:2px solid var(--red); border-bottom:1px solid rgba(255,255,255,.09); box-shadow:0 5px 18px rgba(10,12,15,.1); backdrop-filter:blur(14px); }
+    .header-inner { height:55px; display:flex; align-items:center; gap:28px; }
+    .brand { display:flex; align-items:center; gap:9px; flex:0 0 auto; min-width:max-content; }
+    .brand-mark { width:30px; height:30px; display:grid; place-items:center; border-radius:7px 3px 7px 3px; background:linear-gradient(145deg,#f02a3b,var(--red-dark)); color:#fff; font-weight:900; font-size:16px; line-height:1; box-shadow:0 4px 12px rgba(226,27,45,.24); }
+    .brand-name { font-size:20px; font-weight:900; letter-spacing:-.55px; line-height:1; }
     .main-nav { display:flex; align-items:stretch; height:100%; gap:4px; }
-    .nav-link { position:relative; display:flex; align-items:center; padding:0 14px; color:#cfd2d6; font-size:14px; font-weight:700; border:0; background:transparent; cursor:pointer; }
+    .nav-link { position:relative; display:flex; align-items:center; padding:0 12px; color:#bfc3c8; font-size:13px; font-weight:700; border:0; background:transparent; cursor:pointer; transition:color .18s ease; }
     .nav-link:hover,.nav-link.active { color:#fff; }
-    .nav-link.active::after { content:""; position:absolute; right:13px; left:13px; bottom:0; height:3px; background:var(--red); }
+    .nav-link.active::after { content:""; position:absolute; right:12px; left:12px; bottom:-1px; height:2px; border-radius:2px 2px 0 0; background:var(--red); }
     .header-actions { margin-right:auto; display:flex; align-items:center; gap:8px; }
-    .icon-button,.editor-button,.header-league-shortcut { height:36px; border:1px solid #3d3d3d; background:transparent; color:#fff; cursor:pointer; border-radius:4px; }
-    .icon-button { width:38px; display:grid; place-items:center; }
-    .editor-button { padding:0 15px; font-size:13px; font-weight:700; }
-    .header-league-shortcut { display:none; align-items:center; padding:0 11px; font-size:12px; font-weight:700; }
-    .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover { background:#292929; }
+    .icon-button,.editor-button,.header-league-shortcut { height:32px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.025); color:#fff; cursor:pointer; border-radius:6px; transition:background .18s ease,border-color .18s ease; }
+    .icon-button { width:34px; display:grid; place-items:center; }
+    .editor-button { padding:0 13px; font-size:12px; font-weight:700; }
+    .header-league-shortcut { display:none; align-items:center; padding:0 10px; font-size:12px; font-weight:700; }
+    .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.3); }
 
     .score-strip { background:#fff; border-bottom:1px solid var(--line); box-shadow:0 5px 18px rgba(18,22,28,.025); }
     .score-toolbar { min-height:58px; display:flex; align-items:center; gap:18px; }
@@ -381,10 +381,10 @@
     }
     @media(max-width:720px) {
       .container { width:min(100% - 24px,1240px); }
-      .site-header { height:64px; }
-      .header-inner { height:61px; gap:12px; }
+      .site-header { height:52px; }
+      .header-inner { height:49px; gap:10px; }
       .brand-name { font-size:18px; }
-      .brand-mark { width:32px; height:32px; font-size:17px; }
+      .brand-mark { width:28px; height:28px; font-size:15px; }
       .editor-button { padding:0 10px; }
       .header-league-shortcut { padding:0 8px; }
       main { padding-top:18px; }
@@ -544,7 +544,7 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#" data-go-home><span class="brand-mark">ف</span><span class="brand-name">فوتبال‌نما</span></a>
+      <a class="brand" href="#" data-go-home aria-label="نیمکت؛ صفحه اصلی"><span class="brand-mark">ن</span><span class="brand-name">نیمکت</span></a>
       <nav class="main-nav" aria-label="منوی اصلی">
         <button class="nav-link active" data-filter="all">خانه</button><button class="nav-link" type="button" data-league-center>جدول و برنامه بازی‌ها</button><button class="nav-link" data-filter="transfer">نقل‌وانتقالات</button><button class="nav-link" data-filter="analysis">تحلیل</button><button class="nav-link" data-filter="international">ESPN</button>
       </nav>
@@ -676,7 +676,7 @@
     </section>
   </main>
 
-  <footer><div class="container footer-inner"><span class="footer-brand">فوتبال‌نما</span><span>خبر و تحلیل فوتبال جهان با منبع شفاف</span><span id="liveTicker">آخرین دریافت: —</span></div></footer>
+  <footer><div class="container footer-inner"><span class="footer-brand">نیمکت</span><span>خبر و تحلیل فوتبال جهان با منبع شفاف</span><span id="liveTicker">آخرین دریافت: —</span></div></footer>
   <div class="drawer-backdrop" id="drawerBackdrop"></div>
   <aside class="drawer" id="drawer" aria-hidden="true"><button class="drawer-close" id="drawerClose" aria-label="بستن">×</button><div id="drawerContent"></div></aside>
   <div class="editor-toast" id="editorToast" role="status" aria-live="polite"></div>
@@ -688,9 +688,9 @@
         id:'analysis-chelsea-stability-brentford-espn-2026',country:'england',cat:'analysis',flag:'🏴 انگلیس',eyebrow:'تحلیل ESPN · بحران هویت در چلسی',
         title:'چلسی چرا ثبات ندارد؟ پاسخ تلخ در آینه برنتفورد',
         summary:'شکست ۳ بر صفر در جتک فقط یک لغزش نبود؛ برنتفورد به چلسی نشان داد که ثبات با خریدهای پرزرق‌وبرق ساخته نمی‌شود، بلکه حاصل هویت روشن، حافظه تاکتیکی و اعتماد به یک مسیر است.',
-        source:'تحریریه فوتبال‌نما · بر پایه تحلیل تام همیلتون در ESPN',lang:'فارسی',time:'۲۸ شهریور ۱۴۰۵',cred:'بازنویسی تحلیلی',credClass:'trusted',
+        source:'تحریریه نیمکت · بر پایه تحلیل تام همیلتون در ESPN',lang:'فارسی',time:'۲۸ شهریور ۱۴۰۵',cred:'بازنویسی تحلیلی',credClass:'trusted',
         tags:['چلسی','برنتفورد','ژابی آلونسو','کیت اندروز','لیگ برتر انگلیس','کلیرلیک کپیتال','ثبات مدیریتی','ESPN','تحلیل'],
-        why:'این مطلب ترجمه واژه‌به‌واژه نیست؛ بازنویسی تحلیلی گزارش تام همیلتون برای ESPN است. نتیجه مسابقه، ترتیب گل‌ها و گزاره‌های کلیدی درباره دو باشگاه از همان گزارش گرفته شده و جمع‌بندی نهایی با لحن تحریریه فوتبال‌نما نوشته شده است.',
+        why:'این مطلب ترجمه واژه‌به‌واژه نیست؛ بازنویسی تحلیلی گزارش تام همیلتون برای ESPN است. نتیجه مسابقه، ترتیب گل‌ها و گزاره‌های کلیدی درباره دو باشگاه از همان گزارش گرفته شده و جمع‌بندی نهایی با لحن تحریریه نیمکت نوشته شده است.',
         image:'https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2026%2F0918%2Fr1718755_1296x729_16%2D9.jpg',
         imageSettings:{placement:'hero',size:'full',ratio:'16x9',align:'center'},
         url:'https://www.espn.co.uk/football/story/_/id/49974564/how-chelsea-find-stability-look-brentford-premier-league',
@@ -718,7 +718,7 @@
         id:'news-harry-kane-100-bundesliga-goals-2026',country:'germany',cat:'news',flag:'🇩🇪 آلمان',eyebrow:'رکورد تاریخی · بوندس‌لیگا',
         title:'صدتایی در ۹۸ بازی؛ هری کین تاریخ بوندس‌لیگا را از نو نوشت',
         summary:'هری کین در شب پیروزی ۷ بر صفر بایرن برابر اونیون برلین، سریع‌تر از هر بازیکن دیگری به ۱۰۰ گل بوندس‌لیگا رسید؛ رکوردی که فقط چند دقیقه بعد با گل شماره ۱۰۱ کامل‌تر شد.',
-        source:'تحریریه فوتبال‌نما · بر پایه ویدئوی Sky Sports و بوندس‌لیگا',lang:'فارسی',time:'۲۸ شهریور ۱۴۰۵',cred:'رکورد رسمی',credClass:'trusted',
+        source:'تحریریه نیمکت · بر پایه ویدئوی Sky Sports و بوندس‌لیگا',lang:'فارسی',time:'۲۸ شهریور ۱۴۰۵',cred:'رکورد رسمی',credClass:'trusted',
         tags:['هری کین','بایرن مونیخ','اونیون برلین','بوندس‌لیگا','مایکل اولیسه','رکورد گلزنی','اسکای اسپورتس','ویدئو'],
         why:'ویدئوی گل رکوردشکن از Sky Sports لینک شده و آمار تعداد بازی‌ها، رکورد قبلی و نرخ گلزنی با گزارش رسمی بوندس‌لیگا و گزارش مسابقه بایرن تطبیق داده شده است. ویدئو برای رعایت حقوق پخش روی سرور اسکای تماشا می‌شود.',
         image:'https://e0.365dm.com/26/09/1600x900/skysports-bayern-munich-kane_7355883.jpg?20260918230449',
@@ -748,7 +748,7 @@
         id:'live-brentford-chelsea-2026',country:'england',cat:'news',flag:'🏴 انگلیس',eyebrow:'پوشش زنده · هفته پنجم لیگ برتر',
         title:'دربی غرب لندن؛ برنتفوردِ بی‌شکست روبه‌روی چلسیِ زخمی',
         summary:'برنتفورد و چلسی امشب از ساعت ۲۲:۳۰ به وقت ایران در جتک به میدان می‌روند؛ یک امتیاز فاصله، دو مسیر متفاوت و نبردی که ممکن است روی ضربات ایستگاهی تعیین شود.',
-        source:'تحریریه فوتبال‌نما · بر پایه پوشش زنده Sky Sports',lang:'فارسی',time:'امشب · ۲۲:۳۰ به وقت ایران',cred:'پیش‌بازی و پوشش زنده',credClass:'trusted',
+        source:'تحریریه نیمکت · بر پایه پوشش زنده Sky Sports',lang:'فارسی',time:'امشب · ۲۲:۳۰ به وقت ایران',cred:'پیش‌بازی و پوشش زنده',credClass:'trusted',
         tags:['برنتفورد','چلسی','لیگ برتر انگلیس','دربی لندن','ژابی آلونسو','کیت اندروز','پوشش زنده','اسکای اسپورتس'],
         why:'اطلاعات زمان، ورزشگاه، وضعیت دو تیم، مصدومان و آمار ضربات ایستگاهی از پیش‌بازی و صفحه زنده اسکای اسپورتس گرفته شده است. نتیجه لحظه‌ای مسابقه در نوار بالای سایت از داده زنده ESPN نمایش داده می‌شود و این متن با نتیجه ساختگی به‌روزرسانی نشده است.',
         image:'https://e0.365dm.com/26/09/1600x900/skysports-premier-league-brentford_7351240.jpg?20260914102811',
@@ -766,7 +766,7 @@
           {heading:'کلید تاکتیکی؛ ضیافت ضربات ایستگاهی؟',text:'پیش‌بینی اسکای روی نقطه‌ای مشخص دست می‌گذارد: برنتفورد در ضربات ایستگاهی دقیقاً همان نوع تهدیدی را دارد که چلسی برابرش آسیب‌پذیر بوده است. در میان ۱۷ تیمی که از آغاز فصل گذشته همواره در لیگ برتر حضور داشته‌اند، چلسی با میانگین نیم گل خورده در هر مسابقه، دومین آمار ضعیف را در دفاع از ضربات ایستگاهی دارد. برنتفورد نیز در سه تقابل اخیر با چلسی، به‌طور متوسط ۰.۷۳ گل مورد انتظار از همین موقعیت‌ها ساخته است. محل فرود ارسال اول و واکنش چلسی به توپ دوم، می‌تواند داستان بازی را بنویسد.'},
           {heading:'آخرین وضعیت دو تیم',text:'برنتفورد جاش داسیلوا، آنتونی میلامبو، ناتان کالینز، سپ فن‌دن‌برگ، کایه فورو و ماتیاس ینسن را در اختیار ندارد. در سوی مقابل، حضور ژوائو پدرو هنوز قطعی نیست و ریس جیمز، مویسس کایسدو، مارکو پالسترا و جردن هندرسون نیز پیش از بازی ارزیابی می‌شوند. فهرست نهایی و ترکیب رسمی نزدیک شروع مسابقه در صفحه زنده منبع اعلام خواهد شد.'},
           {heading:'خاطره فصل قبل؛ تساوی در جتک، برد در استمفوردبریج',text:'دو مسابقه فصل گذشته تصویر متوازنی داشت. دیدار جتک با تساوی ۲ بر ۲ تمام شد و چلسی در بازی برگشت با نتیجه ۲ بر صفر پیروز شد. این سابقه نشان می‌دهد برنتفورد در خانه توان کشاندن چلسی به یک بازی پرتنش را دارد، اما آبی‌ها در صورت کنترل ریتم و کاهش خطاهای دفاعی، کیفیت کافی برای گرفتن هر سه امتیاز را در اختیار دارند.'},
-          {heading:'چطور بازی را دنبال کنیم؟',text:'پوشش لحظه‌به‌لحظه انگلیسی در لایوبلاگ Sky Sports در دسترس است. در فوتبال‌نما نیز نتیجه و وضعیت مسابقه در نوار «نتایج و برنامه بازی‌ها» با داده زنده ESPN به‌روزرسانی می‌شود. این صفحه تا پیش از شروع بازی نقش پیش‌نمایش تحلیلی دارد و از درج گل، ترکیب یا اتفاق تأییدنشده خودداری می‌کند.'}
+          {heading:'چطور بازی را دنبال کنیم؟',text:'پوشش لحظه‌به‌لحظه انگلیسی در لایوبلاگ Sky Sports در دسترس است. در نیمکت نیز نتیجه و وضعیت مسابقه در نوار «نتایج و برنامه بازی‌ها» با داده زنده ESPN به‌روزرسانی می‌شود. این صفحه تا پیش از شروع بازی نقش پیش‌نمایش تحلیلی دارد و از درج گل، ترکیب یا اتفاق تأییدنشده خودداری می‌کند.'}
         ],
         sources:[
           {title:'Sky Sports؛ پوشش زنده برنتفورد مقابل چلسی',url:'https://www.skysports.com/football/live-blog/11661/13572149/brentford-vs-chelsea-live-premier-league-score-updates-news-prediction-lineups-and-how-to-watch-or-stream'},
@@ -779,7 +779,7 @@
         id:'transfer-man-utd-live-sky-2026',country:'england',cat:'transfer',flag:'🏴 انگلیس',eyebrow:'مرکز نقل‌وانتقالات · منچستر یونایتد',
         title:'پنجره شلوغ اولدترافورد؛ جنگ اروپا برای گابریل و پرونده‌ای که هنوز بسته نشده',
         summary:'یونایتد خط میانی‌اش را با سه خرید بزرگ از نو ساخته، خروجی‌های پرشماری داشته و حالا باید از جواهر نوجوان خود محافظت کند؛ اما یک پرسش مهم همچنان پابرجاست: چرا خط دفاع تقویت نشد؟',
-        source:'تحریریه فوتبال‌نما · بر پایه گزارش‌های Sky Sports',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'رصد نقل‌وانتقالات',credClass:'rumor',
+        source:'تحریریه نیمکت · بر پایه گزارش‌های Sky Sports',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'رصد نقل‌وانتقالات',credClass:'rumor',
         tags:['منچستر یونایتد','جی‌جی گابریل','کارلوس بالبا','آندری سانتوس','یوری تیلمانس','مایکل کریک','نقل‌وانتقالات','اسکای اسپورتس'],
         why:'این مطلب ترجمه تحت‌اللفظی یک لایوبلاگ نیست؛ جمع‌بندی تحریریه از صفحه زنده و گزارش‌های تکمیلی اسکای اسپورتس است. انتقال‌های قطعی از خبرهای مربوط به علاقه باشگاه‌ها جدا شده‌اند و علاقه به گابریل، تا زمان اعلام رسمی، صرفاً یک گزارش نقل‌وانتقالاتی محسوب می‌شود.',
         image:'https://e0.365dm.com/26/08/1600x900/skysports-man-utd-club-blog_7326703.jpg?20260820165515',
@@ -811,9 +811,9 @@
         id:'analysis-man-utd-sky-2026',country:'england',cat:'analysis',flag:'🏴 انگلیس',eyebrow:'پرونده ویژه · منچستر یونایتد',
         title:'یونایتد چرا از هم پاشید؟ پنج نشانه که بحران را فراتر از کریک می‌برد',
         summary:'دو گل در ده دقیقه، سکوتی طولانی و شکستی که اولدترافورد را علیه تیم شوراند. آمار اسکای از بحرانی می‌گوید که ریشه‌اش فقط روی نیمکت نیست؛ از شدت پایین بازی تا ترکیبی گران و نامتوازن.',
-        source:'تحریریه فوتبال‌نما · بر پایه گزارش Sky Sports',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'گزارش تحلیلی',credClass:'trusted',
+        source:'تحریریه نیمکت · بر پایه گزارش Sky Sports',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'گزارش تحلیلی',credClass:'trusted',
         tags:['منچستر یونایتد','مایکل کریک','اینئوس','برایتون','لیگ برتر انگلیس','اسکای اسپورتس','تحلیل'],
-        why:'این گزارش ترجمه لفظ‌به‌لفظ نیست؛ بازخوانی تحلیلی گزارش ویلیام بیتیبیری برای اسکای اسپورتس است. آمارها و ادعاهای اصلی با منبع مشخص ارائه شده‌اند و جمع‌بندی نهایی، تحلیل تحریریه فوتبال‌نماست.',
+        why:'این گزارش ترجمه لفظ‌به‌لفظ نیست؛ بازخوانی تحلیلی گزارش ویلیام بیتیبیری برای اسکای اسپورتس است. آمارها و ادعاهای اصلی با منبع مشخص ارائه شده‌اند و جمع‌بندی نهایی، تحلیل تحریریه نیمکت است.',
         image:'https://e0.365dm.com/26/09/1600x900/skysports-manchester-united_7354575.jpg?20260917125644',url:'#',
         metrics:[
           {value:'۳۳.۳٪',label:'نرخ برد کریک در فصل جاری؛ کمتر از نصف فصل گذشته'},
@@ -847,9 +847,9 @@
         id:'news-chelsea-clearlake-control-2026',country:'england',cat:'news',flag:'🏴 انگلیس',eyebrow:'مالکیت چلسی · خبر رسمی',
         title:'پایان عصر بوهلی در چلسی؛ کلیرلیک کنترل کامل باشگاه را در دست گرفت',
         summary:'تاد بوهلی و مارک والتر سهام خود را واگذار کردند و کلیرلیک، مالک اکثریت چلسی از سال ۲۰۲۲، اکنون اختیار کامل باشگاه را به دست دارد؛ تغییری بزرگ در رأس قدرت، بدون تغییر فوری در مدیریت روزمره.',
-        source:'تحریریه فوتبال‌نما · بر پایه گاردین و باشگاه چلسی',lang:'فارسی',time:'۲۶ شهریور ۱۴۰۵',cred:'تأیید رسمی',credClass:'trusted',
+        source:'تحریریه نیمکت · بر پایه گاردین و باشگاه چلسی',lang:'فارسی',time:'۲۶ شهریور ۱۴۰۵',cred:'تأیید رسمی',credClass:'trusted',
         tags:['چلسی','تاد بوهلی','کلیرلیک کپیتال','مارک والتر','مالکیت باشگاه','لیگ برتر انگلیس'],
-        why:'این خبر با اتکا به گزارش گاردین و بیانیه رسمی باشگاه چلسی بازنویسی شده است. بخش پایانی درباره پیامدهای مدیریتی معامله، جمع‌بندی تحریریه فوتبال‌نماست.',
+        why:'این خبر با اتکا به گزارش گاردین و بیانیه رسمی باشگاه چلسی بازنویسی شده است. بخش پایانی درباره پیامدهای مدیریتی معامله، جمع‌بندی تحریریه نیمکت است.',
         image:'https://i.guim.co.uk/img/media/290e3b113d1caeb93e1f26fab9370f593d8b69df/341_197_1286_1029/master/1286.jpg?width=1920&quality=85&auto=format&fit=max&s=ec1023a971a5df76da803d150023a59f',
         url:'https://www.theguardian.com/football/2026/sep/17/boehly-and-walter-sell-chelsea-shares-as-clearlake-capital-takes-full-control-of-club',
         media:[
@@ -871,7 +871,7 @@
         id:'analysis-future-european-leagues-2026',country:'europe',cat:'analysis',flag:'🇪🇺 اروپا',eyebrow:'چشم‌انداز ۲۰۳۰ · فوتبال اروپا',
         title:'فوتبال اروپا تا ۲۰۳۰؛ پول کجا می‌رود و جذابیت کجا می‌ماند؟',
         summary:'انگلیس ثروتمندتر می‌شود، آلمان ورزشگاه را جدی‌تر می‌گیرد، اسپانیا در حال بازسازی است و فرانسه آینده پخش را به قمار گذاشته؛ نقشه قدرت اروپا فقط با جام‌ها ترسیم نمی‌شود.',
-        source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل داده‌محور',credClass:'trusted',
+        source:'تحریریه نیمکت',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل داده‌محور',credClass:'trusted',
         tags:['لیگ برتر انگلیس','بوندس‌لیگا','لالیگا','سری آ','لیگ یک فرانسه','اردیویژه','فوتبال اروپا','اقتصاد فوتبال','تحلیل'],
         why:'اعداد این گزارش عمدتاً به فصل مالی ۲۰۲۴/۲۵ و تازه‌ترین گزارش‌های منتشرشده تا شهریور ۱۴۰۵ مربوط‌اند. رتبه‌بندی آینده‌نگر و سناریوهای ۲۰۳۰ تحلیل تحریریه‌اند، نه پیش‌بینی قطعی.',
         image:'https://www.vfb.de/images/redaktion/images/profis/2425-Bildergalerien/CL-4-VfB-Atalanta-Bergamo/24-11-06-VfB-Bergamo-007_MHP-Arena_00000_x_0x0.jpeg',url:'#',
@@ -895,7 +895,7 @@
           {heading:'فرانسه؛ پرریسک‌ترین و شاید تحول‌آفرین‌ترین آزمایش',text:'لیگ ۱ یک تناقض بزرگ است. میانگین تماشاگرش با رشد ۴ درصدی به حدود ۲۸.۹ هزار نفر رسیده و پلتفرم مستقیم Ligue 1+ در ماه اول از یک میلیون مشترک عبور کرد؛ مخاطبان بین‌المللی فصل ۲۰۲۵/۲۶ نیز با رشد ۲۸ درصدی به برآورد تجمعی ۵۲۰ میلیون رسیدند. اما درآمد ۲۰۲۴/۲۵ پانزده درصد سقوط کرد و به ۲.۲ میلیارد یورو رسید، نسبت دستمزد به درآمد به ۸۰ درصد رسید و باشگاه‌ها ۶۰۰ میلیون یورو زیان عملیاتی ثبت کردند. پاری‌سن‌ژرمن به‌تنهایی ۳۹ درصد درآمد لیگ را می‌سازد. اگر مالکیت مستقیم پخش به یک کسب‌وکار پایدار تبدیل شود، فرانسه الگوی تازه‌ای برای دورزدن واسطه‌ها خواهد داشت؛ اگر نرخ حفظ مشترک پایین بماند، فروش استعداد برای بسیاری از باشگاه‌ها از انتخاب به اجبار تبدیل می‌شود.'},
           {heading:'هلند و پرتغال؛ لیگ‌های کوچک‌تر، اثر بزرگ‌تر',text:'اردیویژه و لیگ پرتغال از نظر پول با پنج لیگ بزرگ رقابت نمی‌کنند، اما در اقتصاد آینده فوتبال نقش کارخانه تحقیق و توسعه را دارند. میانگین تماشاگر هلند در ۲۰۲۴/۲۵ به ۲۰ هزار نفر رسید؛ رشد ۱۰ درصدی، بالاترین رشد میان شش لیگ پرتماشاگر اروپا. پرتغال نیز در ضریب همان فصل یوفا چهارم شد و نشان داد باشگاه‌هایش فراتر از بودجه خود نتیجه می‌گیرند. وقتی بیش از نیمی از ۹.۱ میلیارد یورو هزینه نقل‌وانتقالات تابستان ۲۰۲۵ صرف بازیکنان ۲۳ ساله یا جوان‌تر شده، لیگ‌هایی که زودتر استعداد می‌دهند، داده تولید می‌کنند و فرصت بازی واقعی فراهم می‌سازند ارزش بیشتری پیدا می‌کنند. این دو لیگ برای مخاطبی که می‌خواهد ستاره بعدی را پیش از مشهورشدن ببیند، جذاب‌تر خواهند شد.'},
           {heading:'چه چیزی جذابیت را تا ۲۰۳۰ تعیین می‌کند؟',text:'چهار متغیر تعیین‌کننده‌اند. اول، توازن رقابتی: لیگ باید بیش از یک مدعی واقعی داشته باشد. دوم، ورزشگاه: درآمد روز مسابقه در پنج لیگ بزرگ ۱۶ درصد رشد کرده و تنها جریان درآمدی بود که در هر پنج لیگ بالا رفت. سوم، توزیع دیجیتال: نسل بعدی مخاطب با بسته‌های گران و پراکنده تلویزیونی وفادار نمی‌ماند؛ موفقیت یا شکست Ligue 1+ به همین دلیل برای همه اروپا مهم است. چهارم، مسیر بازیکن جوان: یوفا می‌گوید باشگاه‌های اروپا در تابستان ۲۰۲۵ رکورد ۹.۱ میلیارد یورو خرج کردند و بیش از نیمی از آن برای بازیکنان ۲۳ ساله یا جوان‌تر بود. لیگ‌هایی که دقیقه بازی، مربی و شبکه استعدادیابی بهتری دارند سهم بیشتری از این بازار می‌گیرند.'},
-          {heading:'رتبه‌بندی آینده‌نگر فوتبال‌نما',text:'برای قدرت اقتصادی و کیفیت کلی، لیگ برتر انگلیس تا ۲۰۳۰ شماره یک می‌ماند. برای سریع‌ترین بهبود ساختاری، بوندس‌لیگا و لالیگا جلوترند: آلمان با سودآوری و هوادار، اسپانیا با ورزشگاه‌های نوسازی‌شده و رشد حقوق پخش. برای هیجان ورزشی، سری A بیشترین ظرفیت جهش را دارد؛ مشروط به نوسازی زیرساخت. برای کشف استعداد، اردیویژه و پرتغال بهترین ارزش را ارائه می‌کنند. فرانسه بیشترین دامنه نتیجه را دارد: می‌تواند پیشگام پخش مستقیم شود یا زیر فشار هزینه و تمرکز درآمد عقب بیفتد.'},
+          {heading:'رتبه‌بندی آینده‌نگر نیمکت',text:'برای قدرت اقتصادی و کیفیت کلی، لیگ برتر انگلیس تا ۲۰۳۰ شماره یک می‌ماند. برای سریع‌ترین بهبود ساختاری، بوندس‌لیگا و لالیگا جلوترند: آلمان با سودآوری و هوادار، اسپانیا با ورزشگاه‌های نوسازی‌شده و رشد حقوق پخش. برای هیجان ورزشی، سری A بیشترین ظرفیت جهش را دارد؛ مشروط به نوسازی زیرساخت. برای کشف استعداد، اردیویژه و پرتغال بهترین ارزش را ارائه می‌کنند. فرانسه بیشترین دامنه نتیجه را دارد: می‌تواند پیشگام پخش مستقیم شود یا زیر فشار هزینه و تمرکز درآمد عقب بیفتد.'},
           {heading:'جمع‌بندی؛ آینده یک لیگ واحد ندارد',text:'دهه بعد احتمالاً شکاف مالی لیگ برتر با بقیه را از بین نمی‌برد، اما جذابیت فوتبال فقط تابع درآمد نیست. انگلیس بزرگ‌ترین ویترین می‌ماند؛ آلمان بهترین تجربه ورزشگاه را می‌سازد؛ اسپانیا دوباره قدرت تجاری خود را بالا می‌برد؛ ایتالیا قصه رقابتی و تاکتیکی می‌فروشد؛ فرانسه آینده پخش مستقیم را آزمایش می‌کند؛ و هلند و پرتغال ستاره‌های بعدی را معرفی می‌کنند. برنده واقعی لیگی خواهد بود که سه چیز را هم‌زمان حفظ کند: هوادار حاضر در ورزشگاه، درآمد قابل‌اتکا و این باور که نتیجه مسابقه از قبل معلوم نیست.'}
         ],
         sources:[
@@ -915,7 +915,7 @@
         id:'analysis-real-madrid-mourinho-2026',country:'spain',cat:'analysis',flag:'🇪🇸 اسپانیا',eyebrow:'پرونده تاکتیکی · رئال مادرید',
         title:'رئالِ مورینیو نتیجه می‌گیرد؛ اما هنوز فرمان بازی را در دست ندارد',
         summary:'پیروزی‌ها آمده‌اند، امباپه می‌درخشد و گولر جسورتر شده است؛ با این حال آشفتگی برابر اینتر و الچه نشان می‌دهد رئال هنوز میان ضربه‌زدن در انتقال و کنترل کامل مسابقه معلق مانده.',
-        source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل تحریریه',credClass:'trusted',
+        source:'تحریریه نیمکت',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل تحریریه',credClass:'trusted',
         tags:['رئال مادرید','ژوزه مورینیو','کیلیان امباپه','وینیسیوس','لالیگا','تحلیل'],
         why:'این گزارش با تطبیق داده‌های رسمی رئال مادرید، لالیگا، یوفا و گزارش‌های تحلیلی رسانه‌های اسپانیایی تهیه شده است. سناریوهای آینده، تحلیل تحریریه‌اند و خبر قطعی محسوب نمی‌شوند.',
         image:'https://assets.realmadrid.com/is/image/realmadrid/ND-LIGA-ELCHE-RM-MOURINHO_AV14341?%24Desktop%24=&fit=wrap',url:'#',
@@ -943,7 +943,7 @@
         id:'analysis-man-utd-carrick-2026',country:'england',cat:'analysis',flag:'🏴 انگلیس',eyebrow:'روایت فصل · منچستر یونایتد',
         title:'کریک میان اعتبار و بحران؛ پنج بازی برای بازگرداندن آرامش به یونایتد',
         summary:'مربی‌ای که یونایتد را به لیگ قهرمانان رساند، حالا با تیمی پرنوسان، سکوهایی بی‌قرار و تقویمی بی‌رحم روبه‌روست؛ هفته‌های پیش رو مشخص می‌کنند فصل گذشته آغاز یک مسیر بود یا فقط یک مکث کوتاه در بحران.',
-        source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل تحریریه',credClass:'trusted',
+        source:'تحریریه نیمکت',lang:'فارسی',time:'۲۷ شهریور ۱۴۰۵',cred:'تحلیل تحریریه',credClass:'trusted',
         tags:['منچستریونایتد','مایکل کریک','لیگ برتر انگلیس','تحلیل'],
         why:'این گزارش با تطبیق گزارش‌های رسمی منچستر یونایتد، لیگ برتر، گاردین، اسکای اسپورتس و NBC تهیه شده است. سناریوهای آینده تحلیل تحریریه‌اند و خبر قطعی محسوب نمی‌شوند.',
         image:'https://e0.365dm.com/26/09/1920x1080/skysports-michael-carrick-man-utd_7354061.jpg?20260916221141',url:'#',
@@ -965,7 +965,7 @@
           {title:'لیگ برتر؛ برنامه مسابقات منچستر یونایتد',url:'https://www.premierleague.com/ar/news/4675130/all-of-manchester-uniteds-fixtures-for-202627-premier-league-season'}
         ]
       },
-      {id:'demo-2',country:'italy',cat:'transfer',flag:'🇮🇹 ایتالیا',eyebrow:'بازار ایتالیا · نسل تازه',title:'بازار سری A زودتر از تابستان داغ شد؛ رقابت برای ستاره‌های فردا',summary:'مدیران ورزشی باشگاه‌های بزرگ ایتالیا، پیش از شلوغ‌شدن بازار، مذاکره برای جذب استعدادهای جوان را آغاز کرده‌اند؛ مسابقه‌ای که برنده‌اش شاید آینده لیگ را بسازد.',source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'امروز',cred:'خبر تحریریه',credClass:'trusted',tags:['سری آ','نقل‌وانتقالات'],why:'این خبر برای نمایش جریان کاری نسخه آزمایشی سایت تهیه شده است.',image:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80',url:'#'}
+      {id:'demo-2',country:'italy',cat:'transfer',flag:'🇮🇹 ایتالیا',eyebrow:'بازار ایتالیا · نسل تازه',title:'بازار سری A زودتر از تابستان داغ شد؛ رقابت برای ستاره‌های فردا',summary:'مدیران ورزشی باشگاه‌های بزرگ ایتالیا، پیش از شلوغ‌شدن بازار، مذاکره برای جذب استعدادهای جوان را آغاز کرده‌اند؛ مسابقه‌ای که برنده‌اش شاید آینده لیگ را بسازد.',source:'تحریریه نیمکت',lang:'فارسی',time:'امروز',cred:'خبر تحریریه',credClass:'trusted',tags:['سری آ','نقل‌وانتقالات'],why:'این خبر برای نمایش جریان کاری نسخه آزمایشی سایت تهیه شده است.',image:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80',url:'#'}
     ];
     const liveNews=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
     const EDITOR_STORAGE_KEY='footballNamaArticleEditsV1';
@@ -1047,12 +1047,12 @@
       renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);if(showMessage)toast('تغییرات ذخیره شد و در سایت نمایش داده می‌شود.');return true;
     }
     function createNewArticle(){
-      const item={id:`custom-${Date.now()}`,isCustom:true,isDraft:true,country:'international',cat:'news',flag:'🌍 بین‌المللی',eyebrow:'خبر تازه',title:'خبر جدید بدون عنوان',summary:'خلاصه خبر را اینجا بنویسید.',source:'تحریریه فوتبال‌نما',lang:'فارسی',time:'امروز',cred:'پیش‌نویس',credClass:'trusted',tags:[],why:'منابع و شیوه آماده‌سازی این خبر را توضیح دهید.',image:'',imageSettings:{placement:'hero',size:'full',ratio:'16x9',align:'center'},url:'#',body:[{heading:'',text:''}],media:[]};
+      const item={id:`custom-${Date.now()}`,isCustom:true,isDraft:true,country:'international',cat:'news',flag:'🌍 بین‌المللی',eyebrow:'خبر تازه',title:'خبر جدید بدون عنوان',summary:'خلاصه خبر را اینجا بنویسید.',source:'تحریریه نیمکت',lang:'فارسی',time:'امروز',cred:'پیش‌نویس',credClass:'trusted',tags:[],why:'منابع و شیوه آماده‌سازی این خبر را توضیح دهید.',image:'',imageSettings:{placement:'hero',size:'full',ratio:'16x9',align:'center'},url:'#',body:[{heading:'',text:''}],media:[]};
       news.unshift(item);persistCreatedNews();setupEditorOptions();fillEditor(item);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(item.id)}`);editorField('editTitle').focus();editorField('editTitle').select();toast('خبر تازه ساخته شد؛ اطلاعات آن را کامل کنید.');
     }
     function showEditor(id){
       const item=news.find(entry=>entry.id===(id||selectedEditorId))||news[0];if(!item)return;
-      setupEditorOptions();fillEditor(item);document.title='میز تحریریه | فوتبال‌نما';showView('editor');
+      setupEditorOptions();fillEditor(item);document.title='میز تحریریه | نیمکت';showView('editor');
     }
 
     const FEATURED_NEWS_IDS=['analysis-chelsea-stability-brentford-espn-2026','news-harry-kane-100-bundesliga-goals-2026','live-brentford-chelsea-2026','transfer-man-utd-live-sky-2026','analysis-man-utd-sky-2026','news-chelsea-clearlake-control-2026','analysis-future-european-leagues-2026','analysis-real-madrid-mourinho-2026'];
@@ -1162,7 +1162,7 @@
     function matches(item){const filterMatch=activeFilter==='all'||item.country===activeFilter||item.cat===activeFilter;const haystack=[item.title,item.summary,item.source,...(item.tags||[])].join(' ').toLowerCase();return filterMatch&&haystack.includes(query.toLowerCase());}
     function card(item){
       const image=safeImage(item.image),statusText=item.providerOnly?'ارائه‌شده توسط منبع':(item.cred||'نیازمند بازبینی'),label=item.eyebrow||item.flag||'خبر فوتبال';
-      return `<article class="news-card"><a class="card-media" href="${esc(articleHref(item))}">${image?`<img src="${esc(image)}" alt="${esc(item.title)}" loading="lazy" onerror="this.outerHTML='<span class=&quot;media-fallback&quot;>فوتبال‌نما</span>'">`:'<span class="media-fallback">فوتبال‌نما</span>'}</a><div><div class="card-label">${esc(label)}</div><h3><a href="${esc(articleHref(item))}">${esc(item.title)}</a></h3><p class="card-summary">${esc(item.summary||'برای جزئیات بیشتر، خبر را باز کنید.')}</p><div class="card-footer"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span class="status ${esc(item.credClass||'')}">${esc(statusText)}</span></div></div></article>`;
+      return `<article class="news-card"><a class="card-media" href="${esc(articleHref(item))}">${image?`<img src="${esc(image)}" alt="${esc(item.title)}" loading="lazy" onerror="this.outerHTML='<span class=&quot;media-fallback&quot;>نیمکت</span>'">`:'<span class="media-fallback">نیمکت</span>'}</a><div><div class="card-label">${esc(label)}</div><h3><a href="${esc(articleHref(item))}">${esc(item.title)}</a></h3><p class="card-summary">${esc(item.summary||'برای جزئیات بیشتر، خبر را باز کنید.')}</p><div class="card-footer"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span class="status ${esc(item.credClass||'')}">${esc(statusText)}</span></div></div></article>`;
     }
     function render(){
       const filtered=news.filter(item=>!item.isDraft).filter(matches),shown=filtered.slice(0,visibleCount),grid=document.getElementById('newsGrid');
@@ -1174,12 +1174,12 @@
     function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('leagueView').classList.toggle('hidden',view!=='league');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
     function renderArticlePage(id){
       const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
-      document.title=`${item.title} | فوتبال‌نما`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش فوتبال‌نما');
+      document.title=`${item.title} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش نیمکت');
       document.getElementById('articleContent').innerHTML=`${image&&placement==='hero'?`<img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p></header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
       showView('article');return true;
     }
-    function showHome(){document.title='فوتبال‌نما | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));showView('news');}
-    function showLeagues(){const requested=new URLSearchParams(location.search).get('league');if(Object.hasOwn(LEAGUE_CONFIG,requested)&&requested!==selectedLeague){selectedLeague=requested;leagueWeekOffset=0;document.getElementById('leagueSelect').value=selectedLeague;leagueCenterLoaded=false;}document.title='جدول لیگ‌ها و برنامه بازی‌ها | فوتبال‌نما';document.querySelector('meta[name="description"]').setAttribute('content','جدول لیگ‌های معتبر فوتبال و برنامه بازی‌های هفته به وقت ایران.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-league-center')));showView('league');if(!leagueCenterLoaded){leagueCenterLoaded=true;loadLeagueCenter();}}
+    function showHome(){document.title='نیمکت | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));showView('news');}
+    function showLeagues(){const requested=new URLSearchParams(location.search).get('league');if(Object.hasOwn(LEAGUE_CONFIG,requested)&&requested!==selectedLeague){selectedLeague=requested;leagueWeekOffset=0;document.getElementById('leagueSelect').value=selectedLeague;leagueCenterLoaded=false;}document.title='جدول لیگ‌ها و برنامه بازی‌ها | نیمکت';document.querySelector('meta[name="description"]').setAttribute('content','جدول لیگ‌های معتبر فوتبال و برنامه بازی‌های هفته به وقت ایران.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-league-center')));showView('league');if(!leagueCenterLoaded){leagueCenterLoaded=true;loadLeagueCenter();}}
     function route(){const params=new URLSearchParams(location.search),id=params.get('article');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(params.get('page')==='leagues'){showLeagues();return;}if(!id||!renderArticlePage(id))showHome();}
     const featuredRoot=document.getElementById('featured');
     featuredRoot.addEventListener('click',event=>{const dot=event.target.closest('[data-feature-index]'),arrow=event.target.closest('[data-feature-step]');if(!dot&&!arrow)return;renderFeatured(dot?Number(dot.dataset.featureIndex):featuredIndex+Number(arrow.dataset.featureStep));startFeaturedRotation();});

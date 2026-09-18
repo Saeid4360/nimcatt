@@ -51,6 +51,7 @@
     .hero-layout { display:grid; grid-template-columns:minmax(0,2.2fr) minmax(300px,.8fr); align-items:start; gap:22px; }
     .feature,.panel,.feed-shell { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); }
     .feature { position:relative; overflow:hidden; min-height:420px; display:block; border:0; background:#131519; box-shadow:0 16px 40px rgba(20,24,30,.13); }
+    .feature-frame { min-height:inherit; animation:feature-reveal .55s ease; }
     .feature-media { position:absolute; inset:0; min-height:420px; background:#252525; overflow:hidden; }
     .feature-media img { height:100%; object-fit:cover; }
     .feature-media::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(10,11,14,.06) 5%,rgba(10,11,14,.34) 54%,rgba(10,11,14,.94) 100%); }
@@ -65,6 +66,14 @@
     .source-name { color:var(--ink); font-weight:900; }
     .read-button { align-self:flex-start; margin-top:18px; padding:10px 18px; border:0; border-radius:5px; background:var(--red); color:#fff; font-size:12px; font-weight:900; cursor:pointer; box-shadow:0 8px 20px rgba(226,27,45,.22); }
     .read-button:hover { background:var(--red-dark); }
+    .feature-controls { position:absolute; z-index:4; top:22px; left:24px; display:flex; align-items:center; gap:8px; padding:7px 9px; border:1px solid rgba(255,255,255,.22); border-radius:999px; background:rgba(12,14,17,.58); backdrop-filter:blur(9px); }
+    .feature-arrow,.feature-dot { border:0; background:transparent; color:#fff; cursor:pointer; }
+    .feature-arrow { width:26px; height:26px; padding:0; border-radius:50%; font-size:18px; line-height:25px; }
+    .feature-arrow:hover,.feature-arrow:focus-visible { background:rgba(255,255,255,.17); outline:none; }
+    .feature-dots { display:flex; align-items:center; gap:5px; direction:ltr; }
+    .feature-dot { width:7px; height:7px; padding:0; border-radius:999px; background:rgba(255,255,255,.45); transition:width .25s ease,background .25s ease; }
+    .feature-dot.active { width:23px; background:#fff; }
+    @keyframes feature-reveal { from { opacity:.3; transform:scale(1.008); } to { opacity:1; transform:scale(1); } }
 
     .panel { padding:20px; box-shadow:0 8px 26px rgba(22,26,32,.035); }
     .hero-layout > .panel { height:420px; overflow:hidden; }
@@ -287,6 +296,7 @@
       .feature-copy { width:100%; padding:26px 22px; }
       .feature h1 { font-size:25px; line-height:1.45; }
       .feature p { font-size:14px; line-height:1.9; }
+      .feature-controls { top:16px; left:16px; }
       .latest-list { display:block; }
       .feed-shell { padding:18px; }
       .section-header { align-items:flex-end; }
@@ -316,6 +326,10 @@
       .drawer-figure.figure-size-wide,.drawer-figure.figure-size-medium,.drawer-figure.figure-size-small { width:100%; }
       .article-page-hero.hero-size-wide,.article-page-hero.hero-size-medium,.article-page-hero.hero-size-small { width:100%; }
       .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .feature-frame { animation:none; }
+      .feature-dot { transition:none; }
     }
     /* Visual editor workspace */
     body.editor-mode { overflow:hidden; }
@@ -773,9 +787,21 @@
       setupEditorOptions();fillEditor(item);document.title='میز تحریریه | فوتبال‌نما';showView('editor');
     }
 
-    function renderFeatured(){
-      const item=news.find(entry=>!entry.isDraft);if(!item)return;
-      document.getElementById('featured').innerHTML=`<a class="feature-media" href="${esc(articleHref(item))}"><img src="${esc(item.image)}" alt="${esc(item.title)}"></a><div class="feature-copy"><span class="kicker">${esc(item.eyebrow)}</span><h1><a href="${esc(articleHref(item))}">${esc(item.title)}</a></h1><p>${esc(item.summary)}</p><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang)}</span></div><a class="read-button" href="${esc(articleHref(item))}">مشاهده گزارش</a></div>`;
+    const FEATURED_NEWS_IDS=['analysis-man-utd-sky-2026','news-chelsea-clearlake-control-2026','analysis-future-european-leagues-2026','analysis-real-madrid-mourinho-2026'];
+    let featuredIndex=0,featuredTimer;
+    function featuredItems(){
+      const curated=FEATURED_NEWS_IDS.map(id=>news.find(item=>item.id===id&&!item.isDraft&&safeImage(item.image))).filter(Boolean);
+      return curated.length?curated:news.filter(item=>!item.isDraft&&item.lang==='فارسی'&&safeImage(item.image)).slice(0,4);
+    }
+    function renderFeatured(index=featuredIndex){
+      const items=featuredItems(),root=document.getElementById('featured');if(!items.length){root.innerHTML='';return;}
+      featuredIndex=(Number(index)+items.length)%items.length;const item=items[featuredIndex],href=articleHref(item),controls=items.length>1?`<div class="feature-controls" aria-label="کنترل پرونده‌های ویژه"><button class="feature-arrow" type="button" data-feature-step="-1" aria-label="خبر ویژه قبلی">‹</button><div class="feature-dots">${items.map((entry,itemIndex)=>`<button class="feature-dot${itemIndex===featuredIndex?' active':''}" type="button" data-feature-index="${itemIndex}" aria-label="نمایش خبر ویژه ${Number(itemIndex+1).toLocaleString('fa-IR')}" aria-current="${itemIndex===featuredIndex?'true':'false'}"></button>`).join('')}</div><button class="feature-arrow" type="button" data-feature-step="1" aria-label="خبر ویژه بعدی">›</button></div>`:'';
+      root.innerHTML=`<div class="feature-frame"><a class="feature-media" href="${esc(href)}"><img src="${esc(safeImage(item.image))}" alt="${esc(item.title)}"></a><div class="feature-copy"><span class="kicker">${esc(item.eyebrow||'خبر ویژه')}</span><h1><a href="${esc(href)}">${esc(item.title)}</a></h1><p>${esc(item.summary)}</p><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang)}</span></div><a class="read-button" href="${esc(href)}">مشاهده گزارش</a></div>${controls}</div>`;
+    }
+    function stopFeaturedRotation(){clearInterval(featuredTimer);featuredTimer=null;}
+    function startFeaturedRotation(){
+      stopFeaturedRotation();if(featuredItems().length<2||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      featuredTimer=setInterval(()=>{if(!document.hidden)renderFeatured(featuredIndex+1);},6500);
     }
     function renderLatest(){
       const items=news.filter(item=>!item.isDraft&&item.lang==='فارسی').slice(0,6),root=document.getElementById('latestList');
@@ -803,6 +829,13 @@
     }
     function showHome(){document.title='فوتبال‌نما | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');showView('news');}
     function route(){const params=new URLSearchParams(location.search),id=params.get('article');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(!id||!renderArticlePage(id))showHome();}
+    const featuredRoot=document.getElementById('featured');
+    featuredRoot.addEventListener('click',event=>{const dot=event.target.closest('[data-feature-index]'),arrow=event.target.closest('[data-feature-step]');if(!dot&&!arrow)return;renderFeatured(dot?Number(dot.dataset.featureIndex):featuredIndex+Number(arrow.dataset.featureStep));startFeaturedRotation();});
+    featuredRoot.addEventListener('mouseenter',stopFeaturedRotation);
+    featuredRoot.addEventListener('mouseleave',startFeaturedRotation);
+    featuredRoot.addEventListener('focusin',stopFeaturedRotation);
+    featuredRoot.addEventListener('focusout',event=>{if(!featuredRoot.contains(event.relatedTarget))startFeaturedRotation();});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)stopFeaturedRotation();else startFeaturedRotation();});
     document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]');if(filter){history.pushState({},'',location.pathname);setFilter(filter.dataset.filter);}if(view){history.pushState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(selectedEditorId)}`);showEditor(selectedEditorId);}if(event.target.closest('[data-go-home]')){event.preventDefault();history.pushState({},'',location.pathname);setFilter('all');showHome();}});
     document.getElementById('searchInput').addEventListener('input',event=>{query=event.target.value.trim();visibleCount=10;render();});
     document.getElementById('focusSearch').addEventListener('click',()=>{history.pushState({},'',location.pathname);showView('news');document.getElementById('searchInput').focus();document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});});
@@ -827,7 +860,7 @@
     document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!item)return;if(item.isCustom){if(!confirm('این خبر ساخته‌شده حذف شود؟'))return;const index=news.indexOf(item);news.splice(index,1);persistCreatedNews();const next=news[Math.min(index,news.length-1)]||news[0];renderFeatured();renderLatest();render();setupEditorOptions();if(next){fillEditor(next);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(next.id)}`);}toast('خبر ساخته‌شده حذف شد.');return;}if(!original||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','cat','country','time','cred','image','imageSettings','url','tags','why','body','media'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
     document.getElementById('editorHomeBtn').addEventListener('click',()=>{history.pushState({},'',location.pathname);showHome();});
     if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
-    setupEditorOptions();renderFeatured();renderLatest();render();route();
+    setupEditorOptions();renderFeatured();startFeaturedRotation();renderLatest();render();route();
   </script>
 </body>
 </html>

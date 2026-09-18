@@ -123,6 +123,59 @@
     .latest-item:hover h3 { color:var(--red); }
     .latest-item small { color:var(--muted); font-size:11px; }
 
+    .league-center { margin-top:24px; overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:0 8px 26px rgba(22,26,32,.035); }
+    .league-center-header { min-height:76px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; gap:18px; border-bottom:1px solid var(--line); }
+    .league-center-heading { min-width:0; }
+    .league-center-heading p { margin:3px 13px 0 0; color:var(--muted); font-size:11px; }
+    .league-center-actions { display:flex; align-items:center; gap:10px; }
+    .league-select-label { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:11px; white-space:nowrap; }
+    .league-select { min-width:200px; height:40px; padding:0 11px 0 30px; border:1px solid #d7dade; border-radius:6px; background:#fff; color:var(--ink); font:inherit; font-size:12px; font-weight:700; cursor:pointer; }
+    .league-data-source { color:#454b52; font-size:11px; font-weight:700; white-space:nowrap; }
+    .league-center-grid { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(330px,.75fr); min-height:520px; }
+    .standings-panel { min-width:0; padding:20px; border-left:1px solid var(--line); }
+    .league-panel-head { min-height:42px; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .league-panel-head h3 { margin:0; color:#202328; font-size:17px; line-height:1.55; letter-spacing:-.2px; }
+    .league-panel-head small { display:block; margin-top:2px; color:var(--muted); font-size:10px; }
+    .table-legend { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:10px; white-space:nowrap; }
+    .legend-item { display:flex; align-items:center; gap:4px; }
+    .legend-dot { width:7px; height:7px; border-radius:50%; background:#3c7bc4; }
+    .legend-dot.danger { background:#d74b56; }
+    .standings-scroll { margin-top:10px; overflow-x:auto; scrollbar-width:thin; }
+    .standings-table { width:100%; min-width:650px; border-collapse:collapse; font-size:12px; font-variant-numeric:tabular-nums; }
+    .standings-table th { height:36px; padding:0 8px; border-bottom:1px solid var(--line); background:#f7f8f9; color:#747a81; font-size:10px; font-weight:700; text-align:center; white-space:nowrap; }
+    .standings-table th.team-column { text-align:right; }
+    .standings-table td { height:43px; padding:5px 8px; border-bottom:1px solid #eef0f2; text-align:center; }
+    .standings-table tbody tr:last-child td { border-bottom:0; }
+    .standings-table tbody tr:hover { background:#fafbfc; }
+    .standings-rank { width:30px; color:#555b62; font-weight:700; }
+    .rank-mark { width:24px; height:24px; display:grid; place-items:center; margin:auto; border-radius:50%; background:#f1f3f5; }
+    .rank-mark.top { background:#e7f0fb; color:#2766ae; }
+    .rank-mark.drop { background:#fdecee; color:#b72d3a; }
+    .standings-team { min-width:180px; display:flex; align-items:center; gap:9px; text-align:right; font-weight:700; }
+    .standings-team img { width:25px; height:25px; flex:none; object-fit:contain; }
+    .standings-team span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .standing-points { color:#111317; font-size:13px; font-weight:900; }
+    .standing-diff.positive { color:var(--success); }
+    .standing-diff.negative { color:#ba2936; }
+    .fixtures-panel { min-width:0; padding:20px; background:#fafbfc; }
+    .week-navigation { display:flex; align-items:center; gap:5px; direction:ltr; }
+    .week-button { width:32px; height:32px; display:grid; place-items:center; border:1px solid #d9dde1; border-radius:5px; background:#fff; color:#33383e; font-size:17px; cursor:pointer; }
+    .week-button:hover { border-color:#9ca2a8; }
+    .fixture-list { display:grid; gap:9px; margin-top:12px; }
+    .fixture-card { padding:11px 12px; border:1px solid #e1e4e7; border-radius:7px; background:#fff; }
+    .fixture-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; color:var(--muted); font-size:10px; }
+    .fixture-status { color:#42484f; font-weight:800; }
+    .fixture-status.live { color:var(--red); }
+    .fixture-teams { display:grid; grid-template-columns:minmax(0,1fr) 58px minmax(0,1fr); align-items:center; gap:8px; }
+    .fixture-team { min-width:0; display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; }
+    .fixture-team.away { flex-direction:row-reverse; text-align:left; }
+    .fixture-team img { width:24px; height:24px; flex:none; object-fit:contain; }
+    .fixture-team-name { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .home-away-badge { display:block; margin-top:1px; color:#8a9096; font-size:8px; font-weight:500; }
+    .fixture-score { color:#202328; text-align:center; font-size:12px; font-weight:900; direction:ltr; }
+    .league-loading,.league-empty { min-height:300px; display:flex; align-items:center; justify-content:center; gap:9px; color:var(--muted); font-size:12px; text-align:center; }
+    .fixtures-panel .league-empty { min-height:360px; }
+
     .content-layout { margin-top:24px; display:grid; grid-template-columns:minmax(0,1fr) 292px; gap:22px; align-items:start; }
     .feed-shell { padding:24px; box-shadow:0 8px 26px rgba(22,26,32,.035); }
     .section-header { padding-bottom:16px; border-bottom:1px solid var(--line); }
@@ -308,6 +361,9 @@
       .hero-layout > .panel { height:auto; overflow:visible; }
       .hero-layout .latest-item:nth-child(n+5) { display:grid; }
       .latest-list { display:grid; grid-template-columns:repeat(2,1fr); gap:0 18px; }
+      .league-center-grid { grid-template-columns:1fr; }
+      .standings-panel { border-left:0; border-bottom:1px solid var(--line); }
+      .fixtures-panel .league-empty { min-height:180px; }
       .content-layout { grid-template-columns:1fr; }
       .editor-workspace { grid-template-columns:1fr; }
       .editor-sidebar { border-left:0; border-bottom:1px solid var(--line); }
@@ -339,6 +395,17 @@
       .feature p { font-size:14px; line-height:1.9; }
       .feature-controls { top:16px; left:16px; }
       .latest-list { display:block; }
+      .league-center-header { align-items:flex-start; flex-direction:column; padding:16px; }
+      .league-center-actions { width:100%; }
+      .league-select-label { width:100%; }
+      .league-select { flex:1; min-width:0; }
+      .league-data-source { display:none; }
+      .standings-panel,.fixtures-panel { padding:16px; }
+      .league-panel-head { align-items:flex-start; }
+      .table-legend { display:none; }
+      .standings-scroll { margin-left:-16px; margin-right:-16px; padding:0 16px; }
+      .standings-table { min-width:610px; }
+      .fixture-teams { grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr); }
       .feed-shell { padding:18px; }
       .section-header { align-items:flex-end; }
       .controls { align-items:stretch; flex-direction:column; }
@@ -494,6 +561,25 @@
         <article id="featured" class="feature" aria-label="خبر شاخص"></article>
         <aside class="panel"><div class="panel-header"><h2 class="panel-title">منتخب تحریریه</h2><span class="tiny-status">خواندنی‌های فارسی</span></div><div id="latestList" class="latest-list"></div></aside>
       </div>
+      <section class="league-center" id="leagueCenter" aria-label="جدول لیگ‌ها و بازی‌های هفته">
+        <header class="league-center-header">
+          <div class="league-center-heading"><h2 class="section-title">جدول لیگ‌ها</h2><p>رتبه‌بندی رسمی، امتیازها و برنامه بازی‌ها به وقت ایران</p></div>
+          <div class="league-center-actions">
+            <label class="league-select-label"><span>انتخاب لیگ</span><select class="league-select" id="leagueSelect" aria-label="انتخاب جدول لیگ"></select></label>
+            <a class="league-data-source" id="leagueSource" href="https://www.espn.com/soccer/table" target="_blank" rel="noopener">داده رسمی ESPN ↗</a>
+          </div>
+        </header>
+        <div class="league-center-grid">
+          <article class="standings-panel">
+            <div class="league-panel-head"><div><h3 id="standingsTitle">جدول لیگ برتر انگلیس</h3><small id="standingsSeason">در حال دریافت فصل…</small></div><div class="table-legend"><span class="legend-item"><i class="legend-dot"></i>سهمیه اروپا</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span></div></div>
+            <div id="standingsTable" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت جدول…</span></div></div>
+          </article>
+          <aside class="fixtures-panel">
+            <div class="league-panel-head"><div><h3 id="fixturesTitle">بازی‌های هفته</h3><small id="fixturesRange">برنامه میزبان و میهمان</small></div><div class="week-navigation" aria-label="تغییر هفته"><button class="week-button" id="previousLeagueWeek" type="button" aria-label="هفته قبل">‹</button><button class="week-button" id="nextLeagueWeek" type="button" aria-label="هفته بعد">›</button></div></div>
+            <div class="fixture-list" id="leagueFixtures" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت بازی‌ها…</span></div></div>
+          </aside>
+        </div>
+      </section>
       <div class="content-layout">
         <section class="feed-shell">
           <div class="section-header"><h2 class="section-title">آخرین اخبار و تحلیل‌ها</h2><span class="result-count" id="resultCount"></span></div>
@@ -847,13 +933,13 @@
       stopFeaturedRotation();if(featuredItems().length<2||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
       featuredTimer=setInterval(()=>{if(!document.hidden)renderFeatured(featuredIndex+1);},6500);
     }
-    const IRAN_TIME_ZONE='Asia/Tehran',ESPN_SCOREBOARD_URL='https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard';
+    const IRAN_TIME_ZONE='Asia/Tehran',ESPN_SCOREBOARD_URL='https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard',ESPN_SOCCER_API='https://site.api.espn.com/apis/site/v2/sports/soccer',ESPN_STANDINGS_API='https://site.api.espn.com/apis/v2/sports/soccer';
     const TEAM_NAME_FA={
-      'arsenal':'آرسنال','chelsea':'چلسی','liverpool':'لیورپول','manchester city':'منچستر سیتی','man city':'منچستر سیتی','manchester united':'منچستر یونایتد','man united':'منچستر یونایتد','tottenham hotspur':'تاتنهام','spurs':'تاتنهام','newcastle united':'نیوکاسل','newcastle':'نیوکاسل','aston villa':'استون ویلا','brighton & hove albion':'برایتون','brighton':'برایتون','brentford':'برنتفورد','west ham united':'وستهام','everton':'اورتون','crystal palace':'کریستال پالاس','fulham':'فولام','afc bournemouth':'بورنموث','wolverhampton wanderers':'ولورهمپتون','wolves':'ولورهمپتون','nottingham forest':'ناتینگهام فارست','nottm forest':'ناتینگهام فارست','leeds united':'لیدز یونایتد','sunderland':'ساندرلند','burnley':'برنلی','ipswich':'ایپسویچ','hull':'هال سیتی','coventry':'کاونتری',
-      'real madrid':'رئال مادرید','barcelona':'بارسلونا','atletico madrid':'اتلتیکو مادرید','athletic club':'اتلتیک بیلبائو','athletic':'اتلتیک بیلبائو','sevilla':'سویا','valencia':'والنسیا','villarreal':'ویارئال','real sociedad':'رئال سوسیداد','real betis':'رئال بتیس','girona':'خیرونا','espanyol':'اسپانیول','celta vigo':'سلتاویگو','getafe':'ختافه','osasuna':'اوساسونا','mallorca':'مایورکا','rayo vallecano':'رایو وایکانو','rayo':'رایو وایکانو','elche':'الچه','alaves':'آلاوس','levante':'لوانته','real oviedo':'رئال اویدو','albacete':'آلباسته','cordoba':'کوردوبا','racing':'راسینگ سانتاندر',
-      'internazionale':'اینتر','inter milan':'اینتر','ac milan':'میلان','milan':'میلان','juventus':'یوونتوس','napoli':'ناپولی','as roma':'رم','roma':'رم','lazio':'لاتزیو','atalanta':'آتالانتا','fiorentina':'فیورنتینا','bologna':'بولونیا','torino':'تورینو','udinese':'اودینزه','genoa':'جنوا','parma':'پارما','sassuolo':'ساسولو','monza':'مونزا','como':'کومو','cagliari':'کالیاری','venezia':'ونتزیا',
-      'bayern munich':'بایرن مونیخ','borussia dortmund':'بوروسیا دورتموند','dortmund':'دورتموند','bayer leverkusen':'بایرلورکوزن','rb leipzig':'لایپزیش','eintracht frankfurt':'اینتراخت فرانکفورت','frankfurt':'فرانکفورت','vfb stuttgart':'اشتوتگارت','stuttgart':'اشتوتگارت','vfl wolfsburg':'ولفسبورگ','wolfsburg':'ولفسبورگ','borussia monchengladbach':'مونشن گلادباخ','gladbach':'مونشن گلادباخ','sc freiburg':'فرایبورگ','freiburg':'فرایبورگ','tsg hoffenheim':'هوفنهایم','werder bremen':'وردربرمن','bremen':'وردربرمن','union berlin':'اونیون برلین','st pauli':'سن پائولی','hamburg sv':'هامبورگ','hamburg':'هامبورگ','fc cologne':'کلن','cologne':'کلن','mainz':'ماینتس','augsburg':'آگزبورگ','heidenheim':'هایدنهایم','greuther furth':'گروتر فورث','magdeburg':'ماگدبورگ',
-      'paris saint-germain':'پاری سن ژرمن','psg':'پاری سن ژرمن','marseille':'مارسی','lyon':'لیون','monaco':'موناکو','lille':'لیل','nice':'نیس','rennes':'رن','lens':'لانس','strasbourg':'استراسبورگ','nantes':'نانت','ajax amsterdam':'آژاکس','ajax':'آژاکس','psv eindhoven':'آیندهوون','psv':'آیندهوون','feyenoord rotterdam':'فاینورد','feyenoord':'فاینورد','az alkmaar':'آلکمار','benfica':'بنفیکا','sporting cp':'اسپورتینگ لیسبون','sporting':'اسپورتینگ لیسبون','fc porto':'پورتو','porto':'پورتو','braga':'براگا','celtic':'سلتیک','rangers':'رنجرز','galatasaray':'گالاتاسرای','fenerbahce':'فنرباغچه','al nassr':'النصر','al hilal':'الهلال','inter miami cf':'اینتر میامی','inter miami':'اینتر میامی','la galaxy':'لس‌آنجلس گلکسی'
+      'arsenal':'آرسنال','chelsea':'چلسی','liverpool':'لیورپول','manchester city':'منچستر سیتی','man city':'منچستر سیتی','manchester united':'منچستر یونایتد','man united':'منچستر یونایتد','tottenham hotspur':'تاتنهام','spurs':'تاتنهام','newcastle united':'نیوکاسل','newcastle':'نیوکاسل','aston villa':'استون ویلا','brighton & hove albion':'برایتون','brighton':'برایتون','brentford':'برنتفورد','west ham united':'وستهام','everton':'اورتون','crystal palace':'کریستال پالاس','fulham':'فولام','afc bournemouth':'بورنموث','wolverhampton wanderers':'ولورهمپتون','wolves':'ولورهمپتون','nottingham forest':'ناتینگهام فارست','nottm forest':'ناتینگهام فارست','leeds united':'لیدز یونایتد','sunderland':'ساندرلند','burnley':'برنلی','ipswich':'ایپسویچ','ipswich town':'ایپسویچ','hull':'هال سیتی','hull city':'هال سیتی','coventry':'کاونتری','coventry city':'کاونتری',
+      'real madrid':'رئال مادرید','barcelona':'بارسلونا','atletico madrid':'اتلتیکو مادرید','athletic club':'اتلتیک بیلبائو','athletic':'اتلتیک بیلبائو','sevilla':'سویا','valencia':'والنسیا','villarreal':'ویارئال','real sociedad':'رئال سوسیداد','real betis':'رئال بتیس','girona':'خیرونا','espanyol':'اسپانیول','celta vigo':'سلتاویگو','getafe':'ختافه','osasuna':'اوساسونا','mallorca':'مایورکا','rayo vallecano':'رایو وایکانو','rayo':'رایو وایکانو','elche':'الچه','alaves':'آلاوس','deportivo':'دپورتیوو لاکرونیا','levante':'لوانته','real oviedo':'رئال اویدو','albacete':'آلباسته','cordoba':'کوردوبا','racing':'راسینگ سانتاندر','racing santander':'راسینگ سانتاندر','malaga':'مالاگا',
+      'internazionale':'اینتر','inter milan':'اینتر','ac milan':'میلان','milan':'میلان','juventus':'یوونتوس','napoli':'ناپولی','as roma':'رم','roma':'رم','lazio':'لاتزیو','atalanta':'آتالانتا','fiorentina':'فیورنتینا','bologna':'بولونیا','torino':'تورینو','udinese':'اودینزه','genoa':'جنوا','parma':'پارما','sassuolo':'ساسولو','monza':'مونزا','como':'کومو','cagliari':'کالیاری','venezia':'ونتزیا','frosinone':'فروزینونه','lecce':'لچه',
+      'bayern munich':'بایرن مونیخ','borussia dortmund':'بوروسیا دورتموند','dortmund':'دورتموند','bayer leverkusen':'بایرلورکوزن','rb leipzig':'لایپزیش','eintracht frankfurt':'اینتراخت فرانکفورت','frankfurt':'فرانکفورت','vfb stuttgart':'اشتوتگارت','stuttgart':'اشتوتگارت','vfl wolfsburg':'ولفسبورگ','wolfsburg':'ولفسبورگ','borussia monchengladbach':'مونشن گلادباخ','gladbach':'مونشن گلادباخ','sc freiburg':'فرایبورگ','freiburg':'فرایبورگ','tsg hoffenheim':'هوفنهایم','werder bremen':'وردربرمن','bremen':'وردربرمن','union berlin':'اونیون برلین','1 fc union berlin':'اونیون برلین','st pauli':'سن پائولی','hamburg sv':'هامبورگ','hamburg':'هامبورگ','fc cologne':'کلن','cologne':'کلن','mainz':'ماینتس','augsburg':'آگزبورگ','heidenheim':'هایدنهایم','greuther furth':'گروتر فورث','magdeburg':'ماگدبورگ','sv elversberg':'الفرسبرگ','schalke 04':'شالکه','sc paderborn 07':'پادربورن',
+      'paris saint-germain':'پاری سن ژرمن','psg':'پاری سن ژرمن','paris fc':'پاریس اف‌سی','marseille':'مارسی','lyon':'لیون','monaco':'موناکو','as monaco':'موناکو','lille':'لیل','nice':'نیس','rennes':'رن','stade rennais':'رن','lens':'لانس','strasbourg':'استراسبورگ','nantes':'نانت','brest':'برست','lorient':'لوریان','angers':'آنژه','troyes':'تروا','le mans':'لو مان','aj auxerre':'اوسر','le havre ac':'لو آور','toulouse':'تولوز','ajax amsterdam':'آژاکس','ajax':'آژاکس','psv eindhoven':'آیندهوون','psv':'آیندهوون','feyenoord rotterdam':'فاینورد','feyenoord':'فاینورد','az alkmaar':'آلکمار','fc twente':'توئنته','excelsior':'اکسلسیور','fortuna sittard':'فورتونا سیتارد','go ahead eagles':'گو اهد ایگلز','fc groningen':'گرونینگن','nec nijmegen':'ان‌ای‌سی نایمخن','heerenveen':'هیرنفین','sparta rotterdam':'اسپارتا روتردام','telstar':'تلستار','fc utrecht':'اوترخت','sc cambuur':'کامبور','pec zwolle':'پک زوولل','willem ii':'ویلم دوم','ado den haag':'دن هاخ','benfica':'بنفیکا','sporting cp':'اسپورتینگ لیسبون','sporting':'اسپورتینگ لیسبون','fc porto':'پورتو','porto':'پورتو','braga':'براگا','celtic':'سلتیک','rangers':'رنجرز','galatasaray':'گالاتاسرای','fenerbahce':'فنرباغچه','al nassr':'النصر','al hilal':'الهلال','inter miami cf':'اینتر میامی','inter miami':'اینتر میامی','la galaxy':'لس‌آنجلس گلکسی'
     };
     const TEAM_WORD_FA={'fc':'','afc':'','cf':'','sc':'','ac':'','sv':'','club':'باشگاه','united':'یونایتد','city':'سیتی','real':'رئال','athletic':'اتلتیک','atletico':'اتلتیکو','inter':'اینتر','saint':'سن','st':'سن','borussia':'بوروسیا','bayern':'بایرن','sporting':'اسپورتینگ','dynamo':'دینامو','olympic':'المپیک','&':'و'};
     let selectedScoreDate=tehranDateKey(new Date()),scoreRequestId=0,selectedTournament='all',loadedScoreEvents=[],scoreLastUpdated=null;
@@ -897,6 +983,32 @@
       }catch(error){if(requestId!==scoreRequestId)return;root.innerHTML='<div class="score-state"><span>دریافت نتایج ممکن نشد.</span><button class="score-retry" type="button" data-score-retry>تلاش دوباره</button></div>';updated.textContent='ارتباط با ESPN برقرار نشد';document.getElementById('scoreTournament').disabled=false;}
     }
     function initScores(){renderScoreDateNav();loadScores();document.getElementById('scoreDateNav').addEventListener('click',event=>{const button=event.target.closest('[data-score-date]');if(!button)return;selectedScoreDate=button.dataset.scoreDate;selectedTournament='all';renderScoreDateNav();loadScores();});document.getElementById('scoreTournament').addEventListener('change',event=>{selectedTournament=event.target.value;renderLoadedScores();});document.getElementById('scoreBoard').addEventListener('click',event=>{if(event.target.closest('[data-score-retry]'))loadScores();});setInterval(()=>{if(!document.hidden&&selectedScoreDate===tehranDateKey(new Date()))loadScores(false);},30000);}
+    const LEAGUE_CONFIG={
+      'eng.1':{name:'لیگ برتر انگلیس',table:'https://www.espn.com/soccer/table/_/league/eng.1'},
+      'esp.1':{name:'لالیگا اسپانیا',table:'https://www.espn.com/soccer/table/_/league/esp.1'},
+      'ita.1':{name:'سری آ ایتالیا',table:'https://www.espn.com/soccer/table/_/league/ita.1'},
+      'ger.1':{name:'بوندس‌لیگا آلمان',table:'https://www.espn.com/soccer/table/_/league/ger.1'},
+      'fra.1':{name:'لیگ یک فرانسه',table:'https://www.espn.com/soccer/table/_/league/fra.1'},
+      'ned.1':{name:'اردیویژه هلند',table:'https://www.espn.com/soccer/table/_/league/ned.1'}
+    };
+    const leagueDataCache=new Map();let selectedLeague='eng.1',leagueWeekOffset=0,leagueRequestId=0;
+    function leagueStat(entry,name){return entry.stats?.find(stat=>stat.name===name)?.value??0;}
+    function leagueWeekRange(offset=0){const today=new Date(`${tehranDateKey(new Date())}T12:00:00Z`),daysFromMonday=(today.getUTCDay()+6)%7;today.setUTCDate(today.getUTCDate()-daysFromMonday+(offset*7));const end=new Date(today);end.setUTCDate(end.getUTCDate()+6);return {start:today.toISOString().slice(0,10),end:end.toISOString().slice(0,10)};}
+    function leagueRangeLabel(range){const format=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{day:'numeric',month:'short',timeZone:IRAN_TIME_ZONE});return `${format.format(new Date(`${range.start}T12:00:00Z`))} تا ${format.format(new Date(`${range.end}T12:00:00Z`))}`;}
+    function leagueSeasonLabel(value=''){const match=String(value).match(/(\d{4})-(\d{2,4})/);if(!match)return faNumber(value);const end=match[2].length===2?`${match[1].slice(0,2)}${match[2]}`:match[2];return `فصل ${faNumber(match[1])}–${faNumber(end)}`;}
+    function fetchLeagueJson(url){if(!leagueDataCache.has(url))leagueDataCache.set(url,fetch(url).then(response=>{if(!response.ok)throw new Error(`ESPN ${response.status}`);return response.json();}).catch(error=>{leagueDataCache.delete(url);throw error;}));return leagueDataCache.get(url);}
+    function renderStandings(entries){
+      const rows=entries.map((entry,index)=>{const team=entry.team||{},rank=Number(leagueStat(entry,'rank'))||index+1,games=leagueStat(entry,'gamesPlayed'),wins=leagueStat(entry,'wins'),draws=leagueStat(entry,'ties'),losses=leagueStat(entry,'losses'),goalsFor=leagueStat(entry,'pointsFor'),goalsAgainst=leagueStat(entry,'pointsAgainst'),difference=Number(leagueStat(entry,'pointDifferential')),points=leagueStat(entry,'points'),note=entry.note?.description||'',zone=/Champions|Europa|Conference|Promotion/i.test(note)?'top':/Relegation/i.test(note)?'drop':'',original=team.displayName||team.name||'';return `<tr><td class="standings-rank"><span class="rank-mark ${zone}" title="${esc(note)}">${faNumber(rank)}</span></td><td><span class="standings-team" title="${esc(original)}">${team.logos?.[0]?.href?`<img src="${esc(team.logos[0].href)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span>${esc(persianTeamName(original))}</span></span></td><td>${faNumber(games)}</td><td>${faNumber(wins)}</td><td>${faNumber(draws)}</td><td>${faNumber(losses)}</td><td>${faNumber(goalsFor)}</td><td>${faNumber(goalsAgainst)}</td><td class="standing-diff ${difference>0?'positive':difference<0?'negative':''}">${difference>0?'+':''}${faNumber(difference)}</td><td class="standing-points">${faNumber(points)}</td></tr>`;}).join('');
+      document.getElementById('standingsTable').innerHTML=rows?`<div class="standings-scroll"><table class="standings-table"><thead><tr><th>رتبه</th><th class="team-column">تیم</th><th title="بازی">بازی</th><th title="برد">برد</th><th title="مساوی">مساوی</th><th title="باخت">باخت</th><th title="گل زده">زده</th><th title="گل خورده">خورده</th><th title="تفاضل گل">تفاضل</th><th>امتیاز</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<div class="league-empty">جدول این لیگ در دسترس نیست.</div>';
+    }
+    function leagueFixtureCard(event){const competition=event.competitions?.[0]||{},teams=competition.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!home||!away)return'';const state=scoreState(event),status=scoreStatus(event),date=new Date(event.date),day=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'short',timeZone:IRAN_TIME_ZONE}).format(date),link=event.links?.find(item=>(item.rel||[]).includes('summary'))?.href||'https://www.espn.com/soccer/scoreboard',teamView=(team,side)=>{const original=team.team?.displayName||team.team?.shortDisplayName||'';return `<span class="fixture-team ${side}">${team.team?.logo?`<img src="${esc(team.team.logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span class="fixture-team-name" title="${esc(original)}">${esc(persianTeamName(original))}<small class="home-away-badge">${side==='home'?'میزبان':'خارج از خانه'}</small></span></span>`;},result=state==='pre'?scoreTime(date):`${faNumber(home.score||0)} - ${faNumber(away.score||0)}`;return `<a class="fixture-card" href="${esc(link)}" target="_blank" rel="noopener"><span class="fixture-meta"><span>${esc(day)}</span><span class="fixture-status ${status.className}">${state==='pre'?'به وقت ایران':status.label}</span></span><span class="fixture-teams">${teamView(home,'home')}<strong class="fixture-score">${result}</strong>${teamView(away,'away')}</span></a>`;}
+    function renderLeagueFixtures(events,weekNumber,range){document.getElementById('fixturesTitle').textContent=`هفته ${faNumber(Math.max(1,weekNumber))} · ${LEAGUE_CONFIG[selectedLeague].name}`;document.getElementById('fixturesRange').textContent=`${leagueRangeLabel(range)} · زمان ایران`;document.getElementById('leagueFixtures').innerHTML=events.length?events.map(leagueFixtureCard).join(''):'<div class="league-empty">در این بازه مسابقه‌ای ثبت نشده است.</div>';}
+    async function loadLeagueCenter(){
+      const requestId=++leagueRequestId,config=LEAGUE_CONFIG[selectedLeague],range=leagueWeekRange(leagueWeekOffset),standingsRoot=document.getElementById('standingsTable'),fixturesRoot=document.getElementById('leagueFixtures');document.getElementById('standingsTitle').textContent=`جدول ${config.name}`;document.getElementById('standingsSeason').textContent='در حال دریافت فصل…';document.getElementById('leagueSource').href=config.table;standingsRoot.innerHTML='<div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت جدول…</span></div>';fixturesRoot.innerHTML='<div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت بازی‌های هفته…</span></div>';
+      const months=[...new Set([range.start.slice(0,7),range.end.slice(0,7)])].map(value=>value.replace('-','')),standingsUrl=`${ESPN_STANDINGS_API}/${selectedLeague}/standings?region=us&lang=en&contentorigin=espn&type=0&level=3&sort=rank%3Aasc`,fixtureUrls=months.map(month=>`${ESPN_SOCCER_API}/${selectedLeague}/scoreboard?dates=${month}&limit=100`);
+      try{const [standingsData,...fixtureData]=await Promise.all([fetchLeagueJson(standingsUrl),...fixtureUrls.map(fetchLeagueJson)]);if(requestId!==leagueRequestId)return;const child=standingsData.children?.find(item=>item.standings?.entries?.length)||standingsData.children?.[0],entries=child?.standings?.entries||[],season=child?.standings?.seasonDisplayName||child?.name||'',games=entries.map(entry=>Number(leagueStat(entry,'gamesPlayed'))).filter(Number.isFinite),baseWeek=(games.length?Math.min(...games):0)+1,eventMap=new Map();fixtureData.flatMap(data=>data.events||[]).forEach(event=>eventMap.set(event.id,event));const events=[...eventMap.values()].filter(event=>{const key=tehranDateKey(new Date(event.date));return key>=range.start&&key<=range.end;}).sort((a,b)=>new Date(a.date)-new Date(b.date));document.getElementById('standingsSeason').textContent=leagueSeasonLabel(season);renderStandings(entries);renderLeagueFixtures(events,baseWeek+leagueWeekOffset,range);}catch(error){if(requestId!==leagueRequestId)return;standingsRoot.innerHTML='<div class="league-empty">دریافت جدول ممکن نشد.</div>';fixturesRoot.innerHTML='<div class="league-empty"><span>دریافت برنامه ممکن نشد.</span><button class="score-retry" type="button" data-league-retry>تلاش دوباره</button></div>';}
+    }
+    function initLeagueCenter(){const select=document.getElementById('leagueSelect');select.innerHTML=Object.entries(LEAGUE_CONFIG).map(([id,league])=>`<option value="${id}">${league.name}</option>`).join('');select.value=selectedLeague;select.addEventListener('change',event=>{selectedLeague=event.target.value;leagueWeekOffset=0;loadLeagueCenter();});document.getElementById('previousLeagueWeek').addEventListener('click',()=>{leagueWeekOffset=Math.max(-4,leagueWeekOffset-1);loadLeagueCenter();});document.getElementById('nextLeagueWeek').addEventListener('click',()=>{leagueWeekOffset=Math.min(4,leagueWeekOffset+1);loadLeagueCenter();});document.querySelector('.league-center').addEventListener('click',event=>{if(event.target.closest('[data-league-retry]'))loadLeagueCenter();});loadLeagueCenter();}
     function renderLatest(){
       const items=news.filter(item=>!item.isDraft&&item.lang==='فارسی').slice(0,6),root=document.getElementById('latestList');
       if(!items.length){root.innerHTML='<div class="empty">هنوز خبری دریافت نشده است.</div>';return;}
@@ -954,7 +1066,7 @@
     document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!item)return;if(item.isCustom){if(!confirm('این خبر ساخته‌شده حذف شود؟'))return;const index=news.indexOf(item);news.splice(index,1);persistCreatedNews();const next=news[Math.min(index,news.length-1)]||news[0];renderFeatured();renderLatest();render();setupEditorOptions();if(next){fillEditor(next);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(next.id)}`);}toast('خبر ساخته‌شده حذف شد.');return;}if(!original||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','cat','country','time','cred','image','imageSettings','url','tags','why','body','media'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
     document.getElementById('editorHomeBtn').addEventListener('click',()=>{history.pushState({},'',location.pathname);showHome();});
     if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
-    setupEditorOptions();renderFeatured();startFeaturedRotation();initScores();renderLatest();render();route();
+    setupEditorOptions();renderFeatured();startFeaturedRotation();initScores();initLeagueCenter();renderLatest();render();route();
   </script>
 </body>
 </html>

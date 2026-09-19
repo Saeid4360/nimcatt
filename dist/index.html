@@ -255,6 +255,8 @@
     .article-page-head { padding:42px 56px 28px; border-bottom:1px solid var(--line); }
     .article-page-head h1 { max-width:19ch; margin:12px 0 16px; color:#17191d; font-size:clamp(32px,4vw,46px); line-height:1.5; letter-spacing:-1px; }
     .article-page-summary { max-width:760px; margin:24px 0 0; color:#40464d; font-size:18px; line-height:2.05; font-weight:600; }
+    .article-followup { display:flex; align-items:center; flex-wrap:wrap; gap:4px 12px; margin-top:20px; padding:14px 17px; border-right:4px solid var(--red); border-radius:5px; background:#fff4f5; color:#3c3032; font-size:13px; line-height:1.9; }
+    .article-followup a { color:#b51628; font-weight:900; text-decoration:underline; text-underline-offset:3px; }
     .article-page-body { width:min(800px,calc(100% - 112px)); margin-inline:auto; padding:34px 0 62px; }
     .article-page-body .drawer-article { margin-top:34px; color:#292f34; font-size:18px; line-height:2.35; }
     .article-page-body .drawer-article section { padding-bottom:24px; }
@@ -730,7 +732,41 @@
   <script>
     const demoNews=[
       {
-        id:'preview-brighton-arsenal-2026-09-19',country:'england',cat:'preview',flag:'🏴 انگلیس',eyebrow:'پیش‌بازی · هفته پنجم لیگ برتر',
+        id:'news-brighton-arsenal-3-0-2026-09-19',country:'england',cat:'news',flag:'🏴 انگلیس',eyebrow:'گزارش بازی · لیگ برتر انگلیس',
+        title:'جشن ۱۲۵سالگی برایتون با سه گل به قهرمان؛ آرسنال در آمکس فرو ریخت',
+        summary:'برایتون در هفته پنجم لیگ برتر، آرسنال را ۳–۰ شکست داد. گروس، کوستولاس و چما آندرس گل زدند تا شروع بی‌نقص مدافع عنوان قهرمانی در شبی که آمکس جشن گرفته بود، پایان یابد.',
+        source:'تحریریه نیمکت · بر پایه Sky Sports، ESPN و Opta',lang:'فارسی',time:'۲۸ شهریور ۱۴۰۵ · پس از بازی',cred:'گزارش نهایی · منابع معتبر',credClass:'trusted',
+        tags:['برایتون','آرسنال','لیگ برتر انگلیس','گزارش بازی','پاسکال گروس','خارالامپوس کوستولاس','چما آندرس','میکل آرتتا','فابیان هورزلر','هفته پنجم'],
+        why:'این گزارش پس از سوت پایان و با تطبیق نتیجه و گلزنان در داده‌های ESPN، گزارش میدانی Sky Sports و آمار Opta نوشته شده است. نقل‌قول‌های مربیان به‌صورت خلاصه و بازنویسی فارسی آمده‌اند. آمار xG برآورد Opta است و به‌تنهایی کیفیت کامل بازی را نشان نمی‌دهد.',
+        image:'https://e0.365dm.com/26/09/768x432/skysports-charalampos-kostoulas_7356245.jpg?20260919155106=',
+        imageSettings:{placement:'hero',size:'full',ratio:'16x9',align:'center'},
+        matchCover:{home:'برایتون',away:'آرسنال',score:'۳–۰',homeLogo:'https://a.espncdn.com/i/teamlogos/soccer/500/331.png',awayLogo:'https://a.espncdn.com/i/teamlogos/soccer/500/359.png',logoCreditUrl:'https://www.espn.com/soccer/match/_/gameId/401879274/arsenal-brighton-hove-albion',photoCredit:'Sky Sports',photoCreditUrl:'https://www.skysports.com/football/brighton-and-hove-albion-vs-arsenal/report/559486'},
+        url:'https://www.skysports.com/football/brighton-and-hove-albion-vs-arsenal/report/559486',
+        metrics:[
+          {value:'۳–۰',label:'نتیجه نهایی در ورزشگاه آمکس'},
+          {value:'۱۶ گل',label:'گل‌های برایتون در پنج هفته نخست لیگ'},
+          {value:'۱۷–۱۱',label:'تعداد شوت‌ها به سود برایتون'},
+          {value:'۹ بار',label:'بازپس‌گیری توپ در یک‌سوم هجومی برابر آرسنال'}
+        ],
+        body:[
+          {type:'facts',heading:'شناسنامه بازی',text:'رقابت: لیگ برتر انگلیس، هفته پنجم\nنتیجه: برایتون ۳ – آرسنال ۰\nزمان: شنبه ۲۸ شهریور ۱۴۰۵؛ پایان یافته\nورزشگاه: آمکس، برایتون\nگلزنان: پاسکال گروس ۳۱، خارالامپوس کوستولاس ۴۵، چما آندرس ۵۷'},
+          {heading:'از جشن باشگاه تا تلخ‌ترین شب قهرمان',text:'برایتون برای گرامی‌داشت ۱۲۵ سال از نخستین بازی خود با پیراهنی ویژه به آمکس آمد؛ آرسنال اما با چهار برد از چهار هفته نخست و تنها یک گل خورده، دنبال ادامه شروع کاملش بود. در زمین، روایت دیگری شکل گرفت. تیم فابیان هورزلر با فشار روی بازی‌سازی حریف و بردن نبردهای دوم، قهرمان فصل گذشته را از ریتم دلخواهش بیرون آورد و نخستین شکست لیگ این فصل را به او تحمیل کرد.'},
+          {heading:'دو شوت از دور که نیمه اول را عوض کرد',text:'گروس در دقیقه ۳۱ بیرون محوطه صاحب فضا شد و شوتش را از کنار تیر نزدیک وارد دروازه داوید رایا کرد. آرسنال تا پایان نیمه فرصت چندانی نساخت؛ وقتی بوکایو ساکا در دقیقه ۴۴ از فاصله نزدیک به گل نزدیک شد، بارت فربروخن واکنش نشان داد. حدود ۱۵ ثانیه بعد، کوستولاس از فاصله دور ضربه زد و توپ را به گوشه دروازه فرستاد: برایتون با برتری ۲–۰ به رختکن رفت.'},
+          {heading:'کرنر گروس، ضربه سر چما؛ کار تمام شد',text:'بازگشت از رختکن هم مسیر بازی را عوض نکرد. در دقیقه ۵۷، ارسال کرنر گروس به تیر دور رسید و چما آندرس با ضربه سر گل سوم را زد؛ نخستین گل او برای برایتون در نخستین حضور ثابتش در لیگ برتر. میزبان در ادامه هم موقعیت داشت: مت اورایلی در مصاف تک‌به‌تک با رایا ناکام ماند و ضربه برگشتی مالیک یالکوئه به تیر برخورد کرد. در سوی دیگر، فربروخن فرصت تک‌به‌تک کای هاورتس را مهار کرد.'},
+          {type:'facts',heading:'آمار مهم؛ فراتر از عدد روی تابلو',text:'مالکیت توپ: برایتون ۴۰٫۳ درصد؛ آرسنال ۵۹٫۷ درصد\nشوت: برایتون ۱۷؛ آرسنال ۱۱\nموقعیت بزرگ به تعریف Opta: برایتون ۴؛ آرسنال ۲\nامید گل (xG) به روایت Opta: برایتون ۱٫۳۳؛ آرسنال ۱٫۵۸\nبازپس‌گیری در یک‌سوم هجومی: برایتون ۹ بار'},
+          {heading:'چرا نتیجه از مالکیت و xG فاصله گرفت؟',text:'آرسنال توپ را بیشتر در اختیار داشت و حتی مجموع xG آن اندکی بالاتر بود؛ بااین‌حال دو شوت دقیق از بیرون محوطه و یک کرنر، فاصله‌ای سه‌گله روی تابلو ساخت. هم‌زمان پرس برایتون بارها خروج توپ حریف را مختل کرد و به چهار موقعیت بزرگ رسید. بنابراین این نتیجه را نباید فقط به «تسلط آماری» تقلیل داد: کیفیت ضربات نهایی، فشار بدون توپ و لحظه‌های کلیدی، تفاوت اصلی را رقم زدند.'},
+          {heading:'مربیان بعد از بازی چه گفتند؟',text:'میکل آرتتا ضمن تبریک به برایتون، عملکرد تیمش را ناامیدکننده دانست و گفت بازیکنانش در دوئل‌ها و توپ‌های دوم عقب بودند و هنگام مالکیت در نیمه خودی خطاهای فنی زیادی داشتند. هورزلر از شدت، همبستگی و اجرای اصول پایه توسط تیمش تمجید کرد؛ به گفته او، ارزش این پیروزی تنها در شکست‌دادن قهرمان نیست، بلکه در شیوه‌ای است که برایتون بازی کرد.'},
+          {heading:'اثر نتیجه بر فصل؛ فاصله دو امتیازی',text:'برایتون حالا از پنج مسابقه ۱۰ امتیاز و ۱۶ گل زده دارد؛ آرسنال با ۱۲ امتیاز نخستین شکست لیگش را تجربه کرد. این باخت به‌تنهایی سرنوشت قهرمانی را تعیین نمی‌کند، اما پرسشی روشن برای تیم آرتتا باقی می‌گذارد: وقتی حریف بازی‌سازی از عقب را با فشار نفر به نفر می‌بندد، راه دوم آرسنال چیست؟ در سوی مقابل، برایتون پس از ۵ گل به کاونتری، مقابل قهرمان نیز نشان داد خط حمله‌اش فقط برابر تیم‌های پایین جدول کار نمی‌کند.'}
+        ],
+        sources:[
+          {title:'ESPN؛ نتیجه نهایی، گلزنان و جدول مسابقه',url:'https://www.espn.com/soccer/match/_/gameId/401879274/arsenal-brighton-hove-albion'},
+          {title:'Sky Sports؛ گزارش بازی و صحبت‌های مربیان',url:'https://www.skysports.com/football/brighton-and-hove-albion-vs-arsenal/report/559486'},
+          {title:'Opta Analyst؛ آمار شوت، xG و بازپس‌گیری توپ',url:'https://theanalyst.com/articles/brighton-vs-arsenal-stats-premier-league-09-2026'},
+          {title:'باشگاه برایتون؛ برنامه جشن ۱۲۵سالگی در آمکس',url:'https://www.brightonandhovealbion.com/media-article/a-special-amex-matchday-as-we-celebrate-the-125th-anniversary-of-our-first-match'}
+        ]
+      },
+      {
+        id:'preview-brighton-arsenal-2026-09-19',country:'england',cat:'preview',flag:'🏴 انگلیس',eyebrow:'آرشیو پیش‌بازی · هفته پنجم لیگ برتر',followupId:'news-brighton-arsenal-3-0-2026-09-19',
         title:'برایتون – آرسنال؛ آزمون خط حمله داغ مقابل دفاع نفوذناپذیر',
         summary:'آرسنال با چهار برد از چهار بازی به آمکس می‌رود؛ برایتون با ۱۳ گل زده و پرس پرانرژی میزبان است. زمان بازی، خبرهای دو تیم، ترکیب احتمالی، حرف‌های مربیان و سناریوهای مسابقه را یک‌جا بخوانید.',
         source:'تحریریه نیمکت · با استناد به لیگ برتر، برایتون و رویترز',lang:'فارسی',time:'۲۸ شهریور ۱۴۰۵ · پیش از بازی',cred:'پیش‌بازی · ترکیب احتمالی',credClass:'trusted',
@@ -1120,7 +1156,7 @@
     const safeArticleImage=value=>/^(?:https?:\/\/|assets\/images\/)/i.test(value||'')?value:'';
     const articleHref=item=>`${location.pathname}?article=${encodeURIComponent(item.id)}`;
     const imageChoice=(value,allowed,fallback)=>allowed.includes(value)?value:fallback;
-    const matchCoverBadges=(cover,compact=false)=>{if(!cover)return'';const homeLogo=safeArticleImage(cover.homeLogo),awayLogo=safeArticleImage(cover.awayLogo);if(!homeLogo||!awayLogo)return'';return compact?`<div class="feature-match-crests" aria-label="${esc(cover.home)} مقابل ${esc(cover.away)}"><img src="${esc(homeLogo)}" alt="نشان ${esc(cover.home)}"><span>VS</span><img src="${esc(awayLogo)}" alt="نشان ${esc(cover.away)}"></div>`:`<div class="match-cover-overlay" aria-label="${esc(cover.home)} مقابل ${esc(cover.away)}"><div class="match-cover-team"><img src="${esc(homeLogo)}" alt="نشان ${esc(cover.home)}"><span>${esc(cover.home)}</span></div><span class="match-cover-divider">VS</span><div class="match-cover-team"><img src="${esc(awayLogo)}" alt="نشان ${esc(cover.away)}"><span>${esc(cover.away)}</span></div></div>`;};
+    const matchCoverBadges=(cover,compact=false)=>{if(!cover)return'';const homeLogo=safeArticleImage(cover.homeLogo),awayLogo=safeArticleImage(cover.awayLogo),score=cover.score||'VS';if(!homeLogo||!awayLogo)return'';return compact?`<div class="feature-match-crests" aria-label="${esc(cover.home)} مقابل ${esc(cover.away)}"><img src="${esc(homeLogo)}" alt="نشان ${esc(cover.home)}"><span>${esc(score)}</span><img src="${esc(awayLogo)}" alt="نشان ${esc(cover.away)}"></div>`:`<div class="match-cover-overlay" aria-label="${esc(cover.home)} مقابل ${esc(cover.away)}"><div class="match-cover-team"><img src="${esc(homeLogo)}" alt="نشان ${esc(cover.home)}"><span>${esc(cover.home)}</span></div><span class="match-cover-divider">${esc(score)}</span><div class="match-cover-team"><img src="${esc(awayLogo)}" alt="نشان ${esc(cover.away)}"><span>${esc(cover.away)}</span></div></div>`;};
     const figure=media=>{const src=safeArticleImage(media.src),creditUrl=/^https?:\/\//i.test(media.creditUrl||'')?media.creditUrl:'';if(!src)return'';const size=imageChoice(media.size,['full','wide','medium','small'],'full'),align=imageChoice(media.align,['center','right','left'],'center'),ratio=imageChoice(media.ratio,['16x9','4x3','1x1','natural'],'16x9'),caption=media.caption||media.credit;return `<figure class="drawer-figure figure-size-${size} figure-align-${align} figure-ratio-${ratio}"><img src="${esc(src)}" alt="${esc(media.alt||'')}" loading="lazy" onerror="this.closest('figure').remove()">${caption?`<figcaption>${esc(media.caption||'')}${media.credit?`<br>${creditUrl?`<a href="${esc(creditUrl)}" target="_blank" rel="noopener">${esc(media.credit)}</a>`:esc(media.credit)}`:''}</figcaption>`:''}</figure>`;};
     const articleBody=item=>{
       const media=Array.isArray(item.media)?item.media:[],body=Array.isArray(item.body)?item.body:[];if(!body.length&&!media.length)return'';
@@ -1201,7 +1237,7 @@
       setupEditorOptions();fillEditor(item);document.title='میز تحریریه | نیمکت';showView('editor');
     }
 
-    const FEATURED_NEWS_IDS=['preview-brighton-arsenal-2026-09-19','analysis-iraola-bournemouth-return-onefootball-2026','analysis-weekend-europe-espn-2026','analysis-chelsea-stability-brentford-espn-2026','news-harry-kane-100-bundesliga-goals-2026','live-brentford-chelsea-2026','transfer-man-utd-live-sky-2026','analysis-man-utd-sky-2026','news-chelsea-clearlake-control-2026','analysis-future-european-leagues-2026','analysis-real-madrid-mourinho-2026'];
+    const FEATURED_NEWS_IDS=['news-brighton-arsenal-3-0-2026-09-19','analysis-iraola-bournemouth-return-onefootball-2026','analysis-weekend-europe-espn-2026','analysis-chelsea-stability-brentford-espn-2026','news-harry-kane-100-bundesliga-goals-2026','live-brentford-chelsea-2026','transfer-man-utd-live-sky-2026','analysis-man-utd-sky-2026','news-chelsea-clearlake-control-2026','analysis-future-european-leagues-2026','analysis-real-madrid-mourinho-2026'];
     let featuredIndex=0,featuredTimer;
     function featuredItems(){
       const curated=FEATURED_NEWS_IDS.map(id=>news.find(item=>item.id===id&&!item.isDraft&&safeImage(item.image))).filter(Boolean);
@@ -1330,7 +1366,7 @@
       document.title=`${item.title} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش نیمکت');
       const photoCredit=item.matchCover?.photoCredit||item.source,photoCreditUrl=safeArticleImage(item.matchCover?.photoCreditUrl||item.url),logoCreditUrl=safeArticleImage(item.matchCover?.logoCreditUrl);
       const hero=image&&placement==='hero'?item.matchCover?`<figure class="article-match-cover"><img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.closest('figure').remove()">${matchCoverBadges(item.matchCover)}<figcaption>عکس: ${photoCreditUrl?`<a href="${esc(photoCreditUrl)}" target="_blank" rel="noopener">${esc(photoCredit)}</a>`:esc(photoCredit)}${logoCreditUrl?` · نشان تیم‌ها: <a href="${esc(logoCreditUrl)}" target="_blank" rel="noopener">ESPN</a>`:''}</figcaption></figure>`:`<img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:'';
-      document.getElementById('articleContent').innerHTML=`${hero}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p>${item.cat==='preview'?'<span class="prematch-status">پیش‌بازی · ترکیب‌ها احتمالی‌اند و پس از اعلام رسمی باید به‌روزرسانی شوند.</span>':''}</header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
+      document.getElementById('articleContent').innerHTML=`${hero}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p>${item.followupId?`<div class="article-followup">این مطلب پیش از بازی نوشته شده و اکنون آرشیوی است. <a href="${esc(`${location.pathname}?article=${encodeURIComponent(item.followupId)}`)}">گزارش نهایی و نتیجه مسابقه ←</a></div>`:item.cat==='preview'?'<span class="prematch-status">پیش‌بازی · ترکیب‌ها احتمالی‌اند و پس از اعلام رسمی باید به‌روزرسانی شوند.</span>':''}</header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
       showView('article');return true;
     }
     function showHome(){document.title='نیمکت | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));showView('news');}

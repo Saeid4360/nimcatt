@@ -85,6 +85,9 @@
     .feature-media { position:absolute; inset:0; min-height:420px; background:#252525; overflow:hidden; }
     .feature-media img { height:100%; object-fit:cover; }
     .feature-media::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(10,11,14,.06) 5%,rgba(10,11,14,.34) 54%,rgba(10,11,14,.94) 100%); }
+    .feature-match-crests { position:absolute; z-index:1; top:78px; left:24px; display:flex; align-items:center; gap:9px; direction:ltr; }
+    .feature-match-crests img { width:56px; height:56px; padding:8px; object-fit:contain; border:1px solid rgba(255,255,255,.75); border-radius:50%; background:rgba(255,255,255,.94); box-shadow:0 7px 20px rgba(0,0,0,.2); }
+    .feature-match-crests span { color:#fff; font-size:11px; font-weight:900; text-shadow:0 2px 8px #111; }
     .feature-copy { position:relative; z-index:2; width:min(590px,76%); min-height:420px; padding:34px 38px; display:flex; flex-direction:column; justify-content:flex-end; color:#fff; }
     .kicker { display:flex; align-items:center; gap:8px; color:var(--red); font-size:12px; font-weight:700; letter-spacing:-.1px; }
     .kicker::before { content:""; width:18px; height:3px; flex:none; border-radius:999px; background:currentColor; }
@@ -240,6 +243,15 @@
     .article-back:hover { color:var(--red); }
     .article-shell { overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
     .article-page-hero { aspect-ratio:16/9; object-fit:cover; background:#252525; }
+    .article-match-cover { position:relative; margin:0; overflow:hidden; background:#19222a; }
+    .article-match-cover > .article-page-hero { display:block; width:100%; }
+    .article-match-cover::after { content:""; position:absolute; right:0; bottom:42px; left:0; height:44%; background:linear-gradient(0deg,rgba(8,14,23,.91),rgba(8,14,23,.5) 58%,transparent); pointer-events:none; }
+    .match-cover-overlay { position:absolute; z-index:1; right:0; bottom:70px; left:0; display:flex; align-items:center; justify-content:center; gap:clamp(14px,3vw,34px); color:#fff; direction:rtl; pointer-events:none; }
+    .match-cover-team { display:flex; align-items:center; flex-direction:column; gap:7px; min-width:110px; font-size:17px; font-weight:900; text-shadow:0 2px 8px rgba(0,0,0,.6); }
+    .match-cover-team img { display:block; width:78px; height:78px; padding:10px; object-fit:contain; border:1px solid rgba(255,255,255,.75); border-radius:50%; background:rgba(255,255,255,.94); box-shadow:0 8px 22px rgba(0,0,0,.3); }
+    .match-cover-divider { align-self:flex-start; padding-top:31px; color:#fff; font-size:17px; font-weight:900; letter-spacing:1px; opacity:.9; }
+    .article-match-cover figcaption { position:relative; z-index:2; padding:10px 18px; background:#fff; color:#646d76; font-size:11px; line-height:1.8; }
+    .article-match-cover figcaption a { color:#285d9c; font-weight:700; }
     .article-page-head { padding:42px 56px 28px; border-bottom:1px solid var(--line); }
     .article-page-head h1 { max-width:19ch; margin:12px 0 16px; color:#17191d; font-size:clamp(32px,4vw,46px); line-height:1.5; letter-spacing:-1px; }
     .article-page-summary { max-width:760px; margin:24px 0 0; color:#40464d; font-size:18px; line-height:2.05; font-weight:600; }
@@ -425,6 +437,12 @@
       .feature h1 { max-width:19ch; font-size:24px; line-height:1.55; letter-spacing:-.45px; }
       .feature p { font-size:14px; line-height:1.9; }
       .feature-controls { top:16px; left:16px; }
+      .feature-match-crests { top:69px; left:16px; }
+      .feature-match-crests img { width:46px; height:46px; padding:7px; }
+      .match-cover-overlay { bottom:60px; gap:12px; }
+      .match-cover-team { min-width:80px; gap:3px; font-size:13px; }
+      .match-cover-team img { width:52px; height:52px; padding:7px; }
+      .match-cover-divider { padding-top:19px; font-size:12px; }
       .latest-list { display:block; }
       .league-center-header { align-items:flex-start; flex-direction:column; padding:16px; }
       .league-center-actions { width:100%; }
@@ -719,9 +737,10 @@
         tags:['پیش‌بازی','برایتون','آرسنال','لیگ برتر انگلیس','فابیان هورزلر','میکل آرتتا','ترکیب احتمالی','بوکایو ساکا','پاسکال گروس'],
         why:'این مطلب در صبح روز مسابقه و پیش از اعلام ترکیب رسمی تهیه شده است. نام‌های بخش ترکیب، پیش‌بینی رسانه‌ای‌اند نه فهرست تأییدشده باشگاه‌ها. درصدهای نتیجه، برآورد تقریبی نیمکت از ضرایب ثبت‌شده در RotoWire پس از حذف حاشیه بازار است؛ پیش‌بینی قطعی یا توصیه شرط‌بندی نیست. برای تصمیم نهایی درباره حضور بازیکنان، ترکیب رسمی حدود یک ساعت پیش از شروع بازی ملاک است.',
         image:'https://contentful-assets.yinzcam.com/images/rrpvignygaa1/6JtWoiOyxtAMtnLX4C4Drw/6970929de286628d042f6465dcbd9b30/Lewis_Dunk_cele_Cov_JB.jpg?clxf=t_general_large',
-        imageSettings:{placement:'hidden',size:'wide',ratio:'16x9',align:'center'},
+        imageSettings:{placement:'hero',size:'full',ratio:'16x9',align:'center'},
+        matchCover:{home:'برایتون',away:'آرسنال',homeLogo:'https://a.espncdn.com/i/teamlogos/soccer/500/331.png',awayLogo:'https://a.espncdn.com/i/teamlogos/soccer/500/359.png',logoCreditUrl:'https://www.espn.com/soccer/match/_/gameId/401879274/arsenal-brighton-hove-albion',photoCredit:'باشگاه برایتون',photoCreditUrl:'https://www.brightonandhovealbion.com/media-article/mft-pl-bhaars-preview-albion-take-on-champions-arsenal-at-the-amex'},
         url:'https://www.brightonandhovealbion.com/media-article/mft-pl-bhaars-preview-albion-take-on-champions-arsenal-at-the-amex',
-        media:[{after:0,src:'https://contentful-assets.yinzcam.com/images/rrpvignygaa1/6JtWoiOyxtAMtnLX4C4Drw/6970929de286628d042f6465dcbd9b30/Lewis_Dunk_cele_Cov_JB.jpg?clxf=t_general_large',alt:'لوئیس دانک کاپیتان برایتون پس از گلزنی مقابل کاونتری',caption:'لوئیس دانک در آستانه سیصدمین حضور ثابت خود در لیگ برتر برای برایتون قرار دارد.',credit:'عکس: باشگاه برایتون',creditUrl:'https://www.brightonandhovealbion.com/media-article/mft-pl-bhaars-preview-albion-take-on-champions-arsenal-at-the-amex',size:'wide',ratio:'16x9',align:'center'}],
+        media:[],
         body:[
           {type:'facts',heading:'شناسنامه مسابقه',text:'رقابت: لیگ برتر انگلیس، هفته پنجم\nزمان: شنبه ۲۸ شهریور ۱۴۰۵، ساعت ۱۷:۳۰ به وقت ایران\nورزشگاه: آمکس، برایتون\nداور: دارن انگلند؛ داور ویدئویی: تیموتی وود\nوضعیت: پیش از شروع؛ ترکیب رسمی هنوز منتشر نشده است'},
           {heading:'تقابل دو روند متفاوت در آمکس',text:'آرسنالِ مدافع عنوان قهرمانی با ۱۲ امتیاز از چهار مسابقه و تنها یک گل خورده وارد هفته پنجم می‌شود. در سوی دیگر، برایتون هفت امتیاز گرفته و با ۱۳ گل، پرگل‌ترین خط حمله فصل تا اینجاست. این اعداد به‌تنهایی نتیجه را تعیین نمی‌کنند: برایتون در خانه سرعت و فشار می‌خواهد و آرسنال می‌کوشد با کنترل فضا، بازی را از ریتم میزبان خارج کند.'},
@@ -1101,6 +1120,7 @@
     const safeArticleImage=value=>/^(?:https?:\/\/|assets\/images\/)/i.test(value||'')?value:'';
     const articleHref=item=>`${location.pathname}?article=${encodeURIComponent(item.id)}`;
     const imageChoice=(value,allowed,fallback)=>allowed.includes(value)?value:fallback;
+    const matchCoverBadges=(cover,compact=false)=>{if(!cover)return'';const homeLogo=safeArticleImage(cover.homeLogo),awayLogo=safeArticleImage(cover.awayLogo);if(!homeLogo||!awayLogo)return'';return compact?`<div class="feature-match-crests" aria-label="${esc(cover.home)} مقابل ${esc(cover.away)}"><img src="${esc(homeLogo)}" alt="نشان ${esc(cover.home)}"><span>VS</span><img src="${esc(awayLogo)}" alt="نشان ${esc(cover.away)}"></div>`:`<div class="match-cover-overlay" aria-label="${esc(cover.home)} مقابل ${esc(cover.away)}"><div class="match-cover-team"><img src="${esc(homeLogo)}" alt="نشان ${esc(cover.home)}"><span>${esc(cover.home)}</span></div><span class="match-cover-divider">VS</span><div class="match-cover-team"><img src="${esc(awayLogo)}" alt="نشان ${esc(cover.away)}"><span>${esc(cover.away)}</span></div></div>`;};
     const figure=media=>{const src=safeArticleImage(media.src),creditUrl=/^https?:\/\//i.test(media.creditUrl||'')?media.creditUrl:'';if(!src)return'';const size=imageChoice(media.size,['full','wide','medium','small'],'full'),align=imageChoice(media.align,['center','right','left'],'center'),ratio=imageChoice(media.ratio,['16x9','4x3','1x1','natural'],'16x9'),caption=media.caption||media.credit;return `<figure class="drawer-figure figure-size-${size} figure-align-${align} figure-ratio-${ratio}"><img src="${esc(src)}" alt="${esc(media.alt||'')}" loading="lazy" onerror="this.closest('figure').remove()">${caption?`<figcaption>${esc(media.caption||'')}${media.credit?`<br>${creditUrl?`<a href="${esc(creditUrl)}" target="_blank" rel="noopener">${esc(media.credit)}</a>`:esc(media.credit)}`:''}</figcaption>`:''}</figure>`;};
     const articleBody=item=>{
       const media=Array.isArray(item.media)?item.media:[],body=Array.isArray(item.body)?item.body:[];if(!body.length&&!media.length)return'';
@@ -1190,7 +1210,7 @@
     function renderFeatured(index=featuredIndex){
       const items=featuredItems(),root=document.getElementById('featured');if(!items.length){root.innerHTML='';return;}
       featuredIndex=(Number(index)+items.length)%items.length;const item=items[featuredIndex],href=articleHref(item),controls=items.length>1?`<div class="feature-controls" aria-label="کنترل پرونده‌های ویژه"><button class="feature-arrow" type="button" data-feature-step="-1" aria-label="خبر ویژه قبلی">‹</button><div class="feature-dots">${items.map((entry,itemIndex)=>`<button class="feature-dot${itemIndex===featuredIndex?' active':''}" type="button" data-feature-index="${itemIndex}" aria-label="نمایش خبر ویژه ${Number(itemIndex+1).toLocaleString('fa-IR')}" aria-current="${itemIndex===featuredIndex?'true':'false'}"></button>`).join('')}</div><button class="feature-arrow" type="button" data-feature-step="1" aria-label="خبر ویژه بعدی">›</button></div>`:'';
-      root.innerHTML=`<div class="feature-frame"><a class="feature-media" href="${esc(href)}"><img src="${esc(safeImage(item.image))}" alt="${esc(item.title)}"></a><div class="feature-copy"><span class="kicker">${esc(item.eyebrow||'خبر ویژه')}</span><h1><a href="${esc(href)}">${esc(item.title)}</a></h1><p>${esc(item.summary)}</p><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang)}</span></div><a class="read-button" href="${esc(href)}">مشاهده گزارش</a></div>${controls}</div>`;
+      root.innerHTML=`<div class="feature-frame"><a class="feature-media" href="${esc(href)}"><img src="${esc(safeImage(item.image))}" alt="${esc(item.title)}">${matchCoverBadges(item.matchCover,true)}</a><div class="feature-copy"><span class="kicker">${esc(item.eyebrow||'خبر ویژه')}</span><h1><a href="${esc(href)}">${esc(item.title)}</a></h1><p>${esc(item.summary)}</p><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang)}</span></div><a class="read-button" href="${esc(href)}">مشاهده گزارش</a></div>${controls}</div>`;
     }
     function stopFeaturedRotation(){clearInterval(featuredTimer);featuredTimer=null;}
     function startFeaturedRotation(){
@@ -1308,7 +1328,9 @@
     function renderArticlePage(id){
       const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
       document.title=`${item.title} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش نیمکت');
-      document.getElementById('articleContent').innerHTML=`${image&&placement==='hero'?`<img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:''}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p>${item.cat==='preview'?'<span class="prematch-status">پیش‌بازی · ترکیب‌ها احتمالی‌اند و پس از اعلام رسمی باید به‌روزرسانی شوند.</span>':''}</header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
+      const photoCredit=item.matchCover?.photoCredit||item.source,photoCreditUrl=safeArticleImage(item.matchCover?.photoCreditUrl||item.url),logoCreditUrl=safeArticleImage(item.matchCover?.logoCreditUrl);
+      const hero=image&&placement==='hero'?item.matchCover?`<figure class="article-match-cover"><img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.closest('figure').remove()">${matchCoverBadges(item.matchCover)}<figcaption>عکس: ${photoCreditUrl?`<a href="${esc(photoCreditUrl)}" target="_blank" rel="noopener">${esc(photoCredit)}</a>`:esc(photoCredit)}${logoCreditUrl?` · نشان تیم‌ها: <a href="${esc(logoCreditUrl)}" target="_blank" rel="noopener">ESPN</a>`:''}</figcaption></figure>`:`<img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:'';
+      document.getElementById('articleContent').innerHTML=`${hero}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p>${item.cat==='preview'?'<span class="prematch-status">پیش‌بازی · ترکیب‌ها احتمالی‌اند و پس از اعلام رسمی باید به‌روزرسانی شوند.</span>':''}</header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;
       showView('article');return true;
     }
     function showHome(){document.title='نیمکت | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));showView('news');}

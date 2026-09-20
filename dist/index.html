@@ -105,15 +105,35 @@
     .match-detail-panel[hidden] { display:none; }
     .match-detail-section-title { margin:0 0 20px; font-size:20px; }
     .match-detail-empty { padding:28px 20px; border:1px dashed #d7dce1; border-radius:8px; background:#fafbfc; color:#747d86; text-align:center; font-size:14px; line-height:2; }
-    .match-detail-event { display:grid; grid-template-columns:58px 30px minmax(0,1fr); align-items:start; gap:12px; padding:15px 2px; border-bottom:1px solid #edf0f2; }
-    .match-detail-event:last-child { border-bottom:0; }
-    .match-detail-minute { color:#252a31; font-size:15px; font-weight:900; direction:ltr; text-align:right; }
-    .match-detail-icon { width:29px; height:29px; display:grid; place-items:center; border-radius:50%; background:#f0f2f4; color:#313a43; font-size:13px; font-weight:900; }
-    .match-detail-event.goal .match-detail-icon { background:#ffebed; color:#c2182a; }
-    .match-detail-event.yellow .match-detail-icon { background:#ffe49c; color:#765500; }
-    .match-detail-event.red .match-detail-icon { background:#ffc8ce; color:#a51425; }
-    .match-detail-event strong { display:block; color:#272e35; font-size:14px; }
-    .match-detail-event small { display:block; margin-top:3px; color:#7a838c; font-size:11px; }
+    .match-event-timeline { position:relative; display:grid; gap:9px; }
+    .match-event-timeline::before { content:""; position:absolute; top:21px; bottom:21px; right:95px; width:2px; background:#e4e9ee; }
+    .match-detail-event { position:relative; display:grid; grid-template-columns:64px 36px minmax(0,1fr); align-items:start; gap:13px; min-width:0; }
+    .match-detail-minute { padding-top:13px; color:#334155; font-size:14px; font-weight:700; direction:ltr; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .match-detail-icon { position:relative; z-index:1; width:36px; height:36px; display:grid; place-items:center; border:1px solid #e0e6eb; border-radius:10px; background:#f1f4f7; color:#536375; box-shadow:0 0 0 4px #fff; }
+    .match-detail-icon svg { width:21px; height:21px; display:block; }
+    .match-detail-event.goal .match-detail-icon { border-color:#f5ced4; background:#fff0f2; color:#bc1830; }
+    .match-detail-event.yellow .match-detail-icon { border-color:#f1d795; background:#fff8df; color:#b77b0a; }
+    .match-detail-event.red .match-detail-icon,.match-detail-event.second-yellow .match-detail-icon { border-color:#f4c6ce; background:#ffeff1; color:#bf1e34; }
+    .match-detail-event.sub .match-detail-icon { border-color:#c5e7d3; background:#ebf8f0; color:#168054; }
+    .match-event-card { min-width:0; padding:11px 14px 12px; border:1px solid #e6ebf0; border-radius:9px; background:#fff; box-shadow:0 2px 8px rgba(23,33,46,.035); }
+    .match-detail-event.goal .match-event-card { border-right:3px solid #c71e36; background:#fffafb; }
+    .match-detail-event.yellow .match-event-card { border-right:3px solid #d9a824; }
+    .match-detail-event.red .match-event-card,.match-detail-event.second-yellow .match-event-card { border-right:3px solid #bf1e34; }
+    .match-detail-event.sub .match-event-card { border-right:3px solid #239568; }
+    .match-detail-event.phase .match-event-card { background:#f6f8fa; box-shadow:none; }
+    .match-event-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:5px 12px; }
+    .match-event-title { color:#263241; font-size:13px; font-weight:700; }
+    .match-detail-event.goal .match-event-title { color:#b71931; }
+    .match-event-team { display:inline-flex; align-items:center; gap:5px; min-width:0; color:#637182; font-size:11px; font-weight:600; }
+    .match-event-team img { width:18px; height:18px; object-fit:contain; }
+    .match-event-main { display:block; margin-top:3px; color:#192432; font-size:15px; font-weight:700; line-height:1.55; overflow-wrap:anywhere; }
+    .match-event-assist { display:flex; align-items:center; gap:6px; margin-top:5px; color:#5a6979; font-size:12px; line-height:1.6; }
+    .match-event-assist svg { flex:none; width:15px; height:15px; color:#668199; }
+    .match-event-subline { display:flex; align-items:center; gap:7px; margin-top:5px; color:#263241; font-size:13px; line-height:1.6; overflow-wrap:anywhere; }
+    .match-event-subline svg { flex:none; width:17px; height:17px; }
+    .match-event-subline.in svg { color:#1b9464; }
+    .match-event-subline.out svg { color:#bd5c60; }
+    .match-event-subline em { flex:none; color:#697685; font-style:normal; font-size:11px; }
     .match-detail-stats { display:grid; gap:17px; }
     .match-detail-stat-top { display:grid; grid-template-columns:90px minmax(0,1fr) 90px; align-items:center; gap:12px; font-size:14px; }
     .match-detail-stat-top strong { color:#232a32; font-size:16px; text-align:center; }
@@ -579,6 +599,15 @@
       .match-detail-tabs { padding:10px 14px 0; }
       .match-detail-tab { padding:9px 12px; font-size:12px; }
       .match-detail-body { padding:20px 17px 28px; }
+      .match-event-timeline::before { right:65px; }
+      .match-detail-event { grid-template-columns:41px 32px minmax(0,1fr); gap:8px; }
+      .match-detail-minute { padding-top:11px; font-size:12px; }
+      .match-detail-icon { width:32px; height:32px; border-radius:9px; }
+      .match-detail-icon svg { width:18px; height:18px; }
+      .match-event-card { padding:9px 10px 10px; }
+      .match-event-head { align-items:flex-start; }
+      .match-event-main { font-size:13px; }
+      .match-event-subline { font-size:12px; }
       .match-detail-lineups { grid-template-columns:1fr; }
       .match-detail-source { padding:14px 18px; }
       .feature,.feature-media,.feature-copy { min-height:390px; }
@@ -1613,10 +1642,34 @@
     const MATCH_STAT_FIELDS=[['possessionPct','مالکیت توپ','%'],['totalShots','شوت',''],['shotsOnTarget','شوت در چارچوب',''],['wonCorners','کرنر',''],['totalPasses','پاس',''],['foulsCommitted','خطا',''],['offsides','آفساید',''],['yellowCards','کارت زرد',''],['redCards','کارت قرمز','']];
     let activeMatchRef='',matchRequestId=0,selectedMatchTab='events';
     function parseMatchRef(ref){const parts=String(ref||'').match(/^([a-z0-9.]+)~(\d{6,12})$/);return parts&&Object.values(SCORE_TOURNAMENT_META).some(meta=>meta.slug===parts[1])?{slug:parts[1],id:parts[2]}:null;}
+    function matchEventIcon(kind){
+      const shapes={
+        goal:'<circle cx="12" cy="12" r="9"/><path d="m12 7 3 2.2-1.1 3.5h-3.8L9 9.2 12 7ZM9 9.2 5.4 8M15 9.2 18.6 8M10.1 12.7l-2.2 3.2M13.9 12.7l2.2 3.2M8 17.5l4 2 4-2"/>',
+        yellow:'<rect x="7" y="3.5" width="10" height="17" rx="1.5" fill="currentColor" stroke="none"/>',
+        red:'<rect x="7" y="3.5" width="10" height="17" rx="1.5" fill="currentColor" stroke="none"/>',
+        'second-yellow':'<rect x="4" y="4" width="9" height="15" rx="1.2" fill="#d7a824" stroke="none"/><rect x="10" y="6" width="9" height="15" rx="1.2" fill="#bf1e34" stroke="none"/>',
+        sub:'<path d="M7 19V5m-3 3 3-3 3 3M17 5v14m-3-3 3 3 3-3"/>',
+        phase:'<path d="M4 10h8l3-3 5 3-4 3h-2a5 5 0 1 1-10-3Z"/><circle cx="9" cy="14" r="1.5"/><path d="M15 7V4"/>',
+        assist:'<path d="M3 17c3-7 7-9 15-9m-4-4 4 4-4 4"/>',
+        in:'<path d="M12 19V5m-5 5 5-5 5 5"/>',
+        out:'<path d="M12 5v14m-5-5 5 5 5-5"/>'
+      };
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[kind]||shapes.phase}</svg>`;
+    }
+    function matchEventMinute(event,type){const raw=String(event.clock?.displayValue||'').replace(/[′']/g,'').trim();return raw?`${faNumber(raw)}′`:type==='kickoff'?'۰′':'—';}
+    function matchEventCard(event,home,away,homeName,awayName,homeLogo,awayLogo){
+      const type=event.type?.type||'',players=(event.participants||[]).map(person=>person.athlete?.displayName).filter(Boolean),goal=/goal/i.test(type),secondYellow=type==='second-yellow-card',yellow=!secondYellow&&/yellow/i.test(type),red=!secondYellow&&/red/i.test(type),sub=type==='substitution',kind=goal?'goal':secondYellow?'second-yellow':yellow?'yellow':red?'red':sub?'sub':'phase';
+      const label=goal?(type.includes('own')?'گل به خودی':type.includes('penalty')?'گل از روی نقطه پنالتی':'گل'):secondYellow?'کارت زرد دوم و اخراج':yellow?'کارت زرد':red?'کارت قرمز':sub?'تعویض':type==='halftime'?'پایان نیمه اول':type==='start-2nd-half'?'آغاز نیمه دوم':type==='end-regular-time'?'سوت پایان بازی':'سوت آغاز بازی';
+      const teamId=event.team?.id,isHome=teamId!=null&&String(teamId)===String(home.team?.id),isAway=teamId!=null&&String(teamId)===String(away.team?.id),teamName=isHome?homeName:isAway?awayName:event.team?.displayName?persianTeamName(event.team.displayName):'',teamLogo=isHome?homeLogo:isAway?awayLogo:'';
+      const teamMarkup=teamName?`<span class="match-event-team">${teamLogo?`<img src="${esc(teamLogo)}" alt="" loading="lazy">`:''}${esc(teamName)}</span>`:'';
+      const player=name=>`<bdi dir="auto">${esc(name)}</bdi>`,assist=goal&&players[1]&&/assist(?:ed)? by/i.test(event.text||'')?`<div class="match-event-assist">${matchEventIcon('assist')}<span>پاس گل: ${player(players[1])}</span></div>`:'';
+      const detail=sub?`${players[0]?`<div class="match-event-subline in">${matchEventIcon('in')}<em>ورود</em>${player(players[0])}</div>`:''}${players[1]?`<div class="match-event-subline out">${matchEventIcon('out')}<em>خروج</em>${player(players[1])}</div>`:''}`:players[0]?`<span class="match-event-main">${player(players[0])}</span>${assist}`:'';
+      return `<div class="match-detail-event ${kind}" role="listitem" aria-label="${esc(matchEventMinute(event,type))}، ${esc(label)}${teamName?`، ${esc(teamName)}`:''}"><span class="match-detail-minute">${esc(matchEventMinute(event,type))}</span><span class="match-detail-icon" aria-hidden="true">${matchEventIcon(kind)}</span><div class="match-event-card"><div class="match-event-head"><strong class="match-event-title">${esc(label)}</strong>${teamMarkup}</div>${detail}</div></div>`;
+    }
     function renderMatchDetails(data,ref){
       const parts=parseMatchRef(ref),competition=data.header?.competitions?.[0],teams=competition?.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!parts||!home||!away)throw new Error('Match data missing');
       const meta=Object.values(SCORE_TOURNAMENT_META).find(entry=>entry.slug===parts.slug),date=new Date(competition.date||data.header.date),state=competition.status?.type?.state||'pre',status=scoreStatus({date:date.toISOString(),competitions:[{status:competition.status}]}),homeName=persianTeamName(home.team?.displayName||home.team?.shortDisplayName||''),awayName=persianTeamName(away.team?.displayName||away.team?.shortDisplayName||''),homeLogo=safeImage(home.team?.logos?.[0]?.href||home.team?.logo),awayLogo=safeImage(away.team?.logos?.[0]?.href||away.team?.logo),venue=data.gameInfo?.venue?.fullName||competition.venue?.fullName||'ورزشگاه اعلام نشده',league=translatedLeague(competition.altGameNote||data.header?.league?.name||parts.slug),dateText=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:IRAN_TIME_ZONE}).format(date),score=state==='pre'?scoreTime(date):`${faNumber(home.score??0)} – ${faNumber(away.score??0)}`,sourceUrl=`https://www.espn.com/soccer/match/_/gameId/${parts.id}`;
-      const eventTypes=new Set(['kickoff','halftime','start-2nd-half','end-regular-time','substitution','yellow-card','red-card','second-yellow-card']),events=(data.keyEvents||[]).filter(event=>eventTypes.has(event.type?.type)||/goal/i.test(event.type?.type||'')),eventMarkup=events.length?events.map(event=>{const type=event.type?.type||'',players=(event.participants||[]).map(person=>person.athlete?.displayName).filter(Boolean),goal=/goal/i.test(type),yellow=/yellow/i.test(type)&&!type.includes('red'),red=/red/i.test(type),sub=type==='substitution',label=goal?(type.includes('own')?'گل به خودی':'گل'):yellow?'کارت زرد':red?'کارت قرمز':sub?'تعویض':type==='halftime'?'پایان نیمه اول':type==='start-2nd-half'?'آغاز نیمه دوم':type==='end-regular-time'?'پایان بازی':'آغاز بازی',icon=goal?'⚽':yellow?'■':red?'■':sub?'↔':'•',description=sub&&players.length>1?`${players[0]} به جای ${players[1]}`:goal&&players.length>1?`${players[0]} · پاس گل: ${players[1]}`:players[0]||'',team=event.team?.displayName?persianTeamName(event.team.displayName):'',minute=faNumber(event.clock?.displayValue|| (type==='kickoff'?'۰′':'—'));return `<div class="match-detail-event ${goal?'goal':yellow?'yellow':red?'red':''}"><strong class="match-detail-minute">${esc(minute)}</strong><span class="match-detail-icon" aria-hidden="true">${icon}</span><div><strong>${esc(label)}${description?` · ${esc(description)}`:''}</strong>${team?`<small>${esc(team)}</small>`:''}</div></div>`;}).join(''):'<div class="match-detail-empty">هنوز رویدادی برای این بازی ثبت نشده است. با آغاز مسابقه، گل‌ها، کارت‌ها و تعویض‌ها اینجا نمایش داده می‌شوند.</div>';
+      const eventTypes=new Set(['kickoff','halftime','start-2nd-half','end-regular-time','substitution','yellow-card','red-card','second-yellow-card']),events=(data.keyEvents||[]).filter(event=>eventTypes.has(event.type?.type)||/goal/i.test(event.type?.type||'')),eventMarkup=events.length?`<div class="match-event-timeline" role="list">${events.map(event=>matchEventCard(event,home,away,homeName,awayName,homeLogo,awayLogo)).join('')}</div>`:'<div class="match-detail-empty">هنوز رویدادی برای این بازی ثبت نشده است. با آغاز مسابقه، گل‌ها، کارت‌ها و تعویض‌ها اینجا نمایش داده می‌شوند.</div>';
       const boxTeams=data.boxscore?.teams||[],homeBox=boxTeams.find(entry=>String(entry.team?.id)===String(home.team?.id)),awayBox=boxTeams.find(entry=>String(entry.team?.id)===String(away.team?.id)),statValue=(box,name)=>box?.statistics?.find(stat=>stat.name===name)?.displayValue,statRows=MATCH_STAT_FIELDS.map(([name,label,suffix])=>{const a=statValue(homeBox,name),b=statValue(awayBox,name);if(a==null||b==null)return'';const av=Number(a),bv=Number(b),homeShare=Number.isFinite(av)&&Number.isFinite(bv)&&av+bv>0?100*av/(av+bv):50;return `<div class="match-detail-stat"><div class="match-detail-stat-top"><strong>${esc(faNumber(a))}${suffix}</strong><span>${esc(label)}</span><strong>${esc(faNumber(b))}${suffix}</strong></div><div class="match-detail-stat-bars"><i style="width:${homeShare.toFixed(1)}%"></i><i style="width:${(100-homeShare).toFixed(1)}%"></i></div></div>`;}).filter(Boolean),statsMarkup=statRows.length?`<div class="match-detail-stats">${statRows.join('')}</div>`:'<div class="match-detail-empty">آمار این بازی هنوز از سوی منبع منتشر نشده است.</div>';
       const rosterFor=team=>(data.rosters||[]).find(entry=>String(entry.team?.id)===String(team.team?.id)),rosterCard=(team,name)=>{const roster=rosterFor(team),players=roster?.roster||[],starters=players.filter(player=>player.starter),bench=players.filter(player=>!player.starter),rows=officialPitchRows(starters,roster?.formation),benchMarkup=bench.length?`<h4>بازیکنان ذخیره</h4>${bench.map(player=>`<div class="match-detail-player"><b>${esc(faNumber(player.jersey||'–'))}</b><span>${esc(player.athlete?.displayName||'—')}</span><small>${esc(player.position?.abbreviation||'')}</small></div>`).join('')}`:'';return `<section class="match-detail-lineup"><h3>${esc(name)}${roster?.formation?` · ${esc(roster.formation)}`:''}</h3>${rows?'<span class="lineup-status">ترکیب رسمی · نمایش روی زمین</span>':''}${lineupPitch(rows,team.homeAway,name,starters.length?'چینش زمین از منبع در دسترس نیست؛ آرایش رسمی این تیم مشخص نشده است.':'ترکیب رسمی این تیم هنوز اعلام نشده است.',team.team?.displayName||'')}${benchMarkup}</section>`;},lineupMarkup=`<div class="match-detail-lineups">${rosterCard(home,homeName)}${rosterCard(away,awayName)}</div>`;
       const tab=(key,label)=>`<button class="match-detail-tab${selectedMatchTab===key?' active':''}" type="button" role="tab" data-match-tab="${key}" aria-selected="${selectedMatchTab===key?'true':'false'}">${label}</button>`,panel=(key,title,content)=>`<section class="match-detail-panel" role="tabpanel" data-match-panel="${key}" ${selectedMatchTab===key?'':'hidden'}><h2 class="match-detail-section-title">${title}</h2>${content}</section>`;

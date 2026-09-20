@@ -120,34 +120,34 @@
     .match-detail-stat-bars i { display:block; min-width:2px; background:#283445; }
     .match-detail-stat-bars i:last-child { background:var(--red); }
     .match-detail-lineups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
-    .match-detail-lineup { border:1px solid #e4e8eb; border-radius:14px; overflow:hidden; box-shadow:0 12px 30px rgba(19,36,32,.08); }
-    .match-detail-lineup h3 { margin:0; padding:16px 18px; border-bottom:1px solid #e4e8eb; background:#fff; font-size:16px; }
+    .match-detail-lineup { border:1px solid #dce5e0; border-radius:16px; overflow:hidden; box-shadow:0 15px 35px rgba(18,42,33,.1); }
+    .match-detail-lineup h3 { margin:0; padding:16px 18px; border-bottom:1px solid #e4e8eb; background:#fbfdfc; font-size:17px; }
     .match-detail-lineup h4 { margin:17px 17px 5px; color:#5f6872; font-size:12px; }
     .match-detail-player { display:flex; align-items:center; gap:12px; padding:8px 17px; border-bottom:1px solid #f0f1f2; font-size:13px; }
     .match-detail-player:last-child { border-bottom:0; }
     .match-detail-player b { width:24px; color:#9b2331; text-align:center; }
     .match-detail-player small { margin-right:auto; color:#87909a; }
-    .lineup-pitch { position:relative; isolation:isolate; min-height:565px; overflow:hidden; background:radial-gradient(ellipse at 50% 38%,rgba(134,206,158,.15),transparent 65%),repeating-linear-gradient(to bottom,#125c43 0,#125c43 62px,#186c4c 62px,#186c4c 124px); color:#fff; }
-    .lineup-pitch::before { content:""; position:absolute; inset:13px; border:2px solid rgba(235,255,240,.55); border-radius:2px; pointer-events:none; box-shadow:inset 0 0 40px rgba(9,34,29,.22); }
-    .lineup-pitch::after { content:""; position:absolute; top:50%; right:13px; left:13px; border-top:2px solid rgba(235,255,240,.44); pointer-events:none; }
+    .lineup-pitch { position:relative; isolation:isolate; min-height:595px; overflow:hidden; background:radial-gradient(ellipse at 50% 42%,rgba(152,217,160,.14),transparent 57%),linear-gradient(90deg,rgba(0,0,0,.11),transparent 16%,transparent 84%,rgba(0,0,0,.1)),repeating-linear-gradient(to bottom,#155e46 0,#155e46 70px,#1b6a4e 70px,#1b6a4e 140px); color:#fff; }
+    .lineup-pitch::before { content:""; position:absolute; inset:17px; border:1.5px solid rgba(235,255,240,.58); border-radius:2px; pointer-events:none; box-shadow:inset 0 0 50px rgba(9,34,29,.18); }
+    .lineup-pitch::after { content:""; position:absolute; top:50%; right:17px; left:17px; border-top:1.5px solid rgba(235,255,240,.46); pointer-events:none; }
     .pitch-center-circle { position:absolute; top:50%; left:50%; width:96px; height:96px; border:2px solid rgba(235,255,240,.44); border-radius:50%; transform:translate(-50%,-50%); }
     .pitch-center-circle::after { content:""; position:absolute; top:50%; left:50%; width:4px; height:4px; border-radius:50%; background:rgba(235,255,240,.65); transform:translate(-50%,-50%); }
-    .pitch-box { position:absolute; left:22%; right:22%; height:71px; border:2px solid rgba(235,255,240,.44); }
-    .pitch-box.top { top:13px; border-top:0; }
-    .pitch-box.bottom { bottom:13px; border-bottom:0; }
-    .pitch-rows { position:relative; z-index:1; display:flex; flex-direction:column; justify-content:space-between; min-height:565px; padding:30px 10px 25px; }
-    .pitch-row { display:flex; align-items:center; justify-content:space-around; gap:2px; flex:1; direction:rtl; }
-    .pitch-player { display:flex; flex:1 1 0; flex-direction:column; align-items:center; justify-content:center; gap:5px; min-width:0; max-width:88px; text-align:center; line-height:1.28; font-size:11px; font-weight:800; }
-    .pitch-marker { position:relative; display:grid; place-items:center; width:58px; height:58px; flex:none; overflow:hidden; border:2px solid rgba(255,255,255,.94); border-radius:50%; background:linear-gradient(145deg,#e6f0ea,#9cb8aa); color:#194b39; box-shadow:0 6px 16px rgba(0,0,0,.32),0 0 0 3px rgba(255,255,255,.13); }
+    .pitch-box { position:absolute; left:23%; right:23%; height:73px; border:1.5px solid rgba(235,255,240,.48); }
+    .pitch-box.top { top:17px; border-top:0; }
+    .pitch-box.bottom { bottom:17px; border-bottom:0; }
+    .pitch-rows { position:relative; z-index:1; display:flex; flex-direction:column; justify-content:space-between; min-height:595px; padding:30px 15px 27px; }
+    .pitch-row { display:flex; align-items:center; justify-content:space-around; gap:3px; flex:1; direction:rtl; }
+    .pitch-player { display:flex; flex:1 1 0; flex-direction:column; align-items:center; justify-content:center; gap:7px; min-width:0; max-width:100px; text-align:center; line-height:1.28; font-size:11px; font-weight:800; }
+    .pitch-marker { position:relative; display:grid; place-items:center; width:62px; height:62px; flex:none; overflow:hidden; border:3px solid #fff; border-radius:50%; background:linear-gradient(145deg,#e6f0ea,#9cb8aa); color:#194b39; box-shadow:0 7px 17px rgba(0,0,0,.27),0 0 0 4px rgba(255,255,255,.16); }
     .lineup-pitch.away .pitch-marker { background:linear-gradient(145deg,#ffe5e8,#b71d36); color:#82162a; }
     .pitch-silhouette { position:absolute; inset:0; display:block; }
     .pitch-silhouette::before { content:""; position:absolute; top:10px; left:50%; width:19px; height:19px; border-radius:50%; background:rgba(22,70,53,.5); transform:translateX(-50%); }
     .pitch-silhouette::after { content:""; position:absolute; bottom:3px; left:50%; width:39px; height:22px; border-radius:22px 22px 7px 7px; background:rgba(22,70,53,.5); transform:translateX(-50%); }
     .lineup-pitch.away .pitch-silhouette::before,.lineup-pitch.away .pitch-silhouette::after { background:rgba(105,15,36,.55); }
     .pitch-portrait { position:absolute; inset:0; width:100%; height:100%; border-radius:50%; object-fit:cover; object-position:center 12%; transform:scale(1.95); transform-origin:center 22%; }
-    .pitch-name { display:block; max-width:100%; padding:4px 5px; border:1px solid rgba(255,255,255,.15); border-radius:5px; background:rgba(4,39,29,.8); box-shadow:0 3px 7px rgba(0,0,0,.16); overflow-wrap:anywhere; font-size:10px; line-height:1.35; }
-    .pitch-name-number { display:inline-block; margin-right:4px; padding:0 4px; border-radius:4px; background:#fff; color:#193d32; font-size:10px; line-height:1.45; text-shadow:none; direction:ltr; }
-    .lineup-pitch.away .pitch-name-number { background:#d5243f; color:#fff; }
+    .pitch-name { display:block; max-width:100%; padding:5px 7px; border:1px solid rgba(255,255,255,.86); border-radius:7px; background:rgba(250,253,251,.95); color:#173428; box-shadow:0 5px 12px rgba(3,30,22,.23); overflow-wrap:anywhere; font-size:10.5px; line-height:1.35; text-shadow:none; }
+    .pitch-name-number { display:inline-block; margin-right:4px; padding:0 4px; border-radius:4px; background:#193a2d; color:#fff; font-size:10px; line-height:1.45; text-shadow:none; direction:ltr; }
+    .lineup-pitch.away .pitch-name-number { background:#c41e3b; color:#fff; }
     .pitch-empty { position:absolute; z-index:2; top:50%; right:16px; left:16px; transform:translateY(-50%); padding:18px; border:1px solid rgba(255,255,255,.5); border-radius:9px; background:rgba(5,42,31,.87); text-align:center; line-height:1.8; font-size:14px; font-weight:700; }
     .lineup-status { display:inline-block; margin:13px 17px; padding:5px 9px; border-radius:5px; background:#e6f3ed; color:#176346; font-size:11px; font-weight:800; }
     .match-detail-source { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding:15px 38px; border-top:1px solid var(--line); background:#fafbfc; color:#74808b; font-size:11px; }
@@ -394,18 +394,21 @@
     .matchday-odds-labels span:nth-child(2) { text-align:center; }
     .matchday-odds-labels span:last-child { text-align:left; }
     .matchday-odds p { margin:12px 0 0; color:#737b84; font-size:11px; line-height:1.8; }
-    .matchday-lineups { width:min(840px,calc(100% - 112px)); margin:35px auto 0; }
-    .matchday-lineups-head { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:13px; }
-    .matchday-lineups-head h2 { margin:0; font-size:21px; }
-    .matchday-lineups-head span { color:#79818b; font-size:11px; }
-    .matchday-lineup-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    .matchday-lineup-card { overflow:hidden; border:1px solid #e2e6e9; border-radius:15px; background:#fafbfc; box-shadow:0 12px 30px rgba(19,36,32,.09); }
-    .matchday-lineup-card header { display:flex; align-items:center; gap:11px; padding:15px 17px; border-bottom:1px solid #e2e6e9; background:#fff; }
-    .matchday-lineup-card header img { width:38px; height:38px; object-fit:contain; }
-    .matchday-lineup-card header strong { font-size:16px; }
-    .matchday-lineup-card header span { margin-right:auto; padding:5px 8px; border-radius:5px; background:#f3f5f5; color:#a31930; font-size:12px; font-weight:900; direction:ltr; }
-    .matchday-lineup-card footer { padding:11px 15px; color:#69767f; background:#fff; font-size:11px; line-height:1.7; }
-    .matchday-lineups-note { margin:10px 1px 0; color:#6e7881; font-size:11px; line-height:1.8; }
+    .matchday-lineups { width:min(1050px,calc(100% - 54px)); margin:39px auto 0; padding:24px; border:1px solid #e3eae6; border-radius:21px; background:linear-gradient(155deg,#f5f8f6,#eef3f0); }
+    .matchday-lineups-head { display:flex; align-items:end; justify-content:space-between; gap:14px; margin-bottom:19px; }
+    .matchday-lineups-head h2 { margin:3px 0 0; color:#172c23; font-size:25px; line-height:1.4; }
+    .matchday-lineups-head small { color:#a71c32; font-size:11px; font-weight:900; }
+    .matchday-lineups-head span { max-width:270px; color:#63766b; font-size:11px; line-height:1.75; text-align:left; }
+    .matchday-lineup-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .matchday-lineup-card { overflow:hidden; border:1px solid #dce5e0; border-radius:17px; background:#fff; box-shadow:0 16px 33px rgba(19,47,34,.12); }
+    .matchday-lineup-card header { display:flex; align-items:center; gap:12px; min-height:76px; padding:12px 17px; border-bottom:1px solid #dce5e0; background:#fff; }
+    .matchday-lineup-card header img { width:47px; height:47px; padding:6px; border:1px solid #e9edeb; border-radius:12px; object-fit:contain; background:#f9fbfa; }
+    .matchday-lineup-card .lineup-team-title { display:flex; flex-direction:column; gap:2px; min-width:0; }
+    .matchday-lineup-card .lineup-team-title small { color:#88948d; font-size:10px; font-weight:800; }
+    .matchday-lineup-card .lineup-team-title strong { color:#192d23; font-size:17px; line-height:1.4; }
+    .matchday-lineup-card header .lineup-formation { margin-right:auto; padding:6px 10px; border:1px solid #e9edef; border-radius:7px; background:#f4f6f5; color:#9e1d31; font-size:12px; font-weight:900; direction:ltr; }
+    .matchday-lineup-card footer { padding:11px 16px; color:#718078; background:#fff; font-size:11px; line-height:1.7; }
+    .matchday-lineups-note { margin:13px 3px 0; color:#66766c; font-size:11px; line-height:1.8; }
     .matchday-story-body { padding-top:4px; }
 
     .editor-view { min-height:calc(100vh - 145px); }
@@ -641,18 +644,22 @@
       .matchday-center b { font-size:24px; }
       .matchday-center span { font-size:10px; }
       .matchday-page-head { padding:27px 22px 12px; }
-      .matchday-board,.matchday-lineups { width:calc(100% - 44px); }
+      .matchday-board { width:calc(100% - 44px); }
+      .matchday-lineups { width:calc(100% - 22px); padding:13px; border-radius:15px; }
       .matchday-pulse { grid-template-columns:1fr; gap:8px; }
       .matchday-pulse-card { padding:11px 14px; }
       .matchday-pulse-card strong { font-size:23px; }
       .matchday-odds { padding:17px 14px; }
       .matchday-odds-labels { font-size:10px; }
       .matchday-lineups-head { display:block; }
+      .matchday-lineups-head h2 { font-size:21px; }
+      .matchday-lineups-head span { display:block; margin-top:6px; max-width:none; text-align:right; }
       .matchday-lineup-grid { grid-template-columns:1fr; }
       .lineup-pitch,.pitch-rows { min-height:535px; }
       .pitch-rows { padding-right:6px; padding-left:6px; }
       .pitch-marker { width:47px; height:47px; }
       .pitch-player { font-size:10px; }
+      .pitch-name { padding:4px 3px; font-size:9.5px; }
       .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
     }
     @media(prefers-reduced-motion:reduce) {
@@ -1431,9 +1438,9 @@
     }
     const matchdayPage=item=>{
       const match=item.matchday,logo=team=>safeArticleImage(team.logo),club=team=>`<div class="matchday-club"><img src="${esc(logo(team))}" alt="نشان ${esc(team.name)}" onerror="this.remove()"><strong>${esc(team.name)}</strong><small>${esc(team.role)}</small></div>`;
-      const lineups=(match.lineups||[]).map((lineup,index)=>`<section class="matchday-lineup-card"><header><img src="${esc(safeArticleImage(lineup.logo))}" alt="" onerror="this.remove()"><strong>${esc(lineup.team)}</strong><span>${esc(lineup.formation)}</span></header>${lineupPitch(predictedPitchRows(lineup),index?'away':'home',lineup.team)}<footer>ترکیب احتمالی · عکس بازیکنان: <a href="https://www.thesportsdb.com/" target="_blank" rel="noopener">TheSportsDB</a> و <a href="https://www.fulhamfc.com/players/josh-king" target="_blank" rel="noopener">باشگاه فولام</a></footer></section>`).join('');
+      const lineups=(match.lineups||[]).map((lineup,index)=>`<section class="matchday-lineup-card"><header><img src="${esc(safeArticleImage(lineup.logo))}" alt="نشان ${esc(lineup.team)}" onerror="this.remove()"><div class="lineup-team-title"><small>${index?'میهمان':'میزبان'} · ترکیب احتمالی</small><strong>${esc(lineup.team)}</strong></div><span class="lineup-formation">${esc(lineup.formation)}</span></header>${lineupPitch(predictedPitchRows(lineup),index?'away':'home',lineup.team)}<footer>عکس بازیکنان: <a href="https://www.thesportsdb.com/" target="_blank" rel="noopener">TheSportsDB</a> و <a href="https://www.fulhamfc.com/players/josh-king" target="_blank" rel="noopener">باشگاه فولام</a></footer></section>`).join('');
       const probability=match.probabilities||{},chance=key=>Math.max(0,Math.min(100,Number(probability[key])||0)),percent=key=>chance(key).toLocaleString('fa-IR',{maximumFractionDigits:1});
-      return `<div class="matchday-hero"><div class="matchday-top"><strong>${esc(match.competition)}</strong><span class="matchday-live"><i aria-hidden="true"></i>پیش از بازی</span></div><div class="matchday-versus">${club(match.home)}<div class="matchday-center"><em>ساعت ایران</em><b>${esc(match.kickoff)}</b><span>مقابل</span></div>${club(match.away)}</div><div class="matchday-foot"><span>${esc(match.date)}</span><span>${esc(match.venue)}</span></div></div><header class="article-page-head matchday-page-head"><div class="kicker">${esc(item.eyebrow)}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span></div><p class="article-page-summary">${esc(item.summary)}</p><span class="prematch-status">ترکیب‌ها و درصدها پیش از مسابقه ثبت شده‌اند؛ ملاک حضور بازیکنان، فهرست رسمی روز بازی است.</span></header><div class="matchday-board"><div class="matchday-pulse">${(match.signals||[]).map(signal=>`<div class="matchday-pulse-card"><small>${esc(signal.label)}</small><strong>${esc(signal.value)}</strong><span>${esc(signal.detail)}</span></div>`).join('')}</div><section class="matchday-odds"><div class="matchday-odds-head"><strong>شانس نتیجه از نگاه مدل Opta</strong><a href="${esc(item.url)}" target="_blank" rel="noopener">روش و منبع داده ↗</a></div><div class="matchday-odds-track" role="img" aria-label="برد فولام ${percent('home')} درصد، مساوی ${percent('draw')} درصد، برد منچستریونایتد ${percent('away')} درصد"><span class="home" style="width:${chance('home')}%"></span><span class="draw" style="width:${chance('draw')}%"></span><span class="away" style="width:${chance('away')}%"></span></div><div class="matchday-odds-labels"><span>فولام ${percent('home')}٪</span><span>تساوی ${percent('draw')}٪</span><span>یونایتد ${percent('away')}٪</span></div><p>بر پایه ۱۰هزار شبیه‌سازی پیش از مسابقه؛ احتمال، نتیجه قطعی یا پیشنهاد شرط‌بندی نیست.</p></section></div><section class="matchday-lineups"><div class="matchday-lineups-head"><h2>ترکیب احتمالی</h2><span>بر اساس پیش‌بینی Opta · غیررسمی</span></div><div class="matchday-lineup-grid">${lineups}</div><p class="matchday-lineups-note">نام‌ها ممکن است تا اعلام ترکیب رسمی تغییر کنند؛ وضعیت شاو، بالبا و سسنیون قطعی نیست.</p></section><div class="article-page-body matchday-story-body">${articleBody(item)}<div class="drawer-note">${esc(item.why)}</div>${articleSources(item)}<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده پیش‌بازی و تصویر کاور در Opta Analyst</a></div>`;
+      return `<div class="matchday-hero"><div class="matchday-top"><strong>${esc(match.competition)}</strong><span class="matchday-live"><i aria-hidden="true"></i>پیش از بازی</span></div><div class="matchday-versus">${club(match.home)}<div class="matchday-center"><em>ساعت ایران</em><b>${esc(match.kickoff)}</b><span>مقابل</span></div>${club(match.away)}</div><div class="matchday-foot"><span>${esc(match.date)}</span><span>${esc(match.venue)}</span></div></div><header class="article-page-head matchday-page-head"><div class="kicker">${esc(item.eyebrow)}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span></div><p class="article-page-summary">${esc(item.summary)}</p><span class="prematch-status">ترکیب‌ها و درصدها پیش از مسابقه ثبت شده‌اند؛ ملاک حضور بازیکنان، فهرست رسمی روز بازی است.</span></header><div class="matchday-board"><div class="matchday-pulse">${(match.signals||[]).map(signal=>`<div class="matchday-pulse-card"><small>${esc(signal.label)}</small><strong>${esc(signal.value)}</strong><span>${esc(signal.detail)}</span></div>`).join('')}</div><section class="matchday-odds"><div class="matchday-odds-head"><strong>شانس نتیجه از نگاه مدل Opta</strong><a href="${esc(item.url)}" target="_blank" rel="noopener">روش و منبع داده ↗</a></div><div class="matchday-odds-track" role="img" aria-label="برد فولام ${percent('home')} درصد، مساوی ${percent('draw')} درصد، برد منچستریونایتد ${percent('away')} درصد"><span class="home" style="width:${chance('home')}%"></span><span class="draw" style="width:${chance('draw')}%"></span><span class="away" style="width:${chance('away')}%"></span></div><div class="matchday-odds-labels"><span>فولام ${percent('home')}٪</span><span>تساوی ${percent('draw')}٪</span><span>یونایتد ${percent('away')}٪</span></div><p>بر پایه ۱۰هزار شبیه‌سازی پیش از مسابقه؛ احتمال، نتیجه قطعی یا پیشنهاد شرط‌بندی نیست.</p></section></div><section class="matchday-lineups"><div class="matchday-lineups-head"><div><small>نقشهٔ تاکتیکی مسابقه</small><h2>ترکیب احتمالی دو تیم</h2></div><span>بر اساس پیش‌بینی Opta · غیررسمی<br>جهت نمایش از مهاجم تا دروازه‌بان</span></div><div class="matchday-lineup-grid">${lineups}</div><p class="matchday-lineups-note">نام‌ها ممکن است تا اعلام ترکیب رسمی تغییر کنند؛ وضعیت شاو، بالبا و سسنیون قطعی نیست.</p></section><div class="article-page-body matchday-story-body">${articleBody(item)}<div class="drawer-note">${esc(item.why)}</div>${articleSources(item)}<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده پیش‌بازی و تصویر کاور در Opta Analyst</a></div>`;
     };
 
     const editorField=id=>document.getElementById(id);

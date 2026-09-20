@@ -151,13 +151,42 @@
     .match-event-subline.in svg { color:#1b9464; }
     .match-event-subline.out svg { color:#bd5c60; }
     .match-event-subline em { flex:none; color:#697685; font-style:normal; font-size:11px; }
-    .match-detail-stats { display:grid; gap:17px; }
-    .match-detail-stat-top { display:grid; grid-template-columns:90px minmax(0,1fr) 90px; align-items:center; gap:12px; font-size:14px; }
-    .match-detail-stat-top strong { color:#232a32; font-size:16px; text-align:center; }
-    .match-detail-stat-top span { color:#65707a; text-align:center; font-size:12px; font-weight:700; }
-    .match-detail-stat-bars { display:flex; direction:rtl; gap:3px; height:7px; margin-top:6px; border-radius:999px; overflow:hidden; }
-    .match-detail-stat-bars i { display:block; min-width:2px; background:#283445; }
-    .match-detail-stat-bars i:last-child { background:var(--red); }
+    .match-stats-board { display:grid; gap:18px; }
+    .match-stats-key { display:flex; align-items:center; justify-content:space-between; gap:12px; color:#687484; font-size:12px; }
+    .match-stats-key span { display:flex; align-items:center; gap:8px; min-width:0; }
+    .match-stats-key img { width:28px; height:28px; object-fit:contain; }
+    .match-stats-key b { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#233044; font-size:13px; }
+    .match-stats-key i { width:8px; height:8px; border-radius:50%; background:#25364e; }
+    .match-stats-key span:last-child i { background:#c92b42; }
+    .match-stats-key em { color:#7d8a99; font-size:11px; font-style:normal; white-space:nowrap; }
+    .match-possession { padding:21px 24px 22px; border:1px solid #202f42; border-radius:15px; background:linear-gradient(135deg,#1b293b,#14202f); color:#fff; }
+    .match-possession-head { display:flex; align-items:center; justify-content:space-between; gap:10px; color:#c6d0dc; font-size:12px; font-weight:700; }
+    .match-possession-head strong { color:#fff; font-size:15px; }
+    .match-possession-values { display:flex; align-items:end; justify-content:space-between; gap:12px; margin:9px 0 14px; font-size:31px; font-weight:900; font-variant-numeric:tabular-nums; }
+    .match-possession-values span:last-child { color:#ff8797; }
+    .match-possession-bar { display:flex; direction:rtl; gap:3px; height:13px; overflow:hidden; border-radius:999px; background:#536173; }
+    .match-possession-bar i { display:block; min-width:0; background:#e8eef5; transition:width .45s ease; }
+    .match-possession-bar i:last-child { background:#e3435c; }
+    .match-stats-highlights { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .match-stat-highlight { min-width:0; padding:17px 18px; border:1px solid #e2e8ee; border-radius:13px; background:#fff; box-shadow:0 7px 20px rgba(25,40,58,.035); }
+    .match-stat-highlight h3 { margin:0 0 10px; color:#586779; font-size:13px; font-weight:700; }
+    .match-stat-highlight-values { display:flex; align-items:baseline; justify-content:space-between; gap:8px; color:#25364e; font-size:25px; font-weight:900; font-variant-numeric:tabular-nums; }
+    .match-stat-highlight-values span:last-child { color:#c92b42; }
+    .match-stat-highlight-track { display:flex; direction:rtl; gap:3px; height:6px; margin-top:11px; overflow:hidden; border-radius:999px; background:#eef1f5; }
+    .match-stat-highlight-track i { display:block; background:#25364e; }
+    .match-stat-highlight-track i:last-child { background:#c92b42; }
+    .match-stats-groups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .match-stat-group { min-width:0; padding:17px 18px 19px; border:1px solid #e2e8ee; border-radius:13px; background:#fbfcfd; }
+    .match-stat-group h3 { margin:0 0 17px; color:#263241; font-size:15px; }
+    .match-stat-rows { display:grid; gap:17px; }
+    .match-stat-row-head { display:grid; grid-template-columns:40px minmax(0,1fr) 40px; align-items:baseline; gap:5px; color:#6e7b89; text-align:center; font-size:12px; font-weight:700; }
+    .match-stat-row-head strong { color:#25364e; font-size:16px; font-weight:900; font-variant-numeric:tabular-nums; }
+    .match-stat-row-head strong:last-child { color:#c92b42; }
+    .match-stat-dual-bars { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px; direction:rtl; margin-top:7px; }
+    .match-stat-dual-bars span { display:flex; direction:ltr; height:7px; overflow:hidden; border-radius:999px; background:#e8edf1; }
+    .match-stat-dual-bars span:last-child { justify-content:flex-end; }
+    .match-stat-dual-bars i { display:block; height:100%; border-radius:999px; background:#25364e; }
+    .match-stat-dual-bars span:last-child i { background:#c92b42; }
     .match-detail-lineups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
     .match-detail-lineup { border:1px solid #dce5e0; border-radius:16px; overflow:hidden; box-shadow:0 15px 35px rgba(18,42,33,.1); }
     .match-detail-lineup h3 { margin:0; padding:16px 18px; border-bottom:1px solid #e4e8eb; background:#fbfdfc; font-size:17px; }
@@ -623,6 +652,12 @@
       .match-report-minute { font-size:12px; }
       .match-report-story { padding:10px 12px; }
       .match-report-story p { font-size:14px; }
+      .match-stats-key em { display:none; }
+      .match-possession { padding:17px; }
+      .match-possession-values { font-size:27px; }
+      .match-stats-highlights,.match-stats-groups { grid-template-columns:1fr; }
+      .match-stat-highlight { padding:14px 16px; }
+      .match-stat-highlight-values { font-size:22px; }
       .match-event-timeline::before { right:65px; }
       .match-detail-event { grid-template-columns:41px 32px minmax(0,1fr); gap:8px; }
       .match-detail-minute { padding-top:11px; font-size:12px; }
@@ -1767,7 +1802,13 @@
     function initScores(){
       const board=document.getElementById('scoreBoard');renderScoreDateNav();loadScores();document.getElementById('scoreDateNav').addEventListener('click',event=>{const button=event.target.closest('[data-score-date]');if(!button)return;selectedScoreDate=button.dataset.scoreDate;selectedTournament='all';renderScoreDateNav();loadScores();});document.getElementById('scoreTournament').addEventListener('change',event=>{selectedTournament=event.target.value;renderLoadedScores();});board.addEventListener('click',event=>{if(event.target.closest('[data-score-retry]'))loadScores();});board.addEventListener('scroll',updateScoreScrollButtons,{passive:true});document.getElementById('scorePanel').addEventListener('click',event=>{const button=event.target.closest('[data-score-scroll]');if(button&&!button.disabled)board.scrollBy({left:(button.dataset.scoreScroll==='next'?-1:1)*Math.max(220,board.clientWidth*.65),behavior:'smooth'});});window.addEventListener('resize',updateScoreScrollButtons);setInterval(()=>{if(!document.hidden&&selectedScoreDate===tehranDateKey(new Date()))loadScores(false);},30000);
     }
-    const MATCH_STAT_FIELDS=[['possessionPct','مالکیت توپ','%'],['totalShots','شوت',''],['shotsOnTarget','شوت در چارچوب',''],['wonCorners','کرنر',''],['totalPasses','پاس',''],['foulsCommitted','خطا',''],['offsides','آفساید',''],['yellowCards','کارت زرد',''],['redCards','کارت قرمز','']];
+    const MATCH_STAT_HIGHLIGHTS=[['totalShots','مجموع شوت‌ها'],['shotsOnTarget','شوت در چارچوب'],['wonCorners','کرنر']];
+    const MATCH_STAT_GROUPS=[
+      ['خلق موقعیت',[['blockedShots','شوت بلوکه‌شده'],['offsides','آفساید'],['totalCrosses','ارسال‌ها']]],
+      ['ساخت بازی',[['totalPasses','پاس'],['accuratePasses','پاس صحیح'],['accurateCrosses','ارسال دقیق'],['totalLongBalls','پاس بلند']]],
+      ['دفاع',[['saves','مهار دروازه‌بان'],['totalTackles','تکل'],['interceptions','قطع توپ'],['totalClearance','دفع توپ']]],
+      ['انضباط',[['foulsCommitted','خطا'],['yellowCards','کارت زرد'],['redCards','کارت قرمز']]]
+    ];
     let activeMatchRef='',matchRequestId=0,selectedMatchTab='events';
     function parseMatchRef(ref){const parts=String(ref||'').match(/^([a-z0-9.]+)~(\d{6,12})$/);return parts&&Object.values(SCORE_TOURNAMENT_META).some(meta=>meta.slug===parts[1])?{slug:parts[1],id:parts[2]}:null;}
     function matchEventIcon(kind){
@@ -1828,11 +1869,23 @@
       const labels={kickoff:'آغاز بازی',halftime:'پایان نیمه اول','start-2nd-half':'آغاز نیمه دوم','end-regular-time':'پایان بازی',substitution:'تعویض','yellow-card':'کارت زرد',goal:'گل','goal---header':'گل','shot-on-target':'مهار دروازه‌بان','shot-hit-woodwork':'برخورد به تیر دروازه','shot-off-target':'موقعیت از دست‌رفته','shot-blocked':'شوت بلوکه‌شده','red-card':'اخراج','second-yellow-card':'اخراج','penalty-missed':'پنالتی از دست‌رفته','penalty-saved':'مهار پنالتی'};
       return `<div class="match-report-intro"><span>موقعیت‌های تعیین‌کننده، به زبان فارسی</span><span>بر پایهٔ شرح دقیقه‌به‌دقیقهٔ ESPN</span></div><div class="match-report-feed" role="list">${entries.map(entry=>{const play=entry.play,type=play.type?.type||'',team=play.team?.displayName?persianTeamName(play.team.displayName):'',minute=matchEventMinute(play,type),kind=/goal/.test(type)?'goal':type==='shot-hit-woodwork'?'woodwork':type==='shot-on-target'?'save':/red-card/.test(type)?'red':'chance';return `<article class="match-report-entry ${kind}" role="listitem"><span class="match-report-minute">${esc(minute)}</span><div class="match-report-story"><div class="match-report-story-top"><strong>${esc(labels[type]||'موقعیت حساس')}</strong>${team?`<span>· ${esc(team)}</span>`:''}</div><p>${matchReportNarrative(entry)}</p></div></article>`;}).join('')}</div><p class="match-report-source-note">این گزارش بازنویسی فارسیِ موقعیت‌هایی است که ESPN ثبت کرده؛ پاس‌کاری یا جزئیات پیش از موقعیت فقط در صورت ذکر در منبع توصیف می‌شود.</p>`;
     }
+    function matchStatsMarkup(data,home,away,homeName,awayName,homeLogo,awayLogo){
+      const boxes=data.boxscore?.teams||[],homeBox=boxes.find(entry=>String(entry.team?.id)===String(home.team?.id)),awayBox=boxes.find(entry=>String(entry.team?.id)===String(away.team?.id)),value=(box,name)=>box?.statistics?.find(stat=>stat.name===name)?.displayValue;
+      const read=name=>{const a=value(homeBox,name),b=value(awayBox,name);if(a==null||b==null||a===''||b==='')return null;const av=Number(a),bv=Number(b);return Number.isFinite(av)&&Number.isFinite(bv)&&av>=0&&bv>=0?{a,b,av,bv}:null;};
+      const possession=read('possessionPct'),highlights=MATCH_STAT_HIGHLIGHTS.map(([name,label])=>({name,label,values:read(name)})).filter(item=>item.values),groups=MATCH_STAT_GROUPS.map(([title,fields])=>({title,rows:fields.map(([name,label])=>({name,label,values:read(name)})).filter(item=>item.values)})).filter(group=>group.rows.length);
+      if(!possession&&!highlights.length&&!groups.length)return '<div class="match-detail-empty">آمار این بازی هنوز از سوی منبع منتشر نشده است.</div>';
+      const number=value=>esc(faNumber(value)),share=(a,b)=>a+b>0?Math.max(0,Math.min(100,100*a/(a+b))):0,teamKey=(name,logo,role)=>`<span>${logo?`<img src="${esc(logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<i aria-hidden="true"></i><b title="${esc(name)}">${esc(name)}</b><em>${role}</em></span>`;
+      const legend=`<div class="match-stats-key">${teamKey(homeName,homeLogo,'میزبان')}<span aria-hidden="true">در برابر</span>${teamKey(awayName,awayLogo,'میهمان')}</div>`;
+      const possessionMarkup=possession?`<section class="match-possession" aria-label="مالکیت توپ"><div class="match-possession-head"><span>${esc(homeName)}</span><strong>مالکیت توپ</strong><span>${esc(awayName)}</span></div><div class="match-possession-values"><span>${number(possession.a)}٪</span><span>${number(possession.b)}٪</span></div><div class="match-possession-bar" aria-hidden="true"><i style="width:${share(possession.av,possession.b).toFixed(1)}%"></i><i style="width:${share(possession.bv,possession.av).toFixed(1)}%"></i></div></section>`:'';
+      const highlightsMarkup=highlights.length?`<div class="match-stats-highlights">${highlights.map(({label,values})=>`<section class="match-stat-highlight" aria-label="${esc(label)}"><h3>${esc(label)}</h3><div class="match-stat-highlight-values"><span>${number(values.a)}</span><span>${number(values.b)}</span></div><div class="match-stat-highlight-track" aria-hidden="true"><i style="width:${share(values.av,values.bv).toFixed(1)}%"></i><i style="width:${share(values.bv,values.av).toFixed(1)}%"></i></div></section>`).join('')}</div>`:'';
+      const groupsMarkup=groups.length?`<div class="match-stats-groups">${groups.map(group=>`<section class="match-stat-group"><h3>${esc(group.title)}</h3><div class="match-stat-rows">${group.rows.map(({label,values})=>{const max=Math.max(values.av,values.bv),homeWidth=max?100*values.av/max:0,awayWidth=max?100*values.bv/max:0;return `<div class="match-stat-row"><div class="match-stat-row-head"><strong>${number(values.a)}</strong><span>${esc(label)}</span><strong>${number(values.b)}</strong></div><div class="match-stat-dual-bars" aria-hidden="true"><span><i style="width:${homeWidth.toFixed(1)}%"></i></span><span><i style="width:${awayWidth.toFixed(1)}%"></i></span></div></div>`;}).join('')}</div></section>`).join('')}</div>`:'';
+      return `<div class="match-stats-board">${legend}${possessionMarkup}${highlightsMarkup}${groupsMarkup}</div>`;
+    }
     function renderMatchDetails(data,ref){
       const parts=parseMatchRef(ref),competition=data.header?.competitions?.[0],teams=competition?.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!parts||!home||!away)throw new Error('Match data missing');
       const meta=Object.values(SCORE_TOURNAMENT_META).find(entry=>entry.slug===parts.slug),date=new Date(competition.date||data.header.date),state=competition.status?.type?.state||'pre',status=scoreStatus({date:date.toISOString(),competitions:[{status:competition.status}]}),homeName=persianTeamName(home.team?.displayName||home.team?.shortDisplayName||''),awayName=persianTeamName(away.team?.displayName||away.team?.shortDisplayName||''),homeLogo=safeImage(home.team?.logos?.[0]?.href||home.team?.logo),awayLogo=safeImage(away.team?.logos?.[0]?.href||away.team?.logo),venue=data.gameInfo?.venue?.fullName||competition.venue?.fullName||'ورزشگاه اعلام نشده',league=translatedLeague(competition.altGameNote||data.header?.league?.name||parts.slug),dateText=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:IRAN_TIME_ZONE}).format(date),score=state==='pre'?scoreTime(date):`${faNumber(home.score??0)} – ${faNumber(away.score??0)}`,sourceUrl=`https://www.espn.com/soccer/match/_/gameId/${parts.id}`;
       const eventTypes=new Set(['kickoff','halftime','start-2nd-half','end-regular-time','substitution','yellow-card','red-card','second-yellow-card']),events=(data.keyEvents||[]).filter(event=>eventTypes.has(event.type?.type)||/goal/i.test(event.type?.type||'')),eventMarkup=events.length?`<div class="match-event-timeline" role="list">${events.map(event=>matchEventCard(event,home,away,homeName,awayName,homeLogo,awayLogo)).join('')}</div>`:'<div class="match-detail-empty">هنوز رویدادی برای این بازی ثبت نشده است. با آغاز مسابقه، گل‌ها، کارت‌ها و تعویض‌ها اینجا نمایش داده می‌شوند.</div>',reportMarkup=matchReportMarkup(data,homeName,awayName);
-      const boxTeams=data.boxscore?.teams||[],homeBox=boxTeams.find(entry=>String(entry.team?.id)===String(home.team?.id)),awayBox=boxTeams.find(entry=>String(entry.team?.id)===String(away.team?.id)),statValue=(box,name)=>box?.statistics?.find(stat=>stat.name===name)?.displayValue,statRows=MATCH_STAT_FIELDS.map(([name,label,suffix])=>{const a=statValue(homeBox,name),b=statValue(awayBox,name);if(a==null||b==null)return'';const av=Number(a),bv=Number(b),homeShare=Number.isFinite(av)&&Number.isFinite(bv)&&av+bv>0?100*av/(av+bv):50;return `<div class="match-detail-stat"><div class="match-detail-stat-top"><strong>${esc(faNumber(a))}${suffix}</strong><span>${esc(label)}</span><strong>${esc(faNumber(b))}${suffix}</strong></div><div class="match-detail-stat-bars"><i style="width:${homeShare.toFixed(1)}%"></i><i style="width:${(100-homeShare).toFixed(1)}%"></i></div></div>`;}).filter(Boolean),statsMarkup=statRows.length?`<div class="match-detail-stats">${statRows.join('')}</div>`:'<div class="match-detail-empty">آمار این بازی هنوز از سوی منبع منتشر نشده است.</div>';
+      const statsMarkup=matchStatsMarkup(data,home,away,homeName,awayName,homeLogo,awayLogo);
       const rosterFor=team=>(data.rosters||[]).find(entry=>String(entry.team?.id)===String(team.team?.id)),rosterCard=(team,name)=>{const roster=rosterFor(team),players=roster?.roster||[],starters=players.filter(player=>player.starter),bench=players.filter(player=>!player.starter),rows=officialPitchRows(starters,roster?.formation),benchMarkup=bench.length?`<h4>بازیکنان ذخیره</h4>${bench.map(player=>`<div class="match-detail-player"><b>${esc(faNumber(player.jersey||'–'))}</b><span>${esc(player.athlete?.displayName||'—')}</span><small>${esc(player.position?.abbreviation||'')}</small></div>`).join('')}`:'';return `<section class="match-detail-lineup"><h3>${esc(name)}${roster?.formation?` · ${esc(roster.formation)}`:''}</h3>${rows?'<span class="lineup-status">ترکیب رسمی · نمایش روی زمین</span>':''}${lineupPitch(rows,team.homeAway,name,starters.length?'چینش زمین از منبع در دسترس نیست؛ آرایش رسمی این تیم مشخص نشده است.':'ترکیب رسمی این تیم هنوز اعلام نشده است.',team.team?.displayName||'')}${benchMarkup}</section>`;},lineupMarkup=`<div class="match-detail-lineups">${rosterCard(home,homeName)}${rosterCard(away,awayName)}</div>`;
       const tab=(key,label)=>`<button class="match-detail-tab${selectedMatchTab===key?' active':''}" type="button" role="tab" data-match-tab="${key}" aria-selected="${selectedMatchTab===key?'true':'false'}">${label}</button>`,panel=(key,title,content)=>`<section class="match-detail-panel" role="tabpanel" data-match-panel="${key}" ${selectedMatchTab===key?'':'hidden'}><h2 class="match-detail-section-title">${title}</h2>${content}</section>`;
       document.title=`${homeName} – ${awayName} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',`جزئیات، نتیجه و آمار بازی ${homeName} و ${awayName} به وقت ایران از داده‌های ESPN.`);

@@ -59,8 +59,11 @@
     .score-board-shell { border-top:1px solid var(--line); }
     .score-inner { display:flex; align-items:stretch; min-height:96px; overflow-x:auto; scrollbar-width:none; scroll-snap-type:x proximity; }
     .score-inner::-webkit-scrollbar { display:none; }
-    .score-item { flex:0 0 238px; padding:11px 16px; border-left:1px solid var(--line); color:var(--ink); scroll-snap-align:start; transition:background .2s ease; }
+    .score-item { position:relative; isolation:isolate; flex:0 0 238px; overflow:hidden; padding:11px 16px; border-left:1px solid var(--line); color:var(--ink); scroll-snap-align:start; transition:background .2s ease; }
     .score-item:hover { background:#f7f8f9; }
+    .score-item:focus-visible { outline:2px solid var(--red); outline-offset:-3px; }
+    .score-watermark { position:absolute; z-index:0; inset:5px 15px; width:calc(100% - 30px); height:calc(100% - 10px); object-fit:contain; object-position:center; opacity:.13; filter:grayscale(1) brightness(.42); pointer-events:none; }
+    .score-item > :not(.score-watermark) { position:relative; z-index:1; }
     .score-item.is-live { background:linear-gradient(180deg,#fff6f6,#fff); }
     .score-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:10px; }
     .score-league { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -76,6 +79,56 @@
     .score-loader { width:17px; height:17px; border:2px solid #ddd; border-top-color:var(--red); border-radius:50%; animation:score-spin .8s linear infinite; }
     .score-retry { padding:7px 11px; border:1px solid var(--line); border-radius:5px; background:#fff; cursor:pointer; font:inherit; }
     @keyframes score-spin { to { transform:rotate(360deg); } }
+
+    .match-view { max-width:1000px; }
+    .match-detail-shell { overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+    .match-detail-hero { padding:23px 40px 28px; color:#fff; background:radial-gradient(circle at 50% 15%,rgba(244,73,88,.17),transparent 35%),linear-gradient(125deg,#18202b,#101317); }
+    .match-detail-top { display:flex; align-items:center; justify-content:space-between; gap:15px; color:#bcc5cf; font-size:12px; font-weight:800; }
+    .match-detail-top span:last-child { display:inline-flex; align-items:center; gap:7px; }
+    .match-detail-top img { width:26px; height:26px; object-fit:contain; }
+    .match-detail-board { display:grid; grid-template-columns:minmax(0,1fr) minmax(130px,190px) minmax(0,1fr); align-items:center; gap:20px; margin:29px 0 20px; }
+    .match-detail-team { display:flex; align-items:center; flex-direction:column; gap:9px; text-align:center; min-width:0; }
+    .match-detail-team img { width:82px; height:82px; padding:10px; border-radius:17px; object-fit:contain; background:#fff; }
+    .match-detail-team strong { font-size:17px; line-height:1.5; }
+    .match-detail-team small { color:#aebac5; font-size:11px; }
+    .match-detail-center { text-align:center; }
+    .match-detail-center strong { display:block; font-size:41px; font-weight:900; line-height:1.35; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .match-detail-center span { display:block; margin-top:4px; color:#ff7989; font-size:12px; font-weight:900; }
+    .match-detail-meta { display:flex; justify-content:center; flex-wrap:wrap; gap:7px 17px; padding-top:16px; border-top:1px solid rgba(255,255,255,.14); color:#bac5cf; font-size:12px; }
+    .match-detail-tabs { display:flex; gap:5px; overflow-x:auto; padding:14px 28px 0; border-bottom:1px solid var(--line); }
+    .match-detail-tab { padding:10px 18px 13px; border:0; border-bottom:3px solid transparent; background:transparent; color:#69717a; cursor:pointer; white-space:nowrap; font-size:14px; font-weight:800; }
+    .match-detail-tab.active { border-bottom-color:var(--red); color:#1a1e23; }
+    .match-detail-tab:hover { color:var(--red); }
+    .match-detail-body { min-height:260px; padding:26px 38px 36px; }
+    .match-detail-panel[hidden] { display:none; }
+    .match-detail-section-title { margin:0 0 20px; font-size:20px; }
+    .match-detail-empty { padding:28px 20px; border:1px dashed #d7dce1; border-radius:8px; background:#fafbfc; color:#747d86; text-align:center; font-size:14px; line-height:2; }
+    .match-detail-event { display:grid; grid-template-columns:58px 30px minmax(0,1fr); align-items:start; gap:12px; padding:15px 2px; border-bottom:1px solid #edf0f2; }
+    .match-detail-event:last-child { border-bottom:0; }
+    .match-detail-minute { color:#252a31; font-size:15px; font-weight:900; direction:ltr; text-align:right; }
+    .match-detail-icon { width:29px; height:29px; display:grid; place-items:center; border-radius:50%; background:#f0f2f4; color:#313a43; font-size:13px; font-weight:900; }
+    .match-detail-event.goal .match-detail-icon { background:#ffebed; color:#c2182a; }
+    .match-detail-event.yellow .match-detail-icon { background:#ffe49c; color:#765500; }
+    .match-detail-event.red .match-detail-icon { background:#ffc8ce; color:#a51425; }
+    .match-detail-event strong { display:block; color:#272e35; font-size:14px; }
+    .match-detail-event small { display:block; margin-top:3px; color:#7a838c; font-size:11px; }
+    .match-detail-stats { display:grid; gap:17px; }
+    .match-detail-stat-top { display:grid; grid-template-columns:90px minmax(0,1fr) 90px; align-items:center; gap:12px; font-size:14px; }
+    .match-detail-stat-top strong { color:#232a32; font-size:16px; text-align:center; }
+    .match-detail-stat-top span { color:#65707a; text-align:center; font-size:12px; font-weight:700; }
+    .match-detail-stat-bars { display:flex; direction:rtl; gap:3px; height:7px; margin-top:6px; border-radius:999px; overflow:hidden; }
+    .match-detail-stat-bars i { display:block; min-width:2px; background:#283445; }
+    .match-detail-stat-bars i:last-child { background:var(--red); }
+    .match-detail-lineups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .match-detail-lineup { border:1px solid #e4e8eb; border-radius:9px; overflow:hidden; }
+    .match-detail-lineup h3 { margin:0; padding:13px 17px; border-bottom:1px solid #e4e8eb; background:#f8f9fa; font-size:15px; }
+    .match-detail-lineup h4 { margin:17px 17px 5px; color:#5f6872; font-size:12px; }
+    .match-detail-player { display:flex; align-items:center; gap:12px; padding:8px 17px; border-bottom:1px solid #f0f1f2; font-size:13px; }
+    .match-detail-player:last-child { border-bottom:0; }
+    .match-detail-player b { width:24px; color:#9b2331; text-align:center; }
+    .match-detail-player small { margin-right:auto; color:#87909a; }
+    .match-detail-source { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding:15px 38px; border-top:1px solid var(--line); background:#fafbfc; color:#74808b; font-size:11px; }
+    .match-detail-source a { color:#294e78; font-weight:800; text-decoration:underline; text-underline-offset:3px; }
 
     main { padding:30px 0 64px; }
     .hero-layout { display:grid; grid-template-columns:minmax(0,2.2fr) minmax(300px,.8fr); align-items:start; gap:22px; }
@@ -488,6 +541,18 @@
       .score-source { margin-right:auto; }
       .score-inner { min-height:92px; }
       .score-item { flex-basis:216px; padding-inline:13px; }
+      .match-detail-hero { padding:19px 18px; }
+      .match-detail-board { grid-template-columns:minmax(0,1fr) 84px minmax(0,1fr); gap:7px; margin:24px 0 15px; }
+      .match-detail-team img { width:55px; height:55px; padding:7px; border-radius:12px; }
+      .match-detail-team strong { font-size:12px; }
+      .match-detail-center strong { font-size:23px; }
+      .match-detail-center span { font-size:10px; }
+      .match-detail-meta { font-size:10px; }
+      .match-detail-tabs { padding:10px 14px 0; }
+      .match-detail-tab { padding:9px 12px; font-size:12px; }
+      .match-detail-body { padding:20px 17px 28px; }
+      .match-detail-lineups { grid-template-columns:1fr; }
+      .match-detail-source { padding:14px 18px; }
       .feature,.feature-media,.feature-copy { min-height:390px; }
       .feature-media::after { background:linear-gradient(0deg,rgba(10,11,14,.95) 0%,rgba(10,11,14,.44) 58%,rgba(10,11,14,.08) 100%); }
       .feature-copy { width:100%; padding:26px 22px; }
@@ -745,6 +810,10 @@
     <section id="articleView" class="container article-view hidden" aria-live="polite">
       <a class="article-back" href="./" data-article-back>← بازگشت به صفحه خبرها</a>
       <article id="articleContent" class="article-shell"></article>
+    </section>
+    <section id="matchView" class="container match-view hidden" aria-live="polite">
+      <a class="article-back" href="./">← بازگشت به نیمکت</a>
+      <article id="matchContent" class="match-detail-shell"><div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت جزئیات بازی…</span></div></article>
     </section>
 
     <section id="editorView" class="container editor-view hidden">
@@ -1397,6 +1466,20 @@
       featuredTimer=setInterval(()=>{if(!document.hidden)renderFeatured(featuredIndex+1);},6500);
     }
     const IRAN_TIME_ZONE='Asia/Tehran',ESPN_SCOREBOARD_URL='https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard',ESPN_SOCCER_API='https://site.api.espn.com/apis/site/v2/sports/soccer',ESPN_STANDINGS_API='https://site.api.espn.com/apis/v2/sports/soccer';
+    const SCORE_TOURNAMENT_META={
+      '700':{slug:'eng.1',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/23.png'},
+      '740':{slug:'esp.1',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/15.png'},
+      '730':{slug:'ita.1',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/12.png'},
+      '720':{slug:'ger.1',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/10.png'},
+      '710':{slug:'fra.1',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/9.png'},
+      '725':{slug:'ned.1',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/11.png'},
+      '775':{slug:'uefa.champions',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/2.png'},
+      '776':{slug:'uefa.europa',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/2310.png'},
+      '20296':{slug:'uefa.europa.conf',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/20296.png'},
+      '781':{slug:'uefa.euro',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/74.png'},
+      '606':{slug:'fifa.world',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/4.png'},
+      '5501':{slug:'fifa.cwc',logo:'https://a.espncdn.com/i/leaguelogos/soccer/500/1932.png'}
+    };
     const TEAM_NAME_FA={
       'arsenal':'آرسنال','chelsea':'چلسی','liverpool':'لیورپول','manchester city':'منچستر سیتی','man city':'منچستر سیتی','manchester united':'منچستر یونایتد','man united':'منچستر یونایتد','tottenham hotspur':'تاتنهام','spurs':'تاتنهام','newcastle united':'نیوکاسل','newcastle':'نیوکاسل','aston villa':'استون ویلا','brighton & hove albion':'برایتون','brighton':'برایتون','brentford':'برنتفورد','west ham united':'وستهام','everton':'اورتون','crystal palace':'کریستال پالاس','fulham':'فولام','afc bournemouth':'بورنموث','wolverhampton wanderers':'ولورهمپتون','wolves':'ولورهمپتون','nottingham forest':'ناتینگهام فارست','nottm forest':'ناتینگهام فارست','leeds united':'لیدز یونایتد','sunderland':'ساندرلند','burnley':'برنلی','ipswich':'ایپسویچ','ipswich town':'ایپسویچ','hull':'هال سیتی','hull city':'هال سیتی','coventry':'کاونتری','coventry city':'کاونتری',
       'real madrid':'رئال مادرید','barcelona':'بارسلونا','atletico madrid':'اتلتیکو مادرید','athletic club':'اتلتیک بیلبائو','athletic':'اتلتیک بیلبائو','sevilla':'سویا','valencia':'والنسیا','villarreal':'ویارئال','real sociedad':'رئال سوسیداد','real betis':'رئال بتیس','girona':'خیرونا','espanyol':'اسپانیول','celta vigo':'سلتاویگو','getafe':'ختافه','osasuna':'اوساسونا','mallorca':'مایورکا','rayo vallecano':'رایو وایکانو','rayo':'رایو وایکانو','elche':'الچه','alaves':'آلاوس','deportivo':'دپورتیوو لاکرونیا','levante':'لوانته','real oviedo':'رئال اویدو','albacete':'آلباسته','cordoba':'کوردوبا','racing':'راسینگ سانتاندر','racing santander':'راسینگ سانتاندر','malaga':'مالاگا',
@@ -1425,6 +1508,7 @@
     function isTrustedTournament(name=''){const trusted=[/^UEFA Champions League$/i,/^UEFA Europa League$/i,/^UEFA Conference League$/i,/^UEFA European Championship$/i,/^English Premier League$/i,/^(?:Spanish )?(?:LALIGA|LaLiga)$/i,/^(?:Italian )?Serie A$/i,/^(?:German )?Bundesliga$/i,/^(?:French )?Ligue 1$/i,/^(?:Dutch )?Eredivisie$/i,/^FIFA (?:Club )?World Cup$/i];return trusted.some(pattern=>pattern.test(name.trim()));}
     function leaguePriority(name=''){const priorities=[/Champions League/i,/Premier League/i,/LALIGA|LaLiga/i,/Serie A/i,/Bundesliga/i,/Ligue 1/i,/Europa League/i,/Conference League/i,/World Cup/i,/Saudi Pro League/i,/MLS|Major League/i];const index=priorities.findIndex(pattern=>pattern.test(name));return index<0?99:index;}
     function scoreLeague(event){const competition=event.competitions?.[0]||{};return competition.altGameNote||event.league?.name||event.season?.slug||'فوتبال';}
+    function scoreTournamentMeta(event){const id=String(event.uid||event.competitions?.[0]?.uid||'').match(/~l:(\d+)/)?.[1];return SCORE_TOURNAMENT_META[id]||null;}
     function scoreState(event){return event.competitions?.[0]?.status?.type?.state||'pre';}
     function scoreStatus(event){
       const status=event.competitions?.[0]?.status||{},type=status.type||{},name=type.name||'';
@@ -1435,8 +1519,8 @@
     }
     function scoreCard(event){
       const competition=event.competitions?.[0]||{},teams=competition.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!home||!away)return '';
-      const state=scoreState(event),status=scoreStatus(event),league=scoreLeague(event),link=event.links?.find(item=>(item.rel||[]).includes('summary'))?.href||'https://www.espn.com/soccer/scoreboard',row=team=>{const original=team.team?.shortDisplayName||team.team?.displayName||'';return `<div class="score-team-row"><span class="score-team">${team.team?.logo?`<img src="${esc(team.team.logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span title="${esc(original)}">${esc(persianTeamName(original))}</span></span><strong class="score-result">${state==='pre'?'–':faNumber(team.score||'۰')}</strong></div>`;};
-      return `<a class="score-item${state==='in'?' is-live':''}" href="${esc(link)}" target="_blank" rel="noopener"><div class="score-meta"><span class="score-league">${esc(translatedLeague(league))}</span><span class="score-status ${status.className}">${status.label}</span></div>${row(home)}${row(away)}</a>`;
+      const state=scoreState(event),status=scoreStatus(event),league=scoreLeague(event),meta=scoreTournamentMeta(event),matchLink=meta?`${location.pathname}?match=${encodeURIComponent(`${meta.slug}~${event.id}`)}`:'',externalLink=event.links?.find(item=>(item.rel||[]).includes('summary'))?.href||'https://www.espn.com/soccer/scoreboard',link=matchLink||externalLink,row=team=>{const original=team.team?.shortDisplayName||team.team?.displayName||'';return `<div class="score-team-row"><span class="score-team">${team.team?.logo?`<img src="${esc(team.team.logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span title="${esc(original)}">${esc(persianTeamName(original))}</span></span><strong class="score-result">${state==='pre'?'–':faNumber(team.score||'۰')}</strong></div>`;};
+      return `<a class="score-item${state==='in'?' is-live':''}" href="${esc(link)}" ${matchLink?'':'target="_blank" rel="noopener"'} aria-label="جزئیات ${esc(persianTeamName(home.team?.displayName||''))} و ${esc(persianTeamName(away.team?.displayName||''))}">${meta?.logo?`<img class="score-watermark" src="${esc(meta.logo)}" alt="" aria-hidden="true" loading="lazy" onerror="this.remove()">`:''}<div class="score-meta"><span class="score-league">${esc(translatedLeague(league))}</span><span class="score-status ${status.className}">${status.label}</span></div>${row(home)}${row(away)}</a>`;
     }
     function sortScoreEvents(events){return [...events].sort((a,b)=>{const rank=event=>({in:0,pre:1,post:2}[scoreState(event)]??3),rankDiff=rank(a)-rank(b);if(rankDiff)return rankDiff;const aLeague=a.competitions?.[0]?.altGameNote||'',bLeague=b.competitions?.[0]?.altGameNote||'',leagueDiff=leaguePriority(aLeague)-leaguePriority(bLeague);if(leagueDiff)return leagueDiff;const timeDiff=new Date(a.date)-new Date(b.date);return scoreState(a)==='post'?-timeDiff:timeDiff;});}
     function renderTournamentOptions(){const select=document.getElementById('scoreTournament'),tournaments=[...new Set(loadedScoreEvents.map(event=>translatedLeague(scoreLeague(event))))].sort((a,b)=>a.localeCompare(b,'fa'));if(selectedTournament!=='all'&&!tournaments.includes(selectedTournament))selectedTournament='all';select.innerHTML=`<option value="all">همه تورنمنت‌ها</option>${tournaments.map(name=>`<option value="${esc(name)}"${name===selectedTournament?' selected':''}>${esc(name)}</option>`).join('')}`;select.disabled=false;}
@@ -1449,6 +1533,22 @@
       }catch(error){if(requestId!==scoreRequestId)return;root.innerHTML='<div class="score-state"><span>دریافت نتایج ممکن نشد.</span><button class="score-retry" type="button" data-score-retry>تلاش دوباره</button></div>';updated.textContent='ارتباط با ESPN برقرار نشد';document.getElementById('scoreTournament').disabled=false;}
     }
     function initScores(){renderScoreDateNav();loadScores();document.getElementById('scoreDateNav').addEventListener('click',event=>{const button=event.target.closest('[data-score-date]');if(!button)return;selectedScoreDate=button.dataset.scoreDate;selectedTournament='all';renderScoreDateNav();loadScores();});document.getElementById('scoreTournament').addEventListener('change',event=>{selectedTournament=event.target.value;renderLoadedScores();});document.getElementById('scoreBoard').addEventListener('click',event=>{if(event.target.closest('[data-score-retry]'))loadScores();});setInterval(()=>{if(!document.hidden&&selectedScoreDate===tehranDateKey(new Date()))loadScores(false);},30000);}
+    const MATCH_STAT_FIELDS=[['possessionPct','مالکیت توپ','%'],['totalShots','شوت',''],['shotsOnTarget','شوت در چارچوب',''],['wonCorners','کرنر',''],['totalPasses','پاس',''],['foulsCommitted','خطا',''],['offsides','آفساید',''],['yellowCards','کارت زرد',''],['redCards','کارت قرمز','']];
+    let activeMatchRef='',matchRequestId=0,selectedMatchTab='events';
+    function parseMatchRef(ref){const parts=String(ref||'').match(/^([a-z0-9.]+)~(\d{6,12})$/);return parts&&Object.values(SCORE_TOURNAMENT_META).some(meta=>meta.slug===parts[1])?{slug:parts[1],id:parts[2]}:null;}
+    function renderMatchDetails(data,ref){
+      const parts=parseMatchRef(ref),competition=data.header?.competitions?.[0],teams=competition?.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!parts||!home||!away)throw new Error('Match data missing');
+      const meta=Object.values(SCORE_TOURNAMENT_META).find(entry=>entry.slug===parts.slug),date=new Date(competition.date||data.header.date),state=competition.status?.type?.state||'pre',status=scoreStatus({date:date.toISOString(),competitions:[{status:competition.status}]}),homeName=persianTeamName(home.team?.displayName||home.team?.shortDisplayName||''),awayName=persianTeamName(away.team?.displayName||away.team?.shortDisplayName||''),homeLogo=safeImage(home.team?.logos?.[0]?.href||home.team?.logo),awayLogo=safeImage(away.team?.logos?.[0]?.href||away.team?.logo),venue=data.gameInfo?.venue?.fullName||competition.venue?.fullName||'ورزشگاه اعلام نشده',league=translatedLeague(competition.altGameNote||data.header?.league?.name||parts.slug),dateText=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:IRAN_TIME_ZONE}).format(date),score=state==='pre'?scoreTime(date):`${faNumber(home.score??0)} – ${faNumber(away.score??0)}`,sourceUrl=`https://www.espn.com/soccer/match/_/gameId/${parts.id}`;
+      const eventTypes=new Set(['kickoff','halftime','start-2nd-half','end-regular-time','substitution','yellow-card','red-card','second-yellow-card']),events=(data.keyEvents||[]).filter(event=>eventTypes.has(event.type?.type)||/goal/i.test(event.type?.type||'')),eventMarkup=events.length?events.map(event=>{const type=event.type?.type||'',players=(event.participants||[]).map(person=>person.athlete?.displayName).filter(Boolean),goal=/goal/i.test(type),yellow=/yellow/i.test(type)&&!type.includes('red'),red=/red/i.test(type),sub=type==='substitution',label=goal?(type.includes('own')?'گل به خودی':'گل'):yellow?'کارت زرد':red?'کارت قرمز':sub?'تعویض':type==='halftime'?'پایان نیمه اول':type==='start-2nd-half'?'آغاز نیمه دوم':type==='end-regular-time'?'پایان بازی':'آغاز بازی',icon=goal?'⚽':yellow?'■':red?'■':sub?'↔':'•',description=sub&&players.length>1?`${players[0]} به جای ${players[1]}`:goal&&players.length>1?`${players[0]} · پاس گل: ${players[1]}`:players[0]||'',team=event.team?.displayName?persianTeamName(event.team.displayName):'',minute=faNumber(event.clock?.displayValue|| (type==='kickoff'?'۰′':'—'));return `<div class="match-detail-event ${goal?'goal':yellow?'yellow':red?'red':''}"><strong class="match-detail-minute">${esc(minute)}</strong><span class="match-detail-icon" aria-hidden="true">${icon}</span><div><strong>${esc(label)}${description?` · ${esc(description)}`:''}</strong>${team?`<small>${esc(team)}</small>`:''}</div></div>`;}).join(''):'<div class="match-detail-empty">هنوز رویدادی برای این بازی ثبت نشده است. با آغاز مسابقه، گل‌ها، کارت‌ها و تعویض‌ها اینجا نمایش داده می‌شوند.</div>';
+      const boxTeams=data.boxscore?.teams||[],homeBox=boxTeams.find(entry=>String(entry.team?.id)===String(home.team?.id)),awayBox=boxTeams.find(entry=>String(entry.team?.id)===String(away.team?.id)),statValue=(box,name)=>box?.statistics?.find(stat=>stat.name===name)?.displayValue,statRows=MATCH_STAT_FIELDS.map(([name,label,suffix])=>{const a=statValue(homeBox,name),b=statValue(awayBox,name);if(a==null||b==null)return'';const av=Number(a),bv=Number(b),homeShare=Number.isFinite(av)&&Number.isFinite(bv)&&av+bv>0?100*av/(av+bv):50;return `<div class="match-detail-stat"><div class="match-detail-stat-top"><strong>${esc(faNumber(a))}${suffix}</strong><span>${esc(label)}</span><strong>${esc(faNumber(b))}${suffix}</strong></div><div class="match-detail-stat-bars"><i style="width:${homeShare.toFixed(1)}%"></i><i style="width:${(100-homeShare).toFixed(1)}%"></i></div></div>`;}).filter(Boolean),statsMarkup=statRows.length?`<div class="match-detail-stats">${statRows.join('')}</div>`:'<div class="match-detail-empty">آمار این بازی هنوز از سوی منبع منتشر نشده است.</div>';
+      const rosterFor=team=>(data.rosters||[]).find(entry=>String(entry.team?.id)===String(team.team?.id)),rosterCard=(team,name)=>{const roster=rosterFor(team),players=roster?.roster||[],group=(title,list)=>list.length?`<h4>${title}</h4>${list.map(player=>`<div class="match-detail-player"><b>${esc(faNumber(player.jersey||'–'))}</b><span>${esc(player.athlete?.displayName||'—')}</span><small>${esc(player.position?.abbreviation||'')}</small></div>`).join('')}`:'',starters=players.filter(player=>player.starter),bench=players.filter(player=>!player.starter);return `<section class="match-detail-lineup"><h3>${esc(name)}${roster?.formation?` · ${esc(roster.formation)}`:''}</h3>${players.length?`${group('ترکیب اصلی',starters)}${group('ذخیره‌ها',bench)}`:'<div class="match-detail-empty">ترکیب رسمی هنوز اعلام نشده است.</div>'}</section>`;},lineupMarkup=`<div class="match-detail-lineups">${rosterCard(home,homeName)}${rosterCard(away,awayName)}</div>`;
+      const tab=(key,label)=>`<button class="match-detail-tab${selectedMatchTab===key?' active':''}" type="button" role="tab" data-match-tab="${key}" aria-selected="${selectedMatchTab===key?'true':'false'}">${label}</button>`,panel=(key,title,content)=>`<section class="match-detail-panel" role="tabpanel" data-match-panel="${key}" ${selectedMatchTab===key?'':'hidden'}><h2 class="match-detail-section-title">${title}</h2>${content}</section>`;
+      document.title=`${homeName} – ${awayName} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',`جزئیات، نتیجه و آمار بازی ${homeName} و ${awayName} به وقت ایران از داده‌های ESPN.`);
+      document.getElementById('matchContent').innerHTML=`<header class="match-detail-hero"><div class="match-detail-top"><span>${esc(league)}</span><span>${meta?.logo?`<img src="${esc(meta.logo)}" alt="" onerror="this.remove()">`:''} جزئیات بازی</span></div><div class="match-detail-board"><div class="match-detail-team">${homeLogo?`<img src="${esc(homeLogo)}" alt="نشان ${esc(homeName)}">`:''}<strong>${esc(homeName)}</strong><small>میزبان</small></div><div class="match-detail-center"><strong>${esc(score)}</strong><span>${esc(state==='pre'?'شروع به وقت ایران':status.label)}</span></div><div class="match-detail-team">${awayLogo?`<img src="${esc(awayLogo)}" alt="نشان ${esc(awayName)}">`:''}<strong>${esc(awayName)}</strong><small>میهمان</small></div></div><div class="match-detail-meta"><span>${esc(dateText)} · ${esc(scoreTime(date))} ایران</span><span>${esc(venue)}</span></div></header><div class="match-detail-tabs" role="tablist" aria-label="جزئیات مسابقه">${tab('events','رویدادها')}${tab('stats','آمار')}${tab('lineups','ترکیب‌ها')}</div><div class="match-detail-body">${panel('events','اتفاقات بازی',eventMarkup)}${panel('stats','آمار دو تیم',statsMarkup)}${panel('lineups','بازیکنان و ترکیب رسمی',lineupMarkup)}</div><footer class="match-detail-source"><span>داده‌های مسابقه: ESPN · ساعت‌ها به وقت ایران</span><span><button class="score-retry" type="button" data-match-retry>بروزرسانی</button> <a href="${esc(sourceUrl)}" target="_blank" rel="noopener">مشاهده در ESPN ↗</a></span></footer>`;
+    }
+    async function loadMatchDetails(ref,showLoading=true){const parts=parseMatchRef(ref),root=document.getElementById('matchContent'),requestId=++matchRequestId;if(!parts)return;if(showLoading)root.innerHTML='<div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت جزئیات بازی از ESPN…</span></div>';try{const response=await fetch(`${ESPN_SOCCER_API}/${parts.slug}/summary?event=${parts.id}`);if(!response.ok)throw new Error(`ESPN ${response.status}`);const data=await response.json();if(requestId!==matchRequestId||activeMatchRef!==ref)return;renderMatchDetails(data,ref);}catch(error){if(requestId!==matchRequestId)return;if(!showLoading)return;root.innerHTML='<div class="match-detail-empty">دریافت جزئیات بازی ممکن نشد. اتصال را بررسی کنید و دوباره تلاش کنید.<br><button class="score-retry" type="button" data-match-retry>تلاش دوباره</button></div>';}}
+    function showMatchPage(ref){if(!parseMatchRef(ref))return false;activeMatchRef=ref;selectedMatchTab='events';showView('match');loadMatchDetails(ref);return true;}
+    function initMatchDetails(){document.getElementById('matchContent').addEventListener('click',event=>{const button=event.target.closest('[data-match-tab]');if(button){selectedMatchTab=button.dataset.matchTab;document.querySelectorAll('[data-match-tab]').forEach(tab=>{const active=tab.dataset.matchTab===selectedMatchTab;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));});document.querySelectorAll('[data-match-panel]').forEach(panel=>panel.hidden=panel.dataset.matchPanel!==selectedMatchTab);}if(event.target.closest('[data-match-retry]')&&activeMatchRef)loadMatchDetails(activeMatchRef);});setInterval(()=>{if(!document.hidden&&activeMatchRef&&!document.getElementById('matchView').classList.contains('hidden'))loadMatchDetails(activeMatchRef,false);},30000);}
     const LEAGUE_CONFIG={
       'eng.1':{name:'لیگ برتر انگلیس',kind:'domestic',table:'https://www.espn.com/soccer/table/_/league/eng.1'},
       'esp.1':{name:'لالیگا اسپانیا',kind:'domestic',table:'https://www.espn.com/soccer/table/_/league/esp.1'},
@@ -1503,7 +1603,7 @@
       document.getElementById('loadMore').classList.toggle('hidden',shown.length>=filtered.length);
     }
     function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-league-center]').forEach(button=>button.classList.remove('active'));document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
-    function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('leagueView').classList.toggle('hidden',view!=='league');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
+    function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('leagueView').classList.toggle('hidden',view!=='league');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('matchView').classList.toggle('hidden',view!=='match');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
     function renderArticlePage(id){
       const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
       document.title=`${item.title} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش نیمکت');
@@ -1515,7 +1615,7 @@
     }
     function showHome(){document.title='نیمکت | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));showView('news');}
     function showLeagues(){const requested=new URLSearchParams(location.search).get('league');if(Object.hasOwn(LEAGUE_CONFIG,requested)&&requested!==selectedLeague){selectedLeague=requested;leagueWeekOffset=0;document.getElementById('leagueSelect').value=selectedLeague;leagueCenterLoaded=false;}document.title='جدول لیگ‌ها و برنامه بازی‌ها | نیمکت';document.querySelector('meta[name="description"]').setAttribute('content','جدول لیگ‌های معتبر فوتبال و برنامه بازی‌های هفته به وقت ایران.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-league-center')));showView('league');if(!leagueCenterLoaded){leagueCenterLoaded=true;loadLeagueCenter();}}
-    function route(){const params=new URLSearchParams(location.search),id=params.get('article');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(params.get('page')==='leagues'){showLeagues();return;}if(!id||!renderArticlePage(id))showHome();}
+    function route(){const params=new URLSearchParams(location.search),id=params.get('article'),match=params.get('match');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(params.get('page')==='leagues'){showLeagues();return;}if(match&&showMatchPage(match))return;if(!id||!renderArticlePage(id))showHome();}
     const featuredRoot=document.getElementById('featured');
     featuredRoot.addEventListener('click',event=>{const dot=event.target.closest('[data-feature-index]'),arrow=event.target.closest('[data-feature-step]');if(!dot&&!arrow)return;renderFeatured(dot?Number(dot.dataset.featureIndex):featuredIndex+Number(arrow.dataset.featureStep));startFeaturedRotation();});
     featuredRoot.addEventListener('mouseenter',stopFeaturedRotation);
@@ -1547,7 +1647,7 @@
     document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!item)return;if(item.isCustom){if(!confirm('این خبر ساخته‌شده حذف شود؟'))return;const index=news.indexOf(item);news.splice(index,1);persistCreatedNews();const next=news[Math.min(index,news.length-1)]||news[0];renderFeatured();renderLatest();render();setupEditorOptions();if(next){fillEditor(next);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(next.id)}`);}toast('خبر ساخته‌شده حذف شد.');return;}if(!original||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','cat','country','time','cred','image','imageSettings','url','tags','why','body','media'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
     document.getElementById('editorHomeBtn').addEventListener('click',()=>{history.pushState({},'',location.pathname);showHome();});
     if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
-    setupEditorOptions();renderFeatured();startFeaturedRotation();initScores();initLeagueCenter();renderLatest();render();route();
+    setupEditorOptions();renderFeatured();startFeaturedRotation();initScores();initMatchDetails();initLeagueCenter();renderLatest();render();route();
   </script>
 </body>
 </html>

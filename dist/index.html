@@ -40,10 +40,6 @@
     .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.3); }
 
     .score-strip { position:relative; z-index:40; height:150px; }
-    .score-trigger { position:absolute; top:8px; left:8px; display:grid; place-items:center; width:25px; height:25px; border:1px solid #dfe2e6; border-radius:5px; background:#fff; color:#242932; cursor:pointer; transition:border-color .18s ease,box-shadow .18s ease; }
-    .score-trigger:hover,.score-trigger:focus-visible,.score-strip.is-open .score-trigger { border-color:#e2a3a8; box-shadow:0 4px 16px rgba(18,22,28,.13); }
-    .score-trigger svg { width:13px; height:13px; transition:transform .18s ease; }
-    .score-strip.is-open .score-trigger svg { transform:rotate(180deg); }
     .score-layout { position:relative; height:150px; }
     .score-toolbar { position:absolute; top:7px; right:0; display:flex; flex-direction:column; align-items:stretch; gap:5px; width:142px; height:136px; padding:8px; border:1px solid var(--line); border-radius:8px; background:#fff; box-shadow:0 4px 14px rgba(18,22,28,.06); }
     .score-heading { min-width:0; display:flex; align-items:flex-start; gap:8px; }
@@ -61,10 +57,11 @@
     .score-tournament select { width:100%; min-width:0; height:26px; padding:0 7px 0 18px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); font:inherit; font-size:9px; font-weight:700; cursor:pointer; }
     .score-source { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1px 5px; min-width:0; height:20px; padding:0 10px; border-top:1px solid var(--line); color:var(--muted); font-size:8px; line-height:1.4; }
     .score-source a { color:#252a31; font-weight:900; }
-    .score-board-shell { position:absolute; top:7px; right:149px; visibility:hidden; width:min(650px,calc(100% - 149px)); height:136px; overflow:hidden; border:1px solid var(--line); border-radius:8px; background:#fff; box-shadow:0 10px 25px rgba(18,22,28,.11); opacity:0; transform:translateX(6px); pointer-events:none; transition:opacity .18s ease,transform .18s ease,visibility .18s ease; }
-    .score-strip.is-open .score-board-shell { visibility:visible; opacity:1; transform:none; pointer-events:auto; }
-    .score-inner { display:flex; align-items:stretch; min-height:114px; height:114px; overflow-x:auto; scrollbar-width:none; scroll-snap-type:x proximity; }
-    .score-inner::-webkit-scrollbar { display:none; }
+    .score-board-shell { position:absolute; top:7px; right:149px; left:0; height:136px; overflow:hidden; border:1px solid var(--line); border-radius:8px; background:#fff; box-shadow:0 4px 14px rgba(18,22,28,.06); }
+    .score-inner { display:flex; align-items:stretch; min-height:114px; height:114px; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:thin; scrollbar-color:#aeb5bd #f0f2f4; scroll-snap-type:x proximity; }
+    .score-inner::-webkit-scrollbar { height:7px; }
+    .score-inner::-webkit-scrollbar-track { background:#f0f2f4; }
+    .score-inner::-webkit-scrollbar-thumb { border-radius:8px; background:#aeb5bd; }
     .score-item { position:relative; isolation:isolate; display:flex; flex:0 0 215px; flex-direction:column; justify-content:center; overflow:hidden; padding:10px 13px; border-left:1px solid var(--line); color:var(--ink); scroll-snap-align:start; transition:background .2s ease; }
     .score-item:hover { background:#f7f8f9; }
     .score-item:focus-visible { outline:2px solid var(--red); outline-offset:-3px; }
@@ -565,14 +562,12 @@
       .score-heading { gap:6px; }
       .score-heading strong { font-size:9px; }
       .score-heading small { font-size:8px; }
-      .score-trigger { top:7px; left:5px; width:21px; height:21px; }
-      .score-trigger svg { width:11px; height:11px; }
       .score-date-button { padding:2px 4px; }
       .score-date-button strong { font-size:8px; }
       .score-date-button small { margin:0; font-size:8px; }
       .score-tournament select { height:25px; font-size:8px; }
       .score-source { font-size:8px; }
-      .score-board-shell { right:123px; width:calc(100% - 123px); }
+      .score-board-shell { right:123px; }
       .score-inner { min-height:114px; }
       .score-item { flex-basis:185px; padding-inline:10px; }
       .match-detail-hero { padding:19px 18px; }
@@ -787,12 +782,11 @@
     <div class="container score-layout">
       <div class="score-toolbar">
         <div class="score-heading"><span class="live-pulse" aria-hidden="true"></span><div class="score-heading-copy"><strong>بازی‌ها</strong><small>به وقت ایران</small></div></div>
-        <button class="score-trigger" id="scoreTrigger" type="button" title="نمایش بازی‌ها" aria-label="نمایش نتایج و برنامه بازی‌ها" aria-controls="scorePanel" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m10 3-5 5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="score-date-nav" id="scoreDateNav" aria-label="انتخاب روز مسابقات"></div>
         <label class="score-tournament"><span>تورنمنت</span><select id="scoreTournament" aria-label="انتخاب تورنمنت"><option value="all">همه تورنمنت‌ها</option></select></label>
       </div>
-      <div class="score-board-shell" id="scorePanel" aria-hidden="true" inert>
-        <div class="score-inner" id="scoreBoard" aria-live="polite"><div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات…</span></div></div>
+      <div class="score-board-shell" id="scorePanel">
+        <div class="score-inner" id="scoreBoard" aria-live="polite" aria-label="بازی‌ها؛ برای دیدن بقیه به چپ یا راست پیمایش کنید" tabindex="0"><div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات…</span></div></div>
         <div class="score-source"><span id="scoreUpdated">در حال دریافت…</span><a href="https://www.espn.com/soccer/scoreboard" target="_blank" rel="noopener" aria-label="دیدن منبع داده‌های مسابقات">منبع داده ↗</a></div>
       </div>
     </div>
@@ -1605,7 +1599,7 @@
     }
     function sortScoreEvents(events){return [...events].sort((a,b)=>{const rank=event=>({in:0,pre:1,post:2}[scoreState(event)]??3),rankDiff=rank(a)-rank(b);if(rankDiff)return rankDiff;const aLeague=a.competitions?.[0]?.altGameNote||'',bLeague=b.competitions?.[0]?.altGameNote||'',leagueDiff=leaguePriority(aLeague)-leaguePriority(bLeague);if(leagueDiff)return leagueDiff;const timeDiff=new Date(a.date)-new Date(b.date);return scoreState(a)==='post'?-timeDiff:timeDiff;});}
     function renderTournamentOptions(){const select=document.getElementById('scoreTournament'),tournaments=[...new Set(loadedScoreEvents.map(event=>translatedLeague(scoreLeague(event))))].sort((a,b)=>a.localeCompare(b,'fa'));if(selectedTournament!=='all'&&!tournaments.includes(selectedTournament))selectedTournament='all';select.innerHTML=`<option value="all">همه تورنمنت‌ها</option>${tournaments.map(name=>`<option value="${esc(name)}"${name===selectedTournament?' selected':''}>${esc(name)}</option>`).join('')}`;select.disabled=false;}
-    function renderLoadedScores(){const root=document.getElementById('scoreBoard'),updated=document.getElementById('scoreUpdated'),filtered=selectedTournament==='all'?loadedScoreEvents:loadedScoreEvents.filter(event=>translatedLeague(scoreLeague(event))===selectedTournament),shown=filtered.slice(0,18);root.innerHTML=shown.length?shown.map(scoreCard).join(''):'<div class="score-state">در این روز مسابقه‌ای از تورنمنت‌های منتخب ثبت نشده است.</div>';updated.textContent=`${filtered.length.toLocaleString('fa-IR')} بازی · بروزرسانی ${scoreTime(scoreLastUpdated||new Date())}`;}
+    function renderLoadedScores(){const root=document.getElementById('scoreBoard'),updated=document.getElementById('scoreUpdated'),filtered=selectedTournament==='all'?loadedScoreEvents:loadedScoreEvents.filter(event=>translatedLeague(scoreLeague(event))===selectedTournament);root.innerHTML=filtered.length?filtered.map(scoreCard).join(''):'<div class="score-state">در این روز مسابقه‌ای از تورنمنت‌های منتخب ثبت نشده است.</div>';root.scrollLeft=0;updated.textContent=`${filtered.length.toLocaleString('fa-IR')} بازی · بروزرسانی ${scoreTime(scoreLastUpdated||new Date())}`;}
     async function loadScores(showLoading=true){
       const root=document.getElementById('scoreBoard'),updated=document.getElementById('scoreUpdated'),requestId=++scoreRequestId;if(showLoading){root.innerHTML='<div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات…</span></div>';document.getElementById('scoreTournament').disabled=true;}
       try{
@@ -1614,18 +1608,7 @@
       }catch(error){if(requestId!==scoreRequestId)return;root.innerHTML='<div class="score-state"><span>دریافت نتایج ممکن نشد.</span><button class="score-retry" type="button" data-score-retry>تلاش دوباره</button></div>';updated.textContent='ارتباط با منبع نتایج برقرار نشد';document.getElementById('scoreTournament').disabled=false;}
     }
     function initScores(){
-      const strip=document.querySelector('.score-strip'),toolbar=strip.querySelector('.score-toolbar'),trigger=document.getElementById('scoreTrigger'),panel=document.getElementById('scorePanel');
-      const setOpen=open=>{if(strip.classList.contains('is-open')===open)return;strip.classList.toggle('is-open',open);trigger.setAttribute('aria-expanded',String(open));trigger.setAttribute('aria-label',open?'بستن نتایج و برنامه بازی‌ها':'نمایش نتایج و برنامه بازی‌ها');panel.setAttribute('aria-hidden',String(!open));panel.inert=!open;};
-      const near=(event,element)=>{const rect=element.getBoundingClientRect();return event.clientX>=rect.left-8&&event.clientX<=rect.right+8&&event.clientY>=rect.top-8&&event.clientY<=rect.bottom+8;};
-      toolbar.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')setOpen(true);});
-      strip.addEventListener('pointermove',event=>{if(event.pointerType==='mouse')setOpen(near(event,toolbar)||(strip.classList.contains('is-open')&&near(event,panel)));});
-      strip.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse')setOpen(false);});
-      trigger.addEventListener('click',()=>setOpen(!strip.classList.contains('is-open')));
-      strip.addEventListener('focusin',event=>{if(event.target!==trigger)setOpen(true);});
-      strip.addEventListener('focusout',event=>{if(!strip.contains(event.relatedTarget))setOpen(false);});
-      document.addEventListener('pointerdown',event=>{if(!strip.contains(event.target))setOpen(false);});
-      document.addEventListener('keydown',event=>{if(event.key==='Escape'&&strip.classList.contains('is-open')){setOpen(false);trigger.focus();}});
-      renderScoreDateNav();loadScores();document.getElementById('scoreDateNav').addEventListener('click',event=>{const button=event.target.closest('[data-score-date]');if(!button)return;selectedScoreDate=button.dataset.scoreDate;selectedTournament='all';renderScoreDateNav();loadScores();setOpen(true);});document.getElementById('scoreTournament').addEventListener('change',event=>{selectedTournament=event.target.value;renderLoadedScores();setOpen(true);});document.getElementById('scoreBoard').addEventListener('click',event=>{if(event.target.closest('[data-score-retry]'))loadScores();});setInterval(()=>{if(!document.hidden&&selectedScoreDate===tehranDateKey(new Date()))loadScores(false);},30000);
+      renderScoreDateNav();loadScores();document.getElementById('scoreDateNav').addEventListener('click',event=>{const button=event.target.closest('[data-score-date]');if(!button)return;selectedScoreDate=button.dataset.scoreDate;selectedTournament='all';renderScoreDateNav();loadScores();});document.getElementById('scoreTournament').addEventListener('change',event=>{selectedTournament=event.target.value;renderLoadedScores();});document.getElementById('scoreBoard').addEventListener('click',event=>{if(event.target.closest('[data-score-retry]'))loadScores();});setInterval(()=>{if(!document.hidden&&selectedScoreDate===tehranDateKey(new Date()))loadScores(false);},30000);
     }
     const MATCH_STAT_FIELDS=[['possessionPct','مالکیت توپ','%'],['totalShots','شوت',''],['shotsOnTarget','شوت در چارچوب',''],['wonCorners','کرنر',''],['totalPasses','پاس',''],['foulsCommitted','خطا',''],['offsides','آفساید',''],['yellowCards','کارت زرد',''],['redCards','کارت قرمز','']];
     let activeMatchRef='',matchRequestId=0,selectedMatchTab='events';

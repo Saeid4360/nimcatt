@@ -55,13 +55,9 @@
     .score-tournament { display:block; min-width:0; color:var(--muted); font-size:11px; }
     .score-tournament > span { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
     .score-tournament select { width:100%; min-width:0; height:26px; padding:0 7px 0 18px; border:1px solid var(--line); border-radius:5px; background:#fff; color:var(--ink); font:inherit; font-size:11px; font-weight:700; cursor:pointer; }
-    .score-source { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1px 5px; min-width:0; height:20px; padding:0 10px; border-top:1px solid var(--line); color:var(--muted); font-size:8px; line-height:1.4; }
-    .score-source a { color:#252a31; font-weight:900; }
     .score-board-shell { position:absolute; top:7px; right:149px; left:0; height:136px; overflow:hidden; border:1px solid #d9dde3; border-radius:6px; background:#fff; box-shadow:0 3px 10px rgba(18,22,28,.045); }
-    .score-inner { display:flex; align-items:stretch; min-height:114px; height:114px; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:thin; scrollbar-color:#aeb5bd #f0f2f4; scroll-snap-type:x mandatory; }
-    .score-inner::-webkit-scrollbar { height:6px; }
-    .score-inner::-webkit-scrollbar-track { background:#f0f2f4; }
-    .score-inner::-webkit-scrollbar-thumb { border-radius:8px; background:#aeb5bd; }
+    .score-inner { display:flex; align-items:stretch; height:100%; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:none; scroll-snap-type:x mandatory; }
+    .score-inner::-webkit-scrollbar { display:none; }
     .score-item { position:relative; isolation:isolate; display:flex; flex:0 0 254px; flex-direction:column; overflow:hidden; padding:7px 11px 6px; border-left:1px solid var(--line); color:var(--ink); scroll-snap-align:start; transition:background .2s ease; }
     .score-item:hover { background:#f4f7fa; }
     .score-item:focus-visible { outline:2px solid var(--red); outline-offset:-3px; }
@@ -79,8 +75,7 @@
     .score-side span { display:-webkit-box; overflow:hidden; -webkit-line-clamp:2; -webkit-box-orient:vertical; max-height:28px; font-size:11px; line-height:1.25; font-weight:800; }
     .score-centre { direction:rtl; text-align:center; font-size:18px; font-weight:900; font-variant-numeric:tabular-nums; white-space:nowrap; }
     .score-item.is-live .score-centre { color:var(--red); }
-    .score-card-foot { display:flex; align-items:center; justify-content:center; min-height:12px; border-top:1px solid #eef0f3; color:#738095; font-size:9px; line-height:1.2; font-weight:700; }
-    .score-scroll { position:absolute; z-index:2; top:43px; display:grid; place-items:center; width:24px; height:31px; border:1px solid #dce1e7; border-radius:5px; background:#fff; color:#243449; font-size:22px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(15,30,50,.12); }
+    .score-scroll { position:absolute; z-index:2; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:24px; height:31px; border:1px solid #dce1e7; border-radius:5px; background:#fff; color:#243449; font-size:22px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(15,30,50,.12); }
     .score-scroll:disabled { opacity:.25; cursor:default; box-shadow:none; }
     .score-scroll-prev { right:4px; }
     .score-scroll-next { left:4px; }
@@ -572,9 +567,7 @@
       .score-date-button strong { font-size:10px; }
       .score-date-button small { margin:0; font-size:9px; }
       .score-tournament select { height:25px; font-size:10px; }
-      .score-source { font-size:8px; }
       .score-board-shell { right:131px; }
-      .score-inner { min-height:114px; }
       .score-item { flex-basis:min(205px,100%); padding-inline:7px; }
       .score-faceoff { grid-template-columns:minmax(0,1fr) 37px minmax(0,1fr); gap:2px; }
       .score-side img { width:20px; height:20px; }
@@ -801,7 +794,6 @@
         <div class="score-inner" id="scoreBoard" aria-live="polite" aria-label="بازی‌ها؛ برای دیدن بقیه به چپ یا راست پیمایش کنید" tabindex="0"><div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات…</span></div></div>
         <button class="score-scroll score-scroll-prev" type="button" data-score-scroll="prev" aria-label="بازی‌های قبلی" disabled>›</button>
         <button class="score-scroll score-scroll-next" type="button" data-score-scroll="next" aria-label="بازی‌های بعدی" disabled>‹</button>
-        <div class="score-source"><span id="scoreUpdated">در حال دریافت…</span><a href="https://www.espn.com/soccer/scoreboard" target="_blank" rel="noopener" aria-label="دیدن منبع داده‌های مسابقات">منبع داده ↗</a></div>
       </div>
     </div>
   </section>
@@ -1579,7 +1571,7 @@
       'benfica':'بنفیکا','sporting cp':'اسپورتینگ لیسبون','sporting':'اسپورتینگ لیسبون','fc porto':'پورتو','porto':'پورتو','braga':'براگا','celtic':'سلتیک','rangers':'رنجرز','galatasaray':'گالاتاسرای','fenerbahce':'فنرباغچه','al nassr':'النصر','al hilal':'الهلال','inter miami cf':'اینتر میامی','inter miami':'اینتر میامی','la galaxy':'لس‌آنجلس گلکسی'
     };
     const TEAM_WORD_FA={'fc':'','afc':'','cf':'','sc':'','ac':'','sv':'','club':'باشگاه','united':'یونایتد','city':'سیتی','real':'رئال','athletic':'اتلتیک','atletico':'اتلتیکو','inter':'اینتر','saint':'سن','st':'سن','borussia':'بوروسیا','bayern':'بایرن','sporting':'اسپورتینگ','dynamo':'دینامو','olympic':'المپیک','&':'و'};
-    let selectedScoreDate=tehranDateKey(new Date()),scoreRequestId=0,selectedTournament='all',loadedScoreEvents=[],scoreLastUpdated=null;
+    let selectedScoreDate=tehranDateKey(new Date()),scoreRequestId=0,selectedTournament='all',loadedScoreEvents=[];
     function tehranDateKey(date){const parts=new Intl.DateTimeFormat('en-CA',{timeZone:IRAN_TIME_ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date),value=type=>parts.find(part=>part.type===type)?.value;return `${value('year')}-${value('month')}-${value('day')}`;}
     function addScoreDays(key,amount){const date=new Date(`${key}T12:00:00Z`);date.setUTCDate(date.getUTCDate()+amount);return date.toISOString().slice(0,10);}
     function scoreDateLabel(key){return new Intl.DateTimeFormat('fa-IR-u-ca-persian',{day:'numeric',month:'short',timeZone:IRAN_TIME_ZONE}).format(new Date(`${key}T12:00:00Z`));}
@@ -1609,18 +1601,18 @@
     function scoreCard(event){
       const competition=event.competitions?.[0]||{},teams=competition.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!home||!away)return '';
       const state=scoreState(event),status=scoreStatus(event),league=scoreLeague(event),meta=scoreTournamentMeta(event),matchLink=meta?`${location.pathname}?match=${encodeURIComponent(`${meta.slug}~${event.id}`)}`:'',externalLink=event.links?.find(item=>(item.rel||[]).includes('summary'))?.href||'https://www.espn.com/soccer/scoreboard',link=matchLink||externalLink,side=team=>{const original=team.team?.shortDisplayName||team.team?.displayName||'';return `<span class="score-side">${team.team?.logo?`<img src="${esc(team.team.logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span title="${esc(original)}">${esc(persianTeamName(original))}</span></span>`;},score=state==='pre'?'–':`${faNumber(home.score??0)} – ${faNumber(away.score??0)}`;
-      return `<a class="score-item${state==='in'?' is-live':''}" href="${esc(link)}" ${matchLink?'':'target="_blank" rel="noopener"'} aria-label="جزئیات ${esc(persianTeamName(home.team?.displayName||''))} و ${esc(persianTeamName(away.team?.displayName||''))}">${meta?.logo?`<img class="score-watermark" src="${esc(meta.logo)}" alt="" aria-hidden="true" loading="lazy" onerror="this.remove()">`:''}<div class="score-meta"><span class="score-league">${esc(translatedLeague(league))}</span><span class="score-status ${status.className}">${state==='pre'?'شروع ':''}${esc(status.label)}</span></div><div class="score-faceoff">${side(home)}<strong class="score-centre">${score}</strong>${side(away)}</div><span class="score-card-foot">جزئیات مسابقه ←</span></a>`;
+      return `<a class="score-item${state==='in'?' is-live':''}" href="${esc(link)}" ${matchLink?'':'target="_blank" rel="noopener"'} aria-label="جزئیات ${esc(persianTeamName(home.team?.displayName||''))} و ${esc(persianTeamName(away.team?.displayName||''))}">${meta?.logo?`<img class="score-watermark" src="${esc(meta.logo)}" alt="" aria-hidden="true" loading="lazy" onerror="this.remove()">`:''}<div class="score-meta"><span class="score-league">${esc(translatedLeague(league))}</span><span class="score-status ${status.className}">${state==='pre'?'شروع ':''}${esc(status.label)}</span></div><div class="score-faceoff">${side(home)}<strong class="score-centre">${score}</strong>${side(away)}</div></a>`;
     }
     function sortScoreEvents(events){return [...events].sort((a,b)=>{const rank=event=>({in:0,pre:1,post:2}[scoreState(event)]??3),rankDiff=rank(a)-rank(b);if(rankDiff)return rankDiff;const aLeague=a.competitions?.[0]?.altGameNote||'',bLeague=b.competitions?.[0]?.altGameNote||'',leagueDiff=leaguePriority(aLeague)-leaguePriority(bLeague);if(leagueDiff)return leagueDiff;const timeDiff=new Date(a.date)-new Date(b.date);return scoreState(a)==='post'?-timeDiff:timeDiff;});}
     function renderTournamentOptions(){const select=document.getElementById('scoreTournament'),tournaments=[...new Set(loadedScoreEvents.map(event=>translatedLeague(scoreLeague(event))))].sort((a,b)=>a.localeCompare(b,'fa'));if(selectedTournament!=='all'&&!tournaments.includes(selectedTournament))selectedTournament='all';select.innerHTML=`<option value="all">همه تورنمنت‌ها</option>${tournaments.map(name=>`<option value="${esc(name)}"${name===selectedTournament?' selected':''}>${esc(name)}</option>`).join('')}`;select.disabled=false;}
     function updateScoreScrollButtons(){const root=document.getElementById('scoreBoard'),max=Math.max(0,root.scrollWidth-root.clientWidth),position=Math.abs(root.scrollLeft);document.querySelector('[data-score-scroll="prev"]').disabled=max<2||position<2;document.querySelector('[data-score-scroll="next"]').disabled=max<2||position>=max-2;}
-    function renderLoadedScores(){const root=document.getElementById('scoreBoard'),updated=document.getElementById('scoreUpdated'),filtered=selectedTournament==='all'?loadedScoreEvents:loadedScoreEvents.filter(event=>translatedLeague(scoreLeague(event))===selectedTournament);root.innerHTML=filtered.length?filtered.map(scoreCard).join(''):'<div class="score-state">در این روز مسابقه‌ای از تورنمنت‌های منتخب ثبت نشده است.</div>';root.scrollLeft=0;requestAnimationFrame(updateScoreScrollButtons);updated.textContent=`${filtered.length.toLocaleString('fa-IR')} بازی · بروزرسانی ${scoreTime(scoreLastUpdated||new Date())}`;}
+    function renderLoadedScores(){const root=document.getElementById('scoreBoard'),filtered=selectedTournament==='all'?loadedScoreEvents:loadedScoreEvents.filter(event=>translatedLeague(scoreLeague(event))===selectedTournament);root.innerHTML=filtered.length?filtered.map(scoreCard).join(''):'<div class="score-state">در این روز مسابقه‌ای از تورنمنت‌های منتخب ثبت نشده است.</div>';root.scrollLeft=0;requestAnimationFrame(updateScoreScrollButtons);}
     async function loadScores(showLoading=true){
-      const root=document.getElementById('scoreBoard'),updated=document.getElementById('scoreUpdated'),requestId=++scoreRequestId;if(showLoading){root.innerHTML='<div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات…</span></div>';document.getElementById('scoreTournament').disabled=true;}
+      const root=document.getElementById('scoreBoard'),requestId=++scoreRequestId;if(showLoading){root.innerHTML='<div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>دریافت مسابقات…</span></div>';document.getElementById('scoreTournament').disabled=true;}
       try{
         const apiDates=[addScoreDays(selectedScoreDate,-1),selectedScoreDate],responses=await Promise.all(apiDates.map(key=>fetch(`${ESPN_SCOREBOARD_URL}?dates=${key.replaceAll('-','')}&limit=100`).then(response=>{if(!response.ok)throw new Error(`ESPN ${response.status}`);return response.json();})));if(requestId!==scoreRequestId)return;
-        const eventMap=new Map();responses.flatMap(data=>data.events||[]).forEach(event=>eventMap.set(event.id,event));loadedScoreEvents=sortScoreEvents([...eventMap.values()].filter(event=>event.date&&tehranDateKey(new Date(event.date))===selectedScoreDate&&event.competitions?.[0]?.competitors?.length>=2&&isTrustedTournament(scoreLeague(event))));scoreLastUpdated=new Date();renderTournamentOptions();renderLoadedScores();
-      }catch(error){if(requestId!==scoreRequestId)return;root.innerHTML='<div class="score-state"><span>دریافت نتایج ممکن نشد.</span><button class="score-retry" type="button" data-score-retry>تلاش دوباره</button></div>';updated.textContent='ارتباط با منبع نتایج برقرار نشد';document.getElementById('scoreTournament').disabled=false;updateScoreScrollButtons();}
+        const eventMap=new Map();responses.flatMap(data=>data.events||[]).forEach(event=>eventMap.set(event.id,event));loadedScoreEvents=sortScoreEvents([...eventMap.values()].filter(event=>event.date&&tehranDateKey(new Date(event.date))===selectedScoreDate&&event.competitions?.[0]?.competitors?.length>=2&&isTrustedTournament(scoreLeague(event))));renderTournamentOptions();renderLoadedScores();
+      }catch(error){if(requestId!==scoreRequestId)return;root.innerHTML='<div class="score-state"><span>دریافت نتایج ممکن نشد.</span><button class="score-retry" type="button" data-score-retry>تلاش دوباره</button></div>';document.getElementById('scoreTournament').disabled=false;updateScoreScrollButtons();}
     }
     function initScores(){
       const board=document.getElementById('scoreBoard');renderScoreDateNav();loadScores();document.getElementById('scoreDateNav').addEventListener('click',event=>{const button=event.target.closest('[data-score-date]');if(!button)return;selectedScoreDate=button.dataset.scoreDate;selectedTournament='all';renderScoreDateNav();loadScores();});document.getElementById('scoreTournament').addEventListener('change',event=>{selectedTournament=event.target.value;renderLoadedScores();});board.addEventListener('click',event=>{if(event.target.closest('[data-score-retry]'))loadScores();});board.addEventListener('scroll',updateScoreScrollButtons,{passive:true});document.getElementById('scorePanel').addEventListener('click',event=>{const button=event.target.closest('[data-score-scroll]');if(button&&!button.disabled)board.scrollBy({left:(button.dataset.scoreScroll==='next'?-1:1)*Math.max(220,board.clientWidth*.65),behavior:'smooth'});});window.addEventListener('resize',updateScoreScrollButtons);setInterval(()=>{if(!document.hidden&&selectedScoreDate===tehranDateKey(new Date()))loadScores(false);},30000);

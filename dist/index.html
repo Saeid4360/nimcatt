@@ -280,6 +280,61 @@
     .article-page-body .drawer-figure img { max-height:none; }
     .article-page-body .drawer-figure figcaption { padding:12px 14px; font-size:12px; }
     .article-page-body .drawer-note { padding:18px; font-size:14px; line-height:2; }
+    .matchday-hero { position:relative; overflow:hidden; padding:28px 46px 30px; color:#fff; background:radial-gradient(circle at 18% 35%,rgba(225,31,52,.28),transparent 29%),radial-gradient(circle at 82% 12%,rgba(255,255,255,.1),transparent 30%),linear-gradient(135deg,#12171d,#242d37 55%,#12171d); }
+    .matchday-hero::before { content:""; position:absolute; inset:0; opacity:.08; pointer-events:none; background:repeating-linear-gradient(90deg,transparent 0,transparent 68px,#fff 69px,#fff 70px); }
+    .matchday-top,.matchday-foot { position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; color:#c8d0d9; font-size:12px; font-weight:700; }
+    .matchday-top strong { color:#fff; letter-spacing:.1px; }
+    .matchday-top .matchday-live { display:inline-flex; gap:7px; align-items:center; padding:5px 10px; border:1px solid rgba(255,255,255,.23); border-radius:999px; }
+    .matchday-top .matchday-live i { width:6px; height:6px; background:#ff5669; border-radius:50%; }
+    .matchday-versus { position:relative; display:grid; grid-template-columns:minmax(0,1fr) 180px minmax(0,1fr); align-items:center; gap:18px; margin:25px 0; }
+    .matchday-club { display:flex; align-items:center; flex-direction:column; gap:12px; min-width:0; text-align:center; }
+    .matchday-club img { width:98px; height:98px; padding:15px; object-fit:contain; border-radius:23px; background:#fff; box-shadow:0 10px 26px rgba(0,0,0,.25); }
+    .matchday-club strong { font-size:20px; line-height:1.5; }
+    .matchday-club small { color:#aeb9c5; font-size:11px; }
+    .matchday-center { display:flex; align-items:center; flex-direction:column; justify-content:center; gap:4px; padding:15px 10px; border-right:1px solid rgba(255,255,255,.18); border-left:1px solid rgba(255,255,255,.18); text-align:center; }
+    .matchday-center em { color:#bfcbd5; font-size:11px; font-style:normal; }
+    .matchday-center b { color:#fff; font-size:37px; line-height:1.45; font-weight:900; font-variant-numeric:tabular-nums; }
+    .matchday-center span { color:#ff8592; font-size:12px; font-weight:900; }
+    .matchday-foot { padding-top:15px; border-top:1px solid rgba(255,255,255,.16); }
+    .matchday-page-head { border-bottom:0; padding-bottom:12px; }
+    .matchday-page-head h1 { max-width:28ch; font-size:clamp(29px,3.5vw,40px); }
+    .matchday-page-head .article-page-summary { margin-top:15px; }
+    .matchday-board { width:min(840px,calc(100% - 112px)); margin:4px auto 0; }
+    .matchday-pulse { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .matchday-pulse-card { padding:17px 18px; border:1px solid #e5e8ec; border-radius:11px; background:#fafbfc; }
+    .matchday-pulse-card small { display:block; color:#68717c; font-size:11px; font-weight:700; }
+    .matchday-pulse-card strong { display:block; margin:2px 0; color:#1a2027; font-size:27px; line-height:1.45; }
+    .matchday-pulse-card span { display:block; color:#59636e; font-size:11px; line-height:1.75; }
+    .matchday-odds { margin-top:19px; padding:21px 23px; border:1px solid #e5e8ec; border-radius:11px; background:#fff; }
+    .matchday-odds-head { display:flex; justify-content:space-between; gap:15px; align-items:baseline; }
+    .matchday-odds-head strong { color:#1c2229; font-size:15px; }
+    .matchday-odds-head a { color:#66717b; font-size:11px; text-decoration:underline; text-underline-offset:3px; }
+    .matchday-odds-track { display:flex; direction:rtl; overflow:hidden; height:12px; margin:13px 0 11px; border-radius:999px; background:#eceff1; }
+    .matchday-odds-track span { display:block; height:100%; }
+    .matchday-odds-track .home { background:#262d36; }
+    .matchday-odds-track .draw { background:#aeb8c2; }
+    .matchday-odds-track .away { background:#e21b2d; }
+    .matchday-odds-labels { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; color:#49515a; font-size:11px; font-weight:700; }
+    .matchday-odds-labels span:nth-child(2) { text-align:center; }
+    .matchday-odds-labels span:last-child { text-align:left; }
+    .matchday-odds p { margin:12px 0 0; color:#737b84; font-size:11px; line-height:1.8; }
+    .matchday-lineups { width:min(840px,calc(100% - 112px)); margin:35px auto 0; }
+    .matchday-lineups-head { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:13px; }
+    .matchday-lineups-head h2 { margin:0; font-size:21px; }
+    .matchday-lineups-head span { color:#79818b; font-size:11px; }
+    .matchday-lineup-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .matchday-lineup-card { overflow:hidden; border:1px solid #e2e6e9; border-radius:11px; background:#fafbfc; }
+    .matchday-lineup-card header { display:flex; align-items:center; gap:10px; padding:14px 17px; border-bottom:1px solid #e2e6e9; background:#fff; }
+    .matchday-lineup-card header img { width:34px; height:34px; object-fit:contain; }
+    .matchday-lineup-card header strong { font-size:15px; }
+    .matchday-lineup-card header span { margin-right:auto; color:#9a1d2a; font-size:12px; font-weight:800; direction:ltr; }
+    .matchday-lineup-card dl { margin:0; padding:7px 17px 12px; }
+    .matchday-lineup-card dl div { display:grid; grid-template-columns:70px minmax(0,1fr); gap:9px; padding:10px 0; border-bottom:1px solid #e8ebee; line-height:1.85; }
+    .matchday-lineup-card dl div:last-child { border-bottom:0; }
+    .matchday-lineup-card dt { color:#88919b; font-size:12px; font-weight:700; }
+    .matchday-lineup-card dd { margin:0; color:#283039; font-size:13px; font-weight:700; }
+    .matchday-lineups-note { margin:10px 1px 0; color:#6e7881; font-size:11px; line-height:1.8; }
+    .matchday-story-body { padding-top:4px; }
 
     .editor-view { min-height:calc(100vh - 145px); }
     .editor-shell { overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 18px 45px rgba(18,22,28,.07); }
@@ -490,6 +545,26 @@
       .action-danger { margin-right:0; }
       .drawer-figure.figure-size-wide,.drawer-figure.figure-size-medium,.drawer-figure.figure-size-small { width:100%; }
       .article-page-hero.hero-size-wide,.article-page-hero.hero-size-medium,.article-page-hero.hero-size-small { width:100%; }
+      .matchday-hero { padding:20px 18px 19px; }
+      .matchday-top,.matchday-foot { font-size:10px; }
+      .matchday-versus { grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr); gap:8px; margin:23px 0; }
+      .matchday-club { gap:7px; }
+      .matchday-club img { width:64px; height:64px; padding:8px; border-radius:16px; }
+      .matchday-club strong { font-size:13px; }
+      .matchday-club small { font-size:9px; }
+      .matchday-center { padding:8px 2px; }
+      .matchday-center em { font-size:9px; }
+      .matchday-center b { font-size:24px; }
+      .matchday-center span { font-size:10px; }
+      .matchday-page-head { padding:27px 22px 12px; }
+      .matchday-board,.matchday-lineups { width:calc(100% - 44px); }
+      .matchday-pulse { grid-template-columns:1fr; gap:8px; }
+      .matchday-pulse-card { padding:11px 14px; }
+      .matchday-pulse-card strong { font-size:23px; }
+      .matchday-odds { padding:17px 14px; }
+      .matchday-odds-labels { font-size:10px; }
+      .matchday-lineups-head { display:block; }
+      .matchday-lineup-grid { grid-template-columns:1fr; }
       .footer-inner { padding:18px 0; align-items:flex-start; flex-direction:column; }
     }
     @media(prefers-reduced-motion:reduce) {
@@ -731,6 +806,34 @@
   <script src="data/news.js"></script>
   <script>
     const demoNews=[
+      {
+        id:'preview-fulham-manchester-united-2026-09-20',country:'england',cat:'preview',flag:'🏴 انگلیس',eyebrow:'برگه مسابقه · پیش‌بازی لیگ برتر',
+        title:'فولام–منچستریونایتد؛ آزمون پاسخ‌گویی کریک در کراون کاتیج',
+        summary:'یونایتد با ۸۴ شوت و فقط چهار امتیاز به لندن می‌رود؛ فولامِ آربلوا هنوز در لیگ نبرده است. زمان دقیق به وقت ایران، آخرین خبرهای دو تیم، ترکیب احتمالی و سه مسیر محتمل بازی را در این برگه تازه ببینید.',
+        source:'تحریریه نیمکت · بر پایه لیگ برتر و Opta',lang:'فارسی',time:'۲۹ شهریور ۱۴۰۵ · پیش از بازی',cred:'پیش‌بازی · ترکیب‌ها احتمالی',credClass:'trusted',
+        tags:['فولام','منچستریونایتد','پیش‌بازی','لیگ برتر انگلیس','مایکل کریک','آلوارو آربلوا','کارلوس بالبا','برونو فرناندز','ترکیب احتمالی','هفته پنجم'],
+        why:'این برگه پیش از مسابقه ۲۰ سپتامبر ۲۰۲۶ نوشته شده است. ترکیب‌های نمایش‌داده‌شده پیش‌بینی Opta هستند، نه ترکیب رسمی. احتمال‌های ۲۷٫۵، ۲۴٫۲ و ۴۸٫۳ درصد خروجی شبیه‌سازی پیش از بازی Opta هستند و توصیه شرط‌بندی یا نتیجه قطعی نیستند. اخبار مصدومیت و حضور بازیکنان می‌توانند تا اعلام ترکیب رسمی تغییر کنند.',
+        image:'https://theanalyst.com/wp-content/uploads/2026/09/fulham-v-man-utd-preview.jpg',
+        imageSettings:{placement:'hero',size:'full',ratio:'16x9',align:'center'},
+        matchCover:{home:'فولام',away:'منچستریونایتد',score:'VS',homeLogo:'https://a.espncdn.com/i/teamlogos/soccer/500/370.png',awayLogo:'https://a.espncdn.com/i/teamlogos/soccer/500/360.png',logoCreditUrl:'https://www.espn.com/soccer/teams',photoCredit:'Opta Analyst',photoCreditUrl:'https://theanalyst.com/articles/fulham-vs-man-utd-prediction-premier-league-09-2026'},
+        url:'https://theanalyst.com/articles/fulham-vs-man-utd-prediction-premier-league-09-2026',
+        matchday:{competition:'لیگ برتر انگلیس · هفته پنجم',date:'یکشنبه ۲۹ شهریور ۱۴۰۵',kickoff:'۱۹:۰۰',venue:'کراون کاتیج · لندن',home:{name:'فولام',role:'میزبان',logo:'https://a.espncdn.com/i/teamlogos/soccer/500/370.png'},away:{name:'منچستریونایتد',role:'میهمان',logo:'https://a.espncdn.com/i/teamlogos/soccer/500/360.png'},signals:[{label:'یونایتد در چهار هفته',value:'۸۴ شوت',detail:'بیشترین تعداد شوت در لیگ؛ Opta'},{label:'فولام در چهار هفته',value:'۱ امتیاز',detail:'یک مساوی و سه شکست؛ Opta'},{label:'تقابل در ۲۱ بازی اخیر لیگ',value:'۱۶–۴–۱',detail:'برد یونایتد، مساوی، برد فولام؛ Opta'}],probabilities:{home:27.5,draw:24.2,away:48.3},lineups:[{team:'فولام',logo:'https://a.espncdn.com/i/teamlogos/soccer/500/370.png',formation:'۴–۲–۳–۱',rows:[['دروازه‌بان','برند لنو'],['دفاع','تیموتی کاستانیه، داوید آفنگروبر، کالوین باسی، آنتونی رابینسون'],['هافبک','ساندر برگه، شیا چارلز'],['پشت مهاجم','جاش کینگ، اسکار باب، الکس ایووبی'],['مهاجم','گونسالو گارسیا']]},{team:'منچستریونایتد',logo:'https://a.espncdn.com/i/teamlogos/soccer/500/360.png',formation:'۴–۲–۳–۱',rows:[['دروازه‌بان','سنه لامنس'],['دفاع','دیوگو دالوت، هری مگوایر، لیساندرو مارتینس، پاتریک دورگو'],['هافبک','کوبی ماینو، یوری تیلمانس'],['پشت مهاجم','برایان امبومو، برونو فرناندز، مارکوس رشفورد'],['مهاجم','ماتئوس کونیا']]}]},
+        body:[
+          {heading:'بازی چه زمانی است و چرا اهمیت دارد؟',text:'یکشنبه ۲۹ شهریور، ساعت ۱۹:۰۰ به وقت ایران، یونایتد میهمان فولام در کراون کاتیج است. تیم مایکل کریک از چهار هفته نخست لیگ فقط چهار امتیاز گرفته و پس از شکست ۱–۰ در دربی منچستر، برتری ۲–۰ مقابل برایتون را در جام اتحادیه به شکست ۳–۲ بدل کرده است. فولامِ آلوارو آربلوا هم در لیگ هنوز برنده نشده؛ البته تساوی بدون گل در زمین لیورپول و برد ۳–۲ مقابل وست‌هم در جام اتحادیه نشان می‌دهد حریفِ بی‌روحی انتظار یونایتد را نمی‌کشد.'},
+          {heading:'عدد اصلی: ۸۴ شوت، چهار امتیاز',text:'طبق Opta، یونایتد در چهار بازی لیگ ۸۴ شوت زده؛ بیش از هر تیم دیگر. امید گل این ضربات ۸٫۳ بوده و تنها برایتون با ۱۰٫۲ بالاتر است. اختلاف میان تولید موقعیت و امتیاز، فقط داستان «بدشانسی» یا «تمام‌کنندگی» نیست: یونایتد باید کیفیت ضربه آخر را بالا ببرد و هم‌زمان پس از جلو افتادن، کنترل مسابقه را حفظ کند. از طرف دیگر فولام در چهار هفته فقط یک امتیاز دارد و در ۱۰ بازی لیگ برتر در سال ۲۰۲۶ گل نزده است؛ آمار سالانه‌ای که نباید با چهار بازی این فصل اشتباه شود.'},
+          {heading:'خبر ترکیب: چه کسانی قطعی نیستند؟',text:'برای فولام، کنی تته به‌دلیل پروتکل ضربه به سر غایب است و تام کرنی هم با مصدومیت زانو بازی نمی‌کند؛ رایان سسنیون باید آزمون آمادگی را پشت سر بگذارد. در یونایتد، طبق گزارش Opta، ماتیاس دلیخت، آماد دیالو و مانوئل اوگارته غایبان تأییدشده‌اند. لوک شاو و کارلوس بالبا شانس حضور دارند، اما وضعیت نهایی‌شان قطعی نیست؛ لیگ برتر احتمال داده بالبا اگر آماده باشد از روی نیمکت اولین حضورش را تجربه کند. انتخاب مهاجم نیز باز است: ماتئوس کونیا در پیش‌بینی Opta شروع می‌کند، اما بنجامین ششکو گزینه دیگر کریک است.'},
+          {heading:'مربیان چه می‌خواهند؟',text:'کریک پس از شروع کم‌امتیاز فصل گفته تیمش باید جلو برود و دوباره به پیروزی برسد؛ شکست جام اتحادیه فشار پاسخ‌گویی را بیشتر کرده است. در سوی دیگر، آربلوا پس از نمایش منظم‌تر فولام در آنفیلد بر رفع ایرادهای دفاعی تأکید کرده بود. هر دو برای سه امتیاز دلیل فوری دارند، اما هیچ‌کدام نمی‌تواند بدون محافظت از فضاهای پشت خط میانی، صرفاً با حمله‌کردن از بحران نتیجه عبور کند.'},
+          {heading:'سه نقطه‌ای که بازی را می‌چرخاند',text:'اول، تصمیم یونایتد پس از توپ‌گیری: اگر تیلمانس و برونو بتوانند سریع بین خطوط پاس دهند، حجم شوت‌ها به موقعیت‌های باکیفیت‌تر تبدیل می‌شود. دوم، عرض حمله فولام: تیم آربلوا از کناره‌ها برای ساخت برتری نفرات استفاده می‌کند و بازگشت دفاعیِ وینگرهای یونایتد اهمیت پیدا می‌کند. سوم، مدیریت نیمه دوم: پس از فروریختن برتری مقابل برایتون، کریک باید نشان دهد تیمش می‌تواند بدون عقب‌نشینی افراطی یا بازکردن زمین، فشار دقایق پایانی را تاب بیاورد. این سه مورد تحلیل تاکتیکی نیمکت‌اند، نه خبر قطعی از نقشه مربیان.'},
+          {heading:'احتمال‌ها و سناریوها؛ بدون پیش‌گویی قطعی',text:'ابررایانه Opta در شبیه‌سازی پیش از بازی، شانس برد یونایتد را ۴۸٫۳ درصد، برد فولام را ۲۷٫۵ درصد و تساوی را ۲۴٫۲ درصد می‌داند. یونایتد فقط یکی از ۲۱ تقابل اخیر لیگ با فولام را باخته، اما این سابقه جای عملکرد امروز را نمی‌گیرد. سناریوی مطلوب کریک، تبدیل زودهنگام فشار هجومی به گل و سپس کنترل فضاست؛ مسیر فولام، کشاندن مسابقه به نبردی باز در کناره‌ها و استفاده از اضطراب حریف. اگر تا نیمه دوم بازی مساوی بماند، تصمیم‌های تعویض و آمادگی بالبا می‌توانند مهم شوند. برتری آماری با یونایتد است؛ حکم نتیجه هنوز با زمین.'}
+        ],
+        sources:[
+          {title:'لیگ برتر؛ زمان رسمی مسابقه در هفته پنجم',url:'https://www.premierleague.com/en/news/4678381/fixture-amendments-for-premier-league-matches-in-august-and-september/'},
+          {title:'Opta Analyst؛ آمار، تقابل‌ها، ترکیب‌های احتمالی و احتمال‌های نتیجه',url:'https://theanalyst.com/articles/fulham-vs-man-utd-prediction-premier-league-09-2026'},
+          {title:'لیگ برتر؛ آخرین پیش‌بینی ترکیب و خبر مصدومیت دو تیم',url:'https://www.premierleague.com/en/news/4720146/predicted-line-ups-for-premier-league-teams-in-matchweek-5'},
+          {title:'لیگ برتر؛ تحلیل هفته پنجم و صحبت‌های مایکل کریک',url:'https://www.premierleague.com/en/news/4719983/ten-key-questions-for-matchweek-5s-fixtures'},
+          {title:'لیگ برتر؛ واکنش آربلوا به تغییر عملکرد دفاعی فولام',url:'https://www.premierleague.com/en/news/4714403/saturday-wrap-arsenal-maintain-perfect-start-while-hull-hold-chelsea'}
+        ]
+      },
       {
         id:'analysis-carlos-baleba-manchester-united-2026-09-20',country:'england',cat:'analysis',flag:'🏴 انگلیس',eyebrow:'تحلیل نیمکت · منچستریونایتد',
         title:'بالبا در منچستریونایتد؛ موتور تازه خط میانی، نه عصای جادویی',
@@ -1201,6 +1304,12 @@
     };
     const articleMetrics=item=>Array.isArray(item.metrics)?`<div class="drawer-metrics">${item.metrics.map(metric=>`<div class="drawer-metric"><strong>${esc(metric.value)}</strong><span>${esc(metric.label)}</span></div>`).join('')}</div>`:'';
     const articleSources=item=>Array.isArray(item.sources)?`<div class="drawer-sources"><h3>منابع گزارش</h3>${item.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)} ←</a>`).join('')}</div>`:'';
+    const matchdayPage=item=>{
+      const match=item.matchday,logo=team=>safeArticleImage(team.logo),club=team=>`<div class="matchday-club"><img src="${esc(logo(team))}" alt="نشان ${esc(team.name)}" onerror="this.remove()"><strong>${esc(team.name)}</strong><small>${esc(team.role)}</small></div>`;
+      const lineups=(match.lineups||[]).map(lineup=>`<section class="matchday-lineup-card"><header><img src="${esc(safeArticleImage(lineup.logo))}" alt="" onerror="this.remove()"><strong>${esc(lineup.team)}</strong><span>${esc(lineup.formation)}</span></header><dl>${(lineup.rows||[]).map(row=>`<div><dt>${esc(row[0])}</dt><dd>${esc(row[1])}</dd></div>`).join('')}</dl></section>`).join('');
+      const probability=match.probabilities||{},chance=key=>Math.max(0,Math.min(100,Number(probability[key])||0)),percent=key=>chance(key).toLocaleString('fa-IR',{maximumFractionDigits:1});
+      return `<div class="matchday-hero"><div class="matchday-top"><strong>${esc(match.competition)}</strong><span class="matchday-live"><i aria-hidden="true"></i>پیش از بازی</span></div><div class="matchday-versus">${club(match.home)}<div class="matchday-center"><em>ساعت ایران</em><b>${esc(match.kickoff)}</b><span>مقابل</span></div>${club(match.away)}</div><div class="matchday-foot"><span>${esc(match.date)}</span><span>${esc(match.venue)}</span></div></div><header class="article-page-head matchday-page-head"><div class="kicker">${esc(item.eyebrow)}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span></div><p class="article-page-summary">${esc(item.summary)}</p><span class="prematch-status">ترکیب‌ها و درصدها پیش از مسابقه ثبت شده‌اند؛ ملاک حضور بازیکنان، فهرست رسمی روز بازی است.</span></header><div class="matchday-board"><div class="matchday-pulse">${(match.signals||[]).map(signal=>`<div class="matchday-pulse-card"><small>${esc(signal.label)}</small><strong>${esc(signal.value)}</strong><span>${esc(signal.detail)}</span></div>`).join('')}</div><section class="matchday-odds"><div class="matchday-odds-head"><strong>شانس نتیجه از نگاه مدل Opta</strong><a href="${esc(item.url)}" target="_blank" rel="noopener">روش و منبع داده ↗</a></div><div class="matchday-odds-track" role="img" aria-label="برد فولام ${percent('home')} درصد، مساوی ${percent('draw')} درصد، برد منچستریونایتد ${percent('away')} درصد"><span class="home" style="width:${chance('home')}%"></span><span class="draw" style="width:${chance('draw')}%"></span><span class="away" style="width:${chance('away')}%"></span></div><div class="matchday-odds-labels"><span>فولام ${percent('home')}٪</span><span>تساوی ${percent('draw')}٪</span><span>یونایتد ${percent('away')}٪</span></div><p>بر پایه ۱۰هزار شبیه‌سازی پیش از مسابقه؛ احتمال، نتیجه قطعی یا پیشنهاد شرط‌بندی نیست.</p></section></div><section class="matchday-lineups"><div class="matchday-lineups-head"><h2>ترکیب احتمالی</h2><span>بر اساس پیش‌بینی Opta · غیررسمی</span></div><div class="matchday-lineup-grid">${lineups}</div><p class="matchday-lineups-note">نام‌ها ممکن است تا اعلام ترکیب رسمی تغییر کنند؛ وضعیت شاو، بالبا و سسنیون قطعی نیست.</p></section><div class="article-page-body matchday-story-body">${articleBody(item)}<div class="drawer-note">${esc(item.why)}</div>${articleSources(item)}<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده پیش‌بازی و تصویر کاور در Opta Analyst</a></div>`;
+    };
 
     const editorField=id=>document.getElementById(id);
     function toast(message){const root=editorField('editorToast');root.textContent=message;root.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>root.classList.remove('show'),2600);}
@@ -1271,7 +1380,7 @@
       setupEditorOptions();fillEditor(item);document.title='میز تحریریه | نیمکت';showView('editor');
     }
 
-    const FEATURED_NEWS_IDS=['analysis-carlos-baleba-manchester-united-2026-09-20','news-brighton-arsenal-3-0-2026-09-19','analysis-iraola-bournemouth-return-onefootball-2026','analysis-weekend-europe-espn-2026','analysis-chelsea-stability-brentford-espn-2026','news-harry-kane-100-bundesliga-goals-2026','live-brentford-chelsea-2026','transfer-man-utd-live-sky-2026','analysis-man-utd-sky-2026','news-chelsea-clearlake-control-2026','analysis-future-european-leagues-2026','analysis-real-madrid-mourinho-2026'];
+    const FEATURED_NEWS_IDS=['preview-fulham-manchester-united-2026-09-20','analysis-carlos-baleba-manchester-united-2026-09-20','news-brighton-arsenal-3-0-2026-09-19','analysis-iraola-bournemouth-return-onefootball-2026','analysis-weekend-europe-espn-2026','analysis-chelsea-stability-brentford-espn-2026','news-harry-kane-100-bundesliga-goals-2026','live-brentford-chelsea-2026','transfer-man-utd-live-sky-2026','analysis-man-utd-sky-2026','news-chelsea-clearlake-control-2026','analysis-future-european-leagues-2026','analysis-real-madrid-mourinho-2026'];
     let featuredIndex=0,featuredTimer;
     function featuredItems(){
       const curated=FEATURED_NEWS_IDS.map(id=>news.find(item=>item.id===id&&!item.isDraft&&safeImage(item.image))).filter(Boolean);
@@ -1398,6 +1507,7 @@
     function renderArticlePage(id){
       const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
       document.title=`${item.title} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش نیمکت');
+      if(item.matchday){document.getElementById('articleContent').innerHTML=matchdayPage(item);showView('article');return true;}
       const photoCredit=item.matchCover?.photoCredit||item.source,photoCreditUrl=safeArticleImage(item.matchCover?.photoCreditUrl||item.url),logoCreditUrl=safeArticleImage(item.matchCover?.logoCreditUrl);
       const hero=image&&placement==='hero'?item.matchCover?`<figure class="article-match-cover"><img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.closest('figure').remove()">${matchCoverBadges(item.matchCover)}<figcaption>عکس: ${photoCreditUrl?`<a href="${esc(photoCreditUrl)}" target="_blank" rel="noopener">${esc(photoCredit)}</a>`:esc(photoCredit)}${logoCreditUrl?` · نشان تیم‌ها: <a href="${esc(logoCreditUrl)}" target="_blank" rel="noopener">ESPN</a>`:''}</figcaption></figure>`:`<img class="article-page-hero hero-ratio-${ratio} hero-size-${size} hero-align-${align}" src="${esc(image)}" alt="${esc(item.title)}" onerror="this.remove()">`:'';
       document.getElementById('articleContent').innerHTML=`${hero}<header class="article-page-head"><div class="kicker">${esc(item.eyebrow||item.flag||'خبر فوتبال')}</div><h1>${esc(item.title)}</h1><div class="story-meta"><span class="source-name">${esc(item.source)}</span><span>${esc(item.time)}</span><span>${esc(item.lang||'')}</span></div><p class="article-page-summary">${esc(item.summary||'')}</p>${item.followupId?`<div class="article-followup">این مطلب پیش از بازی نوشته شده و اکنون آرشیوی است. <a href="${esc(`${location.pathname}?article=${encodeURIComponent(item.followupId)}`)}">گزارش نهایی و نتیجه مسابقه ←</a></div>`:item.cat==='preview'?'<span class="prematch-status">پیش‌بازی · ترکیب‌ها احتمالی‌اند و پس از اعلام رسمی باید به‌روزرسانی شوند.</span>':''}</header><div class="article-page-body">${inlineMain}${articleMetrics(item)}${articleBody(item)}<div class="drawer-note">${esc(item.why||'نام و لینک منبع برای شفافیت در دسترس است. این خبر پیش از انتشار نهایی باید بازبینی شود.')}</div>${articleSources(item)}${item.url&&item.url!=='#'?`<a class="drawer-source" href="${esc(item.url)}" target="_blank" rel="noopener">مشاهده منبع اصلی</a>`:''}</div>`;

@@ -149,4 +149,44 @@ assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO player_match_stats
 assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO match_events")));
 globalThis.fetch = nativeFetch;
 
+const playerSql = [];
+const playerEnv = {
+  DB: {
+    prepare(sql) {
+      return {
+        values: [],
+        bind(...values) { this.values = values; return this; },
+        async run() {
+          const placeholders = [...sql.matchAll(/\?(\d+)/g)].map((match) => Number(match[1]));
+          const expected = placeholders.length ? Math.max(...placeholders) : 0;
+          assert.equal(this.values.length, expected, `Player bind count mismatch: ${sql.slice(0, 110)}`);
+          playerSql.push(sql);
+          return { success: true };
+        },
+        async first() {
+          if (sql.includes("FROM players p LEFT JOIN entity_localizations")) return {
+            id: "espn:124091", name_en: "Bruno Fernandes", name_fa: "برونو فرناندز", name_fa_verified: 1,
+            primary_position: "M", created_at: 1, updated_at: 1,
+          };
+          if (sql.includes("FROM player_media WHERE id=")) return {
+            id: "media", player_id: "espn:124091", team_id: "espn:360", kind: "team_portrait", url: null,
+            source: "thesportsdb", status: "missing", captured_at: Math.floor(Date.now() / 1000), metadata_json: "{}",
+          };
+          return null;
+        },
+        async all() {
+          if (sql.includes("FROM player_team_periods")) return { results: [{ team_id: "espn:360", league: "eng.1", season_year: 2026, is_current: 1, team_name_en: "Manchester United" }] };
+          return { results: [] };
+        },
+      };
+    },
+  },
+};
+const playerResponse = await worker.fetch(new Request("https://nimkat.test/api/players/espn~124091?league=eng.1&team=360"), playerEnv, ctx);
+assert.equal(playerResponse.status, 200);
+const playerPayload = await playerResponse.json();
+assert.equal(playerPayload.coverage.open_data.provider, "statsbomb-open");
+assert.ok(playerPayload.coverage.open_data.matches >= 4);
+assert.ok(playerSql.some((sql) => sql.includes("'statsbomb-open'")));
+
 console.log("Worker, static assets, and D1 cache flow passed.");

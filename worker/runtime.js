@@ -163,6 +163,94 @@ function normalizedLatinName(value = "") {
     .replace(/[.’']/g, "").replace(/[^a-z0-9 -]/g, " ").replace(/\s+/g, " ").trim();
 }
 
+let statsBombOpenCache;
+function statsBombOpenData() {
+  if (statsBombOpenCache !== undefined) return statsBombOpenCache;
+  try {
+    statsBombOpenCache = JSON.parse(TEXT_ASSETS["/data/statsbomb-open-players.json"] || "null");
+  } catch {
+    statsBombOpenCache = null;
+  }
+  return statsBombOpenCache;
+}
+
+function statsBombOpenPlayer(playerName) {
+  const dataset = statsBombOpenData();
+  const wanted = normalizedLatinName(playerName);
+  if (!dataset?.players || !wanted) return null;
+  return Object.values(dataset.players).find((candidate) =>
+    (candidate.aliases || [candidate.name, candidate.nickname]).some((alias) => normalizedLatinName(alias) === wanted),
+  ) || null;
+}
+
+async function hydrateStatsBombOpenPlayer(env, player) {
+  const dataset = statsBombOpenData();
+  const openPlayer = statsBombOpenPlayer(player?.name_en);
+  if (!dataset || !openPlayer || !player?.id) return null;
+  const now = Math.floor(Date.now() / 1000);
+  const providerUpdatedAt = Math.floor(new Date(dataset.generated_at || 0).getTime() / 1000) || now;
+  const statements = [
+    env.DB.prepare(`INSERT INTO player_provider_ids (id,player_id,provider,external_id,first_seen_at,last_seen_at)
+      VALUES (?1,?2,'statsbomb-open',?3,?4,?4)
+      ON CONFLICT(id) DO UPDATE SET player_id=excluded.player_id,last_seen_at=excluded.last_seen_at`)
+      .bind(`statsbomb-open:${openPlayer.external_id}`, player.id, String(openPlayer.external_id), now),
+  ];
+  let storedMatches = 0;
+  const teamIds = new Set();
+  for (const [matchId, stats] of Object.entries(openPlayer.matches || {})) {
+    const fixture = dataset.fixtures?.[matchId];
+    if (!fixture || (!stats.minutes && !stats.goals && !stats.assists && !stats.passes_total)) continue;
+    for (const externalTeamId of [fixture.home_team_id, fixture.away_team_id, stats.team_id].filter(Boolean)) {
+      if (teamIds.has(externalTeamId)) continue;
+      teamIds.add(externalTeamId);
+      const teamId = `statsbomb-open:${externalTeamId}`;
+      const teamName = dataset.teams?.[externalTeamId] || String(externalTeamId);
+      statements.push(env.DB.prepare(`INSERT INTO teams (id,provider,external_id,league,name_en,name_fa,logo_url,updated_at)
+        VALUES (?1,'statsbomb-open',?2,?3,?4,NULL,NULL,?5)
+        ON CONFLICT(id) DO UPDATE SET league=excluded.league,name_en=excluded.name_en,updated_at=excluded.updated_at`)
+        .bind(teamId, String(externalTeamId), fixture.league || null, teamName, now));
+      const localized = localizationStatement(env, "team", teamId, teamName, now);
+      if (localized) statements.push(localized);
+    }
+    const fixtureId = `statsbomb-open:${matchId}`;
+    statements.push(env.DB.prepare(`INSERT INTO fixtures (
+        id,provider,external_id,league,season_year,round_number,kickoff_at,home_team_id,away_team_id,status,updated_at
+      ) VALUES (?1,'statsbomb-open',?2,?3,?4,?5,?6,?7,?8,?9,?10)
+      ON CONFLICT(id) DO UPDATE SET league=excluded.league,season_year=excluded.season_year,
+        round_number=excluded.round_number,kickoff_at=excluded.kickoff_at,status=excluded.status,updated_at=excluded.updated_at`)
+      .bind(fixtureId, String(matchId), fixture.league || null, fixture.season_year || null, fixture.round_number || null,
+        fixture.kickoff_at || null, fixture.home_team_id ? `statsbomb-open:${fixture.home_team_id}` : null,
+        fixture.away_team_id ? `statsbomb-open:${fixture.away_team_id}` : null, fixture.status || "complete", now));
+    const rawStats = { ...stats, competition: fixture.competition, stage: fixture.stage, home_score: fixture.home_score,
+      away_score: fixture.away_score, source: dataset.attribution, source_url: dataset.source_url, license_url: dataset.license_url };
+    statements.push(env.DB.prepare(`INSERT INTO player_match_stats (
+        id,player_id,fixture_id,team_id,provider,starter,position,minutes,goals,assists,rating,shots_total,shots_on_target,
+        passes_total,passes_accurate,key_passes,duels_total,duels_won,dribbles_attempted,dribbles_completed,tackles,
+        interceptions,clearances,possession_lost,fouls_committed,fouls_won,yellow_cards,red_cards,xg,xa,stats_json,provider_updated_at,updated_at
+      ) VALUES (?1,?2,?3,?4,'statsbomb-open',?5,?6,?7,?8,?9,NULL,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24,?25,?26,?27,?28,?29,?30,?31)
+      ON CONFLICT(id) DO UPDATE SET starter=excluded.starter,position=excluded.position,minutes=excluded.minutes,
+        goals=excluded.goals,assists=excluded.assists,shots_total=excluded.shots_total,shots_on_target=excluded.shots_on_target,
+        passes_total=excluded.passes_total,passes_accurate=excluded.passes_accurate,key_passes=excluded.key_passes,
+        duels_total=excluded.duels_total,duels_won=excluded.duels_won,dribbles_attempted=excluded.dribbles_attempted,
+        dribbles_completed=excluded.dribbles_completed,tackles=excluded.tackles,interceptions=excluded.interceptions,
+        clearances=excluded.clearances,possession_lost=excluded.possession_lost,fouls_committed=excluded.fouls_committed,
+        fouls_won=excluded.fouls_won,yellow_cards=excluded.yellow_cards,red_cards=excluded.red_cards,xg=excluded.xg,xa=excluded.xa,
+        stats_json=excluded.stats_json,provider_updated_at=excluded.provider_updated_at,updated_at=excluded.updated_at`)
+      .bind(`statsbomb-open:${matchId}:${openPlayer.external_id}`, player.id, fixtureId, `statsbomb-open:${stats.team_id}`,
+        stats.starter ? 1 : 0, stats.position || null, stats.minutes ?? null, stats.goals ?? null, stats.assists ?? null,
+        stats.shots_total ?? null, stats.shots_on_target ?? null, stats.passes_total ?? null, stats.passes_accurate ?? null,
+        stats.key_passes ?? null, stats.duels_total ?? null, stats.duels_won ?? null, stats.dribbles_attempted ?? null,
+        stats.dribbles_completed ?? null, stats.tackles ?? null, stats.interceptions ?? null, stats.clearances ?? null,
+        stats.possession_lost ?? null, stats.fouls_committed ?? null, stats.fouls_won ?? null, stats.yellow_cards ?? null,
+        stats.red_cards ?? null, stats.xg ?? null, stats.xa ?? null, JSON.stringify(rawStats), providerUpdatedAt, now));
+    storedMatches += 1;
+  }
+  await runStatementBatches(env, statements);
+  return { provider: "statsbomb-open", player_id: openPlayer.external_id, matches: storedMatches,
+    competition: dataset.competitions?.[0]?.competition || null, season: dataset.competitions?.[0]?.seasonYear || null,
+    source_url: dataset.source_url, license_url: dataset.license_url };
+}
+
 function transliterateNamePart(input) {
   const common = COMMON_NAME_PARTS_FA[input];
   if (common) return common;
@@ -560,7 +648,8 @@ async function hydratePlayerMedia(env, player, team) {
   const mediaId = `${player.id}:${team.team_id}:portrait`;
   const existing = await env.DB.prepare(`SELECT id,player_id,team_id,kind,url,source,source_record_id,source_url,license,
     status,is_current,captured_at,metadata_json FROM player_media WHERE id=?1`).bind(mediaId).first();
-  if (existing && Number(existing.captured_at) > now - 7 * 86400) return existing;
+  const retryAfter = existing?.status === "available" ? 7 * 86400 : 6 * 3600;
+  if (existing && Number(existing.captured_at) > now - retryAfter) return existing;
   const apiKey = String(env.THESPORTSDB_API_KEY || "123");
   const endpoint = `https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(apiKey)}/searchplayers.php?p=${encodeURIComponent(player.name_en)}`;
   let chosen = null;
@@ -570,14 +659,14 @@ async function hydratePlayerMedia(env, player, team) {
       const payload = await response.json();
       const playerKey = normalizedLatinName(player.name_en);
       const teamKey = comparableTeamName(team.team_name_en);
-      chosen = (payload.player || []).find((candidate) => normalizedLatinName(candidate.strPlayer) === playerKey
-        && comparableTeamName(candidate.strTeam) === teamKey
-        && validPlayerMediaUrl(candidate.strCutout || candidate.strThumb || ""));
+      const exactPlayers = (payload.player || []).filter((candidate) => normalizedLatinName(candidate.strPlayer) === playerKey);
+      chosen = exactPlayers.find((candidate) => comparableTeamName(candidate.strTeam) === teamKey) || (exactPlayers.length === 1 ? exactPlayers[0] : null);
     }
   } catch (error) {
     console.error("player-media-refresh-failed", player.id, String(error?.message || error));
   }
-  const imageUrl = chosen?.strCutout || chosen?.strThumb || null;
+  const candidateImage = chosen?.strCutout || chosen?.strThumb || null;
+  const imageUrl = validPlayerMediaUrl(candidateImage || "") ? candidateImage : null;
   const status = imageUrl ? "available" : "missing";
   const metadata = {
     player_name: chosen?.strPlayer || player.name_en,
@@ -594,6 +683,23 @@ async function hydratePlayerMedia(env, player, team) {
       chosen?.idPlayer ? `https://www.thesportsdb.com/player/${chosen.idPlayer}` : "https://www.thesportsdb.com/",
       chosen?.strCreativeCommonsConfirmed === "Yes" ? "creative-commons-confirmed" : "provider-terms",
       status, now, JSON.stringify(metadata)).run();
+  if (chosen?.idPlayer) {
+    const dateOfBirth = /^\d{4}-\d{2}-\d{2}$/.test(chosen.dateBorn || "") ? chosen.dateBorn : null;
+    const heightCm = numberOrNull(String(chosen.strHeight || "").replace(/[^0-9.]/g, ""));
+    const weightKg = numberOrNull(String(chosen.strWeight || "").replace(/[^0-9.]/g, ""));
+    await runStatementBatches(env, [
+      env.DB.prepare(`UPDATE players SET date_of_birth=COALESCE(date_of_birth,?1),birth_place=COALESCE(birth_place,?2),
+        nationality=COALESCE(nationality,?3),gender=COALESCE(gender,?4),height_cm=COALESCE(height_cm,?5),
+        weight_kg=COALESCE(weight_kg,?6),primary_position=COALESCE(primary_position,?7),photo_url=COALESCE(?8,photo_url),
+        status=COALESCE(status,?9),updated_at=?10 WHERE id=?11`)
+        .bind(dateOfBirth, chosen.strBirthLocation || null, chosen.strNationality || null, chosen.strGender || null,
+          heightCm, weightKg, chosen.strPosition || null, imageUrl, chosen.strStatus || null, now, player.id),
+      env.DB.prepare(`INSERT INTO player_provider_ids (id,player_id,provider,external_id,first_seen_at,last_seen_at)
+        VALUES (?1,?2,'thesportsdb',?3,?4,?4)
+        ON CONFLICT(id) DO UPDATE SET player_id=excluded.player_id,last_seen_at=excluded.last_seen_at`)
+        .bind(`thesportsdb:${chosen.idPlayer}`, player.id, String(chosen.idPlayer), now),
+    ]);
+  }
   return { id: mediaId, player_id: player.id, team_id: team.team_id, kind: "team_portrait", url: imageUrl,
     source: "thesportsdb", source_record_id: chosen?.idPlayer || null, status, captured_at: now, metadata_json: JSON.stringify(metadata) };
 }
@@ -624,6 +730,10 @@ async function playerDataResponse(request, env, rawId) {
   let player = await playerRecord(env, playerId);
   if (!player) player = await hydrateMissingPlayer(env, playerId, requestUrl.searchParams.get("league"), requestUrl.searchParams.get("team"));
   if (!player) return jsonResponse({ error: "بازیکن در دیتاست نیمکت پیدا نشد." }, { status: 404 });
+  const openData = await hydrateStatsBombOpenPlayer(env, player).catch((error) => {
+    console.error("statsbomb-open-player-hydrate-failed", playerId, String(error?.message || error));
+    return null;
+  });
   const [providersResult, teamsResult, seasonsResult, matchesResult, weeksResult] = await Promise.all([
     env.DB.prepare(`SELECT provider,external_id,first_seen_at,last_seen_at FROM player_provider_ids WHERE player_id=?1 ORDER BY provider`).bind(playerId).all(),
     env.DB.prepare(`SELECT p.team_id,p.league,p.season_year,p.jersey_number,p.position,p.valid_from,p.valid_to,p.is_current,
@@ -649,21 +759,27 @@ async function playerDataResponse(request, env, rawId) {
   const currentTeam = teams.find((item) => Number(item.is_current)) || teams[0] || null;
   const media = await hydratePlayerMedia(env, player, currentTeam);
   if (media?.url) player.photo_url = media.url;
+  if (media?.source_record_id) player = await playerRecord(env, playerId) || player;
+  const providers = [...(providersResult.results || [])];
+  if (media?.source_record_id && !providers.some((item) => item.provider === "thesportsdb")) {
+    providers.push({ provider: "thesportsdb", external_id: media.source_record_id, first_seen_at: media.captured_at, last_seen_at: media.captured_at });
+  }
   const matches = parseStoredJson(matchesResult.results || []);
   const availableMetrics = [...new Set(matches.flatMap((row) => Object.entries(row.stats_json || {}).filter(([, value]) => value != null).map(([name]) => name)))];
   return jsonResponse({
     player,
-    providers: providersResult.results || [],
+    providers,
     teams,
     seasons: parseStoredJson(seasonsResult.results || []),
     matches,
     weeks: weeksResult.results || [],
     media: media ? { ...media, metadata_json: (() => { try { return JSON.parse(media.metadata_json || "{}"); } catch { return {}; } })() } : null,
     coverage: {
-      provider: "espn",
-      sources: ["espn", media?.url ? "thesportsdb" : null, "nimkat-localization"].filter(Boolean),
+      provider: "multi-source-free",
+      sources: [...new Set(matches.map((match) => match.provider).concat(media?.source_record_id ? "thesportsdb" : null, "nimkat-localization").filter(Boolean))],
       available_metrics: availableMetrics,
-      advanced_metrics_require_licensed_feed: true,
+      open_data: openData,
+      current_season_advanced_metrics_require_licensed_feed: true,
       recommended_advanced_providers: ["api-football", "sportmonks", "sportradar"],
     },
   });

@@ -708,6 +708,24 @@ async function syncPlayerDataset(request, env) {
   return jsonResponse({ league, teams: results });
 }
 
+async function localizePlayerDataset(request, env) {
+  if (!env.PLAYER_SYNC_TOKEN || request.headers.get("x-nimkat-sync-token") !== env.PLAYER_SYNC_TOKEN) {
+    return jsonResponse({ error: "دسترسی غیرمجاز." }, { status: 401 });
+  }
+  await ensurePlayerSchema(env);
+  const input = await request.json().catch(() => ({}));
+  const after = String(input.after || "");
+  const limit = Math.max(1, Math.min(500, Number(input.limit) || 500));
+  const now = Math.floor(Date.now() / 1000);
+  const result = await env.DB.prepare(`SELECT id,name_en FROM players
+    WHERE id>?1 ORDER BY id LIMIT ?2`).bind(after, limit).all();
+  const rows = result.results || [];
+  const statements = rows.map((row) => localizationStatement(env, "player", row.id, row.name_en, now)).filter(Boolean);
+  await runStatementBatches(env, statements);
+  const nextAfter = rows.length === limit ? rows.at(-1)?.id || null : null;
+  return jsonResponse({ localized: rows.length, next_after: nextAfter, complete: !nextAfter });
+}
+
 async function dataStatus(env) {
   if (!env.DB) return jsonResponse({ error: "پایگاه داده متصل نیست." }, { status: 503 });
   const summary = await env.DB.prepare(
@@ -728,6 +746,9 @@ export default {
     }
     if (request.method === "POST" && url.pathname === "/api/player-dataset/sync") {
       return syncPlayerDataset(request, env);
+    }
+    if (request.method === "POST" && url.pathname === "/api/player-dataset/localize") {
+      return localizePlayerDataset(request, env);
     }
     if (request.method === "GET" && url.pathname === "/api/sports-data") {
       return sportsDataResponse(request, env, ctx);

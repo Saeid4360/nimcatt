@@ -106,6 +106,7 @@ assert.match(workerSource, /CREATE TABLE IF NOT EXISTS player_media/);
 assert.match(workerSource, /async function ingestRosterPayload/);
 assert.match(workerSource, /async function ingestMatchPayload/);
 assert.match(workerSource, /async function hydratePlayerMedia/);
+assert.match(workerSource, /async function localizePlayerDataset/);
 assert.match(workerSource, /advanced_metrics_require_licensed_feed/);
 
 let upstreamRequests = 0;

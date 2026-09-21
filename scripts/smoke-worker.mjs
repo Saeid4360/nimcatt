@@ -76,6 +76,11 @@ assert.match(homepage, /function renderStandingsScenario/);
 assert.match(homepage, /data-scenario-team/);
 assert.match(homepage, /data-scenario-round/);
 assert.match(homepage, /state\.teams\.clear\(\)/);
+assert.match(homepage, /data-scenario-preset=\"teams-top6\"/);
+assert.match(homepage, /data-scenario-preset=\"rounds-played\"/);
+assert.match(homepage, /filter\(entry=>state\.teams\.has/);
+assert.match(homepage, /if\(!state\.rounds\.has\(index\+1\)\)return/);
+assert.doesNotMatch(homepage, /هفته‌هایی که از محاسبه حذف شوند/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

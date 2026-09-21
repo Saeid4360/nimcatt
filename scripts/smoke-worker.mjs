@@ -59,6 +59,8 @@ assert.match(homepage, /class="league-select" id="leagueSelect"/);
 assert.doesNotMatch(homepage, /class="league-center-header"/);
 assert.doesNotMatch(homepage, /داده رسمی ESPN/);
 assert.match(homepage, /class="league-panel-copy"><label class="league-title-filter"><select class="league-select" id="leagueSelect"/);
+assert.doesNotMatch(homepage, /faNumber\(Math\.max\(1,weekNumber\)\)\} ·/);
+assert.match(homepage, /\.league-title-filter::after/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

@@ -72,9 +72,7 @@ async function recordError(env, sourceUrl, message) {
 async function refreshCached(env, source, kind) {
   const sourceUrl = source.toString();
   try {
-    const upstream = await fetch(sourceUrl, {
-      headers: { accept: "application/json", "user-agent": "Nimkat Sports Data/1.0" },
-    });
+    const upstream = await fetch(sourceUrl, { headers: { accept: "application/json" } });
     if (!upstream.ok) throw new Error(`upstream ${upstream.status}`);
     const payload = await upstream.text();
     JSON.parse(payload);

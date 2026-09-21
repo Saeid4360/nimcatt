@@ -69,6 +69,13 @@ assert.match(homepage, /\.week-select-wrap::after/);
 assert.doesNotMatch(homepage, /\.week-select \{ flex:1/);
 assert.match(homepage, /\.league-select \{[^}]*font-size:11px/);
 assert.match(homepage, /\.week-select \{[^}]*font-size:11px/);
+assert.match(homepage, /id="standingsScenarioToggle"/);
+assert.match(homepage, /id="standingsScenario"/);
+assert.match(homepage, /function customStandingsFromRounds/);
+assert.match(homepage, /function renderStandingsScenario/);
+assert.match(homepage, /data-scenario-team/);
+assert.match(homepage, /data-scenario-round/);
+assert.match(homepage, /state\.teams\.clear\(\)/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

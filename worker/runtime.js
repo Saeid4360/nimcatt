@@ -159,8 +159,8 @@ function rosterPlayerStatements(env, athlete, context, now) {
     ) VALUES (?1,?2,?3,'espn',?4,?5,?6,?7,?8,?9,?10,?11,?12)
     ON CONFLICT(id) DO UPDATE SET appearances=excluded.appearances,minutes=excluded.minutes,goals=excluded.goals,
       assists=excluded.assists,rating=excluded.rating,stats_json=excluded.stats_json,updated_at=excluded.updated_at`)
-      .bind(seasonStatsId, playerId, teamId, context.league, context.seasonYear, stats.appearances, stats.minutes,
-        stats.totalGoals, stats.goalAssists, stats.rating ?? stats.performanceScore ?? null, JSON.stringify(stats), now),
+      .bind(seasonStatsId, playerId, teamId, context.league, context.seasonYear, stats.appearances ?? null, stats.minutes ?? null,
+        stats.totalGoals ?? null, stats.goalAssists ?? null, stats.rating ?? stats.performanceScore ?? null, JSON.stringify(stats), now),
   ];
 }
 
@@ -238,6 +238,7 @@ async function ingestMatchPayload(env, source, data) {
       if (!externalId) continue;
       const playerId = `espn:${externalId}`;
       const stats = rosterEntryStats(entry);
+      const matchStat = (name) => stats[name] ?? null;
       statements.push(...rosterPlayerStatements(env, { ...athlete, jersey: entry.jersey, position: entry.position }, {
         teamId: teamExternalId, league, seasonYear: Number(data.header?.season?.year || data.season?.year) || null,
       }, now).slice(0, 3));
@@ -255,11 +256,11 @@ async function ingestMatchPayload(env, source, data) {
         fouls_won=excluded.fouls_won,yellow_cards=excluded.yellow_cards,red_cards=excluded.red_cards,xg=excluded.xg,xa=excluded.xa,
         stats_json=excluded.stats_json,provider_updated_at=excluded.provider_updated_at,updated_at=excluded.updated_at`)
         .bind(`espn:${externalFixtureId}:${externalId}`, playerId, fixtureId, `espn:${teamExternalId}`, entry.starter ? 1 : 0,
-          entry.position?.abbreviation || entry.position?.displayName || null, stats.minutes, stats.totalGoals, stats.goalAssists,
-          stats.rating ?? stats.performanceScore ?? null, stats.totalShots, stats.shotsOnTarget, stats.totalPasses, stats.accuratePasses,
-          stats.keyPasses, stats.totalDuels, stats.duelsWon, stats.dribblesAttempted, stats.dribblesCompleted, stats.totalTackles,
-          stats.interceptions, stats.totalClearance, stats.possessionLost, stats.foulsCommitted, stats.foulsSuffered,
-          stats.yellowCards, stats.redCards, stats.expectedGoals, stats.expectedAssists, JSON.stringify(stats), now));
+          entry.position?.abbreviation || entry.position?.displayName || null, matchStat("minutes"), matchStat("totalGoals"), matchStat("goalAssists"),
+          stats.rating ?? stats.performanceScore ?? null, matchStat("totalShots"), matchStat("shotsOnTarget"), matchStat("totalPasses"), matchStat("accuratePasses"),
+          matchStat("keyPasses"), matchStat("totalDuels"), matchStat("duelsWon"), matchStat("dribblesAttempted"), matchStat("dribblesCompleted"), matchStat("totalTackles"),
+          matchStat("interceptions"), matchStat("totalClearance"), matchStat("possessionLost"), matchStat("foulsCommitted"), matchStat("foulsSuffered"),
+          matchStat("yellowCards"), matchStat("redCards"), matchStat("expectedGoals"), matchStat("expectedAssists"), JSON.stringify(stats), now));
     }
   }
   for (const [index, play] of (data.plays || []).entries()) {

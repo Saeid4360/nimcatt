@@ -44,6 +44,11 @@ assert.match(homepage, /function leagueFixtureGroups/);
 assert.match(homepage, /standing-row \$\{zone\}/);
 assert.match(homepage, /class="league-panel-meta"/);
 assert.match(homepage, /class="league-panel-head"[^>]*>.*class="standings-filter"/);
+assert.match(homepage, /function domesticStandingZones/);
+assert.match(homepage, /function qualificationLegend/);
+assert.match(homepage, /\.legend-dot\.ucl/);
+assert.match(homepage, /\.legend-dot\.uel/);
+assert.match(homepage, /\.legend-dot\.uecl/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

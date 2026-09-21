@@ -135,8 +135,12 @@ async function sportsDataResponse(request, env, ctx) {
   try {
     const fresh = await refreshCached(env, source, kind);
     return cachedPayloadResponse({ payload: fresh.payload, fetched_at: fresh.fetchedAt }, "stored");
-  } catch {
-    return jsonResponse({ error: "داده ورزشی فعلاً در دسترس نیست و نسخه ذخیره‌شده‌ای وجود ندارد." }, { status: 502 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return jsonResponse(
+      { error: "داده ورزشی فعلاً در دسترس نیست و نسخه ذخیره‌شده‌ای وجود ندارد." },
+      { status: 502, headers: { "x-nimkat-ingestion-error": message.slice(0, 180) } },
+    );
   }
 }
 

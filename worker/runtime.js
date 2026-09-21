@@ -208,6 +208,7 @@ async function ingestMatchPayload(env, source, data) {
   const now = Math.floor(Date.now() / 1000);
   const fixtureId = `espn:${externalFixtureId}`;
   const league = leagueFromSource(source);
+  const suppliedRound = numberOrNull(source.searchParams.get("round"));
   const competitors = competition.competitors || [];
   const home = competitors.find((item) => item.homeAway === "home") || competitors[0];
   const away = competitors.find((item) => item.homeAway === "away") || competitors[1];
@@ -217,7 +218,7 @@ async function ingestMatchPayload(env, source, data) {
       ON CONFLICT(id) DO UPDATE SET round_number=COALESCE(excluded.round_number,fixtures.round_number),kickoff_at=COALESCE(excluded.kickoff_at,fixtures.kickoff_at),
         home_team_id=excluded.home_team_id,away_team_id=excluded.away_team_id,status=excluded.status,updated_at=excluded.updated_at`)
       .bind(fixtureId, externalFixtureId, league, Number(data.header?.season?.year || data.season?.year) || null,
-        numberOrNull(competition.week?.number || data.header?.week), competition.date || data.header?.date || null,
+        suppliedRound ?? numberOrNull(competition.week?.number || data.header?.week), competition.date || data.header?.date || null,
         home?.team?.id ? `espn:${home.team.id}` : null, away?.team?.id ? `espn:${away.team.id}` : null,
         competition.status?.type?.name || competition.status?.type?.state || null, now),
   ];

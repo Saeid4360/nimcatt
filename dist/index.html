@@ -322,12 +322,15 @@
     .week-button:disabled { opacity:.4; cursor:not-allowed; }
     .week-select { height:29px; min-width:84px; padding:0 8px; border:1px solid #d9dde1; border-radius:5px; background:#fff; color:#33383e; font:inherit; font-size:10px; font-weight:800; direction:rtl; cursor:pointer; }
     .week-select:focus { outline:2px solid rgba(217,17,34,.16); border-color:var(--red); }
-    .fixture-list { max-height:620px; display:grid; gap:9px; margin-top:8px; overflow-y:auto; scrollbar-width:thin; }
+    .fixtures-filter { min-height:35px; display:flex; align-items:center; justify-content:flex-end; margin-top:8px; }
+    .fixture-list { max-height:620px; display:grid; gap:10px; margin-top:6px; overflow-y:auto; scrollbar-width:thin; }
     .fixture-day-group { display:grid; gap:4px; }
-    .fixture-day-heading { position:sticky; top:0; z-index:3; display:flex; align-items:center; justify-content:space-between; min-height:24px; padding:3px 8px; border-right:2px solid #aeb7c1; border-radius:4px; background:#eef1f4; color:#394450; font-size:10px; font-weight:800; }
+    .fixture-day-heading { position:sticky; top:0; z-index:3; display:flex; align-items:center; justify-content:space-between; min-height:24px; padding:3px 8px; border-right:2px solid #8e9ba8; border-radius:4px; background:#eef1f4; color:#394450; font-size:10px; font-weight:800; }
     .fixture-day-heading span { color:#7a838d; font-size:9px; font-weight:600; }
-    .fixture-day-matches { display:grid; gap:4px; }
-    .fixture-card { padding:6px 9px; border:1px solid #e1e4e7; border-radius:6px; background:#fff; }
+    .fixture-day-matches { display:grid; overflow:hidden; border:1px solid #e0e4e8; border-radius:7px; background:#fff; }
+    .fixture-card { padding:7px 9px; border:0; border-radius:0; background:transparent; transition:background .15s ease; }
+    .fixture-card + .fixture-card { border-top:1px solid #edf0f2; }
+    .fixture-card:hover { background:#f7f9fb; }
     .fixture-status { color:#42484f; font-weight:800; }
     .fixture-status.live { color:var(--red); }
     .fixture-teams { display:grid; grid-template-columns:minmax(0,1fr) 52px minmax(0,1fr); align-items:center; gap:6px; }
@@ -1037,7 +1040,9 @@
             <div id="standingsTable" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>خواندن جدول از پایگاه داده نیمکت…</span></div></div>
           </article>
           <aside class="fixtures-panel">
-            <div class="league-panel-head"><div><h3 id="fixturesTitle">بازی‌های هفته</h3><small id="fixturesRange">برنامه میزبان و میهمان</small></div><div class="week-navigation" aria-label="تغییر هفته"><button class="week-button" id="previousLeagueWeek" type="button" aria-label="هفته قبل">‹</button><select class="week-select" id="leagueWeekSelect" aria-label="انتخاب هفته مسابقات"><option>هفته جاری</option></select><button class="week-button" id="nextLeagueWeek" type="button" aria-label="هفته بعد">›</button></div></div>
+            <div class="league-panel-head"><div><h3 id="fixturesTitle">بازی‌های هفته</h3><small>برنامه هفته انتخاب‌شده</small></div></div>
+            <div class="fixtures-filter"><div class="week-navigation" aria-label="تغییر هفته"><button class="week-button" id="previousLeagueWeek" type="button" aria-label="هفته قبل">‹</button><select class="week-select" id="leagueWeekSelect" aria-label="انتخاب هفته مسابقات"><option>هفته جاری</option></select><button class="week-button" id="nextLeagueWeek" type="button" aria-label="هفته بعد">›</button></div></div>
+            <p class="standings-context" id="fixturesRange">تاریخ و تعداد بازی‌ها</p>
             <div class="fixture-list" id="leagueFixtures" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت بازی‌ها…</span></div></div>
           </aside>
         </div>

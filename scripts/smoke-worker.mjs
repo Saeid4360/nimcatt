@@ -42,6 +42,7 @@ assert.match(homepage, /function seasonMonthKeys/);
 assert.doesNotMatch(homepage, /home-away-badge/);
 assert.match(homepage, /function leagueFixtureGroups/);
 assert.match(homepage, /standing-row \$\{zone\}/);
+assert.match(homepage, /class="fixtures-filter"/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

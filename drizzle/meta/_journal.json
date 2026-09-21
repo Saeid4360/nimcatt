@@ -15,6 +15,13 @@
       "when": 1790018808232,
       "tag": "0001_nervous_donald_blake",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1790021770847,
+      "tag": "0002_melted_gladiator",
+      "breakpoints": true
     }
   ]
 }

@@ -193,3 +193,44 @@ export const matchEvents = sqliteTable(
   },
   (table) => [index("match_events_fixture_idx").on(table.fixtureId, table.sequence), index("match_events_player_idx").on(table.playerId)],
 );
+
+export const entityLocalizations = sqliteTable(
+  "entity_localizations",
+  {
+    id: text("id").primaryKey(),
+    entityType: text("entity_type").notNull(),
+    entityId: text("entity_id").notNull(),
+    locale: text("locale").notNull(),
+    displayName: text("display_name").notNull(),
+    source: text("source").notNull(),
+    isVerified: integer("is_verified", { mode: "boolean" }).notNull().default(false),
+    updatedAt: integer("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("entity_localizations_entity_locale_uidx").on(table.entityType, table.entityId, table.locale),
+    index("entity_localizations_locale_name_idx").on(table.locale, table.displayName),
+  ],
+);
+
+export const playerMedia = sqliteTable(
+  "player_media",
+  {
+    id: text("id").primaryKey(),
+    playerId: text("player_id").notNull(),
+    teamId: text("team_id"),
+    kind: text("kind").notNull(),
+    url: text("url"),
+    source: text("source").notNull(),
+    sourceRecordId: text("source_record_id"),
+    sourceUrl: text("source_url"),
+    license: text("license"),
+    status: text("status").notNull(),
+    isCurrent: integer("is_current", { mode: "boolean" }).notNull().default(true),
+    capturedAt: integer("captured_at").notNull(),
+    metadataJson: text("metadata_json").notNull(),
+  },
+  (table) => [
+    uniqueIndex("player_media_player_team_kind_uidx").on(table.playerId, table.teamId, table.kind),
+    index("player_media_player_idx").on(table.playerId, table.isCurrent),
+  ],
+);

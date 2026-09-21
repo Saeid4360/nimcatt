@@ -73,6 +73,22 @@ const PLAYER_SCHEMA_SQL = [
   )`,
   `CREATE INDEX IF NOT EXISTS match_events_fixture_idx ON match_events(fixture_id, sequence)`,
   `CREATE INDEX IF NOT EXISTS match_events_player_idx ON match_events(player_id)`,
+  `CREATE TABLE IF NOT EXISTS entity_localizations (
+    id TEXT PRIMARY KEY, entity_type TEXT NOT NULL, entity_id TEXT NOT NULL, locale TEXT NOT NULL,
+    display_name TEXT NOT NULL, source TEXT NOT NULL, is_verified INTEGER NOT NULL DEFAULT 0, updated_at INTEGER NOT NULL
+  )`,
+  `CREATE UNIQUE INDEX IF NOT EXISTS entity_localizations_entity_locale_uidx
+    ON entity_localizations(entity_type, entity_id, locale)`,
+  `CREATE INDEX IF NOT EXISTS entity_localizations_locale_name_idx
+    ON entity_localizations(locale, display_name)`,
+  `CREATE TABLE IF NOT EXISTS player_media (
+    id TEXT PRIMARY KEY, player_id TEXT NOT NULL, team_id TEXT, kind TEXT NOT NULL, url TEXT,
+    source TEXT NOT NULL, source_record_id TEXT, source_url TEXT, license TEXT, status TEXT NOT NULL,
+    is_current INTEGER NOT NULL DEFAULT 1, captured_at INTEGER NOT NULL, metadata_json TEXT NOT NULL
+  )`,
+  `CREATE UNIQUE INDEX IF NOT EXISTS player_media_player_team_kind_uidx
+    ON player_media(player_id, team_id, kind)`,
+  `CREATE INDEX IF NOT EXISTS player_media_player_idx ON player_media(player_id, is_current)`,
 ];
 let playerSchemaReady;
 
@@ -103,6 +119,87 @@ function numberOrNull(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+const PLAYER_NAME_FA_OVERRIDES = {
+  "bruno fernandes": "برونو فرناندز", "carlos baleba": "کارلوس بالبا", "matheus cunha": "ماتئوس کونیا",
+  "bryan mbeumo": "برایان امبومو", "harry kane": "هری کین", "erling haaland": "ارلینگ هالند",
+  "kylian mbappe": "کیلیان امباپه", "vinicius junior": "وینیسیوس جونیور", "jude bellingham": "جود بلینگام",
+  "lamine yamal": "لامین یامال", "robert lewandowski": "روبرت لواندوفسکی", "mohamed salah": "محمد صلاح",
+  "virgil van dijk": "ویرجیل فن‌دایک", "bukayo saka": "بوکایو ساکا", "martin odegaard": "مارتین اودگارد",
+  "declan rice": "دکلان رایس", "cole palmer": "کول پالمر", "enzo fernandez": "انزو فرناندز",
+  "alexander isak": "الکساندر ایساک", "florian wirtz": "فلوریان ویرتز", "jamal musiala": "جمال موسیالا",
+  "joshua kimmich": "یوشوا کیمیش", "ousmane dembele": "عثمان دمبله", "khvicha kvaratskhelia": "خویچا کواراتسخلیا",
+  "lautaro martinez": "لائوتارو مارتینس", "marcus thuram": "مارکوس تورام", "kevin de bruyne": "کوین دی‌بروینه",
+  "rodri": "رودری", "phil foden": "فیل فودن", "raphinha": "رافینیا", "federico valverde": "فدریکو والورده",
+  "thibaut courtois": "تیبو کورتوا", "eduardo camavinga": "ادواردو کاماوینگا",
+  "aurelien tchouameni": "اورلین شوامنی", "antonio rudiger": "آنتونیو رودیگر",
+  "trent alexander-arnold": "ترنت الکساندر آرنولد", "alisson": "آلیسون",
+  "gianluigi donnarumma": "جان‌لوئیجی دوناروما", "achraf hakimi": "اشرف حکیمی", "vitinha": "ویتینیا",
+  "pedri": "پدری", "gavi": "گاوی", "marcus rashford": "مارکوس رشفورد"
+};
+
+const TEAM_NAME_FA_OVERRIDES = {
+  "arsenal": "آرسنال", "chelsea": "چلسی", "liverpool": "لیورپول", "manchester city": "منچستر سیتی",
+  "manchester united": "منچستر یونایتد", "tottenham hotspur": "تاتنهام", "newcastle united": "نیوکاسل",
+  "real madrid": "رئال مادرید", "barcelona": "بارسلونا", "atletico madrid": "اتلتیکو مادرید",
+  "internazionale": "اینتر", "ac milan": "میلان", "juventus": "یوونتوس", "napoli": "ناپولی",
+  "bayern munich": "بایرن مونیخ", "borussia dortmund": "بوروسیا دورتموند",
+  "bayer leverkusen": "بایرلورکوزن", "paris saint-germain": "پاری سن ژرمن",
+  "ajax amsterdam": "آژاکس", "psv eindhoven": "آیندهوون", "feyenoord rotterdam": "فاینورد"
+};
+
+const COMMON_NAME_PARTS_FA = {
+  mohamed: "محمد", mohammad: "محمد", ahmed: "احمد", ali: "علی", omar: "عمر", youssef: "یوسف",
+  joao: "ژوائو", jose: "ژوزه", jesus: "ژسوس", pedro: "پدرو", paulo: "پائولو", carlos: "کارلوس",
+  daniel: "دنیل", david: "داوید", diego: "دیه‌گو", diogo: "دیوگو", luis: "لوئیس", lucas: "لوکاس",
+  marc: "مارک", marco: "مارکو", mario: "ماریو", martin: "مارتین", mateo: "ماتئو", nicolas: "نیکولاس",
+  rafael: "رافائل", ricardo: "ریکاردو", roberto: "روبرتو", rodri: "رودری", sergio: "سرخیو",
+  silva: "سیلوا", santos: "سانتوس", fernandes: "فرناندز", fernandez: "فرناندز",
+  martinez: "مارتینس", rodriguez: "رودریگز", gonzalez: "گونزالس", garcia: "گارسیا",
+  junior: "جونیور", van: "فن", de: "دی", da: "دا", dos: "دوس", al: "ال"
+};
+
+function normalizedLatinName(value = "") {
+  return String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    .replace(/[.’']/g, "").replace(/[^a-z0-9 -]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function transliterateNamePart(input) {
+  const common = COMMON_NAME_PARTS_FA[input];
+  if (common) return common;
+  let value = input;
+  const pairs = [
+    ["tch", "چ"], ["sch", "ش"], ["sh", "ش"], ["ch", "چ"], ["kh", "خ"], ["gh", "گ"], ["zh", "ژ"],
+    ["ph", "ف"], ["th", "ت"], ["qu", "کو"], ["ck", "ک"], ["tion", "شن"], ["cia", "شا"], ["ll", "ی"],
+    ["oo", "و"], ["ee", "ی"], ["ea", "ی"], ["ie", "ی"], ["ei", "ای"], ["ai", "ای"], ["ou", "او"], ["ow", "او"]
+  ];
+  for (const [from, to] of pairs) value = value.replaceAll(from, to);
+  const letters = { a: "ا", b: "ب", c: "ک", d: "د", e: "", f: "ف", g: "گ", h: "ه", i: "ی", j: "ج",
+    k: "ک", l: "ل", m: "م", n: "ن", o: "و", p: "پ", q: "ق", r: "ر", s: "س", t: "ت",
+    u: "و", v: "و", w: "و", x: "کس", y: "ی", z: "ز" };
+  return [...value].map((letter) => letters[letter] ?? letter).join("").replace(/ا{2,}/g, "ا");
+}
+
+function persianEntityName(name, type = "player") {
+  const normalized = normalizedLatinName(name);
+  const overrides = type === "team" ? TEAM_NAME_FA_OVERRIDES : PLAYER_NAME_FA_OVERRIDES;
+  if (overrides[normalized]) return { name: overrides[normalized], source: "editorial-alias", verified: 1 };
+  const display = normalized.split(/([ -])/).map((part) => part === " " ? " " : part === "-" ? "‌" : transliterateNamePart(part)).join("").trim();
+  return { name: display || String(name || ""), source: "nimkat-transliteration", verified: 0 };
+}
+
+function localizationStatement(env, entityType, entityId, englishName, now) {
+  if (!englishName) return null;
+  const localized = persianEntityName(englishName, entityType);
+  return env.DB.prepare(`INSERT INTO entity_localizations (
+      id,entity_type,entity_id,locale,display_name,source,is_verified,updated_at
+    ) VALUES (?1,?2,?3,'fa',?4,?5,?6,?7)
+    ON CONFLICT(id) DO UPDATE SET
+      display_name=CASE WHEN entity_localizations.is_verified=1 THEN entity_localizations.display_name ELSE excluded.display_name END,
+      source=CASE WHEN entity_localizations.is_verified=1 THEN entity_localizations.source ELSE excluded.source END,
+      is_verified=MAX(entity_localizations.is_verified,excluded.is_verified),updated_at=excluded.updated_at`)
+    .bind(`${entityType}:${entityId}:fa`, entityType, entityId, localized.name, localized.source, localized.verified, now);
+}
+
 function sourceTeamId(source) {
   return source.pathname.match(/\/teams\/(\d+)/)?.[1] || null;
 }
@@ -126,6 +223,7 @@ function rosterPlayerStatements(env, athlete, context, now) {
   const periodId = `espn:${context.league}:${context.seasonYear}:${context.teamId}:${externalId}`;
   const seasonStatsId = `${periodId}:season`;
   const stats = athleteStats(athlete);
+  const playerName = athlete.displayName || athlete.fullName || externalId;
   const birthPlace = athlete.birthPlace?.city || athlete.birthPlace?.country || null;
   const photo = athlete.headshot?.href || athlete.headshot?.url || athlete.photo?.href || null;
   const heightCm = numberOrNull(athlete.height) == null ? null : Math.round(Number(athlete.height) * 2.54 * 10) / 10;
@@ -141,7 +239,7 @@ function rosterPlayerStatements(env, athlete, context, now) {
       gender=COALESCE(excluded.gender,players.gender),height_cm=COALESCE(excluded.height_cm,players.height_cm),weight_kg=COALESCE(excluded.weight_kg,players.weight_kg),
       primary_position=COALESCE(excluded.primary_position,players.primary_position),photo_url=COALESCE(excluded.photo_url,players.photo_url),
       status=COALESCE(excluded.status,players.status),updated_at=excluded.updated_at`)
-      .bind(playerId, athlete.displayName || athlete.fullName || externalId, athlete.firstName || null, athlete.lastName || null, athlete.slug || null,
+      .bind(playerId, playerName, athlete.firstName || null, athlete.lastName || null, athlete.slug || null,
         athlete.dateOfBirth || null, birthPlace, athlete.citizenship || athlete.nationality || null, athlete.citizenshipCountry?.abbreviation || null,
         athlete.gender || null, heightCm, weightKg, athlete.position?.abbreviation || athlete.position?.displayName || null, photo,
         athlete.status?.type || athlete.status?.name || null, now),
@@ -161,6 +259,7 @@ function rosterPlayerStatements(env, athlete, context, now) {
       assists=excluded.assists,rating=excluded.rating,stats_json=excluded.stats_json,updated_at=excluded.updated_at`)
       .bind(seasonStatsId, playerId, teamId, context.league, context.seasonYear, stats.appearances ?? null, stats.minutes ?? null,
         stats.totalGoals ?? null, stats.goalAssists ?? null, stats.rating ?? stats.performanceScore ?? null, JSON.stringify(stats), now),
+    localizationStatement(env, "player", playerId, playerName, now),
   ];
 }
 
@@ -186,12 +285,16 @@ async function ingestTeamPayload(env, source, data) {
   if (!teamId || !team) return;
   await ensurePlayerSchema(env);
   const now = Math.floor(Date.now() / 1000);
-  await env.DB.prepare(`INSERT INTO teams (id,provider,external_id,league,name_en,name_fa,logo_url,updated_at)
+  const canonicalTeamId = `espn:${teamId}`;
+  const teamName = team.displayName || team.name || null;
+  const statements = [env.DB.prepare(`INSERT INTO teams (id,provider,external_id,league,name_en,name_fa,logo_url,updated_at)
     VALUES (?1,'espn',?2,?3,?4,NULL,?5,?6)
     ON CONFLICT(id) DO UPDATE SET league=COALESCE(excluded.league,teams.league),name_en=COALESCE(excluded.name_en,teams.name_en),
       logo_url=COALESCE(excluded.logo_url,teams.logo_url),updated_at=excluded.updated_at`)
-    .bind(`espn:${teamId}`, teamId, leagueFromSource(source), team.displayName || team.name || null,
-      team.logos?.[0]?.href || team.logo || null, now).run();
+    .bind(canonicalTeamId, teamId, leagueFromSource(source), teamName, team.logos?.[0]?.href || team.logo || null, now)];
+  const localized = localizationStatement(env, "team", canonicalTeamId, teamName, now);
+  if (localized) statements.push(localized);
+  await runStatementBatches(env, statements);
 }
 
 function rosterEntryStats(entry) {
@@ -229,6 +332,8 @@ async function ingestMatchPayload(env, source, data) {
       VALUES (?1,'espn',?2,?3,?4,NULL,?5,?6)
       ON CONFLICT(id) DO UPDATE SET name_en=COALESCE(excluded.name_en,teams.name_en),logo_url=COALESCE(excluded.logo_url,teams.logo_url),updated_at=excluded.updated_at`)
       .bind(`espn:${team.id}`, String(team.id), league, team.displayName || team.name || null, team.logo || team.logos?.[0]?.href || null, now));
+    const teamLocalization = localizationStatement(env, "team", `espn:${team.id}`, team.displayName || team.name || null, now);
+    if (teamLocalization) statements.push(teamLocalization);
   }
   for (const roster of data.rosters || []) {
     const teamExternalId = String(roster.team?.id || "");
@@ -425,9 +530,72 @@ async function sportsDataResponse(request, env, ctx) {
 }
 
 async function playerRecord(env, playerId) {
-  return env.DB.prepare(`SELECT id,name_en,name_fa,first_name_en,last_name_en,slug,date_of_birth,birth_place,nationality,
-    citizenship_code,gender,height_cm,weight_kg,preferred_foot,primary_position,photo_url,status,created_at,updated_at
-    FROM players WHERE id=?1`).bind(playerId).first();
+  return env.DB.prepare(`SELECT p.id,p.name_en,COALESCE(l.display_name,p.name_fa) AS name_fa,
+    l.source AS name_fa_source,l.is_verified AS name_fa_verified,p.first_name_en,p.last_name_en,p.slug,p.date_of_birth,
+    p.birth_place,p.nationality,p.citizenship_code,p.gender,p.height_cm,p.weight_kg,p.preferred_foot,p.primary_position,
+    p.photo_url,p.status,p.created_at,p.updated_at
+    FROM players p LEFT JOIN entity_localizations l
+      ON l.entity_type='player' AND l.entity_id=p.id AND l.locale='fa'
+    WHERE p.id=?1`).bind(playerId).first();
+}
+
+function comparableTeamName(value = "") {
+  return normalizedLatinName(value).replace(/\b(fc|afc|cf|sc|ac|club)\b/g, "").replace(/\s+/g, " ").trim()
+    .replace("internazionale", "inter milan").replace("paris saint germain", "psg");
+}
+
+function validPlayerMediaUrl(value = "") {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && ["www.thesportsdb.com", "r2.thesportsdb.com"].includes(url.hostname)
+      && /^\/images\/media\/player\/(?:cutout|thumb)\/[a-z0-9]+\.(?:png|jpe?g|webp)$/i.test(url.pathname);
+  } catch {
+    return false;
+  }
+}
+
+async function hydratePlayerMedia(env, player, team) {
+  if (!player?.id || !player.name_en || !team?.team_id) return null;
+  const now = Math.floor(Date.now() / 1000);
+  const mediaId = `${player.id}:${team.team_id}:portrait`;
+  const existing = await env.DB.prepare(`SELECT id,player_id,team_id,kind,url,source,source_record_id,source_url,license,
+    status,is_current,captured_at,metadata_json FROM player_media WHERE id=?1`).bind(mediaId).first();
+  if (existing && Number(existing.captured_at) > now - 7 * 86400) return existing;
+  const apiKey = String(env.THESPORTSDB_API_KEY || "123");
+  const endpoint = `https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(apiKey)}/searchplayers.php?p=${encodeURIComponent(player.name_en)}`;
+  let chosen = null;
+  try {
+    const response = await fetch(endpoint, { headers: { accept: "application/json" } });
+    if (response.ok) {
+      const payload = await response.json();
+      const playerKey = normalizedLatinName(player.name_en);
+      const teamKey = comparableTeamName(team.team_name_en);
+      chosen = (payload.player || []).find((candidate) => normalizedLatinName(candidate.strPlayer) === playerKey
+        && comparableTeamName(candidate.strTeam) === teamKey
+        && validPlayerMediaUrl(candidate.strCutout || candidate.strThumb || ""));
+    }
+  } catch (error) {
+    console.error("player-media-refresh-failed", player.id, String(error?.message || error));
+  }
+  const imageUrl = chosen?.strCutout || chosen?.strThumb || null;
+  const status = imageUrl ? "available" : "missing";
+  const metadata = {
+    player_name: chosen?.strPlayer || player.name_en,
+    team_name: chosen?.strTeam || team.team_name_en || null,
+    standard: { aspect_ratio: "4:5", fit: imageUrl?.includes("/cutout/") ? "contain" : "cover", focal_point: "50% 12%" },
+  };
+  await env.DB.prepare(`INSERT INTO player_media (
+      id,player_id,team_id,kind,url,source,source_record_id,source_url,license,status,is_current,captured_at,metadata_json
+    ) VALUES (?1,?2,?3,'team_portrait',?4,'thesportsdb',?5,?6,?7,?8,1,?9,?10)
+    ON CONFLICT(id) DO UPDATE SET url=excluded.url,source_record_id=excluded.source_record_id,
+      source_url=excluded.source_url,license=excluded.license,status=excluded.status,is_current=1,
+      captured_at=excluded.captured_at,metadata_json=excluded.metadata_json`)
+    .bind(mediaId, player.id, team.team_id, imageUrl, chosen?.idPlayer || null,
+      chosen?.idPlayer ? `https://www.thesportsdb.com/player/${chosen.idPlayer}` : "https://www.thesportsdb.com/",
+      chosen?.strCreativeCommonsConfirmed === "Yes" ? "creative-commons-confirmed" : "provider-terms",
+      status, now, JSON.stringify(metadata)).run();
+  return { id: mediaId, player_id: player.id, team_id: team.team_id, kind: "team_portrait", url: imageUrl,
+    source: "thesportsdb", source_record_id: chosen?.idPlayer || null, status, captured_at: now, metadata_json: JSON.stringify(metadata) };
 }
 
 async function hydrateMissingPlayer(env, playerId, league, teamId) {
@@ -459,8 +627,10 @@ async function playerDataResponse(request, env, rawId) {
   const [providersResult, teamsResult, seasonsResult, matchesResult, weeksResult] = await Promise.all([
     env.DB.prepare(`SELECT provider,external_id,first_seen_at,last_seen_at FROM player_provider_ids WHERE player_id=?1 ORDER BY provider`).bind(playerId).all(),
     env.DB.prepare(`SELECT p.team_id,p.league,p.season_year,p.jersey_number,p.position,p.valid_from,p.valid_to,p.is_current,
-      t.name_en AS team_name_en,t.name_fa AS team_name_fa,t.logo_url
-      FROM player_team_periods p LEFT JOIN teams t ON t.id=p.team_id WHERE p.player_id=?1 ORDER BY p.is_current DESC,p.season_year DESC`).bind(playerId).all(),
+      t.name_en AS team_name_en,COALESCE(tl.display_name,t.name_fa) AS team_name_fa,t.logo_url
+      FROM player_team_periods p LEFT JOIN teams t ON t.id=p.team_id
+      LEFT JOIN entity_localizations tl ON tl.entity_type='team' AND tl.entity_id=t.id AND tl.locale='fa'
+      WHERE p.player_id=?1 ORDER BY p.is_current DESC,p.season_year DESC`).bind(playerId).all(),
     env.DB.prepare(`SELECT s.*,t.name_en AS team_name_en,t.name_fa AS team_name_fa FROM player_season_stats s
       LEFT JOIN teams t ON t.id=s.team_id WHERE s.player_id=?1 ORDER BY s.season_year DESC,s.league`).bind(playerId).all(),
     env.DB.prepare(`SELECT s.*,f.external_id AS fixture_external_id,f.league,f.season_year,f.round_number,f.kickoff_at,f.home_team_id,f.away_team_id,f.status,
@@ -475,16 +645,27 @@ async function playerDataResponse(request, env, rawId) {
       FROM player_match_stats s JOIN fixtures f ON f.id=s.fixture_id WHERE s.player_id=?1
       GROUP BY f.league,f.season_year,f.round_number ORDER BY f.season_year DESC,f.round_number DESC`).bind(playerId).all(),
   ]);
+  const teams = teamsResult.results || [];
+  const currentTeam = teams.find((item) => Number(item.is_current)) || teams[0] || null;
+  const media = await hydratePlayerMedia(env, player, currentTeam);
+  if (media?.url) player.photo_url = media.url;
   const matches = parseStoredJson(matchesResult.results || []);
   const availableMetrics = [...new Set(matches.flatMap((row) => Object.entries(row.stats_json || {}).filter(([, value]) => value != null).map(([name]) => name)))];
   return jsonResponse({
     player,
     providers: providersResult.results || [],
-    teams: teamsResult.results || [],
+    teams,
     seasons: parseStoredJson(seasonsResult.results || []),
     matches,
     weeks: weeksResult.results || [],
-    coverage: { provider: "espn", available_metrics: availableMetrics, advanced_metrics_require_licensed_feed: true },
+    media: media ? { ...media, metadata_json: (() => { try { return JSON.parse(media.metadata_json || "{}"); } catch { return {}; } })() } : null,
+    coverage: {
+      provider: "espn",
+      sources: ["espn", media?.url ? "thesportsdb" : null, "nimkat-localization"].filter(Boolean),
+      available_metrics: availableMetrics,
+      advanced_metrics_require_licensed_feed: true,
+      recommended_advanced_providers: ["api-football", "sportmonks", "sportradar"],
+    },
   });
 }
 
@@ -492,11 +673,10 @@ async function playerDatasetStatus(env) {
   if (!env.DB) return jsonResponse({ error: "پایگاه داده متصل نیست." }, { status: 503 });
   await ensurePlayerSchema(env);
   const counts = {};
-  for (const table of ["players", "player_provider_ids", "player_team_periods", "player_season_stats", "player_match_stats", "match_events"]) {
-    const row = await env.DB.prepare(`SELECT COUNT(*) AS count,MAX(updated_at) AS updated_at FROM ${table}`).first().catch(async () => {
-      const fallback = await env.DB.prepare(`SELECT COUNT(*) AS count,MAX(last_seen_at) AS updated_at FROM ${table}`).first();
-      return fallback;
-    });
+  for (const table of ["players", "player_provider_ids", "player_team_periods", "player_season_stats", "player_match_stats", "match_events", "entity_localizations", "player_media"]) {
+    const timestampColumn = table === "player_provider_ids" || table === "player_team_periods"
+      ? "last_seen_at" : table === "player_media" ? "captured_at" : "updated_at";
+    const row = await env.DB.prepare(`SELECT COUNT(*) AS count,MAX(${timestampColumn}) AS updated_at FROM ${table}`).first();
     counts[table] = { records: Number(row?.count || 0), updated_at: row?.updated_at || null };
   }
   return jsonResponse({ storage: "d1", canonical_dataset: counts });

@@ -93,13 +93,19 @@ assert.match(homepage, /function renderPlayerPage/);
 assert.match(homepage, /function playerHref/);
 assert.match(homepage, /NIMKAT_PLAYER_API='\/api\/players'/);
 assert.match(homepage, /پاس کلیدی/);
+assert.match(homepage, /function persianPlayerName/);
+assert.match(homepage, /api\/v1\/json\/123\/searchplayers/);
+assert.match(homepage, /آوانویسی خودکار/);
 
 const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS player_match_stats/);
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS match_events/);
+assert.match(workerSource, /CREATE TABLE IF NOT EXISTS entity_localizations/);
+assert.match(workerSource, /CREATE TABLE IF NOT EXISTS player_media/);
 assert.match(workerSource, /async function ingestRosterPayload/);
 assert.match(workerSource, /async function ingestMatchPayload/);
+assert.match(workerSource, /async function hydratePlayerMedia/);
 assert.match(workerSource, /advanced_metrics_require_licensed_feed/);
 
 let upstreamRequests = 0;
@@ -133,6 +139,7 @@ assert.equal((await worker.fetch(new Request(rosterEndpoint), env, ctx)).status,
 await Promise.all(pending.splice(0));
 assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO players")));
 assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO player_season_stats")));
+assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO entity_localizations")));
 
 const matchEndpoint = "https://nimkat.test/api/sports-data?kind=match&source=" + encodeURIComponent("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary?event=fixture-2");
 assert.equal((await worker.fetch(new Request(matchEndpoint), env, ctx)).status, 200);

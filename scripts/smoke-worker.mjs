@@ -39,6 +39,7 @@ assert.match(homepage, /function matchScorePair/);
 assert.match(homepage, /id="leagueWeekSelect"/);
 assert.match(homepage, /function groupLeagueRounds/);
 assert.match(homepage, /function seasonMonthKeys/);
+assert.doesNotMatch(homepage, /home-away-badge/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

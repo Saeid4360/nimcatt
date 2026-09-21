@@ -2,10 +2,12 @@ import assert from "node:assert/strict";
 
 const { default: worker } = await import("../dist/server/index.js");
 const records = new Map();
+const executedSql = [];
 const env = {
   DB: {
     prepare(sql) {
       return {
+        sql,
         values: [],
         bind(...values) {
           this.values = values;
@@ -15,6 +17,10 @@ const env = {
           return records.get(this.values[0]) || null;
         },
         async run() {
+          const placeholders = [...sql.matchAll(/\?(\d+)/g)].map((match) => Number(match[1]));
+          const expected = placeholders.length ? Math.max(...placeholders) : 0;
+          assert.equal(this.values.length, expected, `Bind count mismatch: ${sql.slice(0, 90)}`);
+          executedSql.push(sql);
           if (sql.startsWith("INSERT INTO sports_cache")) {
             const [source_url, kind, league, payload, fetched_at, expires_at] = this.values;
             records.set(source_url, { source_url, kind, league, payload, fetched_at, expires_at, last_error: null });
@@ -28,7 +34,8 @@ const env = {
     },
   },
 };
-const ctx = { waitUntil() {} };
+const pending = [];
+const ctx = { waitUntil(promise) { pending.push(promise); } };
 
 const home = await worker.fetch(new Request("https://nimkat.test/"), env, ctx);
 assert.equal(home.status, 200);
@@ -81,12 +88,34 @@ assert.match(homepage, /data-scenario-preset=\"rounds-played\"/);
 assert.match(homepage, /filter\(entry=>state\.teams\.has/);
 assert.match(homepage, /if\(!state\.rounds\.has\(index\+1\)\)return/);
 assert.doesNotMatch(homepage, /هفته‌هایی که از محاسبه حذف شوند/);
+assert.match(homepage, /id="playerView"/);
+assert.match(homepage, /function renderPlayerPage/);
+assert.match(homepage, /function playerHref/);
+assert.match(homepage, /NIMKAT_PLAYER_API='\/api\/players'/);
+assert.match(homepage, /پاس کلیدی/);
+
+const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
+assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);
+assert.match(workerSource, /CREATE TABLE IF NOT EXISTS player_match_stats/);
+assert.match(workerSource, /CREATE TABLE IF NOT EXISTS match_events/);
+assert.match(workerSource, /async function ingestRosterPayload/);
+assert.match(workerSource, /async function ingestMatchPayload/);
+assert.match(workerSource, /advanced_metrics_require_licensed_feed/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;
-globalThis.fetch = async () => {
+globalThis.fetch = async (input) => {
   upstreamRequests += 1;
-  return new Response(JSON.stringify({ events: [{ id: "fixture-1" }] }), {
+  const url = String(input);
+  const payload = url.includes("/roster") ? {
+    season: { year: 2026 },
+    athletes: [{ id: "10", firstName: "Test", lastName: "Player", displayName: "Test Player", dateOfBirth: "2000-01-01T00:00Z", height: 72, weight: 170, citizenship: "Testland", jersey: "9", position: { abbreviation: "F" }, statistics: { splits: { categories: [{ stats: [{ name: "appearances", value: 2 }, { name: "totalGoals", value: 1 }] }] } } }],
+  } : url.includes("/summary") ? {
+    header: { season: { year: 2026 }, competitions: [{ id: "fixture-2", date: "2026-09-21T18:00:00Z", week: { number: 5 }, status: { type: { name: "STATUS_FINAL" } }, competitors: [{ homeAway: "home", team: { id: "1", displayName: "Home" } }, { homeAway: "away", team: { id: "2", displayName: "Away" } }] }] },
+    rosters: [{ team: { id: "1" }, roster: [{ starter: true, jersey: "9", position: { abbreviation: "F" }, athlete: { id: "10", displayName: "Test Player" }, stats: [{ name: "totalGoals", value: 1 }, { name: "goalAssists", value: 1 }] }] }],
+    plays: [{ id: "play-1", period: { number: 1 }, clock: { value: 120 }, team: { id: "1" }, type: { type: "goal" }, participants: [{ athlete: { id: "10" } }], text: "Goal" }],
+  } : { events: [{ id: "fixture-1" }] };
+  return new Response(JSON.stringify(payload), {
     headers: { "content-type": "application/json" },
   });
 };
@@ -98,6 +127,18 @@ assert.equal(first.headers.get("x-nimkat-cache-status"), "stored");
 assert.equal(second.headers.get("x-nimkat-cache-status"), "hit");
 assert.equal(upstreamRequests, 1);
 assert.deepEqual(await second.json(), { events: [{ id: "fixture-1" }] });
+
+const rosterEndpoint = "https://nimkat.test/api/sports-data?kind=roster&source=" + encodeURIComponent("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/1/roster");
+assert.equal((await worker.fetch(new Request(rosterEndpoint), env, ctx)).status, 200);
+await Promise.all(pending.splice(0));
+assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO players")));
+assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO player_season_stats")));
+
+const matchEndpoint = "https://nimkat.test/api/sports-data?kind=match&source=" + encodeURIComponent("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary?event=fixture-2");
+assert.equal((await worker.fetch(new Request(matchEndpoint), env, ctx)).status, 200);
+await Promise.all(pending.splice(0));
+assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO player_match_stats")));
+assert.ok(executedSql.some((sql) => sql.includes("INSERT INTO match_events")));
 globalThis.fetch = nativeFetch;
 
 console.log("Worker, static assets, and D1 cache flow passed.");

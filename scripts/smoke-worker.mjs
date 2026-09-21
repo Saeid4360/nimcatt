@@ -53,6 +53,9 @@ assert.match(homepage, /--league-logo/);
 assert.match(homepage, /function tournamentLogo/);
 assert.match(homepage, /setLeagueWatermark\(selectedLeague\)/);
 assert.doesNotMatch(homepage, /\.fixtures-panel::before/);
+assert.doesNotMatch(homepage, /class="league-center-heading"/);
+assert.doesNotMatch(homepage, /لیگ‌های معتبر و رقابت‌های اروپایی/);
+assert.match(homepage, /class="league-select" id="leagueSelect"/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

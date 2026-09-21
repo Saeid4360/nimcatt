@@ -263,10 +263,8 @@
     .league-center { margin-top:24px; overflow:hidden; scroll-margin-top:92px; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:0 8px 26px rgba(22,26,32,.035); }
     .league-view { max-width:1180px; margin-top:-18px; }
     .league-view .league-center { margin-top:0; }
-    .league-center-header { min-height:56px; padding:9px 14px; display:flex; align-items:center; justify-content:space-between; gap:14px; border-bottom:1px solid var(--line); }
-    .league-center-heading { min-width:0; }
-    .league-center-heading p { margin:3px 13px 0 0; color:var(--muted); font-size:11px; }
-    .league-center-actions { display:flex; align-items:center; gap:10px; }
+    .league-center-header { min-height:48px; padding:7px 14px; display:flex; align-items:center; border-bottom:1px solid var(--line); background:#fafbfc; }
+    .league-center-actions { width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px; }
     .league-select-label { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:11px; white-space:nowrap; }
     .league-select { min-width:190px; height:34px; padding:0 10px 0 28px; border:1px solid #d7dade; border-radius:6px; background:#fff; color:var(--ink); font:inherit; font-size:11px; font-weight:700; cursor:pointer; }
     .league-data-source { color:#454b52; font-size:11px; font-weight:700; white-space:nowrap; }
@@ -711,8 +709,8 @@
       .match-cover-divider { padding-top:19px; font-size:12px; }
       .latest-list { display:block; }
       .league-view { margin-top:-10px; }
-      .league-center-header { align-items:flex-start; flex-direction:column; padding:12px 14px; }
-      .league-center-actions { width:100%; }
+      .league-center-header { min-height:46px; padding:6px 10px; }
+      .league-center-actions { gap:8px; }
       .league-select-label { width:100%; }
       .league-select { flex:1; min-width:0; }
       .league-data-source { display:none; }
@@ -1049,7 +1047,6 @@
     <section id="leagueView" class="container league-view hidden" aria-live="polite">
       <section class="league-center" id="leagueCenter" aria-label="جدول و برنامه بازی‌ها">
         <header class="league-center-header">
-          <div class="league-center-heading"><h1 class="section-title">جدول لیگ‌ها و برنامه بازی‌ها</h1><p>لیگ‌های معتبر و رقابت‌های اروپایی؛ رتبه‌بندی، بازی‌های هفته و ساعت‌ها به وقت ایران</p></div>
           <div class="league-center-actions">
             <label class="league-select-label"><span>انتخاب لیگ</span><select class="league-select" id="leagueSelect" aria-label="انتخاب جدول لیگ"></select></label>
             <a class="league-data-source" id="leagueSource" href="https://www.espn.com/soccer/table" target="_blank" rel="noopener">داده رسمی ESPN ↗</a>

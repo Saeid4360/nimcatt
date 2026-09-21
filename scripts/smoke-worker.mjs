@@ -61,10 +61,11 @@ assert.doesNotMatch(homepage, /داده رسمی ESPN/);
 assert.match(homepage, /class="league-panel-copy"><label class="league-title-filter"><select class="league-select" id="leagueSelect"/);
 assert.doesNotMatch(homepage, /faNumber\(Math\.max\(1,weekNumber\)\)\} ·/);
 assert.match(homepage, /\.league-title-filter::after/);
-assert.match(homepage, /class="week-navigation"[^>]*><select class="week-select"[^>]*>.*class="week-arrows"/);
+assert.match(homepage, /class="week-navigation"[^>]*><label class="week-select-wrap"><select class="week-select"[^>]*>.*class="week-arrows"/);
 assert.doesNotMatch(homepage, /\.standings-filter,\.week-navigation/);
-assert.match(homepage, /\.league-title-filter \{[^}]*width:200px/);
-assert.match(homepage, /\.week-select \{[^}]*width:96px/);
+assert.match(homepage, /\.league-title-filter \{[^}]*width:178px/);
+assert.match(homepage, /\.week-select-wrap \{[^}]*width:84px/);
+assert.match(homepage, /\.week-select-wrap::after/);
 assert.doesNotMatch(homepage, /\.week-select \{ flex:1/);
 
 let upstreamRequests = 0;

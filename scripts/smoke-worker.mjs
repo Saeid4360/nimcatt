@@ -40,6 +40,8 @@ assert.match(homepage, /id="leagueWeekSelect"/);
 assert.match(homepage, /function groupLeagueRounds/);
 assert.match(homepage, /function seasonMonthKeys/);
 assert.doesNotMatch(homepage, /home-away-badge/);
+assert.match(homepage, /function leagueFixtureGroups/);
+assert.match(homepage, /standing-row \$\{zone\}/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

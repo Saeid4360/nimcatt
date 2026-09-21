@@ -263,7 +263,7 @@
     .league-center { margin-top:24px; overflow:hidden; scroll-margin-top:92px; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:0 8px 26px rgba(22,26,32,.035); }
     .league-view { max-width:1180px; margin-top:-18px; }
     .league-view .league-center { margin-top:0; }
-    .league-select { min-width:190px; height:38px; appearance:none; padding:0 14px 0 38px; border:1px solid #d9dee4; border-radius:9px; outline:0; background:linear-gradient(180deg,#fff,#f7f8fa); color:#202832; box-shadow:0 1px 2px rgba(21,28,36,.05),inset 0 1px 0 #fff; font:inherit; font-size:12px; font-weight:800; cursor:pointer; transition:border-color .16s ease,box-shadow .16s ease,background .16s ease; }
+    .league-select { min-width:0; height:34px; appearance:none; padding:0 12px 0 34px; border:1px solid #d9dee4; border-radius:8px; outline:0; background:linear-gradient(180deg,#fff,#f7f8fa); color:#202832; box-shadow:0 1px 2px rgba(21,28,36,.05),inset 0 1px 0 #fff; font:inherit; font-size:11px; font-weight:800; cursor:pointer; transition:border-color .16s ease,box-shadow .16s ease,background .16s ease; }
     .league-select:hover { border-color:#bfc6ce; background:#fff; }
     .league-select:focus-visible { border-color:#d7616c; box-shadow:0 0 0 3px rgba(226,27,45,.1),0 2px 6px rgba(21,28,36,.07); }
     .league-center-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(350px,.8fr); min-height:470px; }
@@ -272,8 +272,8 @@
     .standings-panel > * { position:relative; z-index:1; }
     .league-panel-head { min-height:40px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .league-panel-copy { min-width:0; }
-    .league-title-filter { position:relative; display:flex; min-width:238px; }
-    .league-title-filter::after { content:""; position:absolute; left:15px; top:50%; width:7px; height:7px; border-right:1.5px solid #68717b; border-bottom:1.5px solid #68717b; transform:translateY(-70%) rotate(45deg); pointer-events:none; }
+    .league-title-filter { position:relative; display:flex; width:200px; min-width:0; max-width:100%; }
+    .league-title-filter::after { content:""; position:absolute; left:13px; top:50%; width:6px; height:6px; border-right:1.5px solid #68717b; border-bottom:1.5px solid #68717b; transform:translateY(-70%) rotate(45deg); pointer-events:none; }
     .league-title-filter .league-select { width:100%; }
     .league-panel-head h3 { margin:0; color:#202328; font-size:15px; line-height:1.5; letter-spacing:-.15px; }
     .standings-filter { min-height:34px; display:flex; align-items:center; gap:2px; flex:none; padding:3px; border:1px solid #dfe3e7; border-radius:9px; background:#f3f5f7; box-shadow:inset 0 1px 0 rgba(255,255,255,.85); }
@@ -335,13 +335,13 @@
     .standing-diff.positive { color:var(--success); }
     .standing-diff.negative { color:#ba2936; }
     .fixtures-panel { min-width:0; padding:14px; background:#fafbfc; }
-    .week-navigation { display:flex; align-items:center; gap:7px; flex:none; direction:rtl; }
+    .week-navigation { display:flex; align-items:center; gap:6px; flex:none; direction:rtl; }
     .week-arrows { display:inline-flex; overflow:hidden; flex:none; direction:ltr; border:1px solid #d9dee4; border-radius:8px; background:#fff; box-shadow:0 1px 2px rgba(21,28,36,.05); }
-    .week-button { width:30px; height:34px; display:grid; place-items:center; border:0; border-radius:0; background:#fff; color:#4d545c; font-size:17px; cursor:pointer; transition:background .15s ease,color .15s ease; }
+    .week-button { width:28px; height:32px; display:grid; place-items:center; border:0; border-radius:0; background:#fff; color:#4d545c; font-size:16px; cursor:pointer; transition:background .15s ease,color .15s ease; }
     .week-button + .week-button { border-left:1px solid #e1e5e9; }
     .week-button:hover { background:#f3f5f7; color:var(--red-dark); }
     .week-button:disabled { opacity:.4; cursor:not-allowed; }
-    .week-select { height:36px; min-width:104px; padding:0 10px; border:1px solid #d9dee4; border-radius:8px; outline:0; background:#fff; color:#292e34; box-shadow:0 1px 2px rgba(21,28,36,.05); font:inherit; font-size:10px; font-weight:800; direction:rtl; cursor:pointer; }
+    .week-select { width:96px; height:34px; min-width:0; padding:0 8px; border:1px solid #d9dee4; border-radius:8px; outline:0; background:#fff; color:#292e34; box-shadow:0 1px 2px rgba(21,28,36,.05); font:inherit; font-size:10px; font-weight:800; direction:rtl; cursor:pointer; }
     .week-select:hover { border-color:#bfc6ce; }
     .week-select:focus-visible { border-color:#d7616c; box-shadow:0 0 0 3px rgba(226,27,45,.1); }
     .fixture-list { max-height:620px; display:grid; gap:10px; margin-top:6px; overflow-y:auto; scrollbar-width:thin; }
@@ -713,14 +713,14 @@
       .match-cover-divider { padding-top:19px; font-size:12px; }
       .latest-list { display:block; }
       .league-view { margin-top:-10px; }
-      .league-title-filter { width:100%; min-width:0; }
+      .league-title-filter { width:200px; max-width:100%; }
       .league-select { min-width:0; }
       .standings-panel,.fixtures-panel { padding:16px; }
       .league-panel-head { display:grid; grid-template-columns:1fr; align-items:start; gap:8px; }
       .league-panel-head .standings-filter,.league-panel-head .week-navigation { width:100%; }
       .league-panel-head .week-navigation { order:-1; }
       .standings-filter button { flex:1; padding-inline:6px; }
-      .week-select { flex:1; }
+      .week-select { flex:0 0 96px; }
       .league-panel-meta { align-items:flex-start; flex-direction:column; gap:4px; }
       .table-legend { width:100%; display:flex; flex-wrap:wrap; gap:5px 10px; white-space:normal; }
       .standings-scroll { max-height:620px; margin-left:-16px; margin-right:-16px; padding:0 16px; }

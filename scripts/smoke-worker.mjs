@@ -63,6 +63,9 @@ assert.doesNotMatch(homepage, /faNumber\(Math\.max\(1,weekNumber\)\)\} ·/);
 assert.match(homepage, /\.league-title-filter::after/);
 assert.match(homepage, /class="week-navigation"[^>]*><select class="week-select"[^>]*>.*class="week-arrows"/);
 assert.doesNotMatch(homepage, /\.standings-filter,\.week-navigation/);
+assert.match(homepage, /\.league-title-filter \{[^}]*width:200px/);
+assert.match(homepage, /\.week-select \{[^}]*width:96px/);
+assert.doesNotMatch(homepage, /\.week-select \{ flex:1/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+var/translation_cache.json
+.DS_Store

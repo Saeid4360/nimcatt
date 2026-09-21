@@ -1,0 +1,65 @@
+[
+  {
+    "id": "bbc-football",
+    "name": "BBC Sport",
+    "country": "england",
+    "country_label": "انگلیس",
+    "flag": "🏴",
+    "language": "English",
+    "language_label": "انگلیسی",
+    "feed_url": "https://feeds.bbci.co.uk/sport/football/rss.xml",
+    "website_url": "https://www.bbc.com/sport/football",
+    "icon": "BBC"
+  },
+  {
+    "id": "guardian-football",
+    "name": "The Guardian",
+    "country": "england",
+    "country_label": "انگلیس",
+    "flag": "🏴",
+    "language": "English",
+    "language_label": "انگلیسی",
+    "feed_url": "https://www.theguardian.com/football/rss",
+    "website_url": "https://www.theguardian.com/football",
+    "icon": "G"
+  },
+  {
+    "id": "sky-football",
+    "name": "Sky Sports",
+    "country": "england",
+    "country_label": "انگلیس",
+    "flag": "🏴",
+    "language": "English",
+    "language_label": "انگلیسی",
+    "feed_url": "https://www.skysports.com/rss/12040",
+    "website_url": "https://www.skysports.com/football",
+    "icon": "SKY"
+  },
+  {
+    "id": "kicker-football",
+    "name": "Kicker",
+    "country": "germany",
+    "country_label": "آلمان",
+    "flag": "🇩🇪",
+    "language": "German",
+    "language_label": "آلمانی",
+    "feed_url": "https://newsfeed.kicker.de/news/fussball",
+    "website_url": "https://www.kicker.de/",
+    "icon": "K"
+  },
+  {
+    "id": "espn-soccer",
+    "name": "ESPN",
+    "country": "international",
+    "country_label": "بین‌المللی",
+    "flag": "🌍",
+    "language": "English",
+    "language_label": "انگلیسی",
+    "feed_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/news?limit=40",
+    "website_url": "https://www.espn.com/soccer/",
+    "icon": "ESPN",
+    "format": "espn_json",
+    "provider_only": true,
+    "user_agent": "curl/8.7.1"
+  }
+]

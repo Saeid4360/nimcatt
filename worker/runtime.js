@@ -1,4 +1,5 @@
 const UPSTREAM_HOST = "site.api.espn.com";
+const UPSTREAM_FETCH_HOST = "site.web.api.espn.com";
 const ALLOWED_PATHS = [
   "/apis/site/v2/sports/soccer/",
   "/apis/v2/sports/soccer/",
@@ -72,7 +73,9 @@ async function recordError(env, sourceUrl, message) {
 async function refreshCached(env, source, kind) {
   const sourceUrl = source.toString();
   try {
-    const upstream = await fetch(sourceUrl, { headers: { accept: "application/json" } });
+    const fetchUrl = new URL(sourceUrl);
+    fetchUrl.hostname = UPSTREAM_FETCH_HOST;
+    const upstream = await fetch(fetchUrl.toString(), { headers: { accept: "application/json" } });
     if (!upstream.ok) throw new Error(`upstream ${upstream.status}`);
     const payload = await upstream.text();
     JSON.parse(payload);

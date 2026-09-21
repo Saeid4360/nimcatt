@@ -49,6 +49,9 @@ assert.match(homepage, /function qualificationLegend/);
 assert.match(homepage, /\.legend-dot\.ucl/);
 assert.match(homepage, /\.legend-dot\.uel/);
 assert.match(homepage, /\.legend-dot\.uecl/);
+assert.match(homepage, /--league-logo/);
+assert.match(homepage, /function tournamentLogo/);
+assert.match(homepage, /setLeagueWatermark\(selectedLeague\)/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

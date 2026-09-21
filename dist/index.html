@@ -273,15 +273,17 @@
     .league-data-source { color:#454b52; font-size:11px; font-weight:700; white-space:nowrap; }
     .league-center-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(350px,.8fr); min-height:470px; }
     .standings-panel { min-width:0; padding:14px 15px; border-left:1px solid var(--line); }
-    .league-panel-head { min-height:36px; display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+    .league-panel-head { min-height:40px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .league-panel-copy { min-width:0; }
     .league-panel-head h3 { margin:0; color:#202328; font-size:15px; line-height:1.5; letter-spacing:-.15px; }
     .league-panel-head small { display:block; margin-top:2px; color:var(--muted); font-size:10px; }
-    .standings-filter { display:flex; align-items:center; gap:3px; width:max-content; max-width:100%; margin-top:8px; padding:3px; border:1px solid var(--line); border-radius:7px; background:#f5f6f8; }
-    .standings-filter button { min-height:27px; padding:3px 10px; border:0; border-radius:4px; background:transparent; color:#626870; font:inherit; font-size:11px; font-weight:700; cursor:pointer; white-space:nowrap; }
-    .standings-filter button:hover { color:var(--ink); }
-    .standings-filter button[aria-pressed="true"] { background:#fff; color:var(--red-dark); box-shadow:0 1px 5px rgba(20,24,30,.1); }
+    .standings-filter,.week-navigation { min-height:34px; display:flex; align-items:center; gap:2px; flex:none; padding:3px; border:1px solid #dfe3e7; border-radius:9px; background:#f3f5f7; box-shadow:inset 0 1px 0 rgba(255,255,255,.85); }
+    .standings-filter button { min-height:26px; padding:3px 10px; border:0; border-radius:6px; background:transparent; color:#686f77; font:inherit; font-size:10px; font-weight:800; cursor:pointer; white-space:nowrap; transition:color .15s ease,background .15s ease,box-shadow .15s ease; }
+    .standings-filter button:hover { background:rgba(255,255,255,.65); color:var(--ink); }
+    .standings-filter button[aria-pressed="true"] { background:#fff; color:var(--red-dark); box-shadow:0 1px 4px rgba(25,30,36,.12); }
     .standings-filter button:focus-visible { outline:2px solid var(--red); outline-offset:2px; }
-    .standings-context { min-height:17px; margin:4px 0 0; color:var(--muted); font-size:10px; line-height:1.6; }
+    .league-panel-meta { min-height:23px; display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; }
+    .standings-context { min-height:17px; margin:0; color:var(--muted); font-size:10px; line-height:1.6; }
     .table-legend { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:10px; white-space:nowrap; }
     .legend-item { display:flex; align-items:center; gap:4px; }
     .legend-dot { width:7px; height:7px; border-radius:50%; background:#3c7bc4; }
@@ -316,13 +318,12 @@
     .standing-diff.positive { color:var(--success); }
     .standing-diff.negative { color:#ba2936; }
     .fixtures-panel { min-width:0; padding:14px; background:#fafbfc; }
-    .week-navigation { display:flex; align-items:center; gap:5px; direction:ltr; }
-    .week-button { width:29px; height:29px; display:grid; place-items:center; border:1px solid #d9dde1; border-radius:5px; background:#fff; color:#33383e; font-size:16px; cursor:pointer; }
-    .week-button:hover { border-color:#9ca2a8; }
+    .week-navigation { direction:ltr; }
+    .week-button { width:26px; height:26px; display:grid; place-items:center; border:0; border-radius:6px; background:transparent; color:#4d545c; font-size:16px; cursor:pointer; transition:background .15s ease,color .15s ease; }
+    .week-button:hover { background:#fff; color:var(--red-dark); }
     .week-button:disabled { opacity:.4; cursor:not-allowed; }
-    .week-select { height:29px; min-width:84px; padding:0 8px; border:1px solid #d9dde1; border-radius:5px; background:#fff; color:#33383e; font:inherit; font-size:10px; font-weight:800; direction:rtl; cursor:pointer; }
+    .week-select { height:26px; min-width:82px; padding:0 8px; border:0; border-radius:6px; background:#fff; color:#292e34; box-shadow:0 1px 4px rgba(25,30,36,.12); font:inherit; font-size:10px; font-weight:800; direction:rtl; cursor:pointer; }
     .week-select:focus { outline:2px solid rgba(217,17,34,.16); border-color:var(--red); }
-    .fixtures-filter { min-height:35px; display:flex; align-items:center; justify-content:flex-end; margin-top:8px; }
     .fixture-list { max-height:620px; display:grid; gap:10px; margin-top:6px; overflow-y:auto; scrollbar-width:thin; }
     .fixture-day-group { display:grid; gap:4px; }
     .fixture-day-heading { position:sticky; top:0; z-index:3; display:flex; align-items:center; justify-content:space-between; min-height:24px; padding:3px 8px; border-right:2px solid #8e9ba8; border-radius:4px; background:#eef1f4; color:#394450; font-size:10px; font-weight:800; }
@@ -697,7 +698,10 @@
       .league-select { flex:1; min-width:0; }
       .league-data-source { display:none; }
       .standings-panel,.fixtures-panel { padding:16px; }
-      .league-panel-head { align-items:flex-start; }
+      .league-panel-head { display:grid; grid-template-columns:1fr; align-items:start; gap:8px; }
+      .league-panel-head .standings-filter,.league-panel-head .week-navigation { width:100%; order:-1; }
+      .standings-filter button { flex:1; padding-inline:6px; }
+      .week-select { flex:1; }
       .table-legend { display:none; }
       .standings-scroll { max-height:620px; margin-left:-16px; margin-right:-16px; padding:0 16px; }
       .fixture-list { max-height:560px; }
@@ -1034,15 +1038,13 @@
         </header>
         <div class="league-center-grid">
           <article class="standings-panel">
-            <div class="league-panel-head"><div><h3 id="standingsTitle">جدول لیگ برتر انگلیس</h3><small id="standingsSeason">در حال دریافت فصل…</small></div><div class="table-legend" id="tableLegend"><span class="legend-item"><i class="legend-dot"></i>سهمیه اروپا</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span></div></div>
-            <div class="standings-filter" role="group" aria-label="نمایش جدول بر اساس محل بازی"><button type="button" data-standings-split="all" aria-pressed="true">همه بازی‌ها</button><button type="button" data-standings-split="home" aria-pressed="false">خانگی</button><button type="button" data-standings-split="away" aria-pressed="false">خارج از خانه</button></div>
-            <p class="standings-context" id="standingsContext">جدول رسمی همه بازی‌ها</p>
+            <div class="league-panel-head"><div class="league-panel-copy"><h3 id="standingsTitle">جدول لیگ برتر انگلیس</h3><small id="standingsSeason">در حال دریافت فصل…</small></div><div class="standings-filter" role="group" aria-label="نمایش جدول بر اساس محل بازی"><button type="button" data-standings-split="all" aria-pressed="true">همه بازی‌ها</button><button type="button" data-standings-split="home" aria-pressed="false">خانگی</button><button type="button" data-standings-split="away" aria-pressed="false">خارج از خانه</button></div></div>
+            <div class="league-panel-meta"><p class="standings-context" id="standingsContext">جدول رسمی همه بازی‌ها</p><div class="table-legend" id="tableLegend"><span class="legend-item"><i class="legend-dot"></i>سهمیه اروپا</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span></div></div>
             <div id="standingsTable" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>خواندن جدول از پایگاه داده نیمکت…</span></div></div>
           </article>
           <aside class="fixtures-panel">
-            <div class="league-panel-head"><div><h3 id="fixturesTitle">بازی‌های هفته</h3><small>برنامه هفته انتخاب‌شده</small></div></div>
-            <div class="fixtures-filter"><div class="week-navigation" aria-label="تغییر هفته"><button class="week-button" id="previousLeagueWeek" type="button" aria-label="هفته قبل">‹</button><select class="week-select" id="leagueWeekSelect" aria-label="انتخاب هفته مسابقات"><option>هفته جاری</option></select><button class="week-button" id="nextLeagueWeek" type="button" aria-label="هفته بعد">›</button></div></div>
-            <p class="standings-context" id="fixturesRange">تاریخ و تعداد بازی‌ها</p>
+            <div class="league-panel-head"><div class="league-panel-copy"><h3 id="fixturesTitle">بازی‌های هفته</h3><small>برنامه هفته انتخاب‌شده</small></div><div class="week-navigation" aria-label="تغییر هفته"><button class="week-button" id="previousLeagueWeek" type="button" aria-label="هفته قبل">‹</button><select class="week-select" id="leagueWeekSelect" aria-label="انتخاب هفته مسابقات"><option>هفته جاری</option></select><button class="week-button" id="nextLeagueWeek" type="button" aria-label="هفته بعد">›</button></div></div>
+            <div class="league-panel-meta"><p class="standings-context" id="fixturesRange">تاریخ و تعداد بازی‌ها</p></div>
             <div class="fixture-list" id="leagueFixtures" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>دریافت بازی‌ها…</span></div></div>
           </aside>
         </div>

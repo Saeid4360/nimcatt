@@ -32,7 +32,10 @@ const ctx = { waitUntil() {} };
 
 const home = await worker.fetch(new Request("https://nimkat.test/"), env, ctx);
 assert.equal(home.status, 200);
-assert.match(await home.text(), /نیمکت/);
+const homepage = await home.text();
+assert.match(homepage, /نیمکت/);
+assert.match(homepage, /limit=1000/);
+assert.match(homepage, /function matchScorePair/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

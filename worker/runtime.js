@@ -648,7 +648,7 @@ async function hydratePlayerMedia(env, player, team) {
   const mediaId = `${player.id}:${team.team_id}:portrait`;
   const existing = await env.DB.prepare(`SELECT id,player_id,team_id,kind,url,source,source_record_id,source_url,license,
     status,is_current,captured_at,metadata_json FROM player_media WHERE id=?1`).bind(mediaId).first();
-  const retryAfter = existing?.status === "available" ? 7 * 86400 : 6 * 3600;
+  const retryAfter = existing?.status === "available" ? 7 * 86400 : 10 * 60;
   if (existing && Number(existing.captured_at) > now - retryAfter) return existing;
   const apiKey = String(env.THESPORTSDB_API_KEY || "123");
   const endpoint = `https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(apiKey)}/searchplayers.php?p=${encodeURIComponent(player.name_en)}`;

@@ -83,7 +83,7 @@ for (const target of TARGETS) {
     };
     const matchStats = new Map();
     const playerMeta = new Map();
-    const finalSecond = Math.max(90 * 60, ...events.map((event) => Number(event.minute || 0) * 60 + Number(event.second || 0)));
+    const finalSecond = events.some((event) => Number(event.period) === 3 || Number(event.period) === 4) ? 120 * 60 : 90 * 60;
     for (const lineup of lineups) {
       const teamId = String(lineup.team_id || "");
       if (teamId) output.teams[teamId] = lineup.team_name || output.teams[teamId] || teamId;
@@ -113,6 +113,7 @@ for (const target of TARGETS) {
     const passByEvent = new Map();
     const shotByKeyPass = new Map();
     for (const event of events) {
+      if (Number(event.period) > 4) continue;
       const playerId = String(event.player?.id || "");
       if (!playerId) continue;
       if (!matchStats.has(playerId)) matchStats.set(playerId, blankStats());

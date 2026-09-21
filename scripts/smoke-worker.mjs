@@ -56,6 +56,9 @@ assert.doesNotMatch(homepage, /\.fixtures-panel::before/);
 assert.doesNotMatch(homepage, /class="league-center-heading"/);
 assert.doesNotMatch(homepage, /لیگ‌های معتبر و رقابت‌های اروپایی/);
 assert.match(homepage, /class="league-select" id="leagueSelect"/);
+assert.doesNotMatch(homepage, /class="league-center-header"/);
+assert.doesNotMatch(homepage, /داده رسمی ESPN/);
+assert.match(homepage, /class="league-panel-copy"><label class="league-title-filter"><select class="league-select" id="leagueSelect"/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

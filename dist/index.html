@@ -263,17 +263,15 @@
     .league-center { margin-top:24px; overflow:hidden; scroll-margin-top:92px; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:0 8px 26px rgba(22,26,32,.035); }
     .league-view { max-width:1180px; margin-top:-18px; }
     .league-view .league-center { margin-top:0; }
-    .league-center-header { min-height:48px; padding:7px 14px; display:flex; align-items:center; border-bottom:1px solid var(--line); background:#fafbfc; }
-    .league-center-actions { width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px; }
-    .league-select-label { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:11px; white-space:nowrap; }
     .league-select { min-width:190px; height:34px; padding:0 10px 0 28px; border:1px solid #d7dade; border-radius:6px; background:#fff; color:var(--ink); font:inherit; font-size:11px; font-weight:700; cursor:pointer; }
-    .league-data-source { color:#454b52; font-size:11px; font-weight:700; white-space:nowrap; }
     .league-center-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(350px,.8fr); min-height:470px; }
     .standings-panel { position:relative; min-width:0; overflow:hidden; isolation:isolate; padding:14px 15px; border-left:1px solid var(--line); }
     .standings-panel::before { content:""; position:absolute; inset:72px 12px 16px; z-index:2; background-image:var(--league-logo,none); background-repeat:no-repeat; background-position:center 44%; background-size:min(78%,430px) auto; opacity:.05; filter:grayscale(1) contrast(.92); mix-blend-mode:multiply; pointer-events:none; }
     .standings-panel > * { position:relative; z-index:1; }
     .league-panel-head { min-height:40px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .league-panel-copy { min-width:0; }
+    .league-title-filter { display:flex; min-width:220px; }
+    .league-title-filter .league-select { width:100%; }
     .league-panel-head h3 { margin:0; color:#202328; font-size:15px; line-height:1.5; letter-spacing:-.15px; }
     .standings-filter,.week-navigation { min-height:34px; display:flex; align-items:center; gap:2px; flex:none; padding:3px; border:1px solid #dfe3e7; border-radius:9px; background:#f3f5f7; box-shadow:inset 0 1px 0 rgba(255,255,255,.85); }
     .standings-filter button { min-height:26px; padding:3px 10px; border:0; border-radius:6px; background:transparent; color:#686f77; font:inherit; font-size:10px; font-weight:800; cursor:pointer; white-space:nowrap; transition:color .15s ease,background .15s ease,box-shadow .15s ease; }
@@ -709,11 +707,8 @@
       .match-cover-divider { padding-top:19px; font-size:12px; }
       .latest-list { display:block; }
       .league-view { margin-top:-10px; }
-      .league-center-header { min-height:46px; padding:6px 10px; }
-      .league-center-actions { gap:8px; }
-      .league-select-label { width:100%; }
-      .league-select { flex:1; min-width:0; }
-      .league-data-source { display:none; }
+      .league-title-filter { width:100%; min-width:0; }
+      .league-select { min-width:0; }
       .standings-panel,.fixtures-panel { padding:16px; }
       .league-panel-head { display:grid; grid-template-columns:1fr; align-items:start; gap:8px; }
       .league-panel-head .standings-filter,.league-panel-head .week-navigation { width:100%; order:-1; }
@@ -1046,15 +1041,9 @@
 
     <section id="leagueView" class="container league-view hidden" aria-live="polite">
       <section class="league-center" id="leagueCenter" aria-label="جدول و برنامه بازی‌ها">
-        <header class="league-center-header">
-          <div class="league-center-actions">
-            <label class="league-select-label"><span>انتخاب لیگ</span><select class="league-select" id="leagueSelect" aria-label="انتخاب جدول لیگ"></select></label>
-            <a class="league-data-source" id="leagueSource" href="https://www.espn.com/soccer/table" target="_blank" rel="noopener">داده رسمی ESPN ↗</a>
-          </div>
-        </header>
         <div class="league-center-grid">
           <article class="standings-panel">
-            <div class="league-panel-head"><div class="league-panel-copy"><h3 id="standingsTitle">جدول لیگ برتر انگلیس</h3></div><div class="standings-filter" role="group" aria-label="نمایش جدول بر اساس محل بازی"><button type="button" data-standings-split="all" aria-pressed="true">همه بازی‌ها</button><button type="button" data-standings-split="home" aria-pressed="false">خانگی</button><button type="button" data-standings-split="away" aria-pressed="false">خارج از خانه</button></div></div>
+            <div class="league-panel-head"><div class="league-panel-copy"><label class="league-title-filter"><select class="league-select" id="leagueSelect" aria-label="انتخاب جدول لیگ"></select></label></div><div class="standings-filter" role="group" aria-label="نمایش جدول بر اساس محل بازی"><button type="button" data-standings-split="all" aria-pressed="true">همه بازی‌ها</button><button type="button" data-standings-split="home" aria-pressed="false">خانگی</button><button type="button" data-standings-split="away" aria-pressed="false">خارج از خانه</button></div></div>
             <div class="league-panel-meta"><div class="table-legend" id="tableLegend"><span class="legend-item"><i class="legend-dot ucl"></i>لیگ قهرمانان</span><span class="legend-item"><i class="legend-dot uel"></i>لیگ اروپا</span><span class="legend-item"><i class="legend-dot uecl"></i>لیگ کنفرانس</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span></div></div>
             <div id="standingsTable" aria-live="polite"><div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>خواندن جدول از پایگاه داده نیمکت…</span></div></div>
           </article>
@@ -2015,7 +2004,7 @@
     function leagueFixtureGroups(events){const groups=new Map(),format=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long',timeZone:IRAN_TIME_ZONE});events.forEach(event=>{const date=new Date(event.date),key=tehranDateKey(date);if(!groups.has(key))groups.set(key,{label:format.format(date),events:[]});groups.get(key).events.push(event);});return [...groups.values()].map(group=>`<section class="fixture-day-group"><header class="fixture-day-heading"><strong>${esc(group.label)}</strong><span>${faNumber(group.events.length)} بازی</span></header><div class="fixture-day-matches">${group.events.map(leagueFixtureCard).join('')}</div></section>`).join('');}
     function renderLeagueFixtures(events,weekNumber,totalWeeks){const config=LEAGUE_CONFIG[selectedLeague],label=config.kind==='europe'?'مرحله':'هفته',weekSelect=document.getElementById('leagueWeekSelect');document.getElementById('fixturesTitle').textContent=`${label} ${faNumber(Math.max(1,weekNumber))} · ${config.name}`;document.getElementById('leagueFixtures').innerHTML=events.length?leagueFixtureGroups(events):'<div class="league-empty">برای این هفته مسابقه‌ای ثبت نشده است.</div>';weekSelect.innerHTML=Array.from({length:totalWeeks},(_,index)=>`<option value="${index+1}">${label} ${faNumber(index+1)}</option>`).join('');weekSelect.value=String(weekNumber);document.getElementById('previousLeagueWeek').disabled=weekNumber<=1;document.getElementById('nextLeagueWeek').disabled=weekNumber>=totalWeeks;}
     async function loadLeagueCenter(){
-      const requestId=++leagueRequestId,config=LEAGUE_CONFIG[selectedLeague],standingsRoot=document.getElementById('standingsTable'),fixturesRoot=document.getElementById('leagueFixtures');currentStandingsContext=null;++standingsViewRequestId;setLeagueWatermark(selectedLeague);document.getElementById('standingsTitle').textContent=`جدول ${config.name}`;document.getElementById('leagueSource').href=config.table;document.getElementById('tableLegend').innerHTML=config.kind==='europe'?'<span class="legend-item"><i class="legend-dot"></i>صعود مستقیم</span><span class="legend-item"><i class="legend-dot playoff"></i>پلی‌آف</span><span class="legend-item"><i class="legend-dot danger"></i>حذف</span>':'<span class="legend-item"><i class="legend-dot ucl"></i>لیگ قهرمانان</span><span class="legend-item"><i class="legend-dot uel"></i>لیگ اروپا</span><span class="legend-item"><i class="legend-dot uecl"></i>لیگ کنفرانس</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span>';standingsRoot.innerHTML='<div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>خواندن جدول ذخیره‌شده…</span></div>';fixturesRoot.innerHTML='<div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>چیدن همه هفته‌های فصل…</span></div>';
+      const requestId=++leagueRequestId,config=LEAGUE_CONFIG[selectedLeague],standingsRoot=document.getElementById('standingsTable'),fixturesRoot=document.getElementById('leagueFixtures');currentStandingsContext=null;++standingsViewRequestId;setLeagueWatermark(selectedLeague);document.getElementById('tableLegend').innerHTML=config.kind==='europe'?'<span class="legend-item"><i class="legend-dot"></i>صعود مستقیم</span><span class="legend-item"><i class="legend-dot playoff"></i>پلی‌آف</span><span class="legend-item"><i class="legend-dot danger"></i>حذف</span>':'<span class="legend-item"><i class="legend-dot ucl"></i>لیگ قهرمانان</span><span class="legend-item"><i class="legend-dot uel"></i>لیگ اروپا</span><span class="legend-item"><i class="legend-dot uecl"></i>لیگ کنفرانس</span><span class="legend-item"><i class="legend-dot danger"></i>سقوط</span>';standingsRoot.innerHTML='<div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>خواندن جدول ذخیره‌شده…</span></div>';fixturesRoot.innerHTML='<div class="league-loading"><span class="score-loader" aria-hidden="true"></span><span>چیدن همه هفته‌های فصل…</span></div>';
       const currentMonth=tehranDateKey(new Date()).slice(0,7).replace('-',''),standingsUrl=`${ESPN_STANDINGS_API}/${selectedLeague}/standings?region=us&lang=en&contentorigin=espn&type=0&level=3&sort=rank%3Aasc`,seedUrl=`${ESPN_SOCCER_API}/${selectedLeague}/scoreboard?dates=${currentMonth}&limit=1000`;
       try{const [standingsData,seedData]=await Promise.all([fetchLeagueJson(standingsUrl),fetchLeagueJson(seedUrl)]);if(requestId!==leagueRequestId)return;const child=standingsData.children?.find(item=>item.standings?.entries?.length)||standingsData.children?.[0],entries=child?.standings?.entries||[],games=entries.map(entry=>Number(leagueStat(entry,'gamesPlayed'))).filter(Number.isFinite),rounds=await getLeagueRounds(standingsData,seedData,entries,config);if(requestId!==leagueRequestId)return;const suggested=Math.max(1,Math.min(rounds.length,(games.length?Math.min(...games):0)+1));if(!selectedLeagueRound)selectedLeagueRound=suggested;selectedLeagueRound=Math.max(1,Math.min(rounds.length,selectedLeagueRound));const events=rounds[selectedLeagueRound-1]||[];currentStandingsContext={entries,config,season:standingsData.season||{startDate:''}};renderLeagueFixtures(events,selectedLeagueRound,rounds.length);renderSelectedStandings();}catch(error){if(requestId!==leagueRequestId)return;standingsRoot.innerHTML='<div class="league-empty">دریافت جدول ممکن نشد.</div>';fixturesRoot.innerHTML='<div class="league-empty"><span>دریافت برنامه کامل فصل ممکن نشد.</span><button class="score-retry" type="button" data-league-retry>تلاش دوباره</button></div>';}
     }

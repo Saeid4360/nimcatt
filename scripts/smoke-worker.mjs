@@ -52,6 +52,7 @@ assert.match(homepage, /\.legend-dot\.uecl/);
 assert.match(homepage, /--league-logo/);
 assert.match(homepage, /function tournamentLogo/);
 assert.match(homepage, /setLeagueWatermark\(selectedLeague\)/);
+assert.doesNotMatch(homepage, /\.fixtures-panel::before/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

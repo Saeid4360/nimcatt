@@ -272,8 +272,8 @@
     .league-data-source { color:#454b52; font-size:11px; font-weight:700; white-space:nowrap; }
     .league-center-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(350px,.8fr); min-height:470px; }
     .standings-panel { position:relative; min-width:0; overflow:hidden; isolation:isolate; padding:14px 15px; border-left:1px solid var(--line); }
-    .standings-panel::before,.fixtures-panel::before { content:""; position:absolute; inset:72px 12px 16px; z-index:2; background-image:var(--league-logo,none); background-repeat:no-repeat; background-position:center 42%; background-size:min(43%,240px) auto; opacity:.055; filter:grayscale(1) contrast(.92); mix-blend-mode:multiply; pointer-events:none; }
-    .standings-panel > *,.fixtures-panel > * { position:relative; z-index:1; }
+    .standings-panel::before { content:""; position:absolute; inset:72px 12px 16px; z-index:2; background-image:var(--league-logo,none); background-repeat:no-repeat; background-position:center 44%; background-size:min(78%,430px) auto; opacity:.05; filter:grayscale(1) contrast(.92); mix-blend-mode:multiply; pointer-events:none; }
+    .standings-panel > * { position:relative; z-index:1; }
     .league-panel-head { min-height:40px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .league-panel-copy { min-width:0; }
     .league-panel-head h3 { margin:0; color:#202328; font-size:15px; line-height:1.5; letter-spacing:-.15px; }
@@ -335,8 +335,7 @@
     .standing-diff { direction:ltr; unicode-bidi:isolate; }
     .standing-diff.positive { color:var(--success); }
     .standing-diff.negative { color:#ba2936; }
-    .fixtures-panel { position:relative; min-width:0; overflow:hidden; isolation:isolate; padding:14px; background:#fafbfc; }
-    .fixtures-panel::before { background-size:min(58%,210px) auto; opacity:.06; }
+    .fixtures-panel { min-width:0; padding:14px; background:#fafbfc; }
     .week-navigation { direction:ltr; }
     .week-button { width:26px; height:26px; display:grid; place-items:center; border:0; border-radius:6px; background:transparent; color:#4d545c; font-size:16px; cursor:pointer; transition:background .15s ease,color .15s ease; }
     .week-button:hover { background:#fff; color:var(--red-dark); }

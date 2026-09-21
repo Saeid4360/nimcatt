@@ -93,7 +93,9 @@ async function refreshCached(env, source, kind) {
     ).bind(sourceUrl, kind, leagueFromSource(source), payload, fetchedAt, expiresAt).run();
     return { payload, fetchedAt, expiresAt };
   } catch (error) {
-    await recordError(env, sourceUrl, error instanceof Error ? error.message : String(error)).catch(() => {});
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("sports-data-refresh-failed", JSON.stringify({ sourceUrl, kind, message }));
+    await recordError(env, sourceUrl, message).catch(() => {});
     throw error;
   }
 }

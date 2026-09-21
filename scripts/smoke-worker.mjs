@@ -61,6 +61,8 @@ assert.doesNotMatch(homepage, /داده رسمی ESPN/);
 assert.match(homepage, /class="league-panel-copy"><label class="league-title-filter"><select class="league-select" id="leagueSelect"/);
 assert.doesNotMatch(homepage, /faNumber\(Math\.max\(1,weekNumber\)\)\} ·/);
 assert.match(homepage, /\.league-title-filter::after/);
+assert.match(homepage, /class="week-navigation"[^>]*><select class="week-select"[^>]*>.*class="week-arrows"/);
+assert.doesNotMatch(homepage, /\.standings-filter,\.week-navigation/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

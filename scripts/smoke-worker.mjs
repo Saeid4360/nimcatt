@@ -67,6 +67,8 @@ assert.match(homepage, /\.league-title-filter \{[^}]*width:178px/);
 assert.match(homepage, /\.week-select-wrap \{[^}]*width:84px/);
 assert.match(homepage, /\.week-select-wrap::after/);
 assert.doesNotMatch(homepage, /\.week-select \{ flex:1/);
+assert.match(homepage, /\.league-select \{[^}]*font-size:11px/);
+assert.match(homepage, /\.week-select \{[^}]*font-size:11px/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

@@ -4,3 +4,6 @@ __pycache__/
 .env.*
 var/translation_cache.json
 .DS_Store
+node_modules/
+dist/server/
+dist/.openai/

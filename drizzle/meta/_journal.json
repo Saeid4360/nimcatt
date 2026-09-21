@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1790003147354,
+      "tag": "0000_perfect_phantom_reporter",
+      "breakpoints": true
+    }
+  ]
+}

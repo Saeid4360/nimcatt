@@ -36,6 +36,9 @@ const homepage = await home.text();
 assert.match(homepage, /نیمکت/);
 assert.match(homepage, /limit=1000/);
 assert.match(homepage, /function matchScorePair/);
+assert.match(homepage, /id="leagueWeekSelect"/);
+assert.match(homepage, /function groupLeagueRounds/);
+assert.match(homepage, /function seasonMonthKeys/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

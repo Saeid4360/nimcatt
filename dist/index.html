@@ -1544,7 +1544,6 @@
         <button class="header-stats-shortcut" type="button" data-stats-center aria-label="آمار و رکوردهای فوتبال">آمار</button>
         <button class="icon-button" id="focusSearch" aria-label="جست‌وجو"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></button>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="فعال‌کردن حالت شب" title="حالت شب"><svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.4 15.1A8.5 8.5 0 0 1 8.9 3.6 8.5 8.5 0 1 0 20.4 15.1Z"></path></svg><svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg></button>
-        <button class="editor-button" data-view="editor">تحریریه</button>
       </div>
     </div>
   </header>
@@ -2727,7 +2726,7 @@
     }
     function renderStatsPage(leagueId){renderStatsExplorer(leagueId);}
     function showStats(){const available=window.OPTA_STATS_DATA||{},requested=new URLSearchParams(location.search).get('statsLeague'),leagueId=Object.hasOwn(available,requested)?requested:'eng.1',data=available[leagueId];statsExplorerState.league=leagueId;document.title=`آمار کامل ${data?.name||'فوتبال'} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',`دیتاسنتر یکپارچه بازیکنان و تیم‌های ${data?.name||'لیگ‌های معتبر'} بر پایه همه شاخص‌های عمومی Opta Analyst.`);document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-stats-center')));renderStatsExplorer(leagueId);showView('stats');}
-    function route(){const params=new URLSearchParams(location.search),id=params.get('article'),match=params.get('match'),team=params.get('team'),player=params.get('player');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(params.get('page')==='leagues'){showLeagues();return;}if(params.get('page')==='stats'){showStats();return;}if(player&&showPlayerPage(player))return;if(team&&showTeamPage(team))return;if(match&&showMatchPage(match))return;if(!id||!renderArticlePage(id))showHome();}
+    function route(){const params=new URLSearchParams(location.search),id=params.get('article'),match=params.get('match'),team=params.get('team'),player=params.get('player');if(params.get('page')==='leagues'){showLeagues();return;}if(params.get('page')==='stats'){showStats();return;}if(player&&showPlayerPage(player))return;if(team&&showTeamPage(team))return;if(match&&showMatchPage(match))return;if(!id||!renderArticlePage(id))showHome();}
     const featuredRoot=document.getElementById('featured');
     featuredRoot.addEventListener('click',event=>{const dot=event.target.closest('[data-feature-index]'),arrow=event.target.closest('[data-feature-step]');if(!dot&&!arrow)return;renderFeatured(dot?Number(dot.dataset.featureIndex):featuredIndex+Number(arrow.dataset.featureStep));startFeaturedRotation();});
     featuredRoot.addEventListener('mouseenter',stopFeaturedRotation);

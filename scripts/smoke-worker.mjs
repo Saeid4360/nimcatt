@@ -114,6 +114,8 @@ assert.match(homepage, /localStorage\.setItem\('nimkat-theme'/);
 assert.match(homepage, /html\[data-theme="dark"\]/);
 assert.match(homepage, /function syncThemeControl/);
 assert.match(homepage, /html\[data-theme="dark"\] \.feature \{ border:1px solid #3b444f/);
+assert.doesNotMatch(homepage, /<button class="editor-button" data-view="editor">تحریریه<\/button>/);
+assert.doesNotMatch(homepage, /params\.get\('admin'\)==='editor'/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);

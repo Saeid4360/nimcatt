@@ -123,22 +123,22 @@
     .match-flow-scroll { overflow-x:auto; scrollbar-width:thin; scrollbar-color:#c9d0d7 transparent; }
     .match-flow-chart { min-width:680px; direction:rtl; }
     .match-flow-single { display:grid; grid-template-columns:105px minmax(0,1fr); align-items:stretch; gap:12px; }
-    .match-flow-team-labels { display:flex; flex-direction:column; justify-content:space-between; padding:7px 0; }
+    .match-flow-team-labels { display:flex; flex-direction:column; justify-content:space-between; padding:10px 0 8px; }
     .match-flow-team-label { display:flex; align-items:center; gap:7px; min-width:0; color:#303b47; font-size:9px; font-weight:850; }
     .match-flow-team-label img { flex:none; width:23px; height:23px; object-fit:contain; }
     .match-flow-team-label span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .match-flow-lane { position:relative; height:92px; direction:ltr; }
-    .match-flow-line { position:absolute; top:45px; right:0; left:0; height:3px; border-radius:99px; background:linear-gradient(90deg,#c7cfd7,#aeb8c2 50%,#c7cfd7); }
-    .match-flow-lane::before,.match-flow-lane::after { content:""; position:absolute; top:39px; width:1px; height:15px; background:#9faab5; }
+    .match-flow-lane { position:relative; height:100px; direction:ltr; }
+    .match-flow-line { position:absolute; top:49px; right:0; left:0; height:3px; border-radius:99px; background:linear-gradient(90deg,#c7cfd7,#aeb8c2 50%,#c7cfd7); }
+    .match-flow-lane::before,.match-flow-lane::after { content:""; position:absolute; top:42px; width:1px; height:18px; background:#9faab5; }
     .match-flow-lane::before { left:50%; }
     .match-flow-lane::after { left:100%; }
     .match-flow-marker { --shift:0px; position:absolute; z-index:2; display:grid; place-items:center; width:22px; height:22px; border:2px solid #fff; border-radius:50%; background:#2b3f57; color:#fff; transform:translateX(calc(-50% + var(--shift))); box-shadow:0 0 0 1px #aeb8c2,0 3px 7px rgba(26,37,49,.18); cursor:help; }
-    .match-flow-marker.home { top:22px; }
-    .match-flow-marker.away { top:52px; }
+    .match-flow-marker.home { top:25px; }
+    .match-flow-marker.away { top:55px; }
     .match-flow-marker.away { background:#ce2453; }
     .match-flow-marker.goal { width:25px; height:25px; }
-    .match-flow-marker.home.goal { top:20px; }
-    .match-flow-marker.away.goal { top:50px; }
+    .match-flow-marker.home.goal { top:23px; }
+    .match-flow-marker.away.goal { top:53px; }
     .match-flow-marker.yellow,.match-flow-marker.red { width:15px; height:22px; border-radius:3px; }
     .match-flow-marker.yellow { background:#e4ad20; }
     .match-flow-marker.red { background:#bd243e; }
@@ -146,22 +146,14 @@
     .match-flow-marker.sub { background:#168054; }
     .match-flow-marker svg { width:13px; height:13px; }
     .match-flow-marker.yellow svg,.match-flow-marker.red svg { display:none; }
-    .match-flow-tip { position:absolute; z-index:5; right:50%; bottom:calc(100% + 7px); width:max-content; max-width:190px; padding:6px 8px; border-radius:6px; background:#171f29; color:#fff; opacity:0; pointer-events:none; transform:translateX(50%) translateY(3px); transition:.16s ease; text-align:right; font-size:8px; line-height:1.65; box-shadow:0 7px 16px rgba(13,20,28,.22); }
-    .match-flow-marker:hover .match-flow-tip,.match-flow-marker:focus .match-flow-tip { opacity:1; transform:translateX(50%) translateY(0); }
-    .match-flow-tip b { display:block; font-size:9px; }
+    .match-flow-count { position:absolute; top:-8px; left:-8px; display:grid; place-items:center; min-width:17px; height:17px; padding:0 4px; border:2px solid #fff; border-radius:99px; background:#101820; color:#fff; font-style:normal; font-size:8px; font-weight:900; line-height:1; }
+    .match-flow-tip { display:none; }
+    .match-flow-marker:hover,.match-flow-marker:focus { z-index:40; outline:0; }
+    .match-flow-popup { position:fixed; z-index:2000; width:max-content; min-width:170px; max-width:min(300px,calc(100vw - 24px)); padding:9px 11px; border:1px solid #253241; border-radius:8px; background:#111923; color:#fff; pointer-events:none; text-align:right; font-size:10px; line-height:1.85; box-shadow:0 12px 28px rgba(9,15,22,.34); }
+    .match-flow-popup b { display:block; margin-bottom:3px; color:#fff; font-size:11px; }
+    .match-flow-popup span { display:block; color:#d7dee6; }
     .match-flow-axis { display:grid; grid-template-columns:105px minmax(0,1fr); gap:12px; margin-top:2px; color:#929aa3; font-size:8px; }
     .match-flow-axis div { display:flex; justify-content:space-between; direction:ltr; }
-    .match-flow-events { display:flex; gap:6px; margin-top:10px; padding-top:10px; overflow-x:auto; border-top:1px solid #e4e8ec; scrollbar-width:none; }
-    .match-flow-events::-webkit-scrollbar { display:none; }
-    .match-flow-chip { display:grid; grid-template-columns:22px auto; grid-template-areas:"icon title" "icon detail"; flex:0 0 auto; min-width:132px; gap:0 7px; align-items:center; padding:7px 8px; border:1px solid #e1e6ea; border-radius:7px; background:#fff; }
-    .match-flow-chip-icon { grid-area:icon; display:grid; place-items:center; width:22px; height:22px; border-radius:50%; background:#2b3f57; color:#fff; }
-    .match-flow-chip.away .match-flow-chip-icon { background:#ce2453; }
-    .match-flow-chip.yellow .match-flow-chip-icon { border-radius:3px; background:#e4ad20; }
-    .match-flow-chip.red .match-flow-chip-icon,.match-flow-chip.second-yellow .match-flow-chip-icon { border-radius:3px; background:#bd243e; }
-    .match-flow-chip.sub .match-flow-chip-icon { background:#168054; }
-    .match-flow-chip-icon svg { width:12px; height:12px; }
-    .match-flow-chip strong { grid-area:title; color:#27323e; font-size:9px; white-space:nowrap; }
-    .match-flow-chip small { grid-area:detail; max-width:145px; overflow:hidden; color:#7b8590; font-size:7px; text-overflow:ellipsis; white-space:nowrap; }
     .match-report-intro { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:-4px 0 19px; padding:11px 15px; border:1px solid #e7ebef; border-radius:9px; background:#f8fafb; color:#5a6877; font-size:12px; line-height:1.8; }
     .match-report-intro span:first-child { color:#263241; font-weight:800; }
     .match-report-intro span:last-child { text-align:left; }
@@ -759,7 +751,6 @@
       .match-flow-head { align-items:flex-start; flex-direction:column; }
       .match-flow-chart { min-width:590px; }
       .match-flow-single,.match-flow-axis { grid-template-columns:82px minmax(0,1fr); gap:8px; }
-      .match-flow-chip { min-width:125px; }
       .match-report-intro { display:block; }
       .match-report-intro span { display:block; text-align:right!important; }
       .match-report-intro span + span { margin-top:2px; }
@@ -2023,12 +2014,17 @@
     function matchFlowMarkup(events,home,away){
       const homeId=String(home.team?.id||''),awayId=String(away.team?.id||''),homeName=persianTeamName(home.team?.displayName||home.team?.shortDisplayName||''),awayName=persianTeamName(away.team?.displayName||away.team?.shortDisplayName||''),homeLogo=safeImage(home.team?.logos?.[0]?.href||home.team?.logo),awayLogo=safeImage(away.team?.logos?.[0]?.href||away.team?.logo);
       const markers=(events||[]).map(event=>{const type=event.type?.type||'',raw=String(event.clock?.displayValue||'').replace(/[′']/g,''),clock=raw.match(/(\d+)(?:\+(\d+))?/),minute=clock?Number(clock[1])+Number(clock[2]||0):NaN,teamId=String(event.team?.id||''),isAway=teamId===awayId,isHome=teamId===homeId;if(!Number.isFinite(minute)||(!isHome&&!isAway)||(!/goal/i.test(type)&&!['substitution','yellow-card','red-card','second-yellow-card'].includes(type)))return null;const players=(event.participants||[]).map(person=>person.athlete?.displayName).filter(Boolean).map(persianPlayerName),kind=/goal/i.test(type)?'goal':type==='substitution'?'sub':type==='yellow-card'?'yellow':type==='second-yellow-card'?'second-yellow':'red',label=kind==='goal'?(type.includes('own')?'گل به خودی':'گل'):kind==='sub'?'تعویض':kind==='yellow'?'کارت زرد':kind==='second-yellow'?'زرد دوم و اخراج':'کارت قرمز',detail=kind==='sub'?[players[0]&&`ورود ${players[0]}`,players[1]&&`خروج ${players[1]}`].filter(Boolean).join(' · '):players[0]||'',assist=kind==='goal'&&players[1]&&/assist(?:ed)? by/i.test(event.text||'')?`پاس گل: ${players[1]}`:'';return {event,minute,isAway,kind,label,detail,assist};}).filter(Boolean).sort((a,b)=>a.minute-b.minute),duration=markers.some(item=>item.minute>90)?120:90;
-      const clusters=new Map();markers.forEach(item=>{const key=`${item.isAway?'a':'h'}-${item.minute}`,group=clusters.get(key)||[];group.push(item);clusters.set(key,group);});clusters.forEach(group=>group.forEach((item,index)=>{item.shift=(index-(group.length-1)/2)*15;}));
-      const marker=item=>{const minute=matchEventMinute(item.event,item.event.type?.type||''),detail=[item.detail,item.assist].filter(Boolean).join(' · ');return `<button class="match-flow-marker ${item.isAway?'away':'home'} ${item.kind}" style="left:${Math.max(1,Math.min(99,100*item.minute/duration)).toFixed(1)}%;--shift:${item.shift}px" type="button" aria-label="${esc(`${minute} ${item.label} ${detail}`)}">${matchEventIcon(item.kind)}<span class="match-flow-tip"><b>${esc(minute)} · ${esc(item.label)}</b>${detail?esc(detail):'جزئیات ثبت نشده'}</span></button>`;};
+      const visualMarkers=markers.filter(item=>item.kind!=='sub'),subGroups=new Map();markers.filter(item=>item.kind==='sub').forEach(item=>{const key=`${item.isAway?'a':'h'}-${item.minute}`,group=subGroups.get(key)||[];group.push(item);subGroups.set(key,group);});subGroups.forEach(group=>{const first=group[0];visualMarkers.push({...first,count:group.length,label:group.length>1?`${faNumber(group.length)} تعویض هم‌زمان`:'تعویض',details:group.map(item=>item.detail).filter(Boolean)});});visualMarkers.sort((a,b)=>a.minute-b.minute);
+      const clusters=new Map();visualMarkers.forEach(item=>{const key=`${item.isAway?'a':'h'}-${item.minute}`,group=clusters.get(key)||[];group.push(item);clusters.set(key,group);});clusters.forEach(group=>group.forEach((item,index)=>{item.shift=(index-(group.length-1)/2)*16;}));
+      const marker=item=>{const minute=matchEventMinute(item.event,item.event.type?.type||''),details=item.details||[item.detail,item.assist].filter(Boolean),detailText=details.join(' · ');return `<button class="match-flow-marker ${item.isAway?'away':'home'} ${item.kind}" style="left:${Math.max(1,Math.min(99,100*item.minute/duration)).toFixed(1)}%;--shift:${item.shift}px" type="button" aria-label="${esc(`${minute} ${item.label} ${detailText}`)}">${matchEventIcon(item.kind)}${item.count>1?`<em class="match-flow-count">${faNumber(item.count)}</em>`:''}<span class="match-flow-tip"><b>${esc(minute)} · ${esc(item.label)}</b>${details.length?details.map(detail=>`<span>${esc(detail)}</span>`).join(''):'<span>جزئیات ثبت نشده</span>'}</span></button>`;};
       const teamLabel=(teamName,logo)=>`<div class="match-flow-team-label">${logo?`<img src="${esc(logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span>${esc(teamName)}</span></div>`;
-      const chip=item=>{const minute=matchEventMinute(item.event,item.event.type?.type||''),teamName=item.isAway?awayName:homeName,detail=[item.detail,item.assist].filter(Boolean).join(' · ')||teamName;return `<div class="match-flow-chip ${item.isAway?'away':'home'} ${item.kind}"><span class="match-flow-chip-icon">${matchEventIcon(item.kind)}</span><strong>${esc(minute)} · ${esc(item.label)}</strong><small title="${esc(detail)}">${esc(detail)}</small></div>`;};
       const legend=kind=>`<i class="${kind}">${matchEventIcon(kind)}</i>`;
-      return `<div class="match-flow" aria-label="خط زمانی کامل رویدادهای بازی"><div class="match-flow-head"><strong>خط زمانی مسابقه</strong><div class="match-flow-legend"><span>${legend('goal')} گل</span><span>${legend('sub')} تعویض</span><span>${legend('yellow')} کارت زرد</span><span>${legend('red')} کارت قرمز</span></div></div><div class="match-flow-scroll"><div class="match-flow-chart"><div class="match-flow-single"><div class="match-flow-team-labels">${teamLabel(homeName,homeLogo)}${teamLabel(awayName,awayLogo)}</div><div class="match-flow-lane"><i class="match-flow-line"></i>${markers.map(marker).join('')}</div></div><div class="match-flow-axis"><span></span><div><span>۰′</span><span>${faNumber(duration/2)}′</span><span>${faNumber(duration)}′</span></div></div></div></div>${markers.length?`<div class="match-flow-events">${markers.map(chip).join('')}</div>`:'<div class="match-flow-events"><div class="team-empty">هنوز رویدادی برای این مسابقه ثبت نشده است.</div></div>'}</div>`;
+      return `<div class="match-flow" aria-label="خط زمانی کامل رویدادهای بازی"><div class="match-flow-head"><strong>خط زمانی مسابقه</strong><div class="match-flow-legend"><span>${legend('goal')} گل</span><span>${legend('sub')} تعویض</span><span>${legend('yellow')} کارت زرد</span><span>${legend('red')} کارت قرمز</span></div></div><div class="match-flow-scroll"><div class="match-flow-chart"><div class="match-flow-single"><div class="match-flow-team-labels">${teamLabel(homeName,homeLogo)}${teamLabel(awayName,awayLogo)}</div><div class="match-flow-lane"><i class="match-flow-line"></i>${visualMarkers.map(marker).join('')}</div></div><div class="match-flow-axis"><span></span><div><span>۰′</span><span>${faNumber(duration/2)}′</span><span>${faNumber(duration)}′</span></div></div></div></div></div>`;
+    }
+    function bindMatchFlowTooltips(root){
+      document.getElementById('matchFlowPopup')?.remove();const popup=document.createElement('div');popup.id='matchFlowPopup';popup.className='match-flow-popup';popup.hidden=true;document.body.append(popup);
+      const hide=()=>{popup.hidden=true;},show=button=>{const tip=button.querySelector('.match-flow-tip');if(!tip)return;popup.innerHTML=tip.innerHTML;popup.hidden=false;const rect=button.getBoundingClientRect(),box=popup.getBoundingClientRect(),below=button.classList.contains('away'),gap=9,top=below?rect.bottom+gap:rect.top-box.height-gap,left=Math.max(12,Math.min(innerWidth-box.width-12,rect.left+rect.width/2-box.width/2));popup.style.top=`${Math.max(8,Math.min(innerHeight-box.height-8,top))}px`;popup.style.left=`${left}px`;};
+      root.querySelectorAll('.match-flow-marker').forEach(button=>{button.addEventListener('mouseenter',()=>show(button));button.addEventListener('mouseleave',hide);button.addEventListener('focus',()=>show(button));button.addEventListener('blur',hide);});
     }
     function matchEventReport(event,type,players,teamName){
       const name=value=>`<bdi dir="auto">${esc(value)}</bdi>`,actor=players[0]?name(players[0]):'',team=teamName?` ${esc(teamName)}`:'',text=String(event.text||'');
@@ -2092,6 +2088,7 @@
       const tab=(key,label)=>`<button class="match-detail-tab${selectedMatchTab===key?' active':''}" type="button" role="tab" data-match-tab="${key}" aria-selected="${selectedMatchTab===key?'true':'false'}">${label}</button>`,panel=(key,title,content)=>`<section class="match-detail-panel" role="tabpanel" data-match-panel="${key}" ${selectedMatchTab===key?'':'hidden'}><h2 class="match-detail-section-title">${title}</h2>${content}</section>`;
       document.title=`${homeName} – ${awayName} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',`جزئیات، نتیجه و آمار بازی ${homeName} و ${awayName} به وقت ایران از پایگاه داده نیمکت.`);
       document.getElementById('matchContent').innerHTML=`<header class="match-detail-hero"><div class="match-detail-top"><span>${esc(league)}</span><span>${meta?.logo?`<img src="${esc(meta.logo)}" alt="" onerror="this.remove()">`:''} مرکز مسابقه نیمکت</span></div><div class="match-detail-board"><div class="match-detail-team"><a class="match-detail-team-link" href="${esc(teamHref(parts.slug,home.team?.id)||'#')}" aria-label="صفحه تیم ${esc(homeName)}">${homeLogo?`<img src="${esc(homeLogo)}" alt="نشان ${esc(homeName)}">`:''}<strong>${esc(homeName)}</strong></a><small>${esc(homeRoster?.formation||'میزبان')}</small></div><div class="match-detail-center"><strong>${score}</strong><span>${esc(state==='pre'?'شروع به وقت ایران':status.label)}</span></div><div class="match-detail-team"><a class="match-detail-team-link" href="${esc(teamHref(parts.slug,away.team?.id)||'#')}" aria-label="صفحه تیم ${esc(awayName)}">${awayLogo?`<img src="${esc(awayLogo)}" alt="نشان ${esc(awayName)}">`:''}<strong>${esc(awayName)}</strong></a><small>${esc(awayRoster?.formation||'میهمان')}</small></div></div><div class="match-detail-meta"><span>${esc(dateText)} · ${esc(scoreTime(date))} ایران</span><span>${esc(venue)}</span></div>${flowMarkup}</header><div class="match-detail-tabs" role="tablist" aria-label="جزئیات مسابقه">${tab('events','رویدادها')}${tab('report','گزارش فارسی')}${tab('stats','آمار بازی')}${tab('lineups','ترکیب‌ها')}</div><div class="match-detail-body">${panel('events','خط زمانی رویدادها',eventMarkup)}${panel('report','گزارش زنده فارسی',reportMarkup)}${panel('stats','مقایسه آماری دو تیم',statsMarkup)}${panel('lineups','ترکیب و آرایش دو تیم',lineupMarkup)}</div><footer class="match-detail-source"><span>داده‌های مسابقه: پایگاه داده نیمکت · منبع اولیه ESPN · عکس بازیکنان: <a href="https://www.thesportsdb.com/" target="_blank" rel="noopener">TheSportsDB</a> · ساعت‌ها به وقت ایران</span><span><button class="score-retry" type="button" data-match-retry>بروزرسانی</button> <a href="${esc(sourceUrl)}" target="_blank" rel="noopener">مشاهده منبع ↗</a></span></footer>`;
+      bindMatchFlowTooltips(document.getElementById('matchContent'));
       if(selectedMatchTab==='lineups')hydrateLineupPhotos(document.getElementById('matchContent'));
     }
     async function loadMatchDetails(ref,showLoading=true){const parts=parseMatchRef(ref),root=document.getElementById('matchContent'),requestId=++matchRequestId;if(!parts)return;if(showLoading)root.innerHTML='<div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>خواندن جزئیات بازی از پایگاه داده نیمکت…</span></div>';try{const data=await fetchSportsJson(`${ESPN_SOCCER_API}/${parts.slug}/summary?event=${parts.id}`,'match');if(requestId!==matchRequestId||activeMatchRef!==ref)return;renderMatchDetails(data,ref);}catch(error){if(requestId!==matchRequestId)return;if(!showLoading)return;root.innerHTML='<div class="match-detail-empty">جزئیات ذخیره‌شده بازی فعلاً در دسترس نیست.<br><button class="score-retry" type="button" data-match-retry>تلاش دوباره</button></div>';}}

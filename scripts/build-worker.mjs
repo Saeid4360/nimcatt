@@ -13,6 +13,7 @@ const textAssets = {
   "/news-agent": await readFile(resolve(distRoot, "news-agent.html"), "utf8"),
   "/news-agent.html": await readFile(resolve(distRoot, "news-agent.html"), "utf8"),
   "/data/news.js": await readFile(resolve(distRoot, "data/news.js"), "utf8"),
+  "/data/headline-features.js": await readFile(resolve(distRoot, "data/headline-features.js"), "utf8"),
   "/data/editorial-series.js": await readFile(resolve(distRoot, "data/editorial-series.js"), "utf8"),
   "/data/opta-stats.js": await readFile(resolve(distRoot, "data/opta-stats.js"), "utf8"),
   "/data/persian-names.js": await readFile(resolve(distRoot, "data/persian-names.js"), "utf8"),

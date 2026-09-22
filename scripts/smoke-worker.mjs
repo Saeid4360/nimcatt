@@ -143,6 +143,16 @@ assert.match(homepage, /NIMKAT_TEAM_NAMES_FA/);
 assert.match(homepage, /function alignScoreDateInsideBoard/);
 assert.doesNotMatch(homepage, /latest\.scrollIntoView/);
 assert.match(homepage, /data\/editorial-series\.js/);
+assert.match(homepage, /data\/headline-features\.js/);
+assert.match(homepage, /window\.HEADLINE_FEATURES/);
+
+const headlineFeaturesAsset = await worker.fetch(new Request("https://nimkat.test/data/headline-features.js"), env, ctx);
+assert.equal(headlineFeaturesAsset.status, 200);
+const headlineFeaturesSource = await headlineFeaturesAsset.text();
+assert.match(headlineFeaturesSource, /window\.HEADLINE_FEATURES/);
+assert.equal((headlineFeaturesSource.match(/id: '/g) || []).length, 17);
+assert.match(headlineFeaturesSource, /کاهش ۲۲٫۷ درصدی درآمد/);
+assert.match(headlineFeaturesSource, /آژاکس و تابستان پرخطر/);
 
 const editorialAsset = await worker.fetch(new Request("https://nimkat.test/data/editorial-series.js"), env, ctx);
 assert.equal(editorialAsset.status, 200);

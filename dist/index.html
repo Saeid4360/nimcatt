@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#161616">
+  <meta name="theme-color" content="#15171b">
   <title>نیمکت | خبر فوتبال جهان</title>
   <meta name="description" content="خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.">
   <style>
@@ -11,12 +11,12 @@
     @font-face { font-family:'IRANSansXFaNum'; src:url('assets/fonts/IRANSansXFaNum-Medium.woff2') format('woff2'); font-style:normal; font-weight:500; font-display:swap; }
     @font-face { font-family:'IRANSansXFaNum'; src:url('assets/fonts/IRANSansXFaNum-DemiBold.woff2') format('woff2'); font-style:normal; font-weight:600; font-display:swap; }
     @font-face { font-family:'IRANSansXFaNum'; src:url('assets/fonts/IRANSansXFaNum-Bold.woff2') format('woff2'); font-style:normal; font-weight:700; font-display:swap; }
-    :root { --red:#e21b2d; --red-dark:#bd1020; --ink:#15171a; --muted:#656b72; --line:#e4e7ea; --surface:#fff; --canvas:#f4f5f7; --header:#101114; --success:#13734a; --warning:#956000; --radius:10px; }
+    :root { --red:#d91f3d; --red-dark:#b81831; --red-soft:#fff1f3; --ink:#20252c; --ink-soft:#424b55; --muted:#707983; --muted-light:#9098a1; --line:#e1e4e8; --line-strong:#d3d8dd; --surface:#fff; --surface-soft:#f7f8fa; --canvas:#f3f4f6; --header:#15171b; --dark:#181b20; --dark-soft:#202329; --success:#14734c; --warning:#95651a; --radius:10px; --shadow-sm:0 5px 18px rgba(20,25,32,.045); --shadow-md:0 12px 34px rgba(20,25,32,.08); }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; background:var(--canvas); color:var(--ink); font-family:'IRANSansXFaNum',Tahoma,Arial,sans-serif; font-size:16px; line-height:1.85; text-rendering:optimizeLegibility; }
-    h1,h2,h3 { font-weight:700; text-wrap:balance; }
-    button,input,textarea { font:inherit; }
+    body { margin:0; background:var(--canvas); color:var(--ink); font-family:'IRANSansXFaNum',Tahoma,Arial,sans-serif; font-size:15px; line-height:1.75; letter-spacing:-.04px; text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; }
+    h1,h2,h3,h4 { color:var(--ink); font-weight:700; line-height:1.55; letter-spacing:-.22px; text-wrap:balance; }
+    button,input,textarea,select { font:inherit; }
     button,a { -webkit-tap-highlight-color:transparent; }
     a { color:inherit; text-decoration:none; }
     img { display:block; width:100%; }
@@ -1127,6 +1127,76 @@
     .player-provider-note { margin:11px 0 0; padding:9px 10px; border-radius:7px; background:#f4f6f8; color:#67737f; font-size:9px; line-height:1.8; }
     .player-source-links { display:flex; flex-wrap:wrap; gap:6px; }
     .player-source-links a { padding:6px 8px; border:1px solid #e2e6e9; border-radius:6px; background:#fafbfc; color:#41576c; font-size:9px; font-weight:800; }
+
+    /* Unified visual language: one type scale, one neutral palette and one brand accent. */
+    .site-header { background:rgba(21,23,27,.98); border-top-color:var(--red); box-shadow:0 5px 18px rgba(15,18,23,.1); }
+    .brand-mark { background:linear-gradient(145deg,#e52a48,var(--red-dark)); box-shadow:0 4px 12px rgba(217,31,61,.23); }
+    .brand-name,.nav-link,.editor-button,.header-league-shortcut { font-weight:700; }
+    .nav-link { color:#b7bcc3; font-size:12px; }
+
+    .score-layout { border-color:#2c3037; background:var(--dark); box-shadow:0 7px 22px rgba(18,21,27,.12); }
+    .score-toolbar { border-bottom-color:rgba(255,255,255,.07); background:var(--dark-soft); }
+    .score-board-shell { background:linear-gradient(110deg,var(--dark) 0%,#1d2026 52%,var(--dark) 100%); }
+    .score-date-button { color:#91969e; }
+    .score-date-button small { color:#6f747c; }
+    .score-date-button.active::after { background:var(--red); }
+    .score-tournament { border-right-color:rgba(255,255,255,.07); color:#b8bdc4; }
+    .score-tournament select { color:#aeb3ba; }
+    .score-item::after { background:linear-gradient(90deg,var(--red) 0 34%,rgba(255,255,255,.13) 34% 100%); opacity:.8; }
+    .score-item.is-live { background:linear-gradient(110deg,rgba(217,31,61,.12),rgba(255,255,255,.02)); }
+    .score-item.is-live::before,.score-status.live { background:var(--red); }
+    .score-scroll:hover:not(:disabled) { border-color:var(--red); background:var(--red); }
+
+    .feature,.panel,.feed-shell,.league-center,.article-shell,.match-detail-hero,.match-detail-tabs,.match-detail-body,.match-stats-board,.team-summary-card,.team-panel,.player-facts,.player-stat-card,.player-archive { border-color:var(--line); background-color:var(--surface); }
+    .panel,.feed-shell,.league-center,.match-detail-hero,.match-detail-tabs,.match-stats-board,.team-panel,.player-archive { box-shadow:var(--shadow-sm); }
+    .feature { background:var(--dark); box-shadow:var(--shadow-md); }
+    .feature-media::after { background:linear-gradient(90deg,rgba(12,14,18,.06) 5%,rgba(12,14,18,.34) 54%,rgba(12,14,18,.94) 100%); }
+    .feature h1 { font-size:clamp(28px,2.45vw,37px); font-weight:700; line-height:1.48; letter-spacing:-.55px; }
+    .feature p { color:#d9dde2; font-size:14px; line-height:1.85; }
+    .kicker,.feature .kicker { color:#f04a64; font-size:11px; font-weight:700; }
+    .story-meta,.tiny-status,.latest-item small,.source-copy small { color:var(--muted); }
+    .source-name { color:var(--ink); font-weight:700; }
+    .read-button { background:var(--red); font-weight:700; box-shadow:0 8px 20px rgba(217,31,61,.2); }
+
+    .panel-title,.section-title,.league-panel-head h3,.team-panel-head h2,.match-detail-section-title,.editor-form-title h2 { color:var(--ink); font-weight:700; letter-spacing:-.2px; }
+    .panel-title { font-size:18px; }
+    .section-title { font-size:20px; }
+    .panel-title::before,.section-title::before,.match-detail-section-title::before,.article-page-body .drawer-article h3::before { background:var(--red); }
+    .latest-item h3,.news-card h3,.team-player-name,.player-match-title strong { color:var(--ink); font-weight:700; }
+    .latest-item h3 { font-size:13.5px; line-height:1.75; }
+    .news-card h3 { font-size:clamp(18px,1.5vw,20px); line-height:1.65; }
+
+    .league-select,.team-month-select,.editor-sidebar select,.editor-section-row input,.editor-section-row textarea,.editor-section-row .edit-section-type,.editor-media-row .media-url { border-color:var(--line-strong); background:var(--surface); color:var(--ink); font-weight:600; }
+    .standings-filter,.standings-scenario,.standings-scenario-group,.match-flow,.match-report-intro { border-color:var(--line); background:var(--surface-soft); }
+    .standings-filter button,.standings-scenario-toggle,.standings-scenario-option { color:var(--ink-soft); font-weight:600; }
+    .standings-filter button[aria-pressed="true"] { color:var(--red-dark); }
+
+    .article-page-head h1 { color:var(--ink); font-size:clamp(31px,3.7vw,43px); font-weight:700; line-height:1.5; letter-spacing:-.65px; }
+    .article-page-summary { color:var(--ink-soft); font-size:17px; line-height:2; font-weight:500; }
+    .article-page-body .drawer-article { color:#303741; font-size:17px; line-height:2.2; }
+    .article-page-body .drawer-article h3 { color:var(--ink); font-size:21px; font-weight:700; }
+    .article-followup { border-right-color:var(--red); background:var(--red-soft); color:var(--ink-soft); }
+
+    .match-detail-hero::before { background:var(--red); }
+    .match-detail-top,.match-stats-teams { border-color:var(--line); background:var(--surface-soft); color:var(--muted); }
+    .match-detail-tab { color:var(--muted); font-weight:700; }
+    .match-detail-tab.active { background:var(--header); color:#fff; }
+    .match-detail-team strong,.match-detail-center strong,.match-event-title,.match-event-main,.match-report-story p { color:var(--ink); }
+    .match-detail-meta,.match-event-team,.match-report-story-top,.match-report-source-note { color:var(--muted); }
+
+    .team-hero,.player-hero { background:radial-gradient(circle at 10% 10%,rgba(217,31,61,.26),transparent 31%),linear-gradient(120deg,var(--header),#252a32); }
+    .team-hero-kicker,.player-hero-kicker,.player-archive-title small { color:#ff9dab; }
+    .team-hero h1,.player-hero-copy h1,.player-archive-title h2 { color:#fff; font-weight:700; letter-spacing:-.45px; }
+    .team-hero p,.player-hero-copy > p { color:#c3c9d0; }
+    .team-summary-card strong,.player-stat-card strong,.player-archive-metric strong { color:var(--ink); font-weight:700; }
+    .team-summary-card small,.team-summary-card em,.player-fact small,.player-stat-card span,.player-archive-metric span { color:var(--muted); }
+    .player-archive-head { background:linear-gradient(120deg,var(--header),#292e36); }
+    .player-insight { background:var(--surface-soft); color:var(--muted); }
+    .player-insight::before { background:var(--ink-soft); }
+
+    .editor-heading h1,.editor-form-title h2,.editor-section-head h3 { color:var(--ink); font-weight:700; }
+    .editor-heading-mark,.editor-toast { background:var(--header); }
+    .editor-sidebar,.editor-section-row,.editor-media-row { background:var(--surface-soft); }
     @media(max-width:900px) { .team-main-grid { grid-template-columns:1fr; } .team-summary-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
     @media(max-width:900px) { .player-grid { grid-template-columns:1fr; } .player-season-stats { grid-template-columns:repeat(4,minmax(0,1fr)); } }
     @media(max-width:600px) { .team-hero { align-items:flex-start; flex-direction:column; padding:23px 20px; } .team-identity { gap:14px; } .team-crest { width:77px; height:77px; padding:10px; border-radius:15px; } .team-hero h1 { font-size:25px; } .team-summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .team-panel { padding:14px 12px; } .team-roster { grid-template-columns:1fr; } .team-schedule-head { align-items:flex-start; flex-direction:column; } .team-schedule-tools { width:100%; justify-content:space-between; } .team-fixture { grid-template-columns:minmax(0,1fr) 36px; gap:8px; padding:12px; } .team-fixture-date { grid-column:1/-1; display:flex; gap:8px; align-items:center; } .team-fixture-contest { grid-template-columns:minmax(0,1fr) 62px minmax(0,1fr); gap:4px; } .team-fixture-side { gap:4px; } .team-fixture-side img { width:23px; height:23px; } .team-fixture-side span { font-size:11px; } .team-fixture-center strong { font-size:13px; } .team-fixture-center small { font-size:9px; } .team-fixture-end { align-items:center; } .player-page-shell { gap:11px; } .player-hero { grid-template-columns:102px minmax(0,1fr); gap:15px; min-height:205px; padding:20px 16px 0; border-radius:13px; } .player-portrait { width:102px; height:132px; border-radius:13px 13px 0 0; } .player-hero-copy { padding-bottom:22px; } .player-hero-copy h1 { font-size:25px; } .player-hero-copy > p { margin-bottom:11px; font-size:10px; } .player-hero-kicker { font-size:9px; } .player-hero-meta span,.player-hero-meta a { padding:5px 7px; font-size:9px; } .player-facts { grid-template-columns:repeat(3,minmax(0,1fr)); } .player-fact { padding:10px 11px; border-bottom:1px solid #edf0f2; } .player-fact:nth-child(3) { border-left:0; } .player-season-stats { grid-template-columns:repeat(3,minmax(0,1fr)); } .player-stat-card { min-height:67px; } .player-stat-card strong { font-size:18px; } .player-archive-head { padding:13px 14px; } .player-archive-title h2 { font-size:14px; } .player-archive-summary { grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; } .player-archive-metric { border-bottom:1px solid #e8ecef; } .player-match-row { grid-template-columns:minmax(135px,1fr) repeat(3,42px); padding:10px 12px; } .player-match-row .player-match-stat:nth-child(n+5) { display:none; } }

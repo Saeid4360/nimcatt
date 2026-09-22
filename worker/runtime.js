@@ -493,6 +493,184 @@ function jsonResponse(value, init = {}) {
   return new Response(JSON.stringify(value), { ...init, headers });
 }
 
+const NEWS_FEED_CACHE_KEY = "nimkat://live-news";
+const NEWS_FEED_TTL_SECONDS = 15 * 60;
+let newsSeedCache;
+
+function newsSeed() {
+  if (newsSeedCache) return newsSeedCache;
+  const source = TEXT_ASSETS["/data/news.js"] || "";
+  const match = source.match(/^window\.LIVE_NEWS = (.+);\nwindow\.LIVE_NEWS_META = (.+);\n?$/s);
+  try {
+    newsSeedCache = match ? { news: JSON.parse(match[1]), meta: JSON.parse(match[2]) } : { news: [], meta: { sources: [] } };
+  } catch {
+    newsSeedCache = { news: [], meta: { sources: [] } };
+  }
+  return newsSeedCache;
+}
+
+function decodeFeedText(value = "") {
+  return String(value)
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&#(x[0-9a-f]+|\d+);/gi, (_, code) => {
+      const number = code[0].toLowerCase() === "x" ? parseInt(code.slice(1), 16) : parseInt(code, 10);
+      return Number.isFinite(number) ? String.fromCodePoint(number) : " ";
+    })
+    .replace(/&amp;/gi, "&").replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&quot;/gi, '"')
+    .replace(/&apos;|&#39;/gi, "'").replace(/&nbsp;/gi, " ").replace(/\s+/g, " ").trim();
+}
+
+function feedTag(block, names) {
+  for (const name of names) {
+    const escaped = name.replace(":", "\\:");
+    const match = block.match(new RegExp(`<${escaped}\\b[^>]*>([\\s\\S]*?)<\\/${escaped}>`, "i"));
+    if (match) return decodeFeedText(match[1]);
+  }
+  return "";
+}
+
+function feedAttribute(block, tagPattern, attribute) {
+  const match = block.match(new RegExp(`<${tagPattern}\\b[^>]*\\b${attribute}=["']([^"']+)["'][^>]*>`, "i"));
+  return match ? decodeFeedText(match[1]) : "";
+}
+
+function stableNewsId(value = "") {
+  let hash = 2166136261;
+  for (const character of String(value)) {
+    hash ^= character.codePointAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `live-${(hash >>> 0).toString(36)}`;
+}
+
+function feedLanguage(source) {
+  const country = source.country || "";
+  if (country === "آلمان") return "آلمانی";
+  if (country === "اسپانیا") return "اسپانیایی";
+  if (country === "ایتالیا") return "ایتالیایی";
+  if (country === "فرانسه") return "فرانسوی";
+  if (country === "هلند") return "هلندی";
+  return "انگلیسی";
+}
+
+function newsCategory(text = "") {
+  if (/transfer|sign(?:ing)?|contract|rumou?r|mercato|fichaje|trasfer|transfert|انتقال/i.test(text)) return "transfer";
+  if (/analysis|tactical|explained|why |preview|prediction|analyse|analisi|تحلیل/i.test(text)) return "analysis";
+  return "news";
+}
+
+function blockedNewsTopic(text = "") {
+  return /women(?:'s|’s)?|\buwcl\b|\bwcl\b|frauen|féminin|femenin|femminil|vrouwen|kadın|\/femenino\//i.test(text);
+}
+
+function parseFeed(xml, source) {
+  const blocks = [...String(xml).matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>|<entry\b[^>]*>([\s\S]*?)<\/entry>/gi)]
+    .map((match) => match[1] || match[2]).slice(0, 8);
+  const items = [];
+  for (const block of blocks) {
+    const title = feedTag(block, ["title"]);
+    const rawDescription = feedTag(block, ["description", "summary", "content", "content:encoded"]);
+    const link = feedTag(block, ["link"]) || feedAttribute(block, "link", "href") || feedTag(block, ["guid", "id"]);
+    if (!title || !/^https?:\/\//i.test(link) || blockedNewsTopic(`${title} ${rawDescription} ${link}`)) continue;
+    const dateText = feedTag(block, ["pubDate", "published", "updated", "dc:date"]);
+    const timestamp = Date.parse(dateText);
+    const publishedAt = Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : new Date().toISOString();
+    const image = feedAttribute(block, "(?:media:content|media:thumbnail)", "url")
+      || feedAttribute(block, "enclosure", "url")
+      || (block.match(/<img\b[^>]*\bsrc=["']([^"']+)["']/i)?.[1] || "");
+    const language = feedLanguage(source);
+    const summary = rawDescription.slice(0, 520) || "برای خواندن جزئیات، منبع اصلی را باز کنید.";
+    items.push({
+      id: stableNewsId(link), country: "international", cat: newsCategory(`${title} ${summary}`), flag: "🌍",
+      title, summary, source: source.source, sourceType: source.sourceType || "major",
+      sourceTypeLabel: source.sourceTypeLabel || "رسانه معتبر", teamLabel: source.team || "", lang: language,
+      time: new Intl.DateTimeFormat("fa-IR", { timeZone: "Asia/Tehran", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(publishedAt)),
+      publishedAt, image: /^https?:\/\//i.test(image) ? image : "", url: link,
+      tags: [source.team, source.country, source.sourceTypeLabel].filter(Boolean).slice(0, 3),
+      needsTranslation: language !== "فارسی", cred: "گزارش منبع", credClass: "trusted",
+      why: "عنوان و خلاصه از فید منبع دریافت شده و پیش از انتشار نهایی به ترجمه و بازبینی تحریریه نیاز دارد.",
+    });
+  }
+  return items;
+}
+
+function rotatingNewsSources() {
+  const sources = (newsSeed().meta.sources || []).filter((source) => source.ok && /^https?:\/\//i.test(source.feedUrl || ""));
+  const unique = [...new Map(sources.map((source) => [source.feedUrl, source])).values()];
+  const core = unique.filter((source) => ["major", "analysis", "local"].includes(source.sourceType)).slice(0, 16);
+  const remainder = unique.filter((source) => !core.some((entry) => entry.feedUrl === source.feedUrl));
+  const rotatingSize = 16;
+  const pageCount = Math.max(1, Math.ceil(remainder.length / rotatingSize));
+  const page = Math.floor(Date.now() / NEWS_FEED_TTL_SECONDS / 1000) % pageCount;
+  return [...core, ...remainder.slice(page * rotatingSize, (page + 1) * rotatingSize)].slice(0, 32);
+}
+
+async function refreshNewsFeed(env) {
+  const sources = rotatingNewsSources();
+  const results = await Promise.allSettled(sources.map(async (source) => {
+    const response = await fetch(source.feedUrl, {
+      headers: { accept: "application/rss+xml, application/atom+xml, application/xml, text/xml;q=0.9, */*;q=0.5", "user-agent": "Nimkat-NewsReader/1.0" },
+      signal: AbortSignal.timeout(6500),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return { source, items: parseFeed(await response.text(), source) };
+  }));
+  const freshItems = [];
+  const sourceStatus = results.map((result, index) => {
+    const source = sources[index];
+    if (result.status === "fulfilled") {
+      freshItems.push(...result.value.items);
+      return { ...source, ok: true, items: result.value.items.length, error: null };
+    }
+    return { ...source, ok: false, items: 0, error: String(result.reason?.message || result.reason).slice(0, 160) };
+  });
+  const seed = newsSeed();
+  const merged = [...freshItems, ...seed.news]
+    .filter((item, index, list) => !blockedNewsTopic(`${item.title} ${item.summary} ${item.url}`)
+      && index === list.findIndex((candidate) => candidate.url === item.url))
+    .sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0)).slice(0, 280);
+  const now = Math.floor(Date.now() / 1000);
+  const payload = {
+    news: merged,
+    meta: { generatedAt: new Date(now * 1000).toISOString(), count: merged.length, sources: sourceStatus },
+    cacheStatus: "fresh",
+  };
+  await env.DB.prepare(`INSERT INTO sports_cache (source_url,kind,league,payload,fetched_at,expires_at,last_error)
+    VALUES (?1,'news_feed',NULL,?2,?3,?4,NULL)
+    ON CONFLICT(source_url) DO UPDATE SET payload=excluded.payload,fetched_at=excluded.fetched_at,
+      expires_at=excluded.expires_at,last_error=NULL`).bind(NEWS_FEED_CACHE_KEY, JSON.stringify(payload), now, now + NEWS_FEED_TTL_SECONDS).run();
+  return payload;
+}
+
+async function newsFeedResponse(request, env, ctx) {
+  const seed = newsSeed();
+  if (!env.DB) return jsonResponse({ news: seed.news, meta: seed.meta, cacheStatus: "static", error: "پایگاه داده متصل نیست." });
+  const url = new URL(request.url);
+  const force = url.searchParams.get("refresh") === "1";
+  const now = Math.floor(Date.now() / 1000);
+  const cached = await readCached(env, NEWS_FEED_CACHE_KEY);
+  if (force) {
+    try { return jsonResponse(await refreshNewsFeed(env)); }
+    catch (error) {
+      if (cached?.payload) return jsonResponse({ ...JSON.parse(cached.payload), cacheStatus: "stale", error: "دریافت تازه کامل نشد؛ آخرین خروجی ذخیره‌شده نمایش داده شد." });
+      return jsonResponse({ news: seed.news, meta: seed.meta, cacheStatus: "static", error: "دریافت تازه کامل نشد؛ خروجی اولیه نمایش داده شد." });
+    }
+  }
+  if (cached?.payload) {
+    const payload = JSON.parse(cached.payload);
+    if (Number(cached.expires_at) <= now) {
+      ctx.waitUntil(refreshNewsFeed(env).catch((error) => recordError(env, NEWS_FEED_CACHE_KEY, error?.message || error)));
+      return jsonResponse({ ...payload, cacheStatus: "stale" });
+    }
+    return jsonResponse({ ...payload, cacheStatus: "hit" });
+  }
+  ctx.waitUntil(refreshNewsFeed(env).catch((error) => recordError(env, NEWS_FEED_CACHE_KEY, error?.message || error)));
+  return jsonResponse({ news: seed.news, meta: seed.meta, cacheStatus: "warming" });
+}
+
 function staticResponse(pathname) {
   if (Object.hasOwn(TEXT_ASSETS, pathname)) {
     const type = pathname.endsWith(".js")
@@ -885,6 +1063,9 @@ export default {
     }
     if (request.method === "GET" && url.pathname === "/api/sports-data/status") {
       return dataStatus(env);
+    }
+    if (request.method === "GET" && url.pathname === "/api/news-feed") {
+      return newsFeedResponse(request, env, ctx);
     }
     if (request.method !== "GET" && request.method !== "HEAD") {
       return new Response("Method Not Allowed", { status: 405, headers: { allow: "GET, HEAD" } });

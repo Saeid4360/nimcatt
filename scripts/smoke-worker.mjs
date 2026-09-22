@@ -175,6 +175,9 @@ assert.match(agentPage, /\/data\/news\.js/);
 assert.match(agentPage, /src="\.\/data\/news\.js\?v=/);
 assert.match(agentPage, /url\('\.\/assets\/fonts\/IRANSansXFaNum-Regular\.woff2'\)/);
 assert.match(agentPage, /لینک منبع اصلی/);
+assert.match(agentPage, /\/api\/news-feed/);
+assert.match(agentPage, /دریافت خبرهای تازه/);
+assert.match(agentPage, /loadLive\(false\)/);
 
 const newsAgentDataResponse = await worker.fetch(new Request("https://nimkat.test/data/news.js"), env, ctx);
 assert.equal(newsAgentDataResponse.status, 200);
@@ -224,6 +227,9 @@ assert.doesNotMatch(persianNamesSource, /بازیکن فوتبال، زاده/);
 assert.match(persianNamesSource, /"bayern munchen":"بایرن مونیخ"/);
 
 const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
+assert.match(workerSource, /NEWS_FEED_TTL_SECONDS = 15 \* 60/);
+assert.match(workerSource, /async function refreshNewsFeed/);
+assert.match(workerSource, /url\.pathname === "\/api\/news-feed"/);
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS player_match_stats/);
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS match_events/);

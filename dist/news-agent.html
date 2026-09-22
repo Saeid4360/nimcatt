@@ -90,26 +90,31 @@
   <script src="./data/news.js?v=news-agent-20260922-6"></script>
   <script>
     (()=>{
-      const news=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
-      const meta=window.LIVE_NEWS_META||{sources:[],generatedAt:null};
+      let news=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
+      let meta=window.LIVE_NEWS_META||{sources:[],generatedAt:null};
       const grid=document.getElementById('newsGrid'),empty=document.getElementById('emptyState');
       const search=document.getElementById('agentSearch'),team=document.getElementById('teamFilter'),source=document.getElementById('sourceFilter'),sourceType=document.getElementById('sourceTypeFilter');
+      const reload=document.getElementById('reloadAgent');
       const fa=new Intl.NumberFormat('fa-IR');
       const state={category:'all'};
       const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
       const safeUrl=value=>{try{const u=new URL(value,location.href);return /^https?:$/.test(u.protocol)?u.href:'#'}catch{return '#'}};
       const categoryLabel=value=>({news:'خبر',transfer:'نقل‌وانتقالات',analysis:'تحلیل'})[value]||'خبر';
-      const sourceNames=[...new Set(news.map(item=>item.source).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa'));
-      const teamNames=[...new Set(news.map(item=>item.teamLabel).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa'));
-      team.insertAdjacentHTML('beforeend',teamNames.map(name=>`<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join(''));
-      source.insertAdjacentHTML('beforeend',sourceNames.map(name=>`<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join(''));
-      const generated=meta.generatedAt?new Intl.DateTimeFormat('fa-IR',{dateStyle:'medium',timeStyle:'short'}).format(new Date(meta.generatedAt)):'نامشخص';
-      document.getElementById('generatedAt').textContent=`به‌روزرسانی: ${generated}`;
-      const sources=Array.isArray(meta.sources)?meta.sources:[];
-      document.getElementById('sourceHealth').innerHTML=sources.length?sources.map(item=>`<div class="source-pill" title="${escapeHtml(item.ok?'فید فعال':item.error||'فید در دسترس نیست')}"><span>${escapeHtml(item.source)}</span><small>${escapeHtml(item.country||'')} · ${escapeHtml(item.sourceTypeLabel||'رسانه معتبر')}</small><span class="dot ${item.ok?'':'off'}" title="${item.ok?'فعال':'خطا'}"></span></div>`).join(''):'<span class="generated">گزارش وضعیت موجود نیست</span>';
-      document.getElementById('totalMetric').textContent=fa.format(news.length);
-      document.getElementById('sourceMetric').textContent=fa.format(sources.length||sourceNames.length);
-      document.getElementById('healthyMetric').textContent=fa.format(sources.filter(item=>item.ok).length||sourceNames.length);
+      function syncSummary(){
+        const sourceNames=[...new Set(news.map(item=>item.source).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa'));
+        const teamNames=[...new Set(news.map(item=>item.teamLabel).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa'));
+        const selectedTeam=team.value,selectedSource=source.value;
+        team.innerHTML='<option value="all">همه تیم‌ها</option>'+teamNames.map(name=>`<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join('');
+        source.innerHTML='<option value="all">همه منابع</option>'+sourceNames.map(name=>`<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join('');
+        if(teamNames.includes(selectedTeam))team.value=selectedTeam;if(sourceNames.includes(selectedSource))source.value=selectedSource;
+        const generated=meta.generatedAt?new Intl.DateTimeFormat('fa-IR',{dateStyle:'medium',timeStyle:'short'}).format(new Date(meta.generatedAt)):'نامشخص';
+        document.getElementById('generatedAt').textContent=`به‌روزرسانی: ${generated}`;
+        const sources=Array.isArray(meta.sources)?meta.sources:[];
+        document.getElementById('sourceHealth').innerHTML=sources.length?sources.map(item=>`<div class="source-pill" title="${escapeHtml(item.ok?'فید فعال':item.error||'فید در دسترس نیست')}"><span>${escapeHtml(item.source)}</span><small>${escapeHtml(item.country||'')} · ${escapeHtml(item.sourceTypeLabel||'رسانه معتبر')}</small><span class="dot ${item.ok?'':'off'}" title="${item.ok?'فعال':'خطا'}"></span></div>`).join(''):'<span class="generated">گزارش وضعیت موجود نیست</span>';
+        document.getElementById('totalMetric').textContent=fa.format(news.length);
+        document.getElementById('sourceMetric').textContent=fa.format(sources.length||sourceNames.length);
+        document.getElementById('healthyMetric').textContent=fa.format(sources.filter(item=>item.ok).length||sourceNames.length);
+      }
       function card(item){
         const image=item.image?`<img src="${escapeHtml(safeUrl(item.image))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML='<div class=\'placeholder\'>${escapeHtml(item.icon||'ن')}</div><span class=\'story-source\'>${escapeHtml(item.source)}</span>'">`:`<div class="placeholder">${escapeHtml(item.icon||'ن')}</div>`;
         const tags=(item.tags||[]).slice(0,3).map(tag=>`<span class="tag">${escapeHtml(tag)}</span>`).join('');
@@ -132,8 +137,22 @@
       }
       search.addEventListener('input',render);team.addEventListener('change',render);source.addEventListener('change',render);sourceType.addEventListener('change',render);
       document.getElementById('categoryFilters').addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(!button)return;state.category=button.dataset.category;document.querySelectorAll('.chip').forEach(node=>node.classList.toggle('active',node===button));render()});
-      document.getElementById('reloadAgent').addEventListener('click',()=>location.reload());
-      render();
+      let warmRetry=0;
+      async function loadLive(force=false){
+        reload.disabled=true;reload.textContent=force?'در حال دریافت…':'در حال همگام‌سازی…';
+        try{
+          const response=await fetch(`/api/news-feed${force?'?refresh=1':''}`,{cache:'no-store'});
+          if(!response.ok)throw new Error(`HTTP ${response.status}`);
+          const payload=await response.json();
+          if(Array.isArray(payload.news))news=payload.news;if(payload.meta)meta=payload.meta;
+          syncSummary();render();
+          if(payload.error)reload.title=payload.error;
+          if(!force&&['warming','stale'].includes(payload.cacheStatus)&&warmRetry<2){warmRetry++;setTimeout(()=>loadLive(false),7000);}
+        }catch(error){reload.title='اتصال به خبرخوان زنده برقرار نشد؛ آخرین خروجی ذخیره‌شده نمایش داده می‌شود.';}
+        finally{reload.disabled=false;reload.textContent='دریافت خبرهای تازه';}
+      }
+      reload.addEventListener('click',()=>loadLive(true));
+      syncSummary();render();loadLive(false);
     })();
   </script>
 </body>

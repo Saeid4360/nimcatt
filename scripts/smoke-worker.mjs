@@ -116,6 +116,12 @@ assert.match(homepage, /function syncThemeControl/);
 assert.match(homepage, /html\[data-theme="dark"\] \.feature \{ border:1px solid #3b444f/);
 assert.doesNotMatch(homepage, /<button class="editor-button" data-view="editor">تحریریه<\/button>/);
 assert.doesNotMatch(homepage, /params\.get\('admin'\)==='editor'/);
+assert.match(homepage, /data-filter="video">ویدیو/);
+assert.match(homepage, /data-live-scores>نتایج زنده/);
+assert.doesNotMatch(homepage, /class="nav-link" data-filter="transfer">نقل‌وانتقالات/);
+assert.doesNotMatch(homepage, /class="nav-link" data-filter="analysis">تحلیل/);
+assert.match(homepage, /function isVideoStory/);
+assert.match(homepage, /params\.get\('page'\)==='live'/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);

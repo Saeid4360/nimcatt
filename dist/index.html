@@ -1133,18 +1133,34 @@
     .brand-name,.nav-link,.editor-button,.header-league-shortcut { font-weight:700; }
     .nav-link { color:#b7bcc3; font-size:12px; }
 
-    .score-layout { border-color:#2c3037; background:var(--dark); box-shadow:0 7px 22px rgba(18,21,27,.12); }
-    .score-toolbar { border-bottom-color:rgba(255,255,255,.07); background:var(--dark-soft); }
-    .score-board-shell { background:linear-gradient(110deg,var(--dark) 0%,#1d2026 52%,var(--dark) 100%); }
-    .score-date-button { color:#91969e; }
-    .score-date-button small { color:#6f747c; }
+    .score-layout { border-color:#dce1e6; background:#fff; box-shadow:0 6px 20px rgba(25,31,38,.075); }
+    .score-toolbar { border-right-color:#e1e5e9; background:#f5f6f8; }
+    .score-clock { color:#808892; }
+    .score-board-shell { background:linear-gradient(110deg,#fff 0%,#fafbfc 52%,#fff 100%); }
+    .score-date-button { color:#727b85; }
+    .score-date-button:hover { background:#eceff2; color:var(--ink); }
+    .score-date-button.active,.score-date-button.active:hover { background:#fdecef; color:var(--red-dark); }
     .score-date-button.active::after { background:var(--red); }
-    .score-tournament { border-right-color:rgba(255,255,255,.07); color:#b8bdc4; }
-    .score-tournament select { color:#aeb3ba; }
-    .score-item::after { background:linear-gradient(90deg,var(--red) 0 34%,rgba(255,255,255,.13) 34% 100%); opacity:.8; }
-    .score-item.is-live { background:linear-gradient(110deg,rgba(217,31,61,.12),rgba(255,255,255,.02)); }
+    .score-tournament { border-top-color:#e0e4e8; color:var(--muted); }
+    .score-tournament::after { color:#858d96; }
+    .score-tournament select { color:#59636e; }
+    .score-tournament select:hover { color:var(--ink); background:#eceff2; }
+    .score-item { border-left-color:#e7eaee; color:var(--ink); }
+    .score-item:hover { background:#f7f8fa; }
+    .score-item::after { background:linear-gradient(90deg,var(--red) 0 34%,#dfe3e7 34% 100%); opacity:1; }
+    .score-watermark { opacity:.04; filter:grayscale(1) brightness(.68); }
+    .score-meta { color:#7d8690; }
+    .score-status { background:#eef1f3; color:#59636e; }
+    .score-team-name { color:var(--ink); }
+    .score-team-result { color:var(--ink); }
+    .score-item.is-live { background:var(--red-soft); }
     .score-item.is-live::before,.score-status.live { background:var(--red); }
-    .score-scroll:hover:not(:disabled) { border-color:var(--red); background:var(--red); }
+    .score-item.is-live .score-team-result { color:var(--red-dark); }
+    .score-scroll { border-color:#d6dbe0; background:rgba(255,255,255,.94); color:#59636e; box-shadow:0 3px 9px rgba(24,31,39,.1); }
+    .score-scroll:hover:not(:disabled) { border-color:var(--red); background:var(--red); color:#fff; }
+    .score-board-shell .score-state { color:var(--muted); }
+    .score-board-shell .score-loader { border-color:#d9dde1; border-top-color:var(--red); }
+    .score-board-shell .score-retry { border-color:#d8dde2; background:#fff; color:var(--ink); }
 
     .feature,.panel,.feed-shell,.league-center,.article-shell,.match-detail-hero,.match-detail-tabs,.match-detail-body,.match-stats-board,.team-summary-card,.team-panel,.player-facts,.player-stat-card,.player-archive { border-color:var(--line); background-color:var(--surface); }
     .panel,.feed-shell,.league-center,.match-detail-hero,.match-detail-tabs,.match-stats-board,.team-panel,.player-archive { box-shadow:var(--shadow-sm); }

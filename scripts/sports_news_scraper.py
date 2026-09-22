@@ -58,6 +58,13 @@ NON_FOOTBALL_WORDS = {
     "formule 1", "formel 1", "formula uno", "motociclismo", "rugby",
     "hockey", "handball", "handbal", "atletismo", "athlétisme", "leichtathletik",
 }
+WOMENS_FOOTBALL_WORDS = {
+    "women", "women's", "women’s", "female", "wsl", "uwcl", "wcl", "lionesses",
+    "frauen", "frauen-bundesliga", "frauenteam", "femmes", "féminine", "féminines",
+    "feminine", "femenina", "femenino", "femeninas", "liga f", "femminile",
+    "femminili", "azzurrine", "vrouwen", "vrouwenteam", "dames", "feminino",
+    "feminina", "kadın", "kadin",
+}
 ENTITY_TAGS = {
     "arsenal": "آرسنال", "chelsea": "چلسی", "liverpool": "لیورپول",
     "manchester city": "منچسترسیتی", "man city": "منچسترسیتی",
@@ -275,9 +282,10 @@ def has_term(text: str, term: str) -> bool:
     return re.search(rf"(?<![\w-]){re.escape(term)}(?![\w-])", text, re.I) is not None
 
 
-def is_football_item(title: str, summary: str) -> bool:
-    text = f"{title} {summary}".casefold()
-    return not any(has_term(text, word) for word in NON_FOOTBALL_WORDS)
+def is_football_item(title: str, summary: str, url: str = "") -> bool:
+    text = f"{title} {summary} {url}".casefold()
+    blocked = NON_FOOTBALL_WORDS | WOMENS_FOOTBALL_WORDS
+    return not any(has_term(text, word) for word in blocked)
 
 
 def is_source_item_allowed(source_id: str, url: str) -> bool:
@@ -383,7 +391,7 @@ def parse_feed(source: dict[str, Any], payload: bytes, limit: int, max_age: time
         link = normalized_url(extract_link(node))
         raw_summary = child_text(node, {"description", "summary", "encoded", "content"})
         summary = clean_text(raw_summary, 520)
-        if not is_football_item(title, summary):
+        if not is_football_item(title, summary, link):
             continue
         if not is_source_item_allowed(source.get("id", ""), link):
             continue
@@ -453,7 +461,7 @@ def parse_espn_json(source: dict[str, Any], payload: bytes, limit: int, max_age:
         summary = clean_text(article.get("description"), 520)
         link = normalized_url(article.get("links", {}).get("web", {}).get("href", ""))
         published = parse_date(article.get("published") or article.get("lastModified"))
-        if not title or not link or now - published > max_age or not is_football_item(title, summary):
+        if not title or not link or now - published > max_age or not is_football_item(title, summary, link):
             continue
         category = classify(title, summary, source.get("source_type", ""))
         images = article.get("images") or []
@@ -595,8 +603,26 @@ def main() -> int:
     parser.add_argument("--timeout", type=int, default=25)
     parser.add_argument("--workers", type=int, default=10)
     parser.add_argument("--translate", action="store_true", help="Translate with OPENAI_API_KEY")
+    parser.add_argument("--prune-only", action="store_true", help="Remove blocked topics from the current archive without fetching")
     parser.add_argument("--model", default=os.environ.get("OPENAI_TRANSLATION_MODEL", "gpt-5.6-luna"))
     args = parser.parse_args()
+
+    if args.prune_only:
+        existing = read_json(args.archive, [])
+        items = [
+            item for item in existing
+            if is_football_item(item.get("title", ""), item.get("summary", ""), item.get("url", ""))
+        ]
+        status_data = read_json(args.status, {"sources": []})
+        generated_at = datetime.now(timezone.utc).isoformat()
+        status_data.update({"generatedAt": generated_at, "count": len(items)})
+        atomic_write(args.archive, json.dumps(items, ensure_ascii=False, indent=2))
+        js = "window.LIVE_NEWS = " + json.dumps(items, ensure_ascii=False, separators=(",", ":")) + ";\n"
+        js += "window.LIVE_NEWS_META = " + json.dumps(status_data, ensure_ascii=False, separators=(",", ":")) + ";\n"
+        atomic_write(args.output, js)
+        atomic_write(args.status, json.dumps(status_data, ensure_ascii=False, indent=2))
+        print(f"Removed {len(existing) - len(items)} blocked items; {len(items)} remain")
+        return 0
 
     sources = read_json(args.config, [])
     team_catalog = read_json(args.team_config, [])
@@ -680,7 +706,7 @@ def main() -> int:
     existing = [] if args.fresh else read_json(args.archive, [])
     by_key: dict[str, dict[str, Any]] = {}
     for item in collected + existing:
-        if not is_football_item(item.get("title", ""), item.get("summary", "")):
+        if not is_football_item(item.get("title", ""), item.get("summary", ""), item.get("url", "")):
             continue
         if not is_source_item_allowed(item.get("sourceId", ""), item.get("url", "")):
             continue

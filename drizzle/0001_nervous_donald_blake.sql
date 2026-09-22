@@ -1,4 +1,4 @@
-CREATE TABLE `fixtures` (
+CREATE TABLE IF NOT EXISTS `fixtures` (
 	`id` text PRIMARY KEY NOT NULL,
 	`provider` text NOT NULL,
 	`external_id` text NOT NULL,
@@ -12,9 +12,9 @@ CREATE TABLE `fixtures` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `fixtures_provider_external_uidx` ON `fixtures` (`provider`,`external_id`);--> statement-breakpoint
-CREATE INDEX `fixtures_league_season_round_idx` ON `fixtures` (`league`,`season_year`,`round_number`);--> statement-breakpoint
-CREATE TABLE `match_events` (
+CREATE UNIQUE INDEX IF NOT EXISTS `fixtures_provider_external_uidx` ON `fixtures` (`provider`,`external_id`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `fixtures_league_season_round_idx` ON `fixtures` (`league`,`season_year`,`round_number`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `match_events` (
 	`id` text PRIMARY KEY NOT NULL,
 	`fixture_id` text NOT NULL,
 	`provider` text NOT NULL,
@@ -36,9 +36,9 @@ CREATE TABLE `match_events` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE INDEX `match_events_fixture_idx` ON `match_events` (`fixture_id`,`sequence`);--> statement-breakpoint
-CREATE INDEX `match_events_player_idx` ON `match_events` (`player_id`);--> statement-breakpoint
-CREATE TABLE `player_match_stats` (
+CREATE INDEX IF NOT EXISTS `match_events_fixture_idx` ON `match_events` (`fixture_id`,`sequence`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `match_events_player_idx` ON `match_events` (`player_id`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `player_match_stats` (
 	`id` text PRIMARY KEY NOT NULL,
 	`player_id` text NOT NULL,
 	`fixture_id` text NOT NULL,
@@ -74,10 +74,10 @@ CREATE TABLE `player_match_stats` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `player_match_provider_uidx` ON `player_match_stats` (`player_id`,`fixture_id`,`provider`);--> statement-breakpoint
-CREATE INDEX `player_match_player_idx` ON `player_match_stats` (`player_id`);--> statement-breakpoint
-CREATE INDEX `player_match_fixture_idx` ON `player_match_stats` (`fixture_id`);--> statement-breakpoint
-CREATE TABLE `player_provider_ids` (
+CREATE UNIQUE INDEX IF NOT EXISTS `player_match_provider_uidx` ON `player_match_stats` (`player_id`,`fixture_id`,`provider`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `player_match_player_idx` ON `player_match_stats` (`player_id`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `player_match_fixture_idx` ON `player_match_stats` (`fixture_id`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `player_provider_ids` (
 	`id` text PRIMARY KEY NOT NULL,
 	`player_id` text NOT NULL,
 	`provider` text NOT NULL,
@@ -86,9 +86,9 @@ CREATE TABLE `player_provider_ids` (
 	`last_seen_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `player_provider_external_uidx` ON `player_provider_ids` (`provider`,`external_id`);--> statement-breakpoint
-CREATE INDEX `player_provider_player_idx` ON `player_provider_ids` (`player_id`);--> statement-breakpoint
-CREATE TABLE `player_season_stats` (
+CREATE UNIQUE INDEX IF NOT EXISTS `player_provider_external_uidx` ON `player_provider_ids` (`provider`,`external_id`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `player_provider_player_idx` ON `player_provider_ids` (`player_id`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `player_season_stats` (
 	`id` text PRIMARY KEY NOT NULL,
 	`player_id` text NOT NULL,
 	`team_id` text NOT NULL,
@@ -104,9 +104,9 @@ CREATE TABLE `player_season_stats` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE INDEX `player_season_player_idx` ON `player_season_stats` (`player_id`);--> statement-breakpoint
-CREATE INDEX `player_season_league_idx` ON `player_season_stats` (`league`,`season_year`);--> statement-breakpoint
-CREATE TABLE `player_team_periods` (
+CREATE INDEX IF NOT EXISTS `player_season_player_idx` ON `player_season_stats` (`player_id`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `player_season_league_idx` ON `player_season_stats` (`league`,`season_year`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `player_team_periods` (
 	`id` text PRIMARY KEY NOT NULL,
 	`player_id` text NOT NULL,
 	`team_id` text NOT NULL,
@@ -121,9 +121,9 @@ CREATE TABLE `player_team_periods` (
 	`last_seen_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE INDEX `player_team_player_idx` ON `player_team_periods` (`player_id`);--> statement-breakpoint
-CREATE INDEX `player_team_team_idx` ON `player_team_periods` (`team_id`);--> statement-breakpoint
-CREATE TABLE `players` (
+CREATE INDEX IF NOT EXISTS `player_team_player_idx` ON `player_team_periods` (`player_id`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `player_team_team_idx` ON `player_team_periods` (`team_id`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `players` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name_en` text NOT NULL,
 	`name_fa` text,
@@ -145,9 +145,9 @@ CREATE TABLE `players` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE INDEX `players_name_en_idx` ON `players` (`name_en`);--> statement-breakpoint
-CREATE INDEX `players_name_fa_idx` ON `players` (`name_fa`);--> statement-breakpoint
-CREATE TABLE `teams` (
+CREATE INDEX IF NOT EXISTS `players_name_en_idx` ON `players` (`name_en`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `players_name_fa_idx` ON `players` (`name_fa`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `teams` (
 	`id` text PRIMARY KEY NOT NULL,
 	`provider` text NOT NULL,
 	`external_id` text NOT NULL,
@@ -158,5 +158,5 @@ CREATE TABLE `teams` (
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `teams_provider_external_uidx` ON `teams` (`provider`,`external_id`);--> statement-breakpoint
-CREATE INDEX `teams_league_idx` ON `teams` (`league`);
+CREATE UNIQUE INDEX IF NOT EXISTS `teams_provider_external_uidx` ON `teams` (`provider`,`external_id`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `teams_league_idx` ON `teams` (`league`);

@@ -109,19 +109,55 @@
     .match-detail-panel[hidden] { display:none; }
     .match-detail-section-title { display:flex; align-items:center; gap:9px; margin:0 0 20px; color:#202832; font-size:18px; }
     .match-detail-section-title::before { content:""; width:4px; height:20px; border-radius:99px; background:linear-gradient(#d91d55,#8b2b79); }
-    .match-flow { margin-top:18px; padding:14px 18px 15px; border:1px solid #e3e7eb; border-radius:10px; background:#fafbfc; }
-    .match-flow-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; color:#6c7783; font-size:9px; font-weight:780; }
-    .match-flow-head strong { color:#2b3540; font-size:10px; }
-    .match-flow-track { position:relative; height:38px; direction:ltr; }
-    .match-flow-line { position:absolute; top:18px; right:0; left:0; height:3px; border-radius:99px; background:linear-gradient(90deg,#25364c 0 50%,#c72554 50% 100%); opacity:.22; }
-    .match-flow-half { position:absolute; top:12px; left:50%; width:1px; height:16px; background:#aab2bb; }
-    .match-flow-marker { position:absolute; z-index:1; top:11px; display:grid; place-items:center; width:17px; height:17px; border:2px solid #fff; border-radius:50%; background:#293b51; color:#fff; transform:translateX(-50%); box-shadow:0 0 0 1px #bfc7cf; }
-    .match-flow-marker.away { background:#d02254; }
-    .match-flow-marker.goal { width:21px; height:21px; top:9px; }
-    .match-flow-marker.yellow { border-radius:3px; background:#e4ae22; }
-    .match-flow-marker.red { border-radius:3px; background:#bd243e; }
-    .match-flow-marker svg { width:11px; height:11px; }
-    .match-flow-axis { display:flex; justify-content:space-between; margin-top:2px; color:#929aa3; font-size:8px; direction:ltr; }
+    .match-flow { margin-top:18px; padding:14px 16px 13px; border:1px solid #dfe4e9; border-radius:11px; background:#fafbfc; }
+    .match-flow-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; color:#6c7783; font-size:9px; font-weight:780; }
+    .match-flow-head strong { color:#27323e; font-size:11px; }
+    .match-flow-legend { display:flex; align-items:center; flex-wrap:wrap; gap:9px; color:#717d88; font-size:8px; }
+    .match-flow-legend span { display:inline-flex; align-items:center; gap:4px; }
+    .match-flow-legend i { display:grid; place-items:center; width:14px; height:14px; color:#fff; border-radius:50%; background:#2c4058; }
+    .match-flow-legend i.yellow,.match-flow-legend i.red { width:9px; height:13px; border-radius:2px; }
+    .match-flow-legend i.yellow { background:#e4ad20; }
+    .match-flow-legend i.red { background:#bd243e; }
+    .match-flow-legend i.sub { background:#168054; }
+    .match-flow-legend svg { width:9px; height:9px; }
+    .match-flow-scroll { overflow-x:auto; scrollbar-width:thin; scrollbar-color:#c9d0d7 transparent; }
+    .match-flow-chart { min-width:680px; direction:rtl; }
+    .match-flow-team { display:grid; grid-template-columns:105px minmax(0,1fr); align-items:center; gap:12px; min-height:49px; }
+    .match-flow-team + .match-flow-team { border-top:1px solid #e8ecef; }
+    .match-flow-team-label { display:flex; align-items:center; gap:7px; min-width:0; color:#303b47; font-size:9px; font-weight:850; }
+    .match-flow-team-label img { flex:none; width:23px; height:23px; object-fit:contain; }
+    .match-flow-team-label span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .match-flow-lane { position:relative; height:49px; direction:ltr; }
+    .match-flow-line { position:absolute; top:23px; right:0; left:0; height:2px; border-radius:99px; background:#d6dce2; }
+    .match-flow-lane::before,.match-flow-lane::after { content:""; position:absolute; top:18px; width:1px; height:12px; background:#bac3cc; }
+    .match-flow-lane::before { left:50%; }
+    .match-flow-lane::after { left:100%; }
+    .match-flow-marker { --shift:0px; position:absolute; z-index:2; top:13px; display:grid; place-items:center; width:22px; height:22px; border:2px solid #fff; border-radius:50%; background:#2b3f57; color:#fff; transform:translateX(calc(-50% + var(--shift))); box-shadow:0 0 0 1px #aeb8c2,0 3px 7px rgba(26,37,49,.18); cursor:help; }
+    .match-flow-marker.away { background:#ce2453; }
+    .match-flow-marker.goal { width:25px; height:25px; top:11px; }
+    .match-flow-marker.yellow,.match-flow-marker.red,.match-flow-marker.second-yellow { width:15px; height:22px; border-radius:3px; }
+    .match-flow-marker.yellow { background:#e4ad20; }
+    .match-flow-marker.red { background:#bd243e; }
+    .match-flow-marker.second-yellow { background:linear-gradient(135deg,#e4ad20 0 50%,#bd243e 50%); }
+    .match-flow-marker.sub { background:#168054; }
+    .match-flow-marker svg { width:13px; height:13px; }
+    .match-flow-marker.yellow svg,.match-flow-marker.red svg,.match-flow-marker.second-yellow svg { display:none; }
+    .match-flow-tip { position:absolute; z-index:5; right:50%; bottom:calc(100% + 7px); width:max-content; max-width:190px; padding:6px 8px; border-radius:6px; background:#171f29; color:#fff; opacity:0; pointer-events:none; transform:translateX(50%) translateY(3px); transition:.16s ease; text-align:right; font-size:8px; line-height:1.65; box-shadow:0 7px 16px rgba(13,20,28,.22); }
+    .match-flow-marker:hover .match-flow-tip,.match-flow-marker:focus .match-flow-tip { opacity:1; transform:translateX(50%) translateY(0); }
+    .match-flow-tip b { display:block; font-size:9px; }
+    .match-flow-axis { display:grid; grid-template-columns:105px minmax(0,1fr); gap:12px; margin-top:2px; color:#929aa3; font-size:8px; }
+    .match-flow-axis div { display:flex; justify-content:space-between; direction:ltr; }
+    .match-flow-events { display:flex; gap:6px; margin-top:10px; padding-top:10px; overflow-x:auto; border-top:1px solid #e4e8ec; scrollbar-width:none; }
+    .match-flow-events::-webkit-scrollbar { display:none; }
+    .match-flow-chip { display:grid; grid-template-columns:22px auto; grid-template-areas:"icon title" "icon detail"; flex:0 0 auto; min-width:132px; gap:0 7px; align-items:center; padding:7px 8px; border:1px solid #e1e6ea; border-radius:7px; background:#fff; }
+    .match-flow-chip-icon { grid-area:icon; display:grid; place-items:center; width:22px; height:22px; border-radius:50%; background:#2b3f57; color:#fff; }
+    .match-flow-chip.away .match-flow-chip-icon { background:#ce2453; }
+    .match-flow-chip.yellow .match-flow-chip-icon { border-radius:3px; background:#e4ad20; }
+    .match-flow-chip.red .match-flow-chip-icon,.match-flow-chip.second-yellow .match-flow-chip-icon { border-radius:3px; background:#bd243e; }
+    .match-flow-chip.sub .match-flow-chip-icon { background:#168054; }
+    .match-flow-chip-icon svg { width:12px; height:12px; }
+    .match-flow-chip strong { grid-area:title; color:#27323e; font-size:9px; white-space:nowrap; }
+    .match-flow-chip small { grid-area:detail; max-width:145px; overflow:hidden; color:#7b8590; font-size:7px; text-overflow:ellipsis; white-space:nowrap; }
     .match-report-intro { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:-4px 0 19px; padding:11px 15px; border:1px solid #e7ebef; border-radius:9px; background:#f8fafb; color:#5a6877; font-size:12px; line-height:1.8; }
     .match-report-intro span:first-child { color:#263241; font-weight:800; }
     .match-report-intro span:last-child { text-align:left; }
@@ -716,6 +752,10 @@
       .match-detail-tab { min-width:92px; padding:8px 10px; font-size:10px; }
       .match-detail-body { margin-top:8px; padding:18px 14px 24px; }
       .match-flow { padding:11px 12px 12px; }
+      .match-flow-head { align-items:flex-start; flex-direction:column; }
+      .match-flow-chart { min-width:590px; }
+      .match-flow-team,.match-flow-axis { grid-template-columns:82px minmax(0,1fr); gap:8px; }
+      .match-flow-chip { min-width:125px; }
       .match-report-intro { display:block; }
       .match-report-intro span { display:block; text-align:right!important; }
       .match-report-intro span + span { margin-top:2px; }
@@ -1977,9 +2017,14 @@
     }
     function matchEventMinute(event,type){const raw=String(event.clock?.displayValue||'').replace(/[′']/g,'').trim();return raw?`${faNumber(raw)}′`:type==='kickoff'?'۰′':'—';}
     function matchFlowMarkup(events,home,away){
-      const markers=(events||[]).map(event=>{const type=event.type?.type||'',raw=String(event.clock?.displayValue||'').replace(/[′']/g,''),minute=Number.parseInt(raw,10);if(!Number.isFinite(minute)||(!/goal/i.test(type)&&!['yellow-card','red-card','second-yellow-card'].includes(type)))return null;const isAway=String(event.team?.id||'')===String(away.team?.id||''),kind=/goal/i.test(type)?'goal':type==='yellow-card'?'yellow':'red';return {event,minute,isAway,kind};}).filter(Boolean),duration=markers.some(item=>item.minute>90)?120:90;
-      const marker=item=>`<span class="match-flow-marker ${item.isAway?'away':'home'} ${item.kind}" style="left:${Math.max(1,Math.min(99,100*item.minute/duration)).toFixed(1)}%" title="${esc(matchEventMinute(item.event,item.event.type?.type||''))}" aria-label="${esc(matchEventMinute(item.event,item.event.type?.type||''))}">${matchEventIcon(item.kind)}</span>`;
-      return `<div class="match-flow" aria-label="خط زمانی رویدادهای بازی"><div class="match-flow-head"><strong>خط زمانی مسابقه</strong><span>${markers.length?`${faNumber(markers.length)} رویداد مهم`:'رویداد مهمی ثبت نشده'}</span></div><div class="match-flow-track"><i class="match-flow-line"></i><i class="match-flow-half"></i>${markers.map(marker).join('')}</div><div class="match-flow-axis"><span>۰′</span><span>${faNumber(duration/2)}′</span><span>${faNumber(duration)}′</span></div></div>`;
+      const homeId=String(home.team?.id||''),awayId=String(away.team?.id||''),homeName=persianTeamName(home.team?.displayName||home.team?.shortDisplayName||''),awayName=persianTeamName(away.team?.displayName||away.team?.shortDisplayName||''),homeLogo=safeImage(home.team?.logos?.[0]?.href||home.team?.logo),awayLogo=safeImage(away.team?.logos?.[0]?.href||away.team?.logo);
+      const markers=(events||[]).map(event=>{const type=event.type?.type||'',raw=String(event.clock?.displayValue||'').replace(/[′']/g,''),clock=raw.match(/(\d+)(?:\+(\d+))?/),minute=clock?Number(clock[1])+Number(clock[2]||0):NaN,teamId=String(event.team?.id||''),isAway=teamId===awayId,isHome=teamId===homeId;if(!Number.isFinite(minute)||(!isHome&&!isAway)||(!/goal/i.test(type)&&!['substitution','yellow-card','red-card','second-yellow-card'].includes(type)))return null;const players=(event.participants||[]).map(person=>person.athlete?.displayName).filter(Boolean).map(persianPlayerName),kind=/goal/i.test(type)?'goal':type==='substitution'?'sub':type==='yellow-card'?'yellow':type==='second-yellow-card'?'second-yellow':'red',label=kind==='goal'?(type.includes('own')?'گل به خودی':'گل'):kind==='sub'?'تعویض':kind==='yellow'?'کارت زرد':kind==='second-yellow'?'زرد دوم و اخراج':'کارت قرمز',detail=kind==='sub'?[players[0]&&`ورود ${players[0]}`,players[1]&&`خروج ${players[1]}`].filter(Boolean).join(' · '):players[0]||'',assist=kind==='goal'&&players[1]&&/assist(?:ed)? by/i.test(event.text||'')?`پاس گل: ${players[1]}`:'';return {event,minute,isAway,kind,label,detail,assist};}).filter(Boolean).sort((a,b)=>a.minute-b.minute),duration=markers.some(item=>item.minute>90)?120:90;
+      const clusters=new Map();markers.forEach(item=>{const key=`${item.isAway?'a':'h'}-${item.minute}`,group=clusters.get(key)||[];group.push(item);clusters.set(key,group);});clusters.forEach(group=>group.forEach((item,index)=>{item.shift=(index-(group.length-1)/2)*15;}));
+      const marker=item=>{const minute=matchEventMinute(item.event,item.event.type?.type||''),detail=[item.detail,item.assist].filter(Boolean).join(' · ');return `<button class="match-flow-marker ${item.isAway?'away':'home'} ${item.kind}" style="left:${Math.max(1,Math.min(99,100*item.minute/duration)).toFixed(1)}%;--shift:${item.shift}px" type="button" aria-label="${esc(`${minute} ${item.label} ${detail}`)}">${matchEventIcon(item.kind)}<span class="match-flow-tip"><b>${esc(minute)} · ${esc(item.label)}</b>${detail?esc(detail):'جزئیات ثبت نشده'}</span></button>`;};
+      const lane=(teamName,logo,isAway)=>`<div class="match-flow-team"><div class="match-flow-team-label">${logo?`<img src="${esc(logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span>${esc(teamName)}</span></div><div class="match-flow-lane"><i class="match-flow-line"></i>${markers.filter(item=>item.isAway===isAway).map(marker).join('')}</div></div>`;
+      const chip=item=>{const minute=matchEventMinute(item.event,item.event.type?.type||''),teamName=item.isAway?awayName:homeName,detail=[item.detail,item.assist].filter(Boolean).join(' · ')||teamName;return `<div class="match-flow-chip ${item.isAway?'away':'home'} ${item.kind}"><span class="match-flow-chip-icon">${matchEventIcon(item.kind)}</span><strong>${esc(minute)} · ${esc(item.label)}</strong><small title="${esc(detail)}">${esc(detail)}</small></div>`;};
+      const legend=kind=>`<i class="${kind}">${matchEventIcon(kind)}</i>`;
+      return `<div class="match-flow" aria-label="خط زمانی کامل رویدادهای بازی"><div class="match-flow-head"><strong>خط زمانی دو تیم</strong><div class="match-flow-legend"><span>${legend('goal')} گل</span><span>${legend('sub')} تعویض</span><span>${legend('yellow')} کارت زرد</span><span>${legend('red')} کارت قرمز</span></div></div><div class="match-flow-scroll"><div class="match-flow-chart">${lane(homeName,homeLogo,false)}${lane(awayName,awayLogo,true)}<div class="match-flow-axis"><span></span><div><span>۰′</span><span>${faNumber(duration/2)}′</span><span>${faNumber(duration)}′</span></div></div></div></div>${markers.length?`<div class="match-flow-events">${markers.map(chip).join('')}</div>`:'<div class="match-flow-events"><div class="team-empty">هنوز رویدادی برای این مسابقه ثبت نشده است.</div></div>'}</div>`;
     }
     function matchEventReport(event,type,players,teamName){
       const name=value=>`<bdi dir="auto">${esc(value)}</bdi>`,actor=players[0]?name(players[0]):'',team=teamName?` ${esc(teamName)}`:'',text=String(event.text||'');

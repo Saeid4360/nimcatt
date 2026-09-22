@@ -115,10 +115,10 @@
     .match-flow-legend { display:flex; align-items:center; flex-wrap:wrap; gap:9px; color:#717d88; font-size:8px; }
     .match-flow-legend span { display:inline-flex; align-items:center; gap:4px; }
     .match-flow-legend i { display:grid; place-items:center; width:14px; height:14px; color:#fff; border-radius:50%; background:#2c4058; }
+    .match-flow-legend i.goal,.match-flow-legend i.sub { border:1px solid #cbd2d9; background:#fff; color:#1b2632; }
     .match-flow-legend i.yellow,.match-flow-legend i.red { width:9px; height:13px; border-radius:2px; }
     .match-flow-legend i.yellow { background:#e4ad20; }
     .match-flow-legend i.red { background:#bd243e; }
-    .match-flow-legend i.sub { background:#168054; }
     .match-flow-legend svg { width:9px; height:9px; }
     .match-flow-scroll { overflow-x:auto; scrollbar-width:thin; scrollbar-color:#c9d0d7 transparent; }
     .match-flow-chart { min-width:680px; direction:rtl; }
@@ -143,7 +143,7 @@
     .match-flow-marker.yellow { background:#e4ad20; }
     .match-flow-marker.red { background:#bd243e; }
     .match-flow-marker.second-yellow { width:24px; height:24px; background:#fff; color:#bd243e; }
-    .match-flow-marker.sub { background:#168054; }
+    .match-flow-marker.goal,.match-flow-marker.sub { border-color:#d5dbe1; background:#fff; color:#17222e; }
     .match-flow-marker svg { width:13px; height:13px; }
     .match-flow-marker.yellow svg,.match-flow-marker.red svg { display:none; }
     .match-flow-count { position:absolute; top:-8px; left:-8px; display:grid; place-items:center; min-width:17px; height:17px; padding:0 4px; border:2px solid #fff; border-radius:99px; background:#101820; color:#fff; font-style:normal; font-size:8px; font-weight:900; line-height:1; }
@@ -1998,11 +1998,11 @@
     function parseMatchRef(ref){const parts=String(ref||'').match(/^([a-z0-9.]+)~(\d{6,12})$/);return parts&&Object.values(SCORE_TOURNAMENT_META).some(meta=>meta.slug===parts[1])?{slug:parts[1],id:parts[2]}:null;}
     function matchEventIcon(kind){
       const shapes={
-        goal:'<circle cx="12" cy="12" r="9"/><path d="m12 7 3 2.2-1.1 3.5h-3.8L9 9.2 12 7ZM9 9.2 5.4 8M15 9.2 18.6 8M10.1 12.7l-2.2 3.2M13.9 12.7l2.2 3.2M8 17.5l4 2 4-2"/>',
+        goal:'<circle cx="12" cy="12" r="9.2" fill="#fff" stroke="#17222e"/><path d="m12 6.6 3.2 2.3-1.2 3.7h-4l-1.2-3.7L12 6.6Z" fill="#17222e" stroke="none"/><path d="M8.8 8.9 5.3 7.8M15.2 8.9l3.5-1.1M10 12.6l-2.4 3.5M14 12.6l2.4 3.5M7.6 16.1l.6 3M16.4 16.1l-.6 3M8.2 19.1l3.8 2 3.8-2" stroke="#17222e"/>',
         yellow:'<rect x="7" y="3.5" width="10" height="17" rx="1.5" fill="currentColor" stroke="none"/>',
         red:'<rect x="7" y="3.5" width="10" height="17" rx="1.5" fill="currentColor" stroke="none"/>',
         'second-yellow':'<rect x="4" y="4" width="9" height="15" rx="1.2" fill="#d7a824" stroke="none"/><rect x="10" y="6" width="9" height="15" rx="1.2" fill="#bf1e34" stroke="none"/>',
-        sub:'<path d="M7 19V5m-3 3 3-3 3 3M17 5v14m-3-3 3 3 3-3"/>',
+        sub:'<path d="M8 18V6M4.5 9.5 8 6l3.5 3.5" stroke="#18925f" stroke-width="2.3"/><path d="M16 6v12m-3.5-3.5L16 18l3.5-3.5" stroke="#d1495b" stroke-width="2.3"/>',
         phase:'<path d="M4 10h8l3-3 5 3-4 3h-2a5 5 0 1 1-10-3Z"/><circle cx="9" cy="14" r="1.5"/><path d="M15 7V4"/>',
         assist:'<path d="M3 17c3-7 7-9 15-9m-4-4 4 4-4 4"/>',
         in:'<path d="M12 19V5m-5 5 5-5 5 5"/>',

@@ -822,37 +822,47 @@
     .stats-empty-state { padding:42px 16px; color:#7b848d; text-align:center; font-size:11px; }
     .stats-dataset-note { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:11px; color:#7e8790; font-size:8px; }
     .stats-dataset-note a { color:#6e3154; font-weight:850; }
-    .stats-scatter { order:1; padding:15px 16px 13px; border-bottom:1px solid #e5e8eb; background:linear-gradient(180deg,#fff 0%,#fbfcfd 100%); }
-    .stats-scatter-head { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:11px; }
-    .stats-scatter-title h2 { margin:0; color:#262d35; font-size:17px; }
-    .stats-scatter-title p { margin:3px 0 0; color:#7f8892; font-size:9px; line-height:1.8; }
-    .stats-scatter-controls { display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:7px; }
-    .stats-scatter-select { position:relative; display:grid; gap:2px; min-width:164px; }
-    .stats-scatter-select span { color:#8a929b; font-size:7px; font-weight:800; }
-    .stats-scatter-select select { width:100%; height:34px; padding:0 9px 0 25px; border:1px solid #dce1e5; border-radius:7px; appearance:none; background:#fff; color:#303942; cursor:pointer; font-size:9px; font-weight:800; outline:0; }
-    .stats-scatter-select::after { content:"⌄"; position:absolute; left:9px; bottom:11px; color:#7b838c; font:700 10px/1 sans-serif; pointer-events:none; }
-    .stats-scatter-select.mode { min-width:112px; }
-    .stats-scatter-stage { position:relative; min-height:450px; overflow:hidden; border:1px solid #e1e5e9; border-radius:10px; background:#fff; }
-    .stats-scatter-stage svg { display:block; width:100%; height:450px; direction:ltr; }
-    .stats-scatter-grid { stroke:#e7eaed; stroke-width:1; }
-    .stats-scatter-median { stroke:#b8bec6; stroke-width:1; stroke-dasharray:4 5; }
-    .stats-scatter-frame { fill:none; stroke:#ccd2d8; stroke-width:1; }
-    .stats-scatter-tick,.stats-scatter-axis-title { fill:#727c86; font-family:inherit; font-size:9px; }
-    .stats-scatter-axis-title { fill:#3b444d; font-size:10px; font-weight:800; }
-    .stats-scatter-point { fill:#7d506d; fill-opacity:.55; stroke:#fff; stroke-width:1.3; cursor:crosshair; transition:r .14s ease,fill-opacity .14s ease; }
-    .stats-scatter-point.is-leader { fill:#d91f55; fill-opacity:.88; }
-    .stats-scatter-point:hover,.stats-scatter-point:focus { r:8; fill-opacity:1; stroke:#281731; stroke-width:2; outline:none; }
-    .stats-scatter-label { fill:#343b43; font-family:inherit; font-size:8px; font-weight:800; paint-order:stroke; stroke:#fff; stroke-width:3px; stroke-linejoin:round; }
-    .stats-scatter-tooltip { position:absolute; z-index:4; min-width:180px; max-width:240px; padding:9px 11px; border:1px solid #d9dde2; border-radius:8px; background:#20252c; color:#fff; box-shadow:0 8px 24px rgba(17,21,27,.2); pointer-events:none; transform:translate(-50%,-112%); }
+    .stats-scatter { order:1; padding:22px 22px 18px; border-bottom:1px solid #e2e6eb; background:linear-gradient(180deg,#fff 0%,#f7f9fb 100%); }
+    .stats-scatter-head { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:17px; }
+    .stats-scatter-title { max-width:540px; }
+    .stats-scatter-title h2 { margin:0; color:#202832; font-size:22px; line-height:1.45; letter-spacing:-.2px; }
+    .stats-scatter-title p { margin:6px 0 0; color:#66717d; font-size:14px; line-height:1.9; }
+    .stats-scatter-controls { display:flex; align-items:flex-end; flex-wrap:wrap; justify-content:flex-end; gap:10px; }
+    .stats-scatter-select { position:relative; display:grid; gap:5px; min-width:190px; }
+    .stats-scatter-select span { color:#66717d; font-size:12px; font-weight:850; }
+    .stats-scatter-select select { width:100%; height:43px; padding:0 12px 0 32px; border:1px solid #d3d9df; border-radius:10px; appearance:none; background:#fff; color:#202832; cursor:pointer; font-size:14px; font-weight:850; outline:0; box-shadow:0 2px 8px rgba(27,35,44,.035); }
+    .stats-scatter-select select:hover { border-color:#aab4be; }
+    .stats-scatter-select select:focus-visible { border-color:#d91f55; box-shadow:0 0 0 3px rgba(217,31,85,.12); }
+    .stats-scatter-select::after { content:"⌄"; position:absolute; left:12px; bottom:15px; color:#65707b; font:800 13px/1 sans-serif; pointer-events:none; }
+    .stats-scatter-select.mode { min-width:150px; }
+    .stats-scatter-stage { position:relative; min-height:540px; overflow:hidden; border:1px solid #d9dfe5; border-radius:16px; background:#fff; box-shadow:0 12px 32px rgba(24,33,43,.07); }
+    .stats-scatter-stage svg { display:block; width:100%; height:540px; direction:ltr; }
+    .stats-scatter-quadrant { fill:#fafbfc; }
+    .stats-scatter-quadrant.is-best { fill:#fff5f8; }
+    .stats-scatter-grid { stroke:#e5eaf0; stroke-width:1; }
+    .stats-scatter-median { stroke:#8d98a4; stroke-width:1.5; stroke-dasharray:6 6; }
+    .stats-scatter-frame { fill:none; stroke:#b9c2cb; stroke-width:1.25; }
+    .stats-scatter-tick,.stats-scatter-axis-title,.stats-scatter-zone-label,.stats-scatter-median-label { fill:#5c6772; font-family:inherit; font-size:12px; font-weight:700; }
+    .stats-scatter-axis-title { fill:#222b35; font-size:14px; font-weight:900; }
+    .stats-scatter-zone-label { fill:#b01947; font-size:12px; font-weight:900; }
+    .stats-scatter-median-label { fill:#7a8590; font-size:10px; font-weight:800; }
+    .stats-scatter-point-halo { fill:#d91f55; fill-opacity:.12; pointer-events:none; }
+    .stats-scatter-point { fill:#725a6d; fill-opacity:.76; stroke:#fff; stroke-width:1.8; cursor:crosshair; filter:drop-shadow(0 2px 3px rgba(36,22,32,.18)); transition:r .16s ease,fill-opacity .16s ease,stroke-width .16s ease; }
+    .stats-scatter-point.is-leader { fill:#d91f55; fill-opacity:.96; }
+    .stats-scatter-point:hover,.stats-scatter-point:focus { r:10; fill-opacity:1; stroke:#25152d; stroke-width:2.5; outline:none; }
+    .stats-scatter-callout-line { stroke:#9da6af; stroke-width:1.1; }
+    .stats-scatter-callout rect { fill:rgba(255,255,255,.96); stroke:#d8dee4; stroke-width:1; filter:drop-shadow(0 3px 5px rgba(26,32,39,.12)); }
+    .stats-scatter-label { fill:#27313b; font-family:inherit; font-size:11px; font-weight:900; }
+    .stats-scatter-tooltip { position:absolute; z-index:4; min-width:225px; max-width:290px; padding:13px 15px; border:1px solid #333d48; border-radius:12px; background:#17202a; color:#fff; box-shadow:0 14px 36px rgba(17,21,27,.28); pointer-events:none; transform:translate(-50%,-116%); direction:rtl; text-align:right; }
     .stats-scatter-tooltip[hidden] { display:none; }
     .stats-scatter-tooltip strong,.stats-scatter-tooltip span { display:block; }
-    .stats-scatter-tooltip strong { font-size:11px; }
-    .stats-scatter-tooltip small { display:block; margin-top:1px; color:#c2c9d0; font-size:8px; }
-    .stats-scatter-tooltip span { margin-top:5px; color:#fff; font-size:9px; font-variant-numeric:tabular-nums; }
-    .stats-scatter-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:8px; color:#7e8790; font-size:8px; line-height:1.8; }
-    .stats-scatter-legend { display:flex; align-items:center; gap:10px; flex:none; }
-    .stats-scatter-legend span { display:flex; align-items:center; gap:5px; }
-    .stats-scatter-legend i { width:7px; height:7px; border-radius:50%; background:#7d506d; }
+    .stats-scatter-tooltip strong { font-size:15px; line-height:1.6; }
+    .stats-scatter-tooltip small { display:block; margin-top:2px; color:#bdc7d1; font-size:12px; line-height:1.6; }
+    .stats-scatter-tooltip span { margin-top:8px; color:#fff; font-size:13px; line-height:1.9; font-weight:750; font-variant-numeric:tabular-nums; }
+    .stats-scatter-foot { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:12px; padding:0; border:0; background:transparent; color:#66717d; font-size:12px; line-height:1.8; }
+    .stats-scatter-legend { display:flex; align-items:center; gap:15px; flex:none; font-weight:750; }
+    .stats-scatter-legend span { display:flex; align-items:center; gap:7px; }
+    .stats-scatter-legend i { width:10px; height:10px; border:2px solid #fff; border-radius:50%; background:#725a6d; box-shadow:0 0 0 1px #9ba4ae; }
     .stats-scatter-legend .leader i { background:#d91f55; }
 
     @media(max-width:980px) {
@@ -918,12 +928,15 @@
       .stats-ranking-head span:nth-child(3),.stats-data-participation { display:none; }
       .stats-data-value { font-size:13px; }
       .stats-dataset-note { align-items:flex-start; flex-direction:column; }
-      .stats-scatter { padding:12px 8px 10px; }
+      .stats-scatter { padding:17px 10px 14px; }
+      .stats-scatter-title h2 { font-size:20px; }
+      .stats-scatter-title p { font-size:13px; }
       .stats-scatter-controls { display:grid; grid-template-columns:1fr 1fr; }
       .stats-scatter-select { min-width:0; }
       .stats-scatter-select.mode { grid-column:1/-1; min-width:0; }
-      .stats-scatter-stage { min-height:365px; }
-      .stats-scatter-stage svg { height:365px; }
+      .stats-scatter-select select { font-size:13px; }
+      .stats-scatter-stage { min-height:430px; border-radius:12px; }
+      .stats-scatter-stage svg { height:430px; }
       .stats-scatter-foot { align-items:flex-start; flex-direction:column; }
       main { padding-top:18px; }
       .score-strip { height:108px; padding-top:6px; }
@@ -1565,13 +1578,19 @@
     html[data-theme="dark"] .stats-scatter { border-color:var(--line); background:linear-gradient(180deg,#181d24 0%,#161b21 100%); }
     html[data-theme="dark"] .stats-scatter-title h2,html[data-theme="dark"] .stats-scatter-axis-title { color:var(--ink); fill:var(--ink); }
     html[data-theme="dark"] .stats-scatter-stage { border-color:#343c46; background:#1b2128; }
+    html[data-theme="dark"] .stats-scatter-quadrant { fill:#1b2128; }
+    html[data-theme="dark"] .stats-scatter-quadrant.is-best { fill:#2a1b25; }
     html[data-theme="dark"] .stats-scatter-grid { stroke:#303842; }
     html[data-theme="dark"] .stats-scatter-median { stroke:#66717d; }
     html[data-theme="dark"] .stats-scatter-frame { stroke:#46515d; }
     html[data-theme="dark"] .stats-scatter-tick { fill:#99a4af; }
+    html[data-theme="dark"] .stats-scatter-zone-label { fill:#ff739a; }
+    html[data-theme="dark"] .stats-scatter-median-label { fill:#9faab5; }
     html[data-theme="dark"] .stats-scatter-point { stroke:#1b2128; }
     html[data-theme="dark"] .stats-scatter-point:hover,html[data-theme="dark"] .stats-scatter-point:focus { stroke:#f2f5f7; }
-    html[data-theme="dark"] .stats-scatter-label { fill:#e8edf1; stroke:#1b2128; }
+    html[data-theme="dark"] .stats-scatter-callout rect { fill:rgba(24,30,37,.96); stroke:#4a5561; }
+    html[data-theme="dark"] .stats-scatter-callout-line { stroke:#75818d; }
+    html[data-theme="dark"] .stats-scatter-label { fill:#e8edf1; }
     html[data-theme="dark"] .stats-scatter-tooltip { border-color:#4a5561; background:#0f141a; }
     html[data-theme="dark"] .stats-ranking-list,html[data-theme="dark"] .stats-ranking-head,html[data-theme="dark"] .stats-data-row,html[data-theme="dark"] .team-fixture,html[data-theme="dark"] .fixture-card + .fixture-card,html[data-theme="dark"] .standings-table td,html[data-theme="dark"] .player-data-table td { border-color:#2c333c; }
     html[data-theme="dark"] .standings-table tbody tr.standing-row.top td,html[data-theme="dark"] .standings-table tbody tr.standing-row.ucl td { background:#172638; }
@@ -2791,8 +2810,38 @@
     function statsChartScale(value,domain,start,end){return start+(value-domain[0])/(domain[1]-domain[0])*(end-start);}
     function statsChartTicks(domain,count=5){return Array.from({length:count},(_,index)=>domain[0]+(domain[1]-domain[0])*index/(count-1));}
     function statsChartTick(value){const absolute=Math.abs(value);return value.toLocaleString('fa-IR',{maximumFractionDigits:absolute>=100?0:absolute>=10?1:2});}
-    function positionStatsChartTooltip(event,item,xMetric,yMetric){const stage=document.getElementById('statsScatterStage'),tooltip=document.getElementById('statsScatterTooltip');if(!stage||!tooltip)return;const bounds=stage.getBoundingClientRect(),clientX=event.clientX??bounds.left+bounds.width/2,clientY=event.clientY??bounds.top+bounds.height/2,left=Math.min(bounds.width-116,Math.max(116,clientX-bounds.left)),top=Math.max(82,clientY-bounds.top);tooltip.style.left=`${left}px`;tooltip.style.top=`${top}px`;tooltip.innerHTML=`<strong>${esc(statsPlayerName(item.row.n))}</strong><small>${esc(persianTeamName(item.row.t))} · ${faNumber(Math.round(item.row.m||0))} دقیقه</small><span>${esc(xMetric.label)}: ${esc(statsFormattedValue(item.x,xMetric))}<br>${esc(yMetric.label)}: ${esc(statsFormattedValue(item.y,yMetric))}</span>`;tooltip.hidden=false;}
-    function renderStatsScatter(){const stage=document.getElementById('statsScatterStage'),svg=document.getElementById('statsScatterSvg'),summary=document.getElementById('statsScatterSummary'),tooltip=document.getElementById('statsScatterTooltip');if(!stage||!svg||!summary)return;const rows=statsChartRows(),xMetric=statsChartMetric(statsChartState.x),yMetric=statsChartMetric(statsChartState.y),width=Math.max(320,Math.round(stage.clientWidth||900)),height=matchMedia('(max-width:720px)').matches?365:450,margin={top:24,right:25,bottom:55,left:68},plot={left:margin.left,right:width-margin.right,top:margin.top,bottom:height-margin.bottom};statsChartLastWidth=width;svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.setAttribute('aria-label',`مقایسه ${xMetric?.label||''} و ${yMetric?.label||''} برای ${faNumber(rows.length)} بازیکن`);if(!rows.length){svg.innerHTML='<text x="50%" y="50%" text-anchor="middle" class="stats-scatter-axis-title">برای این انتخاب داده کافی وجود ندارد.</text>';summary.textContent='داده‌ای برای رسم نمودار پیدا نشد.';return;}const xDomain=statsChartDomain(rows.map(item=>item.x)),yDomain=statsChartDomain(rows.map(item=>item.y)),xTicks=statsChartTicks(xDomain),yTicks=statsChartTicks(yDomain),xMedian=[...rows].sort((a,b)=>a.x-b.x)[Math.floor(rows.length/2)].x,yMedian=[...rows].sort((a,b)=>a.y-b.y)[Math.floor(rows.length/2)].y,xPos=value=>statsChartScale(value,xDomain,plot.left,plot.right),yPos=value=>statsChartScale(value,yDomain,plot.bottom,plot.top),grid=[...xTicks.map(value=>`<line class="stats-scatter-grid" x1="${xPos(value)}" y1="${plot.top}" x2="${xPos(value)}" y2="${plot.bottom}"></line><text class="stats-scatter-tick" x="${xPos(value)}" y="${plot.bottom+19}" text-anchor="middle">${esc(statsChartTick(value))}</text>`),...yTicks.map(value=>`<line class="stats-scatter-grid" x1="${plot.left}" y1="${yPos(value)}" x2="${plot.right}" y2="${yPos(value)}"></line><text class="stats-scatter-tick" x="${plot.left-10}" y="${yPos(value)+3}" text-anchor="end">${esc(statsChartTick(value))}</text>`)].join(''),points=rows.map((item,index)=>{const cx=xPos(item.x),cy=yPos(item.y),labelRight=index%2===0&&cx<plot.right-100,labelY=Math.min(plot.bottom-4,Math.max(plot.top+9,cy+[-11,14,-14,17,-18,20][index])),label=index<6?`<text class="stats-scatter-label" x="${labelRight?cx+8:cx-8}" y="${labelY}" text-anchor="${labelRight?'start':'end'}">${esc(statsPlayerName(item.row.n))}</text>`:'';return `<g><circle class="stats-scatter-point${index<10?' is-leader':''}" data-stats-point="${index}" tabindex="0" cx="${cx}" cy="${cy}" r="${index<10?5.7:4.3}" aria-label="${esc(statsPlayerName(item.row.n))}؛ ${esc(xMetric.label)} ${esc(statsFormattedValue(item.x,xMetric))}؛ ${esc(yMetric.label)} ${esc(statsFormattedValue(item.y,yMetric))}"></circle>${label}</g>`;}).join('');svg.innerHTML=`<rect class="stats-scatter-frame" x="${plot.left}" y="${plot.top}" width="${plot.right-plot.left}" height="${plot.bottom-plot.top}"></rect>${grid}<line class="stats-scatter-median" x1="${xPos(xMedian)}" y1="${plot.top}" x2="${xPos(xMedian)}" y2="${plot.bottom}"></line><line class="stats-scatter-median" x1="${plot.left}" y1="${yPos(yMedian)}" x2="${plot.right}" y2="${yPos(yMedian)}"></line><text class="stats-scatter-axis-title" x="${(plot.left+plot.right)/2}" y="${height-13}" text-anchor="middle">${esc(xMetric.label)}${statsChartState.mode==='rate'&&xMetric.rateable?' · در ۹۰ دقیقه':''}</text><text class="stats-scatter-axis-title" x="18" y="${(plot.top+plot.bottom)/2}" text-anchor="middle" transform="rotate(-90 18 ${(plot.top+plot.bottom)/2})">${esc(yMetric.label)}${statsChartState.mode==='rate'&&yMetric.rateable?' · در ۹۰ دقیقه':''}</text>${points}`;summary.textContent=`${faNumber(rows.length)} بازیکن از ${window.OPTA_STATS_DATA[statsExplorerState.league].name} · حداقل ${faNumber(statsExplorerState.minimum)} دقیقه · خطوط نقطه‌چین میانه ۵۰ بازیکن را نشان می‌دهند.`;svg.querySelectorAll('[data-stats-point]').forEach(point=>{const item=rows[Number(point.dataset.statsPoint)];point.addEventListener('pointerenter',event=>positionStatsChartTooltip(event,item,xMetric,yMetric));point.addEventListener('pointermove',event=>positionStatsChartTooltip(event,item,xMetric,yMetric));point.addEventListener('pointerleave',()=>{tooltip.hidden=true;});point.addEventListener('focus',event=>{const box=point.getBoundingClientRect();positionStatsChartTooltip({clientX:box.left+box.width/2,clientY:box.top},item,xMetric,yMetric);});point.addEventListener('blur',()=>{tooltip.hidden=true;});});}
+    function positionStatsChartTooltip(event,item,xMetric,yMetric){
+      const stage=document.getElementById('statsScatterStage'),tooltip=document.getElementById('statsScatterTooltip');if(!stage||!tooltip)return;
+      const bounds=stage.getBoundingClientRect(),clientX=event.clientX??bounds.left+bounds.width/2,clientY=event.clientY??bounds.top+bounds.height/2,relativeY=clientY-bounds.top,left=Math.min(bounds.width-126,Math.max(126,clientX-bounds.left)),placeBelow=relativeY<135,top=Math.min(bounds.height-38,Math.max(34,relativeY));
+      tooltip.style.left=`${left}px`;tooltip.style.top=`${top}px`;tooltip.style.transform=placeBelow?'translate(-50%,24px)':'translate(-50%,-116%)';
+      tooltip.innerHTML=`<strong>${esc(statsPlayerName(item.row.n))}</strong><small>${esc(persianTeamName(item.row.t))} · ${faNumber(Math.round(item.row.m||0))} دقیقه</small><span>${esc(xMetric.label)}: ${esc(statsFormattedValue(item.x,xMetric))}<br>${esc(yMetric.label)}: ${esc(statsFormattedValue(item.y,yMetric))}</span>`;tooltip.hidden=false;
+    }
+    function statsChartCallouts(rows,xPos,yPos,plot,isMobile){
+      const placed=[],limit=isMobile?4:8;
+      return rows.slice(0,limit).map((item,index)=>{
+        const cx=xPos(item.x),cy=yPos(item.y),name=statsPlayerName(item.row.n),boxWidth=Math.min(isMobile?112:148,Math.max(76,name.length*(isMobile?6.2:7.1)+22)),boxHeight=28;
+        const candidates=[[12,-39],[-boxWidth-12,-39],[12,11],[-boxWidth-12,11],[17,-14],[-boxWidth-17,-14]];
+        let box;
+        for(const [dx,dy] of candidates){const candidate={x:Math.min(plot.right-boxWidth-4,Math.max(plot.left+4,cx+dx)),y:Math.min(plot.bottom-boxHeight-4,Math.max(plot.top+4,cy+dy)),w:boxWidth,h:boxHeight};if(!placed.some(other=>candidate.x<other.x+other.w+5&&candidate.x+candidate.w+5>other.x&&candidate.y<other.y+other.h+5&&candidate.y+candidate.h+5>other.y)){box=candidate;break;}}
+        if(!box)box={x:Math.min(plot.right-boxWidth-4,Math.max(plot.left+4,cx+(index%2?14:-boxWidth-14))),y:Math.min(plot.bottom-boxHeight-4,Math.max(plot.top+4,cy+(index%3-1)*33)),w:boxWidth,h:boxHeight};placed.push(box);
+        const edgeX=cx<box.x?box.x:cx>box.x+box.w?box.x+box.w:Math.min(box.x+box.w-8,Math.max(box.x+8,cx)),edgeY=cy<box.y?box.y:cy>box.y+box.h?box.y+box.h:box.y+box.h/2;
+        return `<g class="stats-scatter-callout" aria-hidden="true"><line class="stats-scatter-callout-line" x1="${cx}" y1="${cy}" x2="${edgeX}" y2="${edgeY}"></line><rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" rx="8"></rect><text class="stats-scatter-label" x="${box.x+box.w/2}" y="${box.y+18}" text-anchor="middle" direction="rtl">${esc(name)}</text></g>`;
+      }).join('');
+    }
+    function renderStatsScatter(){
+      const stage=document.getElementById('statsScatterStage'),svg=document.getElementById('statsScatterSvg'),summary=document.getElementById('statsScatterSummary'),tooltip=document.getElementById('statsScatterTooltip');if(!stage||!svg||!summary)return;
+      const rows=statsChartRows(),xMetric=statsChartMetric(statsChartState.x),yMetric=statsChartMetric(statsChartState.y),isMobile=matchMedia('(max-width:720px)').matches,width=Math.max(320,Math.round(stage.clientWidth||900)),height=isMobile?430:540,margin=isMobile?{top:31,right:20,bottom:70,left:67}:{top:36,right:34,bottom:78,left:82},plot={left:margin.left,right:width-margin.right,top:margin.top,bottom:height-margin.bottom};
+      statsChartLastWidth=width;svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.setAttribute('aria-label',`مقایسه ${xMetric?.label||''} و ${yMetric?.label||''} برای ${faNumber(rows.length)} بازیکن`);
+      if(!rows.length){svg.innerHTML='<text x="50%" y="50%" text-anchor="middle" class="stats-scatter-axis-title">برای این انتخاب داده کافی وجود ندارد.</text>';summary.textContent='داده‌ای برای رسم نمودار پیدا نشد.';return;}
+      const xDomain=statsChartDomain(rows.map(item=>item.x)),yDomain=statsChartDomain(rows.map(item=>item.y)),xTicks=statsChartTicks(xDomain,isMobile?5:6),yTicks=statsChartTicks(yDomain,isMobile?5:6),xMedian=[...rows].sort((a,b)=>a.x-b.x)[Math.floor(rows.length/2)].x,yMedian=[...rows].sort((a,b)=>a.y-b.y)[Math.floor(rows.length/2)].y,xPos=value=>statsChartScale(value,xDomain,plot.left,plot.right),yPos=value=>statsChartScale(value,yDomain,plot.bottom,plot.top),medianX=xPos(xMedian),medianY=yPos(yMedian);
+      const bestX=xMetric.lower?plot.left:medianX,bestY=yMetric.lower?medianY:plot.top,bestWidth=xMetric.lower?medianX-plot.left:plot.right-medianX,bestHeight=yMetric.lower?plot.bottom-medianY:medianY-plot.top,bestLabelX=bestX+bestWidth/2,bestLabelY=yMetric.lower?bestY+bestHeight-10:bestY+18;
+      const grid=[...xTicks.map(value=>`<line class="stats-scatter-grid" x1="${xPos(value)}" y1="${plot.top}" x2="${xPos(value)}" y2="${plot.bottom}"></line><text class="stats-scatter-tick" x="${xPos(value)}" y="${plot.bottom+24}" text-anchor="middle">${esc(statsChartTick(value))}</text>`),...yTicks.map(value=>`<line class="stats-scatter-grid" x1="${plot.left}" y1="${yPos(value)}" x2="${plot.right}" y2="${yPos(value)}"></line><text class="stats-scatter-tick" x="${plot.left-13}" y="${yPos(value)+4}" text-anchor="end">${esc(statsChartTick(value))}</text>`)].join('');
+      const points=rows.map((item,index)=>{const cx=xPos(item.x),cy=yPos(item.y),leader=index<10,halo=leader?`<circle class="stats-scatter-point-halo" cx="${cx}" cy="${cy}" r="12"></circle>`:'';return `<g>${halo}<circle class="stats-scatter-point${leader?' is-leader':''}" data-stats-point="${index}" tabindex="0" cx="${cx}" cy="${cy}" r="${leader?7:5.2}" aria-label="${esc(statsPlayerName(item.row.n))}؛ ${esc(xMetric.label)} ${esc(statsFormattedValue(item.x,xMetric))}؛ ${esc(yMetric.label)} ${esc(statsFormattedValue(item.y,yMetric))}"></circle></g>`;}).join('');
+      const callouts=statsChartCallouts(rows,xPos,yPos,plot,isMobile);
+      svg.innerHTML=`<rect class="stats-scatter-quadrant" x="${plot.left}" y="${plot.top}" width="${plot.right-plot.left}" height="${plot.bottom-plot.top}"></rect><rect class="stats-scatter-quadrant is-best" x="${bestX}" y="${bestY}" width="${bestWidth}" height="${bestHeight}"></rect>${grid}<rect class="stats-scatter-frame" x="${plot.left}" y="${plot.top}" width="${plot.right-plot.left}" height="${plot.bottom-plot.top}"></rect><line class="stats-scatter-median" x1="${medianX}" y1="${plot.top}" x2="${medianX}" y2="${plot.bottom}"></line><line class="stats-scatter-median" x1="${plot.left}" y1="${medianY}" x2="${plot.right}" y2="${medianY}"></line><text class="stats-scatter-zone-label" x="${bestLabelX}" y="${bestLabelY}" text-anchor="middle">برتر در هر دو شاخص</text><text class="stats-scatter-median-label" x="${medianX+7}" y="${plot.bottom-8}">میانه</text><text class="stats-scatter-axis-title" x="${(plot.left+plot.right)/2}" y="${height-18}" text-anchor="middle">${esc(xMetric.label)}${statsChartState.mode==='rate'&&xMetric.rateable?' · در ۹۰ دقیقه':''}</text><text class="stats-scatter-axis-title" x="23" y="${(plot.top+plot.bottom)/2}" text-anchor="middle" transform="rotate(-90 23 ${(plot.top+plot.bottom)/2})">${esc(yMetric.label)}${statsChartState.mode==='rate'&&yMetric.rateable?' · در ۹۰ دقیقه':''}</text>${points}${callouts}`;
+      summary.textContent=`${faNumber(rows.length)} بازیکن از ${window.OPTA_STATS_DATA[statsExplorerState.league].name} · حداقل ${faNumber(statsExplorerState.minimum)} دقیقه · خطوط نقطه‌چین مقدار میانه را نشان می‌دهند.`;
+      svg.querySelectorAll('[data-stats-point]').forEach(point=>{const item=rows[Number(point.dataset.statsPoint)];point.addEventListener('pointerenter',event=>positionStatsChartTooltip(event,item,xMetric,yMetric));point.addEventListener('pointermove',event=>positionStatsChartTooltip(event,item,xMetric,yMetric));point.addEventListener('pointerleave',()=>{tooltip.hidden=true;});point.addEventListener('focus',event=>{const box=point.getBoundingClientRect();positionStatsChartTooltip({clientX:box.left+box.width/2,clientY:box.top},item,xMetric,yMetric);});point.addEventListener('blur',()=>{tooltip.hidden=true;});});
+    }
     function renderStatsExplorer(leagueId){const all=window.OPTA_STATS_DATA||{},data=all[leagueId]||all['eng.1'];if(!data)return;statsExplorerState.league=Object.hasOwn(all,leagueId)?leagueId:'eng.1';const groups=statsExplorerGroups(),group=statsExplorerGroup(),metric=statsExplorerMetric(),options=Object.entries(all).map(([id,item])=>`<option value="${esc(id)}"${id===statsExplorerState.league?' selected':''}>${esc(item.name)}</option>`).join(''),modeOptions=statsExplorerState.entity==='players'?'<option value="total">مجموع فصل</option><option value="rate">به‌ازای ۹۰ دقیقه</option>':'<option value="total">مجموع فصل</option><option value="rate">میانگین هر بازی</option>',minimum=statsExplorerState.entity==='players'?`<label class="stats-tool-select"><span>حداقل بازی</span><select id="statsMinimum"><option value="0"${statsExplorerState.minimum===0?' selected':''}>بدون محدودیت</option><option value="90"${statsExplorerState.minimum===90?' selected':''}>۹۰ دقیقه</option><option value="180"${statsExplorerState.minimum===180?' selected':''}>۱۸۰ دقیقه</option><option value="300"${statsExplorerState.minimum===300?' selected':''}>۳۰۰ دقیقه</option></select></label>`:'';
       document.getElementById('statsView').innerHTML=`<header class="stats-hero stats-hero-compact"><div class="stats-hero-copy"><div class="stats-hero-head"><span class="stats-eyebrow">دیتاسنتر یکپارچه نیمکت</span><label class="stats-league-picker"><select id="statsLeagueSelect" aria-label="انتخاب لیگ برای نمایش آمار">${options}</select></label></div><h1>آمار کامل ${esc(data.name)}</h1><p>${faNumber(groups.reduce((sum,item)=>sum+item.metrics.length,0))} شاخص ${statsExplorerState.entity==='players'?'بازیکنان':'تیم‌ها'}؛ فصل ${esc(data.season)} با داده Opta Analyst</p><div class="stats-hero-meta"><span>${faNumber(data.players.length)} بازیکن</span><span>${faNumber(data.teams.length)} تیم</span><span>${faNumber(window.OPTA_STATS_METRICS.players.reduce((sum,item)=>sum+item.metrics.length,0))} شاخص بازیکن</span><span>${faNumber(window.OPTA_STATS_METRICS.teams.reduce((sum,item)=>sum+item.metrics.length,0))} شاخص تیم</span><span>به‌روزرسانی: ${esc(statsUpdatedLabel(data.updated))}</span></div></div><a class="stats-competition-mark" href="${esc(data.source)}" target="_blank" rel="noopener" aria-label="منبع Opta Analyst"><img src="${esc(data.logo)}" alt="نشان ${esc(data.name)}" loading="lazy" onerror="this.remove()"></a></header><section class="stats-explorer" aria-label="مرورگر آمار"><div class="stats-explorer-toolbar"><div class="stats-entity-tabs" role="tablist" aria-label="نوع رتبه‌بندی"><button class="stats-entity-tab${statsExplorerState.entity==='players'?' active':''}" type="button" data-stats-entity="players">بازیکنان</button><button class="stats-entity-tab${statsExplorerState.entity==='teams'?' active':''}" type="button" data-stats-entity="teams">تیم‌ها</button></div><label class="stats-search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="statsSearch" type="search" value="${esc(statsExplorerState.query)}" placeholder="جست‌وجوی بازیکن یا تیم" aria-label="جست‌وجو در آمار"></label><label class="stats-tool-select"><span>نوع محاسبه</span><select id="statsMode">${modeOptions}</select></label>${minimum}</div><nav class="stats-group-tabs" aria-label="دسته‌های آماری">${groups.map(item=>`<button class="stats-group-tab${item.id===group.id?' active':''}" type="button" data-stats-group="${esc(item.id)}">${esc(item.label)}<b>${faNumber(item.metrics.length)}</b></button>`).join('')}</nav><div class="stats-metric-shell"><header class="stats-metric-head"><div><h2 id="statsMetricTitle">${esc(metric.label)}</h2><p id="statsMetricDescription"></p></div><span class="stats-result-count" id="statsResultCount"></span></header><div class="stats-metric-tabs" aria-label="انتخاب شاخص">${group.metrics.map(item=>`<button class="stats-metric-tab${item.key===metric.key?' active':''}" type="button" data-stats-metric="${esc(item.key)}">${esc(item.label)}</button>`).join('')}</div><div class="stats-ranking-head" aria-hidden="true"><span>رتبه</span><span>${statsExplorerState.entity==='players'?'بازیکن':'تیم'}</span><span>حضور</span><span>مقدار</span><span>رتبه نسبی</span></div><div class="stats-ranking-list" id="statsRankingList"></div><div class="stats-dataset-note"><span>همه شاخص‌های عددی عمومی این بخش استخراج شده‌اند؛ جست‌وجو روی کل دیتاست انجام می‌شود.</span><a href="${esc(data.source)}" target="_blank" rel="noopener">منبع و جدول اصلی Opta Analyst ↗</a></div></div>${statsChartMarkup()}</section>`;
       document.getElementById('statsMode').value=statsExplorerState.mode;updateStatsRanking();statsChartLastWidth=0;requestAnimationFrame(renderStatsScatter);if(statsChartResizeObserver)statsChartResizeObserver.disconnect();statsChartResizeObserver=new ResizeObserver(entries=>{const width=Math.round(entries[0]?.contentRect?.width||0);if(width&&Math.abs(width-statsChartLastWidth)>1)renderStatsScatter();});statsChartResizeObserver.observe(document.getElementById('statsScatterStage'));

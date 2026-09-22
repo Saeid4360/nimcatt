@@ -103,6 +103,11 @@ assert.match(homepage, /theanalyst\.com\/competition\/premier-league\/stats/);
 assert.match(homepage, /function showStats\(\)/);
 assert.match(homepage, /id="statsLeagueSelect"/);
 assert.match(homepage, /function renderStatsPage/);
+assert.match(homepage, /function renderStatsExplorer/);
+assert.match(homepage, /function updateStatsRanking/);
+assert.match(homepage, /data-stats-entity="players"/);
+assert.match(homepage, /id="statsMode"/);
+assert.match(homepage, /id="statsMinimum"/);
 assert.match(homepage, /data\/opta-stats\.js/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
@@ -112,6 +117,10 @@ assert.match(optaStatsSource, /"esp\.1"/);
 assert.match(optaStatsSource, /"ita\.1"/);
 assert.match(optaStatsSource, /"ger\.1"/);
 assert.match(optaStatsSource, /"fra\.1"/);
+assert.match(optaStatsSource, /OPTA_STATS_DATA/);
+assert.match(optaStatsSource, /OPTA_STATS_METRICS/);
+assert.match(optaStatsSource, /"goalkeeping"/);
+assert.match(optaStatsSource, /"sequences"/);
 
 const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);

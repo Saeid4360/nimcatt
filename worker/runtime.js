@@ -744,14 +744,26 @@ async function playerDataResponse(request, env, rawId) {
     env.DB.prepare(`SELECT s.*,t.name_en AS team_name_en,t.name_fa AS team_name_fa FROM player_season_stats s
       LEFT JOIN teams t ON t.id=s.team_id WHERE s.player_id=?1 ORDER BY s.season_year DESC,s.league`).bind(playerId).all(),
     env.DB.prepare(`SELECT s.*,f.external_id AS fixture_external_id,f.league,f.season_year,f.round_number,f.kickoff_at,f.home_team_id,f.away_team_id,f.status,
-      t.name_en AS team_name_en,t.name_fa AS team_name_fa FROM player_match_stats s
+      t.name_en AS team_name_en,t.name_fa AS team_name_fa,
+      ht.name_en AS home_team_name_en,COALESCE(htl.display_name,ht.name_fa) AS home_team_name_fa,
+      at.name_en AS away_team_name_en,COALESCE(atl.display_name,at.name_fa) AS away_team_name_fa
+      FROM player_match_stats s
       JOIN fixtures f ON f.id=s.fixture_id LEFT JOIN teams t ON t.id=s.team_id
+      LEFT JOIN teams ht ON ht.id=f.home_team_id LEFT JOIN teams at ON at.id=f.away_team_id
+      LEFT JOIN entity_localizations htl ON htl.entity_type='team' AND htl.entity_id=ht.id AND htl.locale='fa'
+      LEFT JOIN entity_localizations atl ON atl.entity_type='team' AND atl.entity_id=at.id AND atl.locale='fa'
       WHERE s.player_id=?1 ORDER BY f.kickoff_at DESC LIMIT 40`).bind(playerId).all(),
-    env.DB.prepare(`SELECT f.league,f.season_year,f.round_number,COUNT(*) AS matches,SUM(COALESCE(s.minutes,0)) AS minutes,
-      SUM(COALESCE(s.goals,0)) AS goals,SUM(COALESCE(s.assists,0)) AS assists,AVG(s.rating) AS rating,
-      SUM(COALESCE(s.shots_total,0)) AS shots_total,SUM(COALESCE(s.shots_on_target,0)) AS shots_on_target,
-      SUM(COALESCE(s.key_passes,0)) AS key_passes,SUM(COALESCE(s.duels_total,0)) AS duels_total,
-      SUM(COALESCE(s.duels_won,0)) AS duels_won,SUM(COALESCE(s.tackles,0)) AS tackles,SUM(COALESCE(s.interceptions,0)) AS interceptions
+    env.DB.prepare(`SELECT f.league,f.season_year,f.round_number,COUNT(*) AS matches,
+      CASE WHEN COUNT(s.minutes)>0 THEN SUM(s.minutes) END AS minutes,
+      CASE WHEN COUNT(s.goals)>0 THEN SUM(s.goals) END AS goals,
+      CASE WHEN COUNT(s.assists)>0 THEN SUM(s.assists) END AS assists,AVG(s.rating) AS rating,
+      CASE WHEN COUNT(s.shots_total)>0 THEN SUM(s.shots_total) END AS shots_total,
+      CASE WHEN COUNT(s.shots_on_target)>0 THEN SUM(s.shots_on_target) END AS shots_on_target,
+      CASE WHEN COUNT(s.key_passes)>0 THEN SUM(s.key_passes) END AS key_passes,
+      CASE WHEN COUNT(s.duels_total)>0 THEN SUM(s.duels_total) END AS duels_total,
+      CASE WHEN COUNT(s.duels_won)>0 THEN SUM(s.duels_won) END AS duels_won,
+      CASE WHEN COUNT(s.tackles)>0 THEN SUM(s.tackles) END AS tackles,
+      CASE WHEN COUNT(s.interceptions)>0 THEN SUM(s.interceptions) END AS interceptions
       FROM player_match_stats s JOIN fixtures f ON f.id=s.fixture_id WHERE s.player_id=?1
       GROUP BY f.league,f.season_year,f.round_number ORDER BY f.season_year DESC,f.round_number DESC`).bind(playerId).all(),
   ]);

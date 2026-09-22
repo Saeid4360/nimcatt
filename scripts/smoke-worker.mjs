@@ -95,7 +95,7 @@ assert.match(homepage, /NIMKAT_PLAYER_API='\/api\/players'/);
 assert.match(homepage, /پاس کلیدی/);
 assert.match(homepage, /function persianPlayerName/);
 assert.match(homepage, /api\/v1\/json\/123\/searchplayers/);
-assert.match(homepage, /آوانویسی خودکار/);
+assert.match(homepage, /نام فارسی تحریریه/);
 
 const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);

@@ -149,6 +149,8 @@ assert.match(agentPage, /id="agentSearch"/);
 assert.match(agentPage, /id="sourceFilter"/);
 assert.match(agentPage, /window\.LIVE_NEWS/);
 assert.match(agentPage, /\/data\/news\.js/);
+assert.match(agentPage, /src="\.\/data\/news\.js\?v=/);
+assert.match(agentPage, /url\('\.\/assets\/fonts\/IRANSansXFaNum-Regular\.woff2'\)/);
 assert.match(agentPage, /لینک منبع اصلی/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);

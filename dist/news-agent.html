@@ -6,10 +6,10 @@
   <meta name="color-scheme" content="light">
   <title>خبرخوان نیمکت</title>
   <style>
-    @font-face{font-family:IranSans;src:url('/assets/fonts/IRANSansXFaNum-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
-    @font-face{font-family:IranSans;src:url('/assets/fonts/IRANSansXFaNum-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
-    @font-face{font-family:IranSans;src:url('/assets/fonts/IRANSansXFaNum-DemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
-    @font-face{font-family:IranSans;src:url('/assets/fonts/IRANSansXFaNum-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+    @font-face{font-family:IranSans;src:url('./assets/fonts/IRANSansXFaNum-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:IranSans;src:url('./assets/fonts/IRANSansXFaNum-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+    @font-face{font-family:IranSans;src:url('./assets/fonts/IRANSansXFaNum-DemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+    @font-face{font-family:IranSans;src:url('./assets/fonts/IRANSansXFaNum-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
     :root{--ink:#17201c;--muted:#68726d;--line:#dbe1dd;--paper:#f3f5f2;--card:#fff;--green:#0e6b4d;--green-2:#e7f3ed;--lime:#c8ff5b;--danger:#b34242;--shadow:0 12px 35px rgba(18,34,27,.07)}
     *{box-sizing:border-box}
     body{margin:0;background:var(--paper);color:var(--ink);font-family:IranSans,Tahoma,sans-serif;line-height:1.75}
@@ -69,7 +69,7 @@
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="topbar-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>نیمکت</span></a><span class="topbar-note">پایش چندمنبعی فوتبال جهان</span><a class="home-link" href="/">بازگشت به سایت</a></div></header>
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true"></span><span>نیمکت</span></a><span class="topbar-note">پایش چندمنبعی فوتبال جهان</span><a class="home-link" href="./index.html">بازگشت به سایت</a></div></header>
   <main>
     <section class="hero">
       <div class="hero-main"><div class="kicker"><span class="pulse"></span>عامل جمع‌آوری فعال</div><h1>خبرخوان نیمکت</h1><p class="lead">آخرین خبرهای فوتبال از چند رسانه معتبر؛ یکسان‌سازی‌شده، بدون تکرار و آماده بازبینی و ترجمه در تحریریه.</p><div class="metrics"><div class="metric"><b id="totalMetric">—</b><span>خبر در خروجی</span></div><div class="metric"><b id="sourceMetric">—</b><span>منبع پاسخ‌گو</span></div><div class="metric"><b id="translatedMetric">—</b><span>آماده انتشار</span></div></div></div>
@@ -85,7 +85,7 @@
     <section class="news-grid" id="newsGrid"><div class="empty" id="emptyState">خبری مطابق این فیلتر پیدا نشد.</div></section>
     <p class="footer-note">نیمکت فقط عنوان، خلاصه کوتاه، تصویر فید و لینک منبع اصلی را نمایش می‌دهد. مالکیت محتوا متعلق به رسانه ناشر است و انتشار نهایی خبر ترجمه‌شده باید پس از بازبینی تحریریه انجام شود.</p>
   </main>
-  <script src="/data/news.js?v=news-agent-20260922-2"></script>
+  <script src="./data/news.js?v=news-agent-20260922-3"></script>
   <script>
     (()=>{
       const news=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];

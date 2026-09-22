@@ -563,7 +563,7 @@ function newsCategory(text = "") {
 }
 
 function blockedNewsTopic(text = "") {
-  return /women(?:'s|’s)?|\buwcl\b|\bwcl\b|frauen|féminin|femenin|femminil|vrouwen|kadın|\/femenino\//i.test(text);
+  return /women(?:'s|’s)?|\buwcl\b|\bwcl\b|frauen|féminin|femenin|femminil|vrouwen|kadın|\/femenino\/|cricket|wicket|test match|county championship|rugby|formula ?1|grand prix|tennis|boxing|golf|\bnfl\b|baseball|basketball|\bnba\b|ice hockey|cycling|motogp|horse racing|six nations|baloncesto|básquet|pallacanestro|basketbal|tenis|pádel|padel|ciclismo|wielrennen|formule ?1|formel ?1|formula uno|motociclismo|hockey|handball|handbal|atletismo|athlétisme|leichtathletik|darts?|matchplay|snooker/i.test(text);
 }
 
 function parseFeed(xml, source) {
@@ -575,6 +575,7 @@ function parseFeed(xml, source) {
     const rawDescription = feedTag(block, ["description", "summary", "content", "content:encoded"]);
     const link = feedTag(block, ["link"]) || feedAttribute(block, "link", "href") || feedTag(block, ["guid", "id"]);
     if (!title || !/^https?:\/\//i.test(link) || blockedNewsTopic(`${title} ${rawDescription} ${link}`)) continue;
+    if (source.source === "Sky Sports" && !/skysports\.com\/football\//i.test(link)) continue;
     const dateText = feedTag(block, ["pubDate", "published", "updated", "dc:date"]);
     const timestamp = Date.parse(dateText);
     const publishedAt = Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : new Date().toISOString();

@@ -1236,6 +1236,10 @@
     .feature p { color:#eef1f4; }
     .feature .story-meta { color:#d1d6dc; }
     .feature .source-name,.feature .story-meta a { color:#fff; }
+    .feature { height:420px; min-height:420px; }
+    .feature-frame,.feature-media,.feature-copy { height:100%; min-height:0; }
+    .feature-copy { overflow:hidden; }
+    .feature h1 { display:-webkit-box; overflow:hidden; -webkit-box-orient:vertical; -webkit-line-clamp:4; }
 
     /* Compact multi-day match ticker, rebuilt from the reference layout. */
     .score-strip { height:112px; padding-top:8px; background:#f3f4f6; }
@@ -1289,6 +1293,7 @@
       .icon-button,.editor-button,.header-league-shortcut { height:32px; border-radius:7px; }
       .icon-button { width:33px; }
       .editor-button { padding-inline:10px; }
+      .feature { height:390px; min-height:390px; }
       .score-strip { height:105px; padding-top:6px; }
       .score-layout { grid-template-columns:39px minmax(0,1fr); width:calc(100% - 16px); height:92px; }
       .score-controls { gap:5px; }

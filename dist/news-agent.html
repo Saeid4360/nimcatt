@@ -38,10 +38,10 @@
     .health{padding:20px}
     .health-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
     .health h2{font-size:15px;margin:0}.generated{font-size:10px;color:var(--muted)}
-    .source-health{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-    .source-pill{padding:8px 9px;border-radius:10px;background:#f7f9f7;border:1px solid #e3e8e4;display:flex;align-items:center;justify-content:space-between;gap:7px;font-size:11px;font-weight:600;min-width:0}
-    .source-pill span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dot{width:7px;height:7px;border-radius:50%;background:#1b9d6d;flex:none}.dot.off{background:var(--danger)}
-    .toolbar{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px;display:grid;grid-template-columns:minmax(220px,1fr) 190px auto auto;gap:10px;align-items:center;position:sticky;top:76px;z-index:10;box-shadow:0 9px 27px rgba(18,34,27,.06)}
+    .source-health{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:196px;overflow:auto;padding-left:3px;scrollbar-width:thin}
+    .source-pill{padding:7px 9px;border-radius:10px;background:#f7f9f7;border:1px solid #e3e8e4;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1px 7px;font-size:11px;font-weight:600;min-width:0}
+    .source-pill span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.source-pill small{font-size:9px;font-weight:400;color:var(--muted);grid-column:1/2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dot{width:7px;height:7px;border-radius:50%;background:#1b9d6d;flex:none;grid-column:2;grid-row:1/3;align-self:center}.dot.off{background:var(--danger)}
+    .toolbar{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px;display:grid;grid-template-columns:minmax(220px,1fr) 175px 155px auto auto;gap:10px;align-items:center;position:sticky;top:76px;z-index:10;box-shadow:0 9px 27px rgba(18,34,27,.06)}
     .search{position:relative}.search svg{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:#84908a}.search input,.source-select{width:100%;height:42px;border:1px solid var(--line);background:#fafbfa;border-radius:10px;color:var(--ink);outline:none}.search input{padding:0 40px 0 13px}.search input:focus,.source-select:focus{border-color:#76a997;box-shadow:0 0 0 3px rgba(14,107,77,.08)}
     .source-select{padding:0 12px;cursor:pointer}
     .chips{display:flex;gap:6px}.chip{height:38px;border:0;border-radius:9px;padding:0 12px;background:#edf0ee;color:#525c57;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}.chip.active{background:var(--ink);color:white}
@@ -64,7 +64,7 @@
     .review{display:flex;align-items:center;gap:5px}.review:before{content:"";width:6px;height:6px;border-radius:50%;background:#d49b2b}.review.trusted:before{background:#1b9d6d}
     .empty{display:none;background:white;border:1px dashed #cbd4cf;border-radius:15px;padding:50px;text-align:center;color:var(--muted);grid-column:1/-1}
     .footer-note{margin:22px 0 0;background:#e9eeeb;border-radius:11px;padding:11px 15px;color:#606b66;font-size:11px}
-    @media(max-width:980px){.hero{grid-template-columns:1fr}.news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar{grid-template-columns:1fr 180px}.chips{order:3}.reload{order:4}.topbar-note{display:none}}
+    @media(max-width:1080px){.hero{grid-template-columns:1fr}.news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar{grid-template-columns:1fr 180px 165px}.chips{order:4}.reload{order:5}.topbar-note{display:none}}
     @media(max-width:650px){.topbar{height:58px}.topbar-inner,main{width:min(100% - 20px,1280px)}.brand{font-size:18px}.home-link{font-size:11px;padding:6px 9px}.hero-main{padding:21px}.metrics{grid-template-columns:repeat(3,1fr)}.metric{padding:9px}.metric b{font-size:17px}.health{padding:16px}.toolbar{position:static;grid-template-columns:1fr}.chips{overflow:auto;padding-bottom:2px}.news-grid{grid-template-columns:1fr}.story{min-height:370px}.story-media{height:190px}}
   </style>
 </head>
@@ -72,12 +72,13 @@
   <header class="topbar"><div class="topbar-inner"><a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true"></span><span>نیمکت</span></a><span class="topbar-note">پایش چندمنبعی فوتبال جهان</span><a class="home-link" href="./index.html">بازگشت به سایت</a></div></header>
   <main>
     <section class="hero">
-      <div class="hero-main"><div class="kicker"><span class="pulse"></span>عامل جمع‌آوری فعال</div><h1>خبرخوان نیمکت</h1><p class="lead">آخرین خبرهای فوتبال از چند رسانه معتبر؛ یکسان‌سازی‌شده، بدون تکرار و آماده بازبینی و ترجمه در تحریریه.</p><div class="metrics"><div class="metric"><b id="totalMetric">—</b><span>خبر در خروجی</span></div><div class="metric"><b id="sourceMetric">—</b><span>منبع پاسخ‌گو</span></div><div class="metric"><b id="translatedMetric">—</b><span>آماده انتشار</span></div></div></div>
+      <div class="hero-main"><div class="kicker"><span class="pulse"></span>عامل جمع‌آوری فعال</div><h1>خبرخوان نیمکت</h1><p class="lead">خبر و تحلیل فوتبال از رسانه‌های معتبر، تحریریه‌های محلی اروپا و منابع تخصصی داده، تاکتیک و استعدادیابی؛ یکسان‌سازی‌شده و آماده بازبینی.</p><div class="metrics"><div class="metric"><b id="totalMetric">—</b><span>خبر در خروجی</span></div><div class="metric"><b id="sourceMetric">—</b><span>منبع پاسخ‌گو</span></div><div class="metric"><b id="translatedMetric">—</b><span>آماده انتشار</span></div></div></div>
       <aside class="health"><div class="health-head"><h2>سلامت منابع</h2><span class="generated" id="generatedAt">در حال خواندن…</span></div><div class="source-health" id="sourceHealth"></div></aside>
     </section>
     <section class="toolbar" aria-label="فیلتر خبرها">
       <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="agentSearch" type="search" placeholder="جست‌وجو در تیتر، خلاصه و برچسب…" autocomplete="off"></label>
       <select class="source-select" id="sourceFilter" aria-label="انتخاب منبع"><option value="all">همه منابع</option></select>
+      <select class="source-select" id="sourceTypeFilter" aria-label="نوع منبع"><option value="all">همه نوع منابع</option><option value="major">رسانه‌های معتبر</option><option value="local">رسانه‌های محلی</option><option value="analysis">منابع تحلیلی</option></select>
       <div class="chips" id="categoryFilters"><button class="chip active" data-category="all">همه</button><button class="chip" data-category="news">خبر</button><button class="chip" data-category="transfer">نقل‌وانتقالات</button><button class="chip" data-category="analysis">تحلیل</button></div>
       <button class="reload" id="reloadAgent" type="button">دریافت آخرین خروجی</button>
     </section>
@@ -85,13 +86,13 @@
     <section class="news-grid" id="newsGrid"><div class="empty" id="emptyState">خبری مطابق این فیلتر پیدا نشد.</div></section>
     <p class="footer-note">نیمکت فقط عنوان، خلاصه کوتاه، تصویر فید و لینک منبع اصلی را نمایش می‌دهد. مالکیت محتوا متعلق به رسانه ناشر است و انتشار نهایی خبر ترجمه‌شده باید پس از بازبینی تحریریه انجام شود.</p>
   </main>
-  <script src="./data/news.js?v=news-agent-20260922-3"></script>
+  <script src="./data/news.js?v=news-agent-20260922-4"></script>
   <script>
     (()=>{
       const news=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
       const meta=window.LIVE_NEWS_META||{sources:[],generatedAt:null};
       const grid=document.getElementById('newsGrid'),empty=document.getElementById('emptyState');
-      const search=document.getElementById('agentSearch'),source=document.getElementById('sourceFilter');
+      const search=document.getElementById('agentSearch'),source=document.getElementById('sourceFilter'),sourceType=document.getElementById('sourceTypeFilter');
       const fa=new Intl.NumberFormat('fa-IR');
       const state={category:'all'};
       const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
@@ -102,20 +103,21 @@
       const generated=meta.generatedAt?new Intl.DateTimeFormat('fa-IR',{dateStyle:'medium',timeStyle:'short'}).format(new Date(meta.generatedAt)):'نامشخص';
       document.getElementById('generatedAt').textContent=`به‌روزرسانی: ${generated}`;
       const sources=Array.isArray(meta.sources)?meta.sources:[];
-      document.getElementById('sourceHealth').innerHTML=sources.length?sources.map(item=>`<div class="source-pill"><span>${escapeHtml(item.source)}</span><span class="dot ${item.ok?'':'off'}" title="${item.ok?'فعال':'خطا'}"></span></div>`).join(''):'<span class="generated">گزارش وضعیت موجود نیست</span>';
+      document.getElementById('sourceHealth').innerHTML=sources.length?sources.map(item=>`<div class="source-pill"><span>${escapeHtml(item.source)}</span><small>${escapeHtml(item.country||'')} · ${escapeHtml(item.sourceTypeLabel||'رسانه معتبر')}</small><span class="dot ${item.ok?'':'off'}" title="${item.ok?'فعال':'خطا'}"></span></div>`).join(''):'<span class="generated">گزارش وضعیت موجود نیست</span>';
       document.getElementById('totalMetric').textContent=fa.format(news.length);
       document.getElementById('sourceMetric').textContent=fa.format(sources.filter(item=>item.ok).length||sourceNames.length);
       document.getElementById('translatedMetric').textContent=fa.format(news.filter(item=>!item.needsTranslation).length);
       function card(item){
         const image=item.image?`<img src="${escapeHtml(safeUrl(item.image))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML='<div class=\'placeholder\'>${escapeHtml(item.icon||'ن')}</div><span class=\'story-source\'>${escapeHtml(item.source)}</span>'">`:`<div class="placeholder">${escapeHtml(item.icon||'ن')}</div>`;
         const tags=(item.tags||[]).slice(0,3).map(tag=>`<span class="tag">${escapeHtml(tag)}</span>`).join('');
-        return `<article class="story"><div class="story-media">${image}<span class="story-source">${escapeHtml(item.source)}</span></div><div class="story-body"><div class="meta"><span class="kind">${categoryLabel(item.cat)}</span><i></i><span>${escapeHtml(item.lang||'')}</span><i></i><time>${escapeHtml(item.time||'')}</time></div><h3>${escapeHtml(item.title)}</h3><p class="summary">${escapeHtml(item.summary)}</p><div class="tags">${tags}</div><div class="story-foot"><span class="review ${item.needsTranslation?'':'trusted'}">${item.needsTranslation?'نیازمند ترجمه و بازبینی':'دریافت‌شده از ارائه‌دهنده'}</span><a class="origin" href="${escapeHtml(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">لینک منبع اصلی ↗</a></div></div></article>`;
+        return `<article class="story"><div class="story-media">${image}<span class="story-source">${escapeHtml(item.source)}</span></div><div class="story-body"><div class="meta"><span class="kind">${categoryLabel(item.cat)}</span><i></i><span>${escapeHtml(item.sourceTypeLabel||'رسانه معتبر')}</span><i></i><span>${escapeHtml(item.lang||'')}</span><i></i><time>${escapeHtml(item.time||'')}</time></div><h3>${escapeHtml(item.title)}</h3><p class="summary">${escapeHtml(item.summary)}</p><div class="tags">${tags}</div><div class="story-foot"><span class="review ${item.needsTranslation?'':'trusted'}">${item.needsTranslation?'نیازمند ترجمه و بازبینی':'دریافت‌شده از ارائه‌دهنده'}</span><a class="origin" href="${escapeHtml(safeUrl(item.url))}" target="_blank" rel="noopener noreferrer">لینک منبع اصلی ↗</a></div></div></article>`;
       }
       function render(){
         const term=search.value.trim().toLocaleLowerCase('fa');
         const filtered=news.filter(item=>{
           if(state.category!=='all'&&item.cat!==state.category)return false;
           if(source.value!=='all'&&item.source!==source.value)return false;
+          if(sourceType.value!=='all'&&(item.sourceType||'major')!==sourceType.value)return false;
           if(!term)return true;
           return [item.title,item.summary,item.source,...(item.tags||[])].join(' ').toLocaleLowerCase('fa').includes(term);
         }).sort((a,b)=>new Date(b.publishedAt||0)-new Date(a.publishedAt||0));
@@ -124,7 +126,7 @@
         empty.insertAdjacentHTML('beforebegin',filtered.map(card).join(''));
         document.getElementById('resultCount').textContent=`${fa.format(filtered.length)} خبر از ${fa.format(news.length)}`;
       }
-      search.addEventListener('input',render);source.addEventListener('change',render);
+      search.addEventListener('input',render);source.addEventListener('change',render);sourceType.addEventListener('change',render);
       document.getElementById('categoryFilters').addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(!button)return;state.category=button.dataset.category;document.querySelectorAll('.chip').forEach(node=>node.classList.toggle('active',node===button));render()});
       document.getElementById('reloadAgent').addEventListener('click',()=>location.reload());
       render();

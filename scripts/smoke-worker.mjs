@@ -147,11 +147,21 @@ const agentPage = await agentPageResponse.text();
 assert.match(agentPage, /خبرخوان نیمکت/);
 assert.match(agentPage, /id="agentSearch"/);
 assert.match(agentPage, /id="sourceFilter"/);
+assert.match(agentPage, /id="sourceTypeFilter"/);
+assert.match(agentPage, /منابع تحلیلی/);
 assert.match(agentPage, /window\.LIVE_NEWS/);
 assert.match(agentPage, /\/data\/news\.js/);
 assert.match(agentPage, /src="\.\/data\/news\.js\?v=/);
 assert.match(agentPage, /url\('\.\/assets\/fonts\/IRANSansXFaNum-Regular\.woff2'\)/);
 assert.match(agentPage, /لینک منبع اصلی/);
+
+const newsAgentDataResponse = await worker.fetch(new Request("https://nimkat.test/data/news.js"), env, ctx);
+assert.equal(newsAgentDataResponse.status, 200);
+const newsAgentData = await newsAgentDataResponse.text();
+assert.match(newsAgentData, /"sourceType":"local"/);
+assert.match(newsAgentData, /"sourceType":"analysis"/);
+assert.match(newsAgentData, /Opta Analyst/);
+assert.match(newsAgentData, /Scouted Football/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);

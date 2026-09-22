@@ -1,36 +1,158 @@
 {
-  "generatedAt": "2026-09-22T15:43:23.082571+00:00",
-  "count": 65,
+  "generatedAt": "2026-09-22T16:25:05.657882+00:00",
+  "count": 134,
   "sources": [
     {
       "source": "BBC Sport",
       "ok": true,
-      "items": 12
+      "items": 8,
+      "sourceType": "major",
+      "sourceTypeLabel": "رسانه معتبر",
+      "country": "انگلیس"
     },
     {
       "source": "The Guardian",
       "ok": true,
-      "items": 12
+      "items": 8,
+      "sourceType": "major",
+      "sourceTypeLabel": "رسانه معتبر",
+      "country": "انگلیس"
     },
     {
       "source": "Sky Sports",
       "ok": true,
-      "items": 5
+      "items": 5,
+      "sourceType": "major",
+      "sourceTypeLabel": "رسانه معتبر",
+      "country": "انگلیس"
     },
     {
       "source": "Kicker",
       "ok": true,
-      "items": 12
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "آلمان"
     },
     {
       "source": "Marca",
       "ok": true,
-      "items": 12
+      "items": 1,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "اسپانیا"
+    },
+    {
+      "source": "AS",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "اسپانیا"
+    },
+    {
+      "source": "Mundo Deportivo",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "اسپانیا"
+    },
+    {
+      "source": "Football Italia",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "ایتالیا"
+    },
+    {
+      "source": "Get French Football News",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "فرانسه"
+    },
+    {
+      "source": "RMC Sport",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "فرانسه"
+    },
+    {
+      "source": "L'Équipe",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "فرانسه"
+    },
+    {
+      "source": "Voetbal International",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "هلند"
+    },
+    {
+      "source": "VoetbalPrimeur",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "هلند"
+    },
+    {
+      "source": "NOS Voetbal",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "هلند"
+    },
+    {
+      "source": "Opta Analyst",
+      "ok": true,
+      "items": 8,
+      "sourceType": "analysis",
+      "sourceTypeLabel": "تحلیل داده",
+      "country": "بین‌المللی"
+    },
+    {
+      "source": "Analytics FC",
+      "ok": true,
+      "items": 1,
+      "sourceType": "analysis",
+      "sourceTypeLabel": "تحلیل داده",
+      "country": "بین‌المللی"
+    },
+    {
+      "source": "Spielverlagerung",
+      "ok": true,
+      "items": 7,
+      "sourceType": "analysis",
+      "sourceTypeLabel": "تحلیل تاکتیکی",
+      "country": "آلمان"
+    },
+    {
+      "source": "Scouted Football",
+      "ok": true,
+      "items": 8,
+      "sourceType": "analysis",
+      "sourceTypeLabel": "استعدادیابی و تحلیل",
+      "country": "بین‌المللی"
     },
     {
       "source": "ESPN",
       "ok": true,
-      "items": 12
+      "items": 8,
+      "sourceType": "major",
+      "sourceTypeLabel": "رسانه معتبر",
+      "country": "بین‌المللی"
     }
   ]
 }

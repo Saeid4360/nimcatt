@@ -28,20 +28,30 @@ from pathlib import Path
 from typing import Any
 
 
-USER_AGENT = "FootballNamaBot/0.1 (RSS reader; source links preserved)"
+USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
+)
 CA_FILE = os.environ.get("SSL_CERT_FILE") or ("/etc/ssl/cert.pem" if Path("/etc/ssl/cert.pem").exists() else None)
 SSL_CONTEXT = ssl.create_default_context(cafile=CA_FILE)
 TRANSFER_WORDS = {
     "transfer", "signing", "signed", "signs", "deal", "loan", "contract", "bid",
     "wechsel", "transfermarkt", "vertrag", "leihe", "angebot",
+    "fichaje", "fichado", "traspaso", "cesión", "contrato",
+    "mercato", "trasferimento", "prestito", "contratto",
+    "transfert", "prêt", "contrat", "huur",
 }
 ANALYSIS_WORDS = {
     "analysis", "tactics", "explained", "opinion", "talking points",
     "analyse", "taktik", "kommentar",
+    "análisis", "táctica", "analisi", "tattica", "tactique",
+    "voorbeschouwing", "tactiek", "scouting", "data analysis",
 }
 NON_FOOTBALL_WORDS = {
     "cricket", "wicket", "test match", "county championship", "rugby",
     "formula 1", "grand prix", "tennis", "boxing", "golf", "leicestershire",
+    "nfl", "fcs", "fcs football", "college football", "baseball", "basketball", "nba",
+    "ice hockey", "cycling", "motogp", "horse racing", "six nations",
 }
 ENTITY_TAGS = {
     "arsenal": "آرسنال", "chelsea": "چلسی", "liverpool": "لیورپول",
@@ -179,10 +189,14 @@ def is_source_item_allowed(source_id: str, url: str) -> bool:
             return "/football/" in urllib.parse.urlsplit(url).path.casefold()
         except ValueError:
             return False
+    if source_id == "rmc-football" and "_dn-" in url.casefold():
+        return False
     return True
 
 
-def classify(title: str, summary: str) -> str:
+def classify(title: str, summary: str, source_type: str = "") -> str:
+    if source_type == "analysis":
+        return "analysis"
     text = f"{title} {summary}".casefold()
     if any(has_term(text, word) for word in TRANSFER_WORDS):
         return "transfer"
@@ -233,7 +247,7 @@ def parse_feed(source: dict[str, Any], payload: bytes, limit: int, max_age: time
         published = parse_date(child_text(node, {"pubdate", "published", "updated", "date"}))
         if not title or not link or now - published > max_age:
             continue
-        category = classify(title, summary)
+        category = classify(title, summary, source.get("source_type", ""))
         stable_id = hashlib.sha1(link.encode("utf-8")).hexdigest()[:12]
         provider_only = bool(source.get("provider_only"))
         items.append({
@@ -247,6 +261,8 @@ def parse_feed(source: dict[str, Any], payload: bytes, limit: int, max_age: time
             "why": "این عنوان و خلاصه بدون تغییر از ESPN ارائه شده است." if provider_only else "این خبر مستقیماً از فید رسمی رسانه دریافت شده و پیش از انتشار نهایی باید در تحریریه بازبینی شود.",
             "source": source["name"],
             "sourceId": source["id"],
+            "sourceType": source.get("source_type", "major"),
+            "sourceTypeLabel": source.get("source_type_label", "رسانه معتبر"),
             "icon": source["icon"],
             "lang": source["language_label"],
             "time": relative_time(published, now),
@@ -276,7 +292,7 @@ def parse_espn_json(source: dict[str, Any], payload: bytes, limit: int, max_age:
         published = parse_date(article.get("published") or article.get("lastModified"))
         if not title or not link or now - published > max_age or not is_football_item(title, summary):
             continue
-        category = classify(title, summary)
+        category = classify(title, summary, source.get("source_type", ""))
         images = article.get("images") or []
         image = next((row.get("url", "") for row in images if isinstance(row, dict) and row.get("url")), "")
         stable_id = hashlib.sha1(link.encode("utf-8")).hexdigest()[:12]
@@ -291,6 +307,8 @@ def parse_espn_json(source: dict[str, Any], payload: bytes, limit: int, max_age:
             "why": "این عنوان و خلاصه بدون تغییر توسط ESPN ارائه شده است.",
             "source": source["name"],
             "sourceId": source["id"],
+            "sourceType": source.get("source_type", "major"),
+            "sourceTypeLabel": source.get("source_type_label", "رسانه معتبر"),
             "icon": source["icon"],
             "lang": source["language_label"],
             "time": relative_time(published, now),
@@ -420,19 +438,33 @@ def main() -> int:
 
     collected: list[dict[str, Any]] = []
     results: list[dict[str, Any]] = []
-    max_age = timedelta(hours=args.max_age_hours)
     for source in sources:
         try:
+            max_age = timedelta(hours=int(source.get("max_age_hours", args.max_age_hours)))
             payload = fetch(source["feed_url"], args.timeout, source.get("user_agent", USER_AGENT))
             if source.get("format") == "espn_json":
                 items = parse_espn_json(source, payload, args.limit_per_source, max_age)
             else:
                 items = parse_feed(source, payload, args.limit_per_source, max_age)
             collected.extend(items)
-            results.append({"source": source["name"], "ok": True, "items": len(items)})
+            results.append({
+                "source": source["name"],
+                "ok": True,
+                "items": len(items),
+                "sourceType": source.get("source_type", "major"),
+                "sourceTypeLabel": source.get("source_type_label", "رسانه معتبر"),
+                "country": source.get("country_label", "بین‌المللی"),
+            })
             print(f"[ok] {source['name']}: {len(items)} items")
         except (urllib.error.URLError, TimeoutError, ET.ParseError, KeyError, ValueError) as exc:
-            results.append({"source": source.get("name", "unknown"), "ok": False, "error": str(exc)[:180]})
+            results.append({
+                "source": source.get("name", "unknown"),
+                "ok": False,
+                "error": str(exc)[:180],
+                "sourceType": source.get("source_type", "major"),
+                "sourceTypeLabel": source.get("source_type_label", "رسانه معتبر"),
+                "country": source.get("country_label", "بین‌المللی"),
+            })
             print(f"[error] {source.get('name', 'unknown')}: {exc}", file=sys.stderr)
 
     existing = [] if args.fresh else read_json(args.archive, [])

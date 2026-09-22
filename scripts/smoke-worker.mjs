@@ -178,7 +178,17 @@ assert.match(newsAgentData, /Yahoo Sports Soccer/);
 assert.match(newsAgentData, /Sportschau Fußball/);
 assert.match(newsAgentData, /Sky Sport Italia/);
 assert.match(newsAgentData, /The Coaches' Voice/);
-assert.match(newsAgentData, /"count":230/);
+assert.match(newsAgentData, /"sourceType":"club"/);
+assert.match(newsAgentData, /"sourceType":"fan"/);
+const newsPayload = newsAgentData.match(/^window\.LIVE_NEWS = (.+);\nwindow\.LIVE_NEWS_META = (.+);\n$/s);
+assert.ok(newsPayload, "news agent data must contain the news list and metadata");
+const newsItems = JSON.parse(newsPayload[1]);
+const newsMeta = JSON.parse(newsPayload[2]);
+assert.equal(newsMeta.count, newsItems.length);
+assert.doesNotMatch(
+  newsItems.map((item) => `${item.title} ${item.summary} ${item.url}`).join("\n"),
+  /women(?:'s|’s)?|\buwcl\b|\bwcl\b|frauen|féminin|femenin|femminil|vrouwen|kadın|\/femenino\//i,
+);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);

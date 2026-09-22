@@ -114,12 +114,8 @@
     .match-flow-head strong { color:#27323e; font-size:11px; }
     .match-flow-legend { display:flex; align-items:center; flex-wrap:wrap; gap:9px; color:#717d88; font-size:8px; }
     .match-flow-legend span { display:inline-flex; align-items:center; gap:4px; }
-    .match-flow-legend i { display:grid; place-items:center; width:14px; height:14px; color:#fff; border-radius:50%; background:#2c4058; }
-    .match-flow-legend i.goal,.match-flow-legend i.sub { border:1px solid #cbd2d9; background:#fff; color:#1b2632; }
-    .match-flow-legend i.yellow,.match-flow-legend i.red { width:9px; height:13px; border-radius:2px; }
-    .match-flow-legend i.yellow { background:#e4ad20; }
-    .match-flow-legend i.red { background:#bd243e; }
-    .match-flow-legend svg { width:9px; height:9px; }
+    .match-flow-legend i { display:grid; place-items:center; width:20px; height:20px; color:#1b2632; background:transparent; font-style:normal; }
+    .match-flow-legend svg { width:19px; height:19px; }
     .match-flow-scroll { overflow-x:auto; scrollbar-width:thin; scrollbar-color:#c9d0d7 transparent; }
     .match-flow-chart { min-width:680px; direction:rtl; }
     .match-flow-single { display:grid; grid-template-columns:105px minmax(0,1fr); align-items:stretch; gap:12px; }
@@ -127,25 +123,22 @@
     .match-flow-team-label { display:flex; align-items:center; gap:7px; min-width:0; color:#303b47; font-size:9px; font-weight:850; }
     .match-flow-team-label img { flex:none; width:23px; height:23px; object-fit:contain; }
     .match-flow-team-label span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .match-flow-lane { position:relative; height:100px; direction:ltr; }
-    .match-flow-line { position:absolute; top:49px; right:0; left:0; height:3px; border-radius:99px; background:linear-gradient(90deg,#c7cfd7,#aeb8c2 50%,#c7cfd7); }
-    .match-flow-lane::before,.match-flow-lane::after { content:""; position:absolute; top:42px; width:1px; height:18px; background:#9faab5; }
+    .match-flow-lane { position:relative; min-height:112px; direction:ltr; }
+    .match-flow-line { position:absolute; top:var(--line-y,55px); right:0; left:0; height:3px; border-radius:99px; background:linear-gradient(90deg,#c7cfd7,#aeb8c2 50%,#c7cfd7); }
+    .match-flow-lane::before,.match-flow-lane::after { content:""; position:absolute; top:calc(var(--line-y,55px) - 7px); width:1px; height:18px; background:#9faab5; }
     .match-flow-lane::before { left:50%; }
     .match-flow-lane::after { left:100%; }
-    .match-flow-marker { --shift:0px; position:absolute; z-index:2; display:grid; place-items:center; width:22px; height:22px; border:2px solid #fff; border-radius:50%; background:#2b3f57; color:#fff; transform:translateX(calc(-50% + var(--shift))); box-shadow:0 0 0 1px #aeb8c2,0 3px 7px rgba(26,37,49,.18); cursor:help; }
-    .match-flow-marker.home { top:25px; }
-    .match-flow-marker.away { top:55px; }
-    .match-flow-marker.away { background:#ce2453; }
-    .match-flow-marker.goal { width:25px; height:25px; }
-    .match-flow-marker.home.goal { top:23px; }
-    .match-flow-marker.away.goal { top:53px; }
-    .match-flow-marker.yellow,.match-flow-marker.red { width:15px; height:22px; border-radius:3px; }
-    .match-flow-marker.yellow { background:#e4ad20; }
-    .match-flow-marker.red { background:#bd243e; }
-    .match-flow-marker.second-yellow { width:24px; height:24px; background:#fff; color:#bd243e; }
-    .match-flow-marker.goal,.match-flow-marker.sub { border-color:#d5dbe1; background:#fff; color:#17222e; }
-    .match-flow-marker svg { width:13px; height:13px; }
-    .match-flow-marker.yellow svg,.match-flow-marker.red svg { display:none; }
+    .match-flow-marker { position:absolute; z-index:2; display:grid; place-items:center; width:28px; height:28px; padding:0; border:0; background:transparent; color:#17222e; transform:translateX(-50%); cursor:help; }
+    .match-flow-marker .event-symbol { filter:drop-shadow(0 2px 2px rgba(19,29,40,.18)); }
+    .event-symbol { position:relative; display:inline-grid; place-items:center; width:22px; height:22px; flex:none; }
+    .event-symbol.football { font-family:"Apple Color Emoji","Segoe UI Emoji",sans-serif; font-size:21px; line-height:1; filter:none; }
+    .event-symbol.card { width:11px; height:17px; border:1px solid rgba(70,58,12,.22); border-radius:1.5px; background:#f1bf24; box-shadow:0 1px 2px rgba(20,26,33,.2); }
+    .event-symbol.card.red { border-color:rgba(90,15,30,.24); background:#d62643; }
+    .event-symbol.double-card { width:20px; height:20px; }
+    .event-symbol.double-card::before,.event-symbol.double-card::after { content:""; position:absolute; width:10px; height:16px; border-radius:1.5px; box-shadow:0 1px 2px rgba(20,26,33,.2); }
+    .event-symbol.double-card::before { right:2px; top:1px; background:#f1bf24; transform:rotate(-8deg); }
+    .event-symbol.double-card::after { left:2px; bottom:1px; background:#d62643; transform:rotate(8deg); }
+    .event-symbol-sub { width:22px; height:22px; }
     .match-flow-count { position:absolute; top:-8px; left:-8px; display:grid; place-items:center; min-width:17px; height:17px; padding:0 4px; border:2px solid #fff; border-radius:99px; background:#101820; color:#fff; font-style:normal; font-size:8px; font-weight:900; line-height:1; }
     .match-flow-tip { display:none; }
     .match-flow-marker:hover,.match-flow-marker:focus { z-index:40; outline:0; }
@@ -1997,29 +1990,29 @@
     let activeMatchRef='',matchRequestId=0,selectedMatchTab='events';
     function parseMatchRef(ref){const parts=String(ref||'').match(/^([a-z0-9.]+)~(\d{6,12})$/);return parts&&Object.values(SCORE_TOURNAMENT_META).some(meta=>meta.slug===parts[1])?{slug:parts[1],id:parts[2]}:null;}
     function matchEventIcon(kind){
+      if(kind==='goal')return '<span class="event-symbol football" aria-hidden="true">⚽</span>';
+      if(kind==='yellow')return '<span class="event-symbol card" aria-hidden="true"></span>';
+      if(kind==='red')return '<span class="event-symbol card red" aria-hidden="true"></span>';
+      if(kind==='second-yellow')return '<span class="event-symbol double-card" aria-hidden="true"></span>';
       const shapes={
-        goal:'<circle cx="12" cy="12" r="9.2" fill="#fff" stroke="#17222e"/><path d="m12 6.6 3.2 2.3-1.2 3.7h-4l-1.2-3.7L12 6.6Z" fill="#17222e" stroke="none"/><path d="M8.8 8.9 5.3 7.8M15.2 8.9l3.5-1.1M10 12.6l-2.4 3.5M14 12.6l2.4 3.5M7.6 16.1l.6 3M16.4 16.1l-.6 3M8.2 19.1l3.8 2 3.8-2" stroke="#17222e"/>',
-        yellow:'<rect x="7" y="3.5" width="10" height="17" rx="1.5" fill="currentColor" stroke="none"/>',
-        red:'<rect x="7" y="3.5" width="10" height="17" rx="1.5" fill="currentColor" stroke="none"/>',
-        'second-yellow':'<rect x="4" y="4" width="9" height="15" rx="1.2" fill="#d7a824" stroke="none"/><rect x="10" y="6" width="9" height="15" rx="1.2" fill="#bf1e34" stroke="none"/>',
         sub:'<path d="M8 18V6M4.5 9.5 8 6l3.5 3.5" stroke="#18925f" stroke-width="2.3"/><path d="M16 6v12m-3.5-3.5L16 18l3.5-3.5" stroke="#d1495b" stroke-width="2.3"/>',
         phase:'<path d="M4 10h8l3-3 5 3-4 3h-2a5 5 0 1 1-10-3Z"/><circle cx="9" cy="14" r="1.5"/><path d="M15 7V4"/>',
         assist:'<path d="M3 17c3-7 7-9 15-9m-4-4 4 4-4 4"/>',
         in:'<path d="M12 19V5m-5 5 5-5 5 5"/>',
         out:'<path d="M12 5v14m-5-5 5 5 5-5"/>'
       };
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[kind]||shapes.phase}</svg>`;
+      return `<svg class="event-symbol event-symbol-${esc(kind)}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[kind]||shapes.phase}</svg>`;
     }
     function matchEventMinute(event,type){const raw=String(event.clock?.displayValue||'').replace(/[′']/g,'').trim();return raw?`${faNumber(raw)}′`:type==='kickoff'?'۰′':'—';}
     function matchFlowMarkup(events,home,away){
       const homeId=String(home.team?.id||''),awayId=String(away.team?.id||''),homeName=persianTeamName(home.team?.displayName||home.team?.shortDisplayName||''),awayName=persianTeamName(away.team?.displayName||away.team?.shortDisplayName||''),homeLogo=safeImage(home.team?.logos?.[0]?.href||home.team?.logo),awayLogo=safeImage(away.team?.logos?.[0]?.href||away.team?.logo);
       const markers=(events||[]).map(event=>{const type=event.type?.type||'',raw=String(event.clock?.displayValue||'').replace(/[′']/g,''),clock=raw.match(/(\d+)(?:\+(\d+))?/),minute=clock?Number(clock[1])+Number(clock[2]||0):NaN,teamId=String(event.team?.id||''),isAway=teamId===awayId,isHome=teamId===homeId;if(!Number.isFinite(minute)||(!isHome&&!isAway)||(!/goal/i.test(type)&&!['substitution','yellow-card','red-card','second-yellow-card'].includes(type)))return null;const players=(event.participants||[]).map(person=>person.athlete?.displayName).filter(Boolean).map(persianPlayerName),kind=/goal/i.test(type)?'goal':type==='substitution'?'sub':type==='yellow-card'?'yellow':type==='second-yellow-card'?'second-yellow':'red',label=kind==='goal'?(type.includes('own')?'گل به خودی':'گل'):kind==='sub'?'تعویض':kind==='yellow'?'کارت زرد':kind==='second-yellow'?'زرد دوم و اخراج':'کارت قرمز',detail=kind==='sub'?[players[0]&&`ورود ${players[0]}`,players[1]&&`خروج ${players[1]}`].filter(Boolean).join(' · '):players[0]||'',assist=kind==='goal'&&players[1]&&/assist(?:ed)? by/i.test(event.text||'')?`پاس گل: ${players[1]}`:'';return {event,minute,isAway,kind,label,detail,assist};}).filter(Boolean).sort((a,b)=>a.minute-b.minute),duration=markers.some(item=>item.minute>90)?120:90;
       const visualMarkers=markers.filter(item=>item.kind!=='sub'),subGroups=new Map();markers.filter(item=>item.kind==='sub').forEach(item=>{const key=`${item.isAway?'a':'h'}-${item.minute}`,group=subGroups.get(key)||[];group.push(item);subGroups.set(key,group);});subGroups.forEach(group=>{const first=group[0];visualMarkers.push({...first,count:group.length,label:group.length>1?`${faNumber(group.length)} تعویض هم‌زمان`:'تعویض',details:group.map(item=>item.detail).filter(Boolean)});});visualMarkers.sort((a,b)=>a.minute-b.minute);
-      const clusters=new Map();visualMarkers.forEach(item=>{const key=`${item.isAway?'a':'h'}-${item.minute}`,group=clusters.get(key)||[];group.push(item);clusters.set(key,group);});clusters.forEach(group=>group.forEach((item,index)=>{item.shift=(index-(group.length-1)/2)*16;}));
-      const marker=item=>{const minute=matchEventMinute(item.event,item.event.type?.type||''),details=item.details||[item.detail,item.assist].filter(Boolean),detailText=details.join(' · ');return `<button class="match-flow-marker ${item.isAway?'away':'home'} ${item.kind}" style="left:${Math.max(1,Math.min(99,100*item.minute/duration)).toFixed(1)}%;--shift:${item.shift}px" type="button" aria-label="${esc(`${minute} ${item.label} ${detailText}`)}">${matchEventIcon(item.kind)}${item.count>1?`<em class="match-flow-count">${faNumber(item.count)}</em>`:''}<span class="match-flow-tip"><b>${esc(minute)} · ${esc(item.label)}</b>${details.length?details.map(detail=>`<span>${esc(detail)}</span>`).join(''):'<span>جزئیات ثبت نشده</span>'}</span></button>`;};
+      const minGap=Math.max(4,duration*.055),assignRows=items=>{const lastMinute=[];items.sort((a,b)=>a.minute-b.minute).forEach(item=>{let row=lastMinute.findIndex(value=>item.minute-value>=minGap);if(row<0)row=lastMinute.length;item.row=row;lastMinute[row]=item.minute;});return Math.max(1,lastMinute.length);},homeDepth=assignRows(visualMarkers.filter(item=>!item.isAway)),awayDepth=assignRows(visualMarkers.filter(item=>item.isAway)),lineY=44+(homeDepth-1)*26,laneHeight=Math.max(88,lineY+34+(awayDepth-1)*26);
+      const marker=item=>{const minute=matchEventMinute(item.event,item.event.type?.type||''),details=item.details||[item.detail,item.assist].filter(Boolean),detailText=details.join(' · '),top=item.isAway?lineY+6+item.row*26:lineY-28-item.row*26;return `<button class="match-flow-marker ${item.isAway?'away':'home'} ${item.kind}" style="left:${Math.max(1,Math.min(99,100*item.minute/duration)).toFixed(1)}%;top:${top}px" type="button" aria-label="${esc(`${minute} ${item.label} ${detailText}`)}">${matchEventIcon(item.kind)}${item.count>1?`<em class="match-flow-count">${faNumber(item.count)}</em>`:''}<span class="match-flow-tip"><b>${esc(minute)} · ${esc(item.label)}</b>${details.length?details.map(detail=>`<span>${esc(detail)}</span>`).join(''):'<span>جزئیات ثبت نشده</span>'}</span></button>`;};
       const teamLabel=(teamName,logo)=>`<div class="match-flow-team-label">${logo?`<img src="${esc(logo)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span>${esc(teamName)}</span></div>`;
       const legend=kind=>`<i class="${kind}">${matchEventIcon(kind)}</i>`;
-      return `<div class="match-flow" aria-label="خط زمانی کامل رویدادهای بازی"><div class="match-flow-head"><strong>خط زمانی مسابقه</strong><div class="match-flow-legend"><span>${legend('goal')} گل</span><span>${legend('sub')} تعویض</span><span>${legend('yellow')} کارت زرد</span><span>${legend('red')} کارت قرمز</span></div></div><div class="match-flow-scroll"><div class="match-flow-chart"><div class="match-flow-single"><div class="match-flow-team-labels">${teamLabel(homeName,homeLogo)}${teamLabel(awayName,awayLogo)}</div><div class="match-flow-lane"><i class="match-flow-line"></i>${visualMarkers.map(marker).join('')}</div></div><div class="match-flow-axis"><span></span><div><span>۰′</span><span>${faNumber(duration/2)}′</span><span>${faNumber(duration)}′</span></div></div></div></div></div>`;
+      return `<div class="match-flow" aria-label="خط زمانی کامل رویدادهای بازی"><div class="match-flow-head"><strong>خط زمانی مسابقه</strong><div class="match-flow-legend"><span>${legend('goal')} گل</span><span>${legend('sub')} تعویض</span><span>${legend('yellow')} کارت زرد</span><span>${legend('red')} کارت قرمز</span></div></div><div class="match-flow-scroll"><div class="match-flow-chart"><div class="match-flow-single"><div class="match-flow-team-labels">${teamLabel(homeName,homeLogo)}${teamLabel(awayName,awayLogo)}</div><div class="match-flow-lane" style="height:${laneHeight}px;--line-y:${lineY}px"><i class="match-flow-line"></i>${visualMarkers.map(marker).join('')}</div></div><div class="match-flow-axis"><span></span><div><span>۰′</span><span>${faNumber(duration/2)}′</span><span>${faNumber(duration)}′</span></div></div></div></div></div>`;
     }
     function bindMatchFlowTooltips(root){
       document.getElementById('matchFlowPopup')?.remove();const popup=document.createElement('div');popup.id='matchFlowPopup';popup.className='match-flow-popup';popup.hidden=true;document.body.append(popup);

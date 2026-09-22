@@ -27,6 +27,9 @@ for (const name of fontNames) {
 binaryAssets["/assets/images/nimkat-logo-v2.png"] = (
   await readFile(resolve(distRoot, "assets/images/nimkat-logo-v2.png"))
 ).toString("base64");
+binaryAssets["/assets/images/nimkat-wordmark-v1.png"] = (
+  await readFile(resolve(distRoot, "assets/images/nimkat-wordmark-v1.png"))
+).toString("base64");
 
 const runtime = await readFile(runtimePath, "utf8");
 const source = [

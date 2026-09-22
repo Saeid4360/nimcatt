@@ -39,50 +39,55 @@
     .header-league-shortcut { display:none; align-items:center; padding:0 10px; font-size:12px; font-weight:700; }
     .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.3); }
 
-    .score-strip { position:relative; z-index:40; height:150px; }
-    .score-layout { display:grid; grid-template-columns:128px minmax(0,1fr); height:138px; margin-top:6px; overflow:hidden; border:1px solid #dce1e6; border-radius:8px; background:#fff; box-shadow:0 3px 12px rgba(18,22,28,.045); }
-    .score-toolbar { display:flex; flex-direction:column; gap:4px; min-width:0; padding:6px; border-left:1px solid #e4e8ed; background:#f5f7f9; }
+    .score-strip { position:relative; z-index:40; height:101px; padding-top:7px; background:linear-gradient(180deg,#f4f5f7 0%,#fff 100%); }
+    .score-layout { display:grid; grid-template-columns:108px minmax(0,1fr); width:min(1080px,calc(100% - 40px)); height:87px; margin:0 auto; overflow:hidden; border:1px solid #302a3a; border-radius:8px; background:#17131e; box-shadow:0 7px 22px rgba(23,16,31,.13); }
+    .score-toolbar { position:relative; z-index:3; display:flex; flex-direction:column; gap:3px; min-width:0; padding:5px; border-left:1px solid rgba(255,255,255,.1); background:#211b2b; box-shadow:-7px 0 16px rgba(8,5,12,.16); }
     .score-date-nav { display:grid; grid-template-rows:repeat(5,minmax(0,1fr)); gap:1px; flex:1; min-height:0; overflow-y:auto; scrollbar-width:none; }
     .score-date-nav::-webkit-scrollbar { display:none; }
-    .score-date-button { display:flex; align-items:center; justify-content:space-between; gap:2px; min-width:0; width:100%; padding:0 6px; border:0; border-radius:4px; background:transparent; color:#4d5a68; cursor:pointer; font:inherit; text-align:right; line-height:1.25; }
-    .score-date-button:hover { background:#e9edf1; }
-    .score-date-button strong { font-size:11px; white-space:nowrap; }
-    .score-date-button small { font-size:10px; white-space:nowrap; }
-    .score-date-button.active,.score-date-button.active:hover { background:#17212e; color:#fff; }
-    .score-tournament { display:block; min-width:0; color:var(--muted); }
+    .score-date-button { position:relative; display:flex; align-items:center; justify-content:space-between; gap:3px; min-width:0; width:100%; padding:0 6px; border:0; border-radius:3px; background:transparent; color:#aea7b7; cursor:pointer; font:inherit; text-align:right; line-height:1; transition:background .16s ease,color .16s ease; }
+    .score-date-button:hover { background:rgba(255,255,255,.065); color:#fff; }
+    .score-date-button strong { font-size:8px; font-weight:850; white-space:nowrap; }
+    .score-date-button small { color:#777180; font-size:7px; font-weight:650; white-space:nowrap; }
+    .score-date-button.active,.score-date-button.active:hover { background:#dd1454; color:#fff; }
+    .score-date-button.active::before { content:""; position:absolute; top:50%; left:-5px; width:2px; height:10px; border-radius:2px; background:#ff8ab2; transform:translateY(-50%); }
+    .score-date-button.active small { color:#ffe7ef; }
+    .score-tournament { position:relative; display:block; min-width:0; color:#d9d4dd; }
     .score-tournament > span { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
-    .score-tournament select { width:100%; min-width:0; height:27px; padding:0 7px 0 17px; border:1px solid #dce2e9; border-radius:4px; background:#fff; color:#263342; font:inherit; font-size:11px; font-weight:700; cursor:pointer; }
-    .score-board-shell { position:relative; min-width:0; height:100%; overflow:hidden; background:#fff; }
-    .score-inner { display:flex; align-items:stretch; height:100%; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:none; scroll-snap-type:x mandatory; scroll-padding-inline:24px; padding-inline:24px; }
+    .score-tournament::after { content:"⌄"; position:absolute; left:6px; top:50%; color:#918a9a; font:700 10px/1 sans-serif; pointer-events:none; transform:translateY(-56%); }
+    .score-tournament select { width:100%; min-width:0; height:20px; padding:0 6px 0 17px; border:1px solid rgba(255,255,255,.12); border-radius:3px; appearance:none; background:#18131f; color:#d9d4dd; font:inherit; font-size:8px; font-weight:750; cursor:pointer; }
+    .score-tournament select:focus-visible { outline:1px solid #dd1454; outline-offset:1px; }
+    .score-board-shell { position:relative; min-width:0; height:100%; overflow:hidden; background:linear-gradient(110deg,#17131e 0%,#1d1726 52%,#17131e 100%); }
+    .score-inner { display:flex; align-items:stretch; height:100%; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:none; scroll-snap-type:x mandatory; scroll-padding-inline:22px; padding-inline:22px; }
     .score-inner::-webkit-scrollbar { display:none; }
-    .score-item { position:relative; isolation:isolate; display:flex; flex:0 0 240px; flex-direction:column; overflow:hidden; padding:15px 17px; border-left:1px solid #e9ecf0; color:#1c2633; scroll-snap-align:start; transition:background .18s ease; }
-    .score-item:hover { background:#f7f9fb; }
-    .score-item:focus-visible { outline:2px solid var(--red); outline-offset:-3px; }
-    .score-watermark { position:absolute; z-index:0; inset:23px 75px; width:calc(100% - 150px); height:calc(100% - 46px); object-fit:contain; object-position:center; opacity:.045; filter:grayscale(1) brightness(.42); pointer-events:none; }
+    .score-item { position:relative; isolation:isolate; display:flex; flex:0 0 188px; flex-direction:column; overflow:hidden; padding:8px 12px 9px; border-left:1px solid rgba(255,255,255,.085); color:#f7f4f8; scroll-snap-align:start; transition:background .18s ease; }
+    .score-item::after { content:""; position:absolute; right:12px; bottom:0; left:12px; height:2px; border-radius:3px 3px 0 0; background:linear-gradient(90deg,#e31c59 0 31%,#6f456f 31% 61%,#3e5e79 61%); opacity:.72; }
+    .score-item:hover { background:rgba(255,255,255,.045); }
+    .score-item:focus-visible { outline:2px solid #e31c59; outline-offset:-3px; }
+    .score-watermark { position:absolute; z-index:0; top:20px; left:56px; width:62px; height:62px; object-fit:contain; object-position:center; opacity:.05; filter:grayscale(1) brightness(2.4); pointer-events:none; }
     .score-item > :not(.score-watermark) { position:relative; z-index:1; }
-    .score-item.is-live { background:#fff8f8; }
-    .score-item.is-live::before { content:""; position:absolute; top:0; right:0; bottom:0; width:3px; background:var(--red); }
-    .score-meta { display:flex; align-items:center; justify-content:space-between; gap:8px; color:#697584; font-size:11px; line-height:1.4; }
-    .score-league { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:700; }
-    .score-status { flex:none; font-weight:700; color:#4f5b69; }
-    .score-status.live { color:var(--red); }
-    .score-teams { display:flex; flex:1; flex-direction:column; justify-content:center; gap:7px; min-height:0; margin-top:6px; }
-    .score-team-line { display:flex; align-items:center; gap:9px; min-width:0; line-height:1.35; }
-    .score-team-line img { flex:none; width:26px; height:26px; object-fit:contain; }
-    .score-team-name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; font-weight:700; }
-    .score-team-result { min-width:19px; direction:ltr; text-align:center; font-size:16px; font-weight:700; font-variant-numeric:tabular-nums; }
-    .score-item.is-live .score-team-result { color:var(--red); }
+    .score-item.is-live { background:linear-gradient(110deg,rgba(218,20,82,.12),rgba(255,255,255,.025)); }
+    .score-item.is-live::before { content:""; position:absolute; top:0; right:0; bottom:0; width:2px; background:#ee245f; }
+    .score-meta { display:flex; align-items:center; justify-content:space-between; gap:7px; min-height:13px; color:#8e8797; font-size:8px; line-height:1.2; }
+    .score-league { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:750; }
+    .score-status { flex:none; padding:2px 5px; border-radius:3px; background:rgba(255,255,255,.06); color:#cbc5d0; font-weight:850; }
+    .score-status.live { background:#df1554; color:#fff; }
+    .score-teams { display:flex; flex:1; flex-direction:column; justify-content:center; gap:5px; min-height:0; margin-top:4px; }
+    .score-team-line { display:flex; align-items:center; gap:7px; min-width:0; line-height:1.15; }
+    .score-team-line img { flex:none; width:19px; height:19px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,.22)); }
+    .score-team-name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#eeeaf1; font-size:10px; font-weight:750; }
+    .score-team-result { min-width:16px; direction:ltr; text-align:center; color:#fff; font-size:13px; font-weight:900; font-variant-numeric:tabular-nums; }
+    .score-item.is-live .score-team-result { color:#ff6d9c; }
     .match-score-pair { display:inline-flex; align-items:center; justify-content:center; gap:5px; direction:rtl; unicode-bidi:isolate; white-space:nowrap; }
     .match-score-pair b { font:inherit; font-weight:inherit; }
     .match-score-pair i { color:currentColor; font-style:normal; opacity:.55; }
-    .score-scroll { position:absolute; z-index:2; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:24px; height:38px; border:1px solid #dce2e8; border-radius:5px; background:#fff; color:#263342; font-size:21px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(15,30,50,.09); }
-    .score-scroll:hover:not(:disabled) { background:#17212e; color:#fff; }
-    .score-scroll:disabled { opacity:.2; cursor:default; box-shadow:none; }
+    .score-scroll { position:absolute; z-index:2; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:21px; height:31px; border:1px solid rgba(255,255,255,.12); border-radius:4px; background:rgba(23,19,30,.92); color:#d8d2dc; font-size:17px; line-height:1; cursor:pointer; box-shadow:0 3px 9px rgba(0,0,0,.18); backdrop-filter:blur(5px); }
+    .score-scroll:hover:not(:disabled) { border-color:#dd1454; background:#dd1454; color:#fff; }
+    .score-scroll:disabled { opacity:0; visibility:hidden; cursor:default; box-shadow:none; }
     .score-scroll-prev { right:0; }
     .score-scroll-next { left:0; }
-    .score-state { min-height:95px; width:100%; display:flex; align-items:center; justify-content:center; gap:10px; color:var(--muted); font-size:12px; }
-    .score-loader { width:17px; height:17px; border:2px solid #ddd; border-top-color:var(--red); border-radius:50%; animation:score-spin .8s linear infinite; }
-    .score-retry { padding:7px 11px; border:1px solid var(--line); border-radius:5px; background:#fff; cursor:pointer; font:inherit; }
+    .score-board-shell .score-state { min-height:0; height:100%; width:100%; display:flex; align-items:center; justify-content:center; gap:8px; color:#8f8898; font-size:10px; }
+    .score-board-shell .score-loader { width:14px; height:14px; border:2px solid rgba(255,255,255,.14); border-top-color:#e31c59; border-radius:50%; animation:score-spin .8s linear infinite; }
+    .score-board-shell .score-retry { padding:5px 9px; border:1px solid rgba(255,255,255,.14); border-radius:4px; background:#241d2d; color:#fff; cursor:pointer; font:inherit; font-size:9px; }
     @keyframes score-spin { to { transform:rotate(360deg); } }
 
     .match-view { max-width:1080px; }
@@ -718,19 +723,21 @@
       .editor-button { padding:0 10px; }
       .header-league-shortcut { padding:0 8px; }
       main { padding-top:18px; }
-      .score-layout { grid-template-columns:113px minmax(0,1fr); }
-      .score-toolbar { padding:5px; gap:3px; }
+      .score-strip { height:94px; padding-top:6px; }
+      .score-layout { grid-template-columns:92px minmax(0,1fr); width:calc(100% - 16px); height:81px; }
+      .score-toolbar { padding:4px; gap:2px; }
       .score-date-button { padding-inline:4px; }
-      .score-date-button strong { font-size:10px; }
-      .score-date-button small { font-size:9px; }
-      .score-tournament select { height:26px; font-size:10px; }
-      .score-inner { padding-inline:21px; scroll-padding-inline:21px; }
-      .score-item { flex-basis:min(228px,100%); padding:14px 11px; }
-      .score-team-line { gap:7px; }
-      .score-team-name { font-size:12px; }
-      .score-team-line img { width:24px; height:24px; }
-      .score-meta { font-size:10px; }
-      .score-scroll { width:21px; height:32px; font-size:18px; }
+      .score-date-button strong { font-size:7px; }
+      .score-date-button small { font-size:6.5px; }
+      .score-tournament select { height:18px; font-size:7px; }
+      .score-inner { padding-inline:20px; scroll-padding-inline:20px; }
+      .score-item { flex-basis:168px; padding:7px 9px 8px; }
+      .score-item::after { right:9px; left:9px; }
+      .score-team-line { gap:5px; }
+      .score-team-name { font-size:9px; }
+      .score-team-line img { width:17px; height:17px; }
+      .score-meta { font-size:7px; }
+      .score-scroll { width:19px; height:28px; font-size:16px; }
       .match-detail-hero { padding:0 14px 16px; }
       .match-detail-top { margin:0 -14px; padding:11px 14px 9px; }
       .match-detail-board { grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr); gap:7px; margin:20px 0 13px; }

@@ -109,6 +109,10 @@ assert.match(homepage, /data-stats-entity="players"/);
 assert.match(homepage, /id="statsMode"/);
 assert.match(homepage, /id="statsMinimum"/);
 assert.match(homepage, /data\/opta-stats\.js/);
+assert.match(homepage, /id="themeToggle"/);
+assert.match(homepage, /localStorage\.setItem\('nimkat-theme'/);
+assert.match(homepage, /html\[data-theme="dark"\]/);
+assert.match(homepage, /function syncThemeControl/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);

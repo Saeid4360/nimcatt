@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8fa">
+  <script>
+    (()=>{try{const forced=new URLSearchParams(location.search).get('theme'),saved=localStorage.getItem('nimkat-theme');document.documentElement.dataset.theme=forced==='dark'||forced==='light'?forced:saved==='dark'?'dark':'light';}catch{document.documentElement.dataset.theme='light';}})();
+  </script>
   <link rel="icon" type="image/png" href="/assets/images/nimkat-logo-v2.png">
   <title>نیمکت | خبر فوتبال جهان</title>
   <meta name="description" content="خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.">
@@ -1473,6 +1476,58 @@
     @media(max-width:900px) { .team-main-grid { grid-template-columns:1fr; } .team-summary-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
     @media(max-width:900px) { .player-grid { grid-template-columns:1fr; } .player-season-stats { grid-template-columns:repeat(4,minmax(0,1fr)); } }
     @media(max-width:600px) { .team-hero { align-items:flex-start; flex-direction:column; padding:23px 20px; } .team-identity { gap:14px; } .team-crest { width:77px; height:77px; padding:10px; border-radius:15px; } .team-hero h1 { font-size:25px; } .team-summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .team-panel { padding:14px 12px; } .team-roster { grid-template-columns:1fr; } .team-schedule-head { align-items:flex-start; flex-direction:column; } .team-schedule-tools { width:100%; justify-content:space-between; } .team-fixture { grid-template-columns:minmax(0,1fr) 36px; gap:8px; padding:12px; } .team-fixture-date { grid-column:1/-1; display:flex; gap:8px; align-items:center; } .team-fixture-contest { grid-template-columns:minmax(0,1fr) 62px minmax(0,1fr); gap:4px; } .team-fixture-side { gap:4px; } .team-fixture-side img { width:23px; height:23px; } .team-fixture-side span { font-size:11px; } .team-fixture-center strong { font-size:13px; } .team-fixture-center small { font-size:9px; } .team-fixture-end { align-items:center; } .player-page-shell { gap:11px; } .player-hero { grid-template-columns:102px minmax(0,1fr); gap:15px; min-height:205px; padding:20px 16px 0; border-radius:13px; } .player-portrait { width:102px; height:132px; border-radius:13px 13px 0 0; } .player-hero-copy { padding-bottom:22px; } .player-hero-copy h1 { font-size:25px; } .player-hero-copy > p { margin-bottom:11px; font-size:10px; } .player-hero-kicker { font-size:9px; } .player-hero-meta span,.player-hero-meta a { padding:5px 7px; font-size:9px; } .player-facts { grid-template-columns:repeat(3,minmax(0,1fr)); } .player-fact { padding:10px 11px; border-bottom:1px solid #edf0f2; } .player-fact:nth-child(3) { border-left:0; } .player-season-stats { grid-template-columns:repeat(3,minmax(0,1fr)); } .player-stat-card { min-height:67px; } .player-stat-card strong { font-size:18px; } .player-archive-head { padding:13px 14px; } .player-archive-title h2 { font-size:14px; } .player-archive-summary { grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; } .player-archive-metric { border-bottom:1px solid #e8ecef; } .player-match-row { grid-template-columns:minmax(135px,1fr) repeat(3,42px); padding:10px 12px; } .player-match-row .player-match-stat:nth-child(n+5) { display:none; } }
+
+    /* Balanced daylight palette and persistent day/night theme. */
+    :root { color-scheme:light; --surface:#f4f6f8; --surface-soft:#eceff2; --canvas:#e4e7eb; --line:#d2d8de; --line-strong:#c3cbd3; --shadow-sm:0 5px 18px rgba(20,25,32,.065); --shadow-md:0 12px 34px rgba(20,25,32,.105); }
+    body { background:linear-gradient(180deg,#e8ebee 0,#e2e6ea 100%); }
+    .site-header { background:rgba(238,241,244,.97); }
+    .score-strip { background:#e2e6ea; }
+    .score-layout,.score-board-shell,.score-item { background:#f5f7f8; }
+    .score-controls,.score-date-divider { background:#eceff2; }
+    .panel,.feed-shell,.league-center,.article-shell,.team-panel,.player-facts,.stats-explorer,.match-detail-hero,.match-detail-tabs,.match-detail-body,.fixture-day-matches,.team-fixture,.player-stat-card,.player-table-wrap,.editor-shell,.editor-toolbar,.drawer { background-color:var(--surface); }
+    .controls,.fixtures-panel,.stats-explorer-toolbar,.stats-ranking-head,.fixture-day-heading,.standings-table th,.player-data-table th,.player-archive-summary { background-color:var(--surface-soft); }
+    .theme-toggle { position:relative; width:38px; height:35px; display:grid; place-items:center; padding:0; overflow:hidden; border:1px solid #d5dae0; border-radius:8px; background:#eef1f4; color:#4b5662; cursor:pointer; box-shadow:0 2px 7px rgba(23,29,36,.055); transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease; }
+    .theme-toggle:hover { border-color:#b9c1ca; background:#e5e9ed; color:#1f2832; transform:translateY(-1px); }
+    .theme-toggle svg { position:absolute; width:17px; height:17px; transition:opacity .18s ease,transform .25s ease; }
+    .theme-toggle .theme-sun { opacity:0; transform:rotate(-35deg) scale(.7); }
+    .theme-toggle .theme-moon { opacity:1; transform:rotate(0) scale(1); }
+
+    html[data-theme="dark"] { color-scheme:dark; --ink:#e6eaf0; --ink-soft:#bac2cc; --muted:#8f99a5; --muted-light:#77828e; --line:#303741; --line-strong:#414a56; --surface:#181d24; --surface-soft:#20262e; --canvas:#10141a; --red-soft:#321820; --header:#11151b; --success:#5bc797; --warning:#d7ab62; --shadow-sm:0 7px 22px rgba(0,0,0,.2); --shadow-md:0 16px 40px rgba(0,0,0,.28); }
+    html[data-theme="dark"] body { background:linear-gradient(180deg,#11161c 0,#0d1116 100%); color:var(--ink); }
+    html[data-theme="dark"] .site-header { border-bottom-color:#303740; background:rgba(18,23,29,.96); box-shadow:0 6px 22px rgba(0,0,0,.28); }
+    html[data-theme="dark"] .brand-mark img,html[data-theme="dark"] .brand-wordmark img { filter:brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
+    html[data-theme="dark"] .brand::after { background:#363e48; }
+    html[data-theme="dark"] .nav-link { color:#aab3bd; }
+    html[data-theme="dark"] .nav-link:hover,html[data-theme="dark"] .nav-link.active { color:#fff; background:#252c34; }
+    html[data-theme="dark"] .icon-button,html[data-theme="dark"] .editor-button,html[data-theme="dark"] .header-league-shortcut,html[data-theme="dark"] .header-stats-shortcut { border-color:#39424d; background:#20262e; color:#dce2e8; box-shadow:none; }
+    html[data-theme="dark"] .theme-toggle { border-color:#4b5562; background:#29313a; color:#ffd66b; box-shadow:inset 0 0 0 1px rgba(255,255,255,.025); }
+    html[data-theme="dark"] .theme-toggle .theme-sun { opacity:1; transform:rotate(0) scale(1); }
+    html[data-theme="dark"] .theme-toggle .theme-moon { opacity:0; transform:rotate(35deg) scale(.7); }
+    html[data-theme="dark"] .score-strip { background:#12171d; }
+    html[data-theme="dark"] .score-layout,html[data-theme="dark"] .score-board-shell,html[data-theme="dark"] .score-item,html[data-theme="dark"] .score-controls { border-color:#303741; background:#181d24; }
+    html[data-theme="dark"] .score-controls,html[data-theme="dark"] .score-date-divider { border-color:#303741; background:#20262e; color:#9aa4af; }
+    html[data-theme="dark"] .score-control-button,html[data-theme="dark"] .score-filter-control,html[data-theme="dark"] .score-scroll-next { border-color:#3a434e; background:#242b33; color:#c5cdd6; box-shadow:none; }
+    html[data-theme="dark"] .score-item:hover,html[data-theme="dark"] .team-fixture:hover,html[data-theme="dark"] .fixture-card:hover,html[data-theme="dark"] .stats-data-row:hover { background:#20262e; }
+    html[data-theme="dark"] .score-card-track,html[data-theme="dark"] .stats-data-bar { background:#303740; }
+    html[data-theme="dark"] .panel,html[data-theme="dark"] .feed-shell,html[data-theme="dark"] .league-center,html[data-theme="dark"] .article-shell,html[data-theme="dark"] .team-panel,html[data-theme="dark"] .player-facts,html[data-theme="dark"] .stats-explorer,html[data-theme="dark"] .match-detail-hero,html[data-theme="dark"] .match-detail-tabs,html[data-theme="dark"] .match-detail-body,html[data-theme="dark"] .fixture-day-matches,html[data-theme="dark"] .team-fixture,html[data-theme="dark"] .player-stat-card,html[data-theme="dark"] .player-table-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .editor-toolbar,html[data-theme="dark"] .editor-form,html[data-theme="dark"] .drawer,html[data-theme="dark"] .stat-leaderboard,html[data-theme="dark"] .team-stat-panel { border-color:var(--line); background:var(--surface); color:var(--ink); }
+    html[data-theme="dark"] .controls,html[data-theme="dark"] .fixtures-panel,html[data-theme="dark"] .stats-explorer-toolbar,html[data-theme="dark"] .stats-ranking-head,html[data-theme="dark"] .fixture-day-heading,html[data-theme="dark"] .standings-table th,html[data-theme="dark"] .player-data-table th,html[data-theme="dark"] .player-archive-summary,html[data-theme="dark"] .match-flow,html[data-theme="dark"] .match-report-intro,html[data-theme="dark"] .drawer-note { border-color:var(--line); background:var(--surface-soft); }
+    html[data-theme="dark"] .panel-title,html[data-theme="dark"] .section-title,html[data-theme="dark"] .news-card h3,html[data-theme="dark"] .article-page-head h1,html[data-theme="dark"] .article-page-body .drawer-article,html[data-theme="dark"] .article-page-body .drawer-article h3,html[data-theme="dark"] .drawer h2,html[data-theme="dark"] .drawer-article,html[data-theme="dark"] .drawer-article h3,html[data-theme="dark"] .drawer-sources h3,html[data-theme="dark"] .league-panel-head h3,html[data-theme="dark"] .standing-points,html[data-theme="dark"] .fixture-score,html[data-theme="dark"] .team-fixture-date strong,html[data-theme="dark"] .team-fixture-center strong,html[data-theme="dark"] .team-player-name,html[data-theme="dark"] .player-fact strong,html[data-theme="dark"] .player-stat-card strong,html[data-theme="dark"] .player-archive-metric strong,html[data-theme="dark"] .stats-data-entity strong,html[data-theme="dark"] .stats-metric-head h2 { color:var(--ink); }
+    html[data-theme="dark"] .article-page-summary,html[data-theme="dark"] .drawer-summary,html[data-theme="dark"] .drawer-note,html[data-theme="dark"] .stats-data-participation,html[data-theme="dark"] .stats-data-entity small,html[data-theme="dark"] .team-fixture-date,html[data-theme="dark"] .team-fixture-date small,html[data-theme="dark"] .team-fixture-center small { color:#a9b2bd; }
+    html[data-theme="dark"] input,html[data-theme="dark"] textarea,html[data-theme="dark"] select,html[data-theme="dark"] .stats-search-box input,html[data-theme="dark"] .stats-tool-select select,html[data-theme="dark"] .league-select { border-color:#3a434d; background:#222931; color:#e4e9ee; box-shadow:none; }
+    html[data-theme="dark"] option { background:#20262e; color:#e4e9ee; }
+    html[data-theme="dark"] .stats-entity-tabs,html[data-theme="dark"] .standings-filter,html[data-theme="dark"] .stats-result-count,html[data-theme="dark"] .stats-group-tab b,html[data-theme="dark"] .stats-data-rank,html[data-theme="dark"] .rank-mark { border-color:#39414b; background:#262d35; color:#aeb7c1; box-shadow:none; }
+    html[data-theme="dark"] .stats-metric-tab,html[data-theme="dark"] .standings-scenario-toggle,html[data-theme="dark"] .standings-scenario-group,html[data-theme="dark"] .standings-scenario-option { border-color:#39414b; background:#20262e; color:#c4cbd3; }
+    html[data-theme="dark"] .stats-data-value { color:#f0d9eb; }
+    html[data-theme="dark"] .stats-ranking-list,html[data-theme="dark"] .stats-ranking-head,html[data-theme="dark"] .stats-data-row,html[data-theme="dark"] .team-fixture,html[data-theme="dark"] .fixture-card + .fixture-card,html[data-theme="dark"] .standings-table td,html[data-theme="dark"] .player-data-table td { border-color:#2c333c; }
+    html[data-theme="dark"] .standings-table tbody tr.standing-row.top td,html[data-theme="dark"] .standings-table tbody tr.standing-row.ucl td { background:#172638; }
+    html[data-theme="dark"] .standings-table tbody tr.standing-row.uel td,html[data-theme="dark"] .standings-table tbody tr.standing-row.playoff td { background:#2c2518; }
+    html[data-theme="dark"] .standings-table tbody tr.standing-row.uecl td { background:#172b27; }
+    html[data-theme="dark"] .standings-table tbody tr.standing-row.drop td,html[data-theme="dark"] .standings-table tbody tr.standing-row.relegation-playoff td { background:#301c22; }
+    html[data-theme="dark"] .match-detail-top { border-color:#303741; background:#20262e; color:#aab3be; }
+    html[data-theme="dark"] .match-detail-team strong,html[data-theme="dark"] .match-detail-center strong,html[data-theme="dark"] .match-detail-section-title,html[data-theme="dark"] .match-flow-head strong,html[data-theme="dark"] .match-flow-team-label { color:var(--ink); }
+    html[data-theme="dark"] .match-detail-tab.active,html[data-theme="dark"] .stats-entity-tab.active,html[data-theme="dark"] .stats-metric-tab.active,html[data-theme="dark"] .stats-data-row:nth-child(-n+3) .stats-data-rank { background:#6f2853; color:#fff; }
+    html[data-theme="dark"] footer { border-color:#2d343d; background:#11161c; }
+    @media(max-width:720px) { .theme-toggle { width:34px; height:32px; border-radius:7px; } }
   </style>
 </head>
 <body>
@@ -1486,6 +1541,7 @@
         <button class="header-league-shortcut" type="button" data-league-center aria-label="جدول و برنامه بازی‌ها">جدول‌ها</button>
         <button class="header-stats-shortcut" type="button" data-stats-center aria-label="آمار و رکوردهای فوتبال">آمار</button>
         <button class="icon-button" id="focusSearch" aria-label="جست‌وجو"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="فعال‌کردن حالت شب" title="حالت شب"><svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.4 15.1A8.5 8.5 0 0 1 8.9 3.6 8.5 8.5 0 1 0 20.4 15.1Z"></path></svg><svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg></button>
         <button class="editor-button" data-view="editor">تحریریه</button>
       </div>
     </div>
@@ -2706,6 +2762,10 @@
     document.getElementById('previewBtn').addEventListener('click',()=>{if(saveEditorChanges(false)){const item=news.find(entry=>entry.id===selectedEditorId);history.pushState({},'',articleHref(item));renderArticlePage(item.id);}});
     document.getElementById('resetBtn').addEventListener('click',()=>{const original=baseNews.find(entry=>entry.id===selectedEditorId),item=news.find(entry=>entry.id===selectedEditorId);if(!item)return;if(item.isCustom){if(!confirm('این خبر ساخته‌شده حذف شود؟'))return;const index=news.indexOf(item);news.splice(index,1);persistCreatedNews();const next=news[Math.min(index,news.length-1)]||news[0];renderFeatured();renderLatest();render();setupEditorOptions();if(next){fillEditor(next);history.replaceState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(next.id)}`);}toast('خبر ساخته‌شده حذف شد.');return;}if(!original||!confirm('ویرایش‌های ذخیره‌شده این خبر حذف شود؟'))return;delete editorOverrides[selectedEditorId];localStorage.setItem(EDITOR_STORAGE_KEY,JSON.stringify(editorOverrides));['title','summary','eyebrow','source','cat','country','time','cred','image','imageSettings','url','tags','why','body','media'].forEach(key=>{if(key in original)item[key]=original[key];else delete item[key];});renderFeatured();renderLatest();render();setupEditorOptions();fillEditor(item);toast('نسخه اصلی خبر بازگردانده شد.');});
     document.getElementById('editorHomeBtn').addEventListener('click',()=>{history.pushState({},'',location.pathname);showHome();});
+    const themeToggle=document.getElementById('themeToggle');
+    function syncThemeControl(){const dark=document.documentElement.dataset.theme==='dark',label=dark?'فعال‌کردن حالت روز':'فعال‌کردن حالت شب';themeToggle.setAttribute('aria-label',label);themeToggle.title=dark?'حالت روز':'حالت شب';document.querySelector('meta[name="theme-color"]').setAttribute('content',dark?'#12171d':'#e9ecef');}
+    themeToggle.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;try{localStorage.setItem('nimkat-theme',next);}catch{}syncThemeControl();});
+    syncThemeControl();
     if(window.LIVE_NEWS_META){const meta=window.LIVE_NEWS_META,sourceTotal=(meta.sources||[]).filter(source=>source.ok).length;document.getElementById('sourceCount').textContent=`${sourceTotal.toLocaleString('fa-IR')} منبع`;if(meta.generatedAt){const date=new Date(meta.generatedAt);document.getElementById('liveTicker').textContent=`آخرین دریافت: ${date.toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}`;}}
     setupEditorOptions();renderFeatured();startFeaturedRotation();initScores();initMatchDetails();initLeagueCenter();renderLatest();render();route();
   </script>

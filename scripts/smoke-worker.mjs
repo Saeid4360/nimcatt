@@ -140,6 +140,15 @@ assert.match(homepage, /height=isMobile\?350:360/);
 assert.match(homepage, /data\/persian-names\.js/);
 assert.match(homepage, /NIMKAT_PLAYER_NAMES_FA/);
 assert.match(homepage, /NIMKAT_TEAM_NAMES_FA/);
+assert.match(homepage, /data\/editorial-series\.js/);
+
+const editorialAsset = await worker.fetch(new Request("https://nimkat.test/data/editorial-series.js"), env, ctx);
+assert.equal(editorialAsset.status, 200);
+const editorialSource = await editorialAsset.text();
+assert.match(editorialSource, /window\.EDITORIAL_SERIES/);
+assert.equal((editorialSource.match(/id: 'feature-/g) || []).length, 18);
+assert.match(editorialSource, /۴۳٫۷٪/);
+assert.match(editorialSource, /۱۴ گل/);
 
 const agentPageResponse = await worker.fetch(new Request("https://nimkat.test/news-agent.html"), env, ctx);
 assert.equal(agentPageResponse.status, 200);

@@ -1963,6 +1963,7 @@
   <div class="editor-toast" id="editorToast" role="status" aria-live="polite"></div>
 
   <script src="data/news.js"></script>
+  <script src="data/editorial-series.js"></script>
   <script src="data/opta-stats.js"></script>
   <script src="data/persian-names.js"></script>
   <script>
@@ -2440,13 +2441,14 @@
       {id:'demo-2',country:'italy',cat:'transfer',flag:'🇮🇹 ایتالیا',eyebrow:'بازار ایتالیا · نسل تازه',title:'بازار سری A زودتر از تابستان داغ شد؛ رقابت برای ستاره‌های فردا',summary:'مدیران ورزشی باشگاه‌های بزرگ ایتالیا، پیش از شلوغ‌شدن بازار، مذاکره برای جذب استعدادهای جوان را آغاز کرده‌اند؛ مسابقه‌ای که برنده‌اش شاید آینده لیگ را بسازد.',source:'تحریریه نیمکت',lang:'فارسی',time:'امروز',cred:'خبر تحریریه',credClass:'trusted',tags:['سری آ','نقل‌وانتقالات'],why:'این خبر برای نمایش جریان کاری نسخه آزمایشی سایت تهیه شده است.',image:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80',url:'#'}
     ];
     const liveNews=Array.isArray(window.LIVE_NEWS)?window.LIVE_NEWS:[];
+    const editorialNews=Array.isArray(window.EDITORIAL_SERIES)?window.EDITORIAL_SERIES:[];
     const EDITOR_STORAGE_KEY='footballNamaArticleEditsV1';
     const CREATED_STORAGE_KEY='footballNamaCreatedArticlesV1';
     let editorOverrides={};
     try{editorOverrides=JSON.parse(localStorage.getItem(EDITOR_STORAGE_KEY)||'{}')||{};}catch(error){editorOverrides={};}
     let createdNews=[];
     try{createdNews=JSON.parse(localStorage.getItem(CREATED_STORAGE_KEY)||'[]')||[];}catch(error){createdNews=[];}
-    const baseNews=[...demoNews,...liveNews];
+    const baseNews=[...editorialNews,...demoNews,...liveNews];
     const news=[...createdNews.map(item=>({...item,isCustom:true})),...baseNews.map(item=>({...item,...(editorOverrides[item.id]||{})}))];
     let activeFilter='all',query='',visibleCount=10,selectedEditorId=news[0]?.id||'',toastTimer,editorZoom=.9;
     const esc=(value='')=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));

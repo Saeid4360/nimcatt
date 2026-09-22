@@ -34,11 +34,11 @@
     .nav-link:hover,.nav-link.active { color:#fff; }
     .nav-link.active::after { content:""; position:absolute; right:12px; left:12px; bottom:-1px; height:2px; border-radius:2px 2px 0 0; background:var(--red); }
     .header-actions { margin-right:auto; display:flex; align-items:center; gap:8px; }
-    .icon-button,.editor-button,.header-league-shortcut { height:32px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.025); color:#fff; cursor:pointer; border-radius:6px; transition:background .18s ease,border-color .18s ease; }
+    .icon-button,.editor-button,.header-league-shortcut,.header-stats-shortcut { height:32px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.025); color:#fff; cursor:pointer; border-radius:6px; transition:background .18s ease,border-color .18s ease; }
     .icon-button { width:34px; display:grid; place-items:center; }
     .editor-button { padding:0 13px; font-size:12px; font-weight:700; }
-    .header-league-shortcut { display:none; align-items:center; padding:0 10px; font-size:12px; font-weight:700; }
-    .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.3); }
+    .header-league-shortcut,.header-stats-shortcut { display:none; align-items:center; padding:0 10px; font-size:12px; font-weight:700; }
+    .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover,.header-stats-shortcut:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.3); }
 
     .score-strip { position:relative; z-index:40; height:116px; padding-top:7px; background:linear-gradient(180deg,#f4f5f7 0%,#fff 100%); }
     .score-layout { direction:ltr; display:grid; grid-template-areas:"toolbar board"; grid-template-columns:116px minmax(0,1fr); width:min(1240px,calc(100% - 40px)); height:102px; margin:0 auto; overflow:hidden; border:1px solid #302a3a; border-radius:8px; background:#17131e; box-shadow:0 7px 22px rgba(23,16,31,.13); }
@@ -697,9 +697,72 @@
     .drawer-note { margin-top:20px; padding:14px; border-right:3px solid var(--red); background:#f5f6f7; color:#50565c; font-size:12px; }
     .drawer-source { display:inline-flex; margin-top:18px; padding:9px 14px; border-radius:4px; background:var(--ink); color:#fff; font-size:11px; font-weight:900; }
 
+    .stats-view { padding-top:22px; padding-bottom:56px; }
+    .stats-hero { position:relative; isolation:isolate; display:flex; align-items:center; justify-content:space-between; gap:28px; overflow:hidden; min-height:210px; padding:34px 40px; border-radius:15px; background:linear-gradient(122deg,#1c1228 0%,#2f153e 56%,#5b173d 100%); color:#fff; box-shadow:0 18px 44px rgba(29,16,41,.16); }
+    .stats-hero::before { content:""; position:absolute; inset:0; z-index:-1; opacity:.32; background:radial-gradient(circle at 9% 18%,rgba(255,255,255,.18),transparent 24%),linear-gradient(120deg,transparent 50%,rgba(239,38,98,.25)); }
+    .stats-hero-copy { max-width:760px; }
+    .stats-eyebrow { display:flex; align-items:center; gap:8px; margin-bottom:8px; color:#f0b9cf; font-size:11px; font-weight:800; }
+    .stats-eyebrow::before { content:""; width:19px; height:2px; border-radius:99px; background:#f14778; }
+    .stats-hero h1 { margin:0; color:#fff; font-size:34px; line-height:1.45; letter-spacing:-.7px; }
+    .stats-hero p { max-width:680px; margin:10px 0 0; color:#d9d0df; font-size:13px; line-height:2; }
+    .stats-hero-meta { display:flex; flex-wrap:wrap; gap:7px; margin-top:17px; }
+    .stats-hero-meta span { padding:5px 9px; border:1px solid rgba(255,255,255,.13); border-radius:99px; background:rgba(255,255,255,.055); color:#e8e2eb; font-size:9px; font-weight:750; }
+    .stats-competition-mark { flex:0 0 118px; display:grid; place-items:center; width:118px; height:118px; padding:18px; border:1px solid rgba(255,255,255,.15); border-radius:28px; background:rgba(255,255,255,.09); box-shadow:inset 0 1px rgba(255,255,255,.12),0 10px 30px rgba(0,0,0,.16); backdrop-filter:blur(8px); }
+    .stats-competition-mark img { width:78px; height:78px; object-fit:contain; filter:drop-shadow(0 7px 11px rgba(0,0,0,.2)); }
+    .stats-section { margin-top:24px; }
+    .stats-section-head { display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:12px; padding:0 3px; }
+    .stats-section-head h2 { margin:0; font-size:21px; }
+    .stats-section-head p { margin:3px 0 0; color:var(--muted); font-size:11px; }
+    .stats-section-head a { flex:none; color:#73355f; font-size:10px; font-weight:800; }
+    .stats-section-head a:hover { color:var(--red); }
+    .stats-podium { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .stats-podium-card { position:relative; overflow:hidden; min-height:144px; padding:22px 22px 18px; border:1px solid #dedfe4; border-radius:12px; background:#fff; box-shadow:var(--shadow-sm); }
+    .stats-podium-card::after { content:attr(data-rank); position:absolute; left:12px; bottom:-26px; color:#f0edf1; font-size:94px; font-weight:900; line-height:1; }
+    .stats-podium-card.featured { border-color:#ccb6cf; background:linear-gradient(145deg,#fff 0%,#fbf7fb 100%); }
+    .stats-podium-label { display:flex; align-items:center; gap:7px; color:#7b687a; font-size:10px; font-weight:800; }
+    .stats-podium-label i { width:7px; height:7px; border-radius:50%; background:#d72a62; box-shadow:0 0 0 4px #faeaf0; }
+    .stats-podium-card h3 { margin:10px 0 0; font-size:19px; line-height:1.45; }
+    .stats-podium-card p { margin:3px 0 0; color:#747b83; font-size:10px; }
+    .stats-podium-value { position:relative; z-index:1; display:flex; align-items:baseline; gap:6px; margin-top:13px; color:#24152e; }
+    .stats-podium-value strong { font-size:29px; font-weight:900; line-height:1; }
+    .stats-podium-value span { color:#875873; font-size:9px; font-weight:800; }
+    .stats-board-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .stat-leaderboard { overflow:hidden; border:1px solid #dee2e6; border-radius:12px; background:#fff; box-shadow:var(--shadow-sm); }
+    .stat-leaderboard-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 17px 13px; border-bottom:1px solid #eceef1; }
+    .stat-leaderboard-head div { min-width:0; }
+    .stat-leaderboard-head h3 { margin:0; font-size:15px; }
+    .stat-leaderboard-head p { margin:2px 0 0; color:#8a9199; font-size:9px; }
+    .stat-leaderboard-head strong { flex:none; padding:4px 8px; border-radius:5px; background:#f4edf3; color:#713156; font-size:9px; }
+    .stats-ranking { margin:0; padding:0; list-style:none; }
+    .stats-ranking li { display:grid; grid-template-columns:25px minmax(0,1fr) auto; align-items:center; gap:9px; min-height:53px; padding:8px 17px; border-bottom:1px solid #f0f1f3; }
+    .stats-ranking li:last-child { border-bottom:0; }
+    .stats-ranking li:first-child { background:linear-gradient(90deg,#fff 35%,#fcf7fa); }
+    .stats-rank { display:grid; place-items:center; width:23px; height:23px; border-radius:50%; background:#f0f1f3; color:#69717a; font-size:9px; font-weight:900; }
+    .stats-ranking li:first-child .stats-rank { background:#261631; color:#fff; }
+    .stats-athlete { min-width:0; }
+    .stats-athlete b { display:block; overflow:hidden; color:#252a31; font-size:11px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
+    .stats-athlete small { display:block; overflow:hidden; margin-top:1px; color:#8a9199; font-size:8.5px; text-overflow:ellipsis; white-space:nowrap; }
+    .stats-value { min-width:42px; color:#24152e; text-align:left; font-size:16px; font-weight:900; font-variant-numeric:tabular-nums; }
+    .stats-value.decimal { direction:ltr; }
+    .team-stat-panel { overflow:hidden; border:1px solid #dfe2e6; border-radius:13px; background:#fff; box-shadow:var(--shadow-sm); }
+    .team-stat-header { display:flex; align-items:center; justify-content:space-between; gap:15px; padding:16px 18px; border-bottom:1px solid #ebeef1; }
+    .team-stat-header h3 { margin:0; font-size:16px; }
+    .team-stat-header span { color:#8b929a; font-size:9px; }
+    .team-stat-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .team-stat-card { min-width:0; padding:17px 18px 19px; border-left:1px solid #eceef1; }
+    .team-stat-card:last-child { border-left:0; }
+    .team-stat-card > span { display:block; margin-bottom:9px; color:#747c84; font-size:9px; font-weight:800; }
+    .team-stat-card strong { display:block; overflow:hidden; color:#252a31; font-size:14px; text-overflow:ellipsis; white-space:nowrap; }
+    .team-stat-card em { display:block; margin-top:5px; color:#6c2f54; font-size:21px; font-style:normal; font-weight:900; line-height:1.3; }
+    .team-stat-card small { display:block; margin-top:2px; color:#9298a0; font-size:8px; }
+    .stats-source-note { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:17px; padding:14px 17px; border:1px solid #dfe3e7; border-radius:10px; background:#f8f9fa; color:#626b75; font-size:10px; line-height:1.9; }
+    .stats-source-note strong { color:#252a31; }
+    .stats-source-note a { flex:none; padding:7px 11px; border-radius:6px; background:#261631; color:#fff; font-size:9px; font-weight:800; }
+    .stats-source-note a:hover { background:#6f2853; }
+
     @media(max-width:980px) {
       .main-nav { display:none; }
-      .header-league-shortcut { display:inline-flex; }
+      .header-league-shortcut,.header-stats-shortcut { display:inline-flex; }
       .hero-layout { grid-template-columns:1fr; }
       .feature,.feature-media,.feature-copy { min-height:420px; }
       .hero-layout > .panel { height:auto; overflow:visible; }
@@ -714,15 +777,31 @@
       .editor-preview-card { display:grid; grid-template-columns:170px 1fr; }
       .editor-preview-card img { height:100%; min-height:120px; }
       .image-settings-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .stats-podium { grid-template-columns:1fr; }
+      .stats-podium-card { min-height:126px; }
+      .team-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .team-stat-card:nth-child(2) { border-left:0; }
+      .team-stat-card:nth-child(-n+2) { border-bottom:1px solid #eceef1; }
     }
     @media(max-width:720px) {
       .container { width:min(100% - 24px,1240px); }
       .site-header { height:52px; }
-      .header-inner { height:49px; gap:10px; }
+      .header-inner { height:49px; gap:8px; }
       .brand-name { font-size:18px; }
       .brand-mark { width:28px; height:28px; font-size:15px; }
-      .editor-button { padding:0 10px; }
-      .header-league-shortcut { padding:0 8px; }
+      .editor-button { display:none; }
+      #focusSearch { display:none; }
+      .header-actions { gap:5px; }
+      .header-league-shortcut,.header-stats-shortcut { padding:0 8px; }
+      .stats-view { padding-top:14px; }
+      .stats-hero { display:block; min-height:0; padding:26px 22px; border-radius:12px; }
+      .stats-hero-copy { position:relative; z-index:1; }
+      .stats-hero h1 { font-size:27px; }
+      .stats-competition-mark { position:absolute; left:15px; bottom:14px; z-index:0; width:84px; height:84px; padding:13px; border:0; border-radius:21px; background:transparent; opacity:.14; box-shadow:none; }
+      .stats-competition-mark img { width:58px; height:58px; }
+      .stats-board-grid { grid-template-columns:1fr; }
+      .stats-section-head { align-items:flex-start; flex-direction:column; gap:6px; }
+      .stats-source-note { align-items:flex-start; flex-direction:column; }
       main { padding-top:18px; }
       .score-strip { height:108px; padding-top:6px; }
       .score-layout { grid-template-areas:"toolbar board"; grid-template-columns:96px minmax(0,1fr); width:calc(100% - 16px); height:95px; }
@@ -1131,7 +1210,7 @@
     /* Unified visual language: one type scale, one neutral palette and one brand accent. */
     .site-header { background:rgba(21,23,27,.98); border-top-color:var(--red); box-shadow:0 5px 18px rgba(15,18,23,.1); }
     .brand-mark { background:linear-gradient(145deg,#e52a48,var(--red-dark)); box-shadow:0 4px 12px rgba(217,31,61,.23); }
-    .brand-name,.nav-link,.editor-button,.header-league-shortcut { font-weight:700; }
+    .brand-name,.nav-link,.editor-button,.header-league-shortcut,.header-stats-shortcut { font-weight:700; }
     .nav-link { color:#b7bcc3; font-size:12px; }
 
     .score-layout { border-color:#dce1e6; background:#fff; box-shadow:0 6px 20px rgba(25,31,38,.075); }
@@ -1231,10 +1310,10 @@
     .nav-link.active { color:#171b21; background:#e9edf1; }
     .nav-link.active::after { right:13px; bottom:2px; left:13px; height:2px; }
     .header-actions { gap:7px; }
-    .icon-button,.editor-button,.header-league-shortcut { height:35px; border-color:#d5dae0; border-radius:8px; background:#fff; color:#303842; box-shadow:0 2px 7px rgba(23,29,36,.055); }
+    .icon-button,.editor-button,.header-league-shortcut,.header-stats-shortcut { height:35px; border-color:#d5dae0; border-radius:8px; background:#fff; color:#303842; box-shadow:0 2px 7px rgba(23,29,36,.055); }
     .icon-button { width:36px; }
     .editor-button { padding-inline:14px; }
-    .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover { border-color:#e29aa6; background:#fff1f3; color:var(--red-dark); }
+    .icon-button:hover,.editor-button:hover,.header-league-shortcut:hover,.header-stats-shortcut:hover { border-color:#e29aa6; background:#fff1f3; color:var(--red-dark); }
     .feature .feature-copy { color:#fff; }
     .feature h1,.feature h1 a { color:#fff; }
     .feature p { color:#eef1f4; }
@@ -1295,7 +1374,7 @@
       .brand-mark { width:54px; height:40px; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
       .brand-name { font-size:19px; }
       .brand-wordmark { width:69px; height:27px; }
-      .icon-button,.editor-button,.header-league-shortcut { height:32px; border-radius:7px; }
+      .icon-button,.editor-button,.header-league-shortcut,.header-stats-shortcut { height:32px; border-radius:7px; }
       .icon-button { width:33px; }
       .editor-button { padding-inline:10px; }
       .feature { height:390px; min-height:390px; }
@@ -1323,10 +1402,11 @@
     <div class="container header-inner">
       <a class="brand" href="#" data-go-home aria-label="نیمکت؛ صفحه اصلی"><span class="brand-mark"><img src="/assets/images/nimkat-logo-v2.png" alt="" width="62" height="31"></span><span class="brand-name brand-wordmark"><img src="/assets/images/nimkat-wordmark-v1.png" alt="نیمکت" width="76" height="25"></span></a>
       <nav class="main-nav" aria-label="منوی اصلی">
-        <button class="nav-link active" data-filter="all">خانه</button><button class="nav-link" type="button" data-league-center>جدول و برنامه بازی‌ها</button><button class="nav-link" data-filter="transfer">نقل‌وانتقالات</button><button class="nav-link" data-filter="analysis">تحلیل</button>
+        <button class="nav-link active" data-filter="all">خانه</button><button class="nav-link" type="button" data-league-center>جدول و برنامه بازی‌ها</button><button class="nav-link" type="button" data-stats-center>آمار و رکوردها</button><button class="nav-link" data-filter="transfer">نقل‌وانتقالات</button><button class="nav-link" data-filter="analysis">تحلیل</button>
       </nav>
       <div class="header-actions">
         <button class="header-league-shortcut" type="button" data-league-center aria-label="جدول و برنامه بازی‌ها">جدول‌ها</button>
+        <button class="header-stats-shortcut" type="button" data-stats-center aria-label="آمار و رکوردهای فوتبال">آمار</button>
         <button class="icon-button" id="focusSearch" aria-label="جست‌وجو"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></button>
         <button class="editor-button" data-view="editor">تحریریه</button>
       </div>
@@ -1392,6 +1472,43 @@
           </aside>
         </div>
       </section>
+    </section>
+
+    <section id="statsView" class="container stats-view hidden" aria-live="polite">
+      <header class="stats-hero">
+        <div class="stats-hero-copy">
+          <span class="stats-eyebrow">دیتاسنتر نیمکت</span>
+          <h1>آمار و رکوردهای لیگ برتر انگلیس</h1>
+          <p>برترین بازیکنان و تیم‌های فصل ۲۰۲۶/۲۷؛ از گل و امید گل تا خلق موقعیت، بازپس‌گیری توپ و شاخص‌های پیشرفته تیمی.</p>
+          <div class="stats-hero-meta"><span>۴۵۲ بازیکن</span><span>۲۰ تیم</span><span>پس از هفته پنجم</span><span>به‌روزرسانی منبع: ۳۱ شهریور ۱۴۰۵</span></div>
+        </div>
+        <a class="stats-competition-mark" href="https://theanalyst.com/competition/premier-league/stats" target="_blank" rel="noopener" aria-label="مشاهده آمار لیگ برتر در Opta Analyst"><img src="https://theanalyst.com/wp-content/uploads/2024/08/english-premier-league-120x120.png" alt="نشان لیگ برتر انگلیس" loading="lazy"></a>
+      </header>
+
+      <section class="stats-section" aria-labelledby="statsLeadersTitle">
+        <div class="stats-section-head"><div><h2 id="statsLeadersTitle">صدرنشین‌های آماری</h2><p>سه رکورد شاخص بازیکنان در شروع فصل</p></div><a href="#playerLeaderboards">دیدن همه رتبه‌بندی‌ها ↓</a></div>
+        <div class="stats-podium">
+          <article class="stats-podium-card featured" data-rank="۱"><span class="stats-podium-label"><i></i>بیشترین گل</span><h3>ارلینگ هالند</h3><p>منچستر سیتی · ۵ بازی</p><div class="stats-podium-value"><strong>۵</strong><span>گل</span></div></article>
+          <article class="stats-podium-card" data-rank="۲"><span class="stats-podium-label"><i></i>بیشترین پاس گل</span><h3>کودی خاکپو</h3><p>لیورپول · ۵ بازی</p><div class="stats-podium-value"><strong>۳</strong><span>پاس گل</span></div></article>
+          <article class="stats-podium-card" data-rank="۳"><span class="stats-podium-label"><i></i>بیشترین خلق موقعیت</span><h3>پاسکال گروس</h3><p>برایتون · ۵ بازی</p><div class="stats-podium-value"><strong>۱۵</strong><span>موقعیت</span></div></article>
+        </div>
+      </section>
+
+      <section class="stats-section" id="playerLeaderboards" aria-labelledby="playerStatsTitle">
+        <div class="stats-section-head"><div><h2 id="playerStatsTitle">رتبه‌بندی بازیکنان</h2><p>اعداد تجمعی فصل جاری؛ نام‌ها با شیوه رایج فارسی</p></div></div>
+        <div class="stats-board-grid">
+          <article class="stat-leaderboard"><header class="stat-leaderboard-head"><div><h3>گل‌زنان برتر</h3><p>گل‌های ثبت‌شده در لیگ</p></div><strong>گل</strong></header><ol class="stats-ranking"><li><span class="stats-rank">۱</span><span class="stats-athlete"><b>ارلینگ هالند</b><small>منچستر سیتی</small></span><span class="stats-value">۵</span></li><li><span class="stats-rank">۲</span><span class="stats-athlete"><b>الکساندر ایساک</b><small>لیورپول</small></span><span class="stats-value">۴</span></li><li><span class="stats-rank">۳</span><span class="stats-athlete"><b>برونو فرناندز</b><small>منچستریونایتد</small></span><span class="stats-value">۳</span></li><li><span class="stats-rank">۴</span><span class="stats-athlete"><b>مارکوس تاورنیر</b><small>بورنموث</small></span><span class="stats-value">۳</span></li><li><span class="stats-rank">۵</span><span class="stats-athlete"><b>دومینیک کالورت-لوین</b><small>لیدز یونایتد</small></span><span class="stats-value">۳</span></li></ol></article>
+          <article class="stat-leaderboard"><header class="stat-leaderboard-head"><div><h3>امید گل</h3><p>کیفیت مجموع موقعیت‌های شوت</p></div><strong>xG</strong></header><ol class="stats-ranking"><li><span class="stats-rank">۱</span><span class="stats-athlete"><b>ارلینگ هالند</b><small>منچستر سیتی</small></span><span class="stats-value decimal">۴٫۴۳</span></li><li><span class="stats-rank">۲</span><span class="stats-athlete"><b>الکساندر ایساک</b><small>لیورپول</small></span><span class="stats-value decimal">۳٫۵۴</span></li><li><span class="stats-rank">۳</span><span class="stats-athlete"><b>تیرنو بری</b><small>اورتون</small></span><span class="stats-value decimal">۳٫۵۰</span></li><li><span class="stats-rank">۴</span><span class="stats-athlete"><b>بوکایو ساکا</b><small>آرسنال</small></span><span class="stats-value decimal">۳٫۲۱</span></li><li><span class="stats-rank">۵</span><span class="stats-athlete"><b>ایگور تیاگو</b><small>برنتفورد</small></span><span class="stats-value decimal">۳٫۱۳</span></li></ol></article>
+          <article class="stat-leaderboard"><header class="stat-leaderboard-head"><div><h3>پاس گل</h3><p>پاس‌های منجر به گل</p></div><strong>پاس گل</strong></header><ol class="stats-ranking"><li><span class="stats-rank">۱</span><span class="stats-athlete"><b>کودی خاکپو</b><small>لیورپول</small></span><span class="stats-value">۳</span></li><li><span class="stats-rank">۲</span><span class="stats-athlete"><b>اوانیلسون</b><small>بورنموث</small></span><span class="stats-value">۳</span></li><li><span class="stats-rank">۳</span><span class="stats-athlete"><b>دایچی کامادا</b><small>کریستال پالاس</small></span><span class="stats-value">۳</span></li><li><span class="stats-rank">۴</span><span class="stats-athlete"><b>آنتوان سمنیو</b><small>منچستر سیتی</small></span><span class="stats-value">۳</span></li><li><span class="stats-rank">۵</span><span class="stats-athlete"><b>پاسکال گروس</b><small>برایتون</small></span><span class="stats-value">۳</span></li></ol></article>
+          <article class="stat-leaderboard"><header class="stat-leaderboard-head"><div><h3>خلق موقعیت</h3><p>پاس‌های منجر به شوت</p></div><strong>موقعیت</strong></header><ol class="stats-ranking"><li><span class="stats-rank">۱</span><span class="stats-athlete"><b>پاسکال گروس</b><small>برایتون</small></span><span class="stats-value">۱۵</span></li><li><span class="stats-rank">۲</span><span class="stats-athlete"><b>مورگان گیبس-وایت</b><small>ناتینگام فارست</small></span><span class="stats-value">۱۴</span></li><li><span class="stats-rank">۳</span><span class="stats-athlete"><b>برونو فرناندز</b><small>منچستریونایتد</small></span><span class="stats-value">۱۳</span></li><li><span class="stats-rank">۴</span><span class="stats-athlete"><b>مارکوس رشفورد</b><small>منچستریونایتد</small></span><span class="stats-value">۱۳</span></li><li><span class="stats-rank">۵</span><span class="stats-athlete"><b>گرانیت ژاکا</b><small>ساندرلند</small></span><span class="stats-value">۱۳</span></li></ol></article>
+          <article class="stat-leaderboard"><header class="stat-leaderboard-head"><div><h3>بازپس‌گیری توپ</h3><p>بازگرداندن مالکیت برای تیم</p></div><strong>بازپس‌گیری</strong></header><ol class="stats-ranking"><li><span class="stats-rank">۱</span><span class="stats-athlete"><b>کوبی ماینو</b><small>منچستریونایتد</small></span><span class="stats-value">۴۰</span></li><li><span class="stats-rank">۲</span><span class="stats-athlete"><b>لوئیس هال</b><small>نیوکاسل</small></span><span class="stats-value">۳۸</span></li><li><span class="stats-rank">۳</span><span class="stats-athlete"><b>الکس اسکات</b><small>بورنموث</small></span><span class="stats-value">۳۶</span></li><li><span class="stats-rank">۴</span><span class="stats-athlete"><b>گرانیت ژاکا</b><small>ساندرلند</small></span><span class="stats-value">۳۳</span></li><li><span class="stats-rank">۵</span><span class="stats-athlete"><b>ویتالی میکولنکو</b><small>اورتون</small></span><span class="stats-value">۳۰</span></li></ol></article>
+          <article class="stat-leaderboard"><header class="stat-leaderboard-head"><div><h3>مهار دروازه‌بان‌ها</h3><p>تعداد شوت‌های مهارشده</p></div><strong>مهار</strong></header><ol class="stats-ranking"><li><span class="stats-rank">۱</span><span class="stats-athlete"><b>جیمز ترافورد</b><small>لیدز یونایتد</small></span><span class="stats-value">۲۰</span></li><li><span class="stats-rank">۲</span><span class="stats-athlete"><b>لوکاش هورنیچک</b><small>نیوکاسل</small></span><span class="stats-value">۱۹</span></li><li><span class="stats-rank">۳</span><span class="stats-athlete"><b>امیلیانو مارتینس</b><small>چلسی</small></span><span class="stats-value">۱۸</span></li><li><span class="stats-rank">۴</span><span class="stats-athlete"><b>کنستانتینوس تزولاکیس</b><small>هال سیتی</small></span><span class="stats-value">۱۷</span></li><li><span class="stats-rank">۵</span><span class="stats-athlete"><b>کائومین کلهر</b><small>برنتفورد</small></span><span class="stats-value">۱۷</span></li></ol></article>
+        </div>
+      </section>
+
+      <section class="stats-section" aria-labelledby="teamStatsTitle"><div class="stats-section-head"><div><h2 id="teamStatsTitle">شاخص‌های تیمی</h2><p>بهترین تیم در چهار سنجه مهم پس از پنج بازی</p></div></div><article class="team-stat-panel"><header class="team-stat-header"><h3>رهبران لیگ در یک نگاه</h3><span>داده تجمعی فصل</span></header><div class="team-stat-grid"><div class="team-stat-card"><span>بیشترین گل</span><strong>برایتون</strong><em>۱۶</em><small>۳٫۲ گل در هر بازی</small></div><div class="team-stat-card"><span>بیشترین امید گل</span><strong>برایتون</strong><em>۱۱٫۴۹</em><small>xG در ۵ مسابقه</small></div><div class="team-stat-card"><span>بیشترین مالکیت</span><strong>برایتون</strong><em>۶۴٫۸٪</em><small>میانگین مالکیت توپ</small></div><div class="team-stat-card"><span>کمترین xG دریافتی</span><strong>آرسنال</strong><em>۴٫۰۴</em><small>بهترین خروجی دفاعی</small></div></div></article></section>
+
+      <aside class="stats-source-note"><span><strong>منبع داده: Opta Analyst.</strong> این صفحه snapshot خوراک عمومی لیگ برتر در ۲۲ سپتامبر ۲۰۲۶ است و اعداد ممکن است پس از اصلاح رسمی داده تغییر کنند. xG یک برآورد احتمالی از کیفیت موقعیت‌هاست.</span><a href="https://theanalyst.com/competition/premier-league/stats" target="_blank" rel="noopener">مشاهده داده اصلی ↗</a></aside>
     </section>
 
     <section id="articleView" class="container article-view hidden" aria-live="polite">
@@ -2427,8 +2544,8 @@
       document.getElementById('resultCount').textContent=`${filtered.length.toLocaleString('fa-IR')} خبر`;
       document.getElementById('loadMore').classList.toggle('hidden',shown.length>=filtered.length);
     }
-    function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-league-center]').forEach(button=>button.classList.remove('active'));document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
-    function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('leagueView').classList.toggle('hidden',view!=='league');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('matchView').classList.toggle('hidden',view!=='match');document.getElementById('teamView').classList.toggle('hidden',view!=='team');document.getElementById('playerView').classList.toggle('hidden',view!=='player');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
+    function setFilter(value){activeFilter=value;visibleCount=10;document.querySelectorAll('[data-league-center],[data-stats-center]').forEach(button=>button.classList.remove('active'));document.querySelectorAll('[data-filter]').forEach(button=>button.classList.toggle('active',button.dataset.filter===value));showView('news');render();}
+    function showView(view){document.body.classList.toggle('editor-mode',view==='editor');document.getElementById('newsView').classList.toggle('hidden',view!=='news');document.getElementById('leagueView').classList.toggle('hidden',view!=='league');document.getElementById('statsView').classList.toggle('hidden',view!=='stats');document.getElementById('articleView').classList.toggle('hidden',view!=='article');document.getElementById('matchView').classList.toggle('hidden',view!=='match');document.getElementById('teamView').classList.toggle('hidden',view!=='team');document.getElementById('playerView').classList.toggle('hidden',view!=='player');document.getElementById('editorView').classList.toggle('hidden',view!=='editor');window.scrollTo({top:0,behavior:'smooth'});}
     function renderArticlePage(id){
       const item=news.find(entry=>entry.id===id);if(!item)return false;selectedEditorId=item.id;const image=safeArticleImage(item.image),settings=item.imageSettings||{},placement=settings.placement||'hero',ratio=imageChoice(settings.ratio,['16x9','4x3','1x1','natural'],'16x9'),size=imageChoice(settings.size,['full','wide','medium','small'],'full'),align=imageChoice(settings.align,['center','right','left'],'center'),inlineMain=image&&placement==='inline'?figure({src:image,alt:item.title,size,ratio,align}):'';
       document.title=`${item.title} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',item.summary||'گزارش نیمکت');
@@ -2440,7 +2557,8 @@
     }
     function showHome(){document.title='نیمکت | خبر فوتبال جهان';document.querySelector('meta[name="description"]').setAttribute('content','خبرهای فوتبال جهان از رسانه‌های معتبر، با منبع شفاف و آماده‌سازی برای ترجمه فارسی.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));showView('news');}
     function showLeagues(){const requested=new URLSearchParams(location.search).get('league');if(Object.hasOwn(LEAGUE_CONFIG,requested)&&requested!==selectedLeague){selectedLeague=requested;selectedLeagueRound=0;document.getElementById('leagueSelect').value=selectedLeague;leagueCenterLoaded=false;}document.title='جدول لیگ‌ها و برنامه بازی‌ها | نیمکت';document.querySelector('meta[name="description"]').setAttribute('content','جدول لیگ‌های معتبر فوتبال و برنامه بازی‌های هفته به وقت ایران.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-league-center')));showView('league');if(!leagueCenterLoaded){leagueCenterLoaded=true;loadLeagueCenter();}}
-    function route(){const params=new URLSearchParams(location.search),id=params.get('article'),match=params.get('match'),team=params.get('team'),player=params.get('player');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(params.get('page')==='leagues'){showLeagues();return;}if(player&&showPlayerPage(player))return;if(team&&showTeamPage(team))return;if(match&&showMatchPage(match))return;if(!id||!renderArticlePage(id))showHome();}
+    function showStats(){document.title='آمار و رکوردهای لیگ برتر انگلیس | نیمکت';document.querySelector('meta[name="description"]').setAttribute('content','رتبه‌بندی گل، امید گل، پاس گل، خلق موقعیت و شاخص‌های تیمی لیگ برتر انگلیس بر پایه داده‌های Opta Analyst.');document.querySelectorAll('.nav-link').forEach(button=>button.classList.toggle('active',button.hasAttribute('data-stats-center')));showView('stats');}
+    function route(){const params=new URLSearchParams(location.search),id=params.get('article'),match=params.get('match'),team=params.get('team'),player=params.get('player');if(params.get('admin')==='editor'){showEditor(params.get('edit'));return;}if(params.get('page')==='leagues'){showLeagues();return;}if(params.get('page')==='stats'){showStats();return;}if(player&&showPlayerPage(player))return;if(team&&showTeamPage(team))return;if(match&&showMatchPage(match))return;if(!id||!renderArticlePage(id))showHome();}
     const featuredRoot=document.getElementById('featured');
     featuredRoot.addEventListener('click',event=>{const dot=event.target.closest('[data-feature-index]'),arrow=event.target.closest('[data-feature-step]');if(!dot&&!arrow)return;renderFeatured(dot?Number(dot.dataset.featureIndex):featuredIndex+Number(arrow.dataset.featureStep));startFeaturedRotation();});
     featuredRoot.addEventListener('mouseenter',stopFeaturedRotation);
@@ -2451,7 +2569,7 @@
     document.getElementById('teamContent').addEventListener('click',event=>{if(event.target.closest('[data-team-retry]')&&activeTeamRef)loadTeamPage(activeTeamRef);});
     document.getElementById('playerContent').addEventListener('click',event=>{if(event.target.closest('[data-player-retry]')&&activePlayerRef)loadPlayerPage(activePlayerRef);});
     document.getElementById('teamContent').addEventListener('change',event=>{if(event.target.id!=='teamMonthSelect')return;const month=event.target.value;document.querySelectorAll('.team-schedule-group').forEach(group=>{group.hidden=month==='soon'?Number(group.dataset.teamMonthOrder)>1:month!=='all'&&group.dataset.teamMonth!==month;});});
-    document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]'),leagueLink=event.target.closest('[data-league-center]');if(filter){history.pushState({},'',location.pathname);setFilter(filter.dataset.filter);}if(leagueLink){event.preventDefault();history.pushState({},'',`${location.pathname}?page=leagues&league=${encodeURIComponent(selectedLeague)}`);showLeagues();}if(view){history.pushState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(selectedEditorId)}`);showEditor(selectedEditorId);}if(event.target.closest('[data-go-home]')){event.preventDefault();history.pushState({},'',location.pathname);setFilter('all');showHome();}});
+    document.addEventListener('click',event=>{const filter=event.target.closest('[data-filter]'),view=event.target.closest('[data-view]'),leagueLink=event.target.closest('[data-league-center]'),statsLink=event.target.closest('[data-stats-center]');if(filter){history.pushState({},'',location.pathname);setFilter(filter.dataset.filter);}if(leagueLink){event.preventDefault();history.pushState({},'',`${location.pathname}?page=leagues&league=${encodeURIComponent(selectedLeague)}`);showLeagues();}if(statsLink){event.preventDefault();history.pushState({},'',`${location.pathname}?page=stats`);showStats();}if(view){history.pushState({},'',`${location.pathname}?admin=editor&edit=${encodeURIComponent(selectedEditorId)}`);showEditor(selectedEditorId);}if(event.target.closest('[data-go-home]')){event.preventDefault();history.pushState({},'',location.pathname);setFilter('all');showHome();}});
     document.getElementById('searchInput').addEventListener('input',event=>{query=event.target.value.trim();visibleCount=10;render();});
     document.getElementById('focusSearch').addEventListener('click',()=>{history.pushState({},'',location.pathname);showView('news');document.getElementById('searchInput').focus();document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});});
     document.getElementById('loadMore').addEventListener('click',()=>{visibleCount+=10;render();});

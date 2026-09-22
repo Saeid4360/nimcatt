@@ -96,6 +96,11 @@ assert.match(homepage, /پاس کلیدی/);
 assert.match(homepage, /function persianPlayerName/);
 assert.match(homepage, /api\/v1\/json\/123\/searchplayers/);
 assert.match(homepage, /نام فارسی تحریریه/);
+assert.match(homepage, /data-stats-center>آمار و رکوردها/);
+assert.match(homepage, /id="statsView"/);
+assert.match(homepage, /آمار و رکوردهای لیگ برتر انگلیس/);
+assert.match(homepage, /theanalyst\.com\/competition\/premier-league\/stats/);
+assert.match(homepage, /function showStats\(\)/);
 
 const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);

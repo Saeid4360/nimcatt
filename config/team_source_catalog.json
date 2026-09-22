@@ -1,0 +1,162 @@
+[
+  {
+    "id": "arsenal", "team": "Arsenal", "team_fa": "آرسنال", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Arsenal.com", "arsenal.com", "club"], ["football.london", "football.london", "local"], ["Arseblog", "arseblog.com", "fan"], ["Pain in the Arsenal", "paininthearsenal.com", "fan"], ["Just Arsenal", "justarsenal.com", "fan"]]
+  },
+  {
+    "id": "chelsea", "team": "Chelsea", "team_fa": "چلسی", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Chelsea FC", "chelseafc.com", "club"], ["football.london", "football.london", "local"], ["We Ain't Got No History", "weaintgotnohistory.sbnation.com", "fan"], ["The Chelsea Chronicle", "thechelseachronicle.com", "fan"], ["Pride of London", "prideoflondon.com", "fan"]]
+  },
+  {
+    "id": "liverpool", "team": "Liverpool", "team_fa": "لیورپول", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Liverpool FC", "liverpoolfc.com", "club"], ["Liverpool Echo", "liverpoolecho.co.uk", "local"], ["This Is Anfield", "thisisanfield.com", "fan"], ["Empire of the Kop", "empireofthekop.com", "fan"], ["The Liverpool Offside", "liverpooloffside.sbnation.com", "fan"]]
+  },
+  {
+    "id": "manchester-united", "team": "Manchester United", "team_fa": "منچستریونایتد", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Manchester United", "manutd.com", "club"], ["Manchester Evening News", "manchestereveningnews.co.uk", "local"], ["Stretty News", "strettynews.com", "fan"], ["The Peoples Person", "thepeoplesperson.com", "fan"], ["United in Focus", "unitedinfocus.com", "fan"]]
+  },
+  {
+    "id": "manchester-city", "team": "Manchester City", "team_fa": "منچسترسیتی", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Manchester City", "mancity.com", "club"], ["Manchester Evening News", "manchestereveningnews.co.uk", "local"], ["City Xtra", "cityxtra.co.uk", "fan"], ["Bitter and Blue", "bitterandblue.sbnation.com", "fan"], ["Man City Square", "mancitysquare.com", "fan"]]
+  },
+  {
+    "id": "tottenham", "team": "Tottenham Hotspur", "team_fa": "تاتنهام", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Tottenham Hotspur", "tottenhamhotspur.com", "club"], ["football.london", "football.london", "local"], ["Cartilage Free Captain", "cartilagefreecaptain.sbnation.com", "fan"], ["Spurs Web", "spurs-web.com", "fan"], ["Hotspur HQ", "hotspurhq.com", "fan"]]
+  },
+  {
+    "id": "newcastle", "team": "Newcastle United", "team_fa": "نیوکاسل", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Newcastle United", "newcastleunited.com", "club"], ["Chronicle Live", "chroniclelive.co.uk", "local"], ["NUFC Blog", "nufcblog.co.uk", "fan"], ["Coming Home Newcastle", "cominghomenewcastle.sbnation.com", "fan"], ["Geordie Boot Boys", "geordiebootboys.com", "fan"]]
+  },
+  {
+    "id": "aston-villa", "team": "Aston Villa", "team_fa": "استون ویلا", "country": "england", "country_label": "انگلیس", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Aston Villa", "avfc.co.uk", "club"], ["Birmingham Live", "birminghammail.co.uk", "local"], ["7500 to Holte", "7500toholte.sbnation.com", "fan"], ["A Villa Fan", "avillafan.com", "fan"], ["Claret Villans", "claretvillans.com", "fan"]]
+  },
+  {
+    "id": "real-madrid", "team": "Real Madrid", "team_fa": "رئال مادرید", "country": "spain", "country_label": "اسپانیا", "flag": "🇪🇸", "language": "Spanish", "language_label": "اسپانیایی", "hl": "es", "gl": "ES", "ceid": "ES:es",
+    "sources": [["Real Madrid", "realmadrid.com", "club"], ["Marca", "marca.com", "local"], ["AS", "as.com", "local"], ["Managing Madrid", "managingmadrid.com", "fan"], ["Madrid Universal", "madriduniversal.com", "fan"]]
+  },
+  {
+    "id": "barcelona", "team": "FC Barcelona", "team_fa": "بارسلونا", "country": "spain", "country_label": "اسپانیا", "flag": "🇪🇸", "language": "Spanish", "language_label": "اسپانیایی", "hl": "es", "gl": "ES", "ceid": "ES:es",
+    "sources": [["FC Barcelona", "fcbarcelona.com", "club"], ["Mundo Deportivo", "mundodeportivo.com", "local"], ["Sport", "sport.es", "local"], ["Barca Blaugranes", "barcablaugranes.com", "fan"], ["Barca Universal", "barcauniversal.com", "fan"]]
+  },
+  {
+    "id": "atletico-madrid", "team": "Atletico Madrid", "team_fa": "اتلتیکومادرید", "country": "spain", "country_label": "اسپانیا", "flag": "🇪🇸", "language": "Spanish", "language_label": "اسپانیایی", "hl": "es", "gl": "ES", "ceid": "ES:es",
+    "sources": [["Atletico de Madrid", "atleticodemadrid.com", "club"], ["Marca", "marca.com", "local"], ["AS", "as.com", "local"], ["Into the Calderon", "intothecalderon.com", "fan"], ["Atletikos", "atletikos.es", "fan"]]
+  },
+  {
+    "id": "athletic-bilbao", "team": "Athletic Club", "team_fa": "اتلتیک بیلبائو", "country": "spain", "country_label": "اسپانیا", "flag": "🇪🇸", "language": "Spanish", "language_label": "اسپانیایی", "hl": "es", "gl": "ES", "ceid": "ES:es",
+    "sources": [["Athletic Club", "athletic-club.eus", "club"], ["El Correo", "elcorreo.com", "local"], ["Deia", "deia.eus", "local"], ["Mundo Deportivo", "mundodeportivo.com", "local"], ["El Desmarque Bizkaia", "eldesmarque.com", "fan"]]
+  },
+  {
+    "id": "sevilla", "team": "Sevilla FC", "team_fa": "سویا", "country": "spain", "country_label": "اسپانیا", "flag": "🇪🇸", "language": "Spanish", "language_label": "اسپانیایی", "hl": "es", "gl": "ES", "ceid": "ES:es",
+    "sources": [["Sevilla FC", "sevillafc.es", "club"], ["Diario de Sevilla", "diariodesevilla.es", "local"], ["Estadio Deportivo", "estadiodeportivo.com", "local"], ["Sevilla FC News", "sevillafcnews.es", "fan"], ["El Desmarque Sevilla", "eldesmarque.com", "fan"]]
+  },
+  {
+    "id": "valencia", "team": "Valencia CF", "team_fa": "والنسیا", "country": "spain", "country_label": "اسپانیا", "flag": "🇪🇸", "language": "Spanish", "language_label": "اسپانیایی", "hl": "es", "gl": "ES", "ceid": "ES:es",
+    "sources": [["Valencia CF", "valenciacf.com", "club"], ["Superdeporte", "superdeporte.es", "local"], ["Levante-EMV", "levante-emv.com", "local"], ["Valencia Plaza", "valenciaplaza.com", "local"], ["El Desmarque Valencia", "eldesmarque.com", "fan"]]
+  },
+  {
+    "id": "juventus", "team": "Juventus", "team_fa": "یوونتوس", "country": "italy", "country_label": "ایتالیا", "flag": "🇮🇹", "language": "Italian", "language_label": "ایتالیایی", "hl": "it", "gl": "IT", "ceid": "IT:it",
+    "sources": [["Juventus", "juventus.com", "club"], ["Tuttosport", "tuttosport.com", "local"], ["Juventus News 24", "juventusnews24.com", "fan"], ["Juve FC", "juvefc.com", "fan"], ["Black & White & Read All Over", "blackwhitereadallover.com", "fan"]]
+  },
+  {
+    "id": "inter", "team": "Inter Milan", "team_fa": "اینتر", "country": "italy", "country_label": "ایتالیا", "flag": "🇮🇹", "language": "Italian", "language_label": "ایتالیایی", "hl": "it", "gl": "IT", "ceid": "IT:it",
+    "sources": [["Inter", "inter.it", "club"], ["La Gazzetta dello Sport", "gazzetta.it", "local"], ["FC Inter News", "fcinternews.it", "fan"], ["Sempre Inter", "sempreinter.com", "fan"], ["Serpents of Madonnina", "serpentsofmadonnina.com", "fan"]]
+  },
+  {
+    "id": "ac-milan", "team": "AC Milan", "team_fa": "آث میلان", "country": "italy", "country_label": "ایتالیا", "flag": "🇮🇹", "language": "Italian", "language_label": "ایتالیایی", "hl": "it", "gl": "IT", "ceid": "IT:it",
+    "sources": [["AC Milan", "acmilan.com", "club"], ["La Gazzetta dello Sport", "gazzetta.it", "local"], ["Milan News", "milannews.it", "fan"], ["Sempre Milan", "sempremilan.com", "fan"], ["Rossoneri Blog", "rossoneriblog.com", "fan"]]
+  },
+  {
+    "id": "napoli", "team": "Napoli", "team_fa": "ناپولی", "country": "italy", "country_label": "ایتالیا", "flag": "🇮🇹", "language": "Italian", "language_label": "ایتالیایی", "hl": "it", "gl": "IT", "ceid": "IT:it",
+    "sources": [["SSC Napoli", "sscnapoli.it", "club"], ["Il Mattino", "ilmattino.it", "local"], ["Tutto Napoli", "tuttonapoli.net", "fan"], ["Napoli Magazine", "napolimagazine.com", "fan"], ["Calcio Napoli 24", "calcionapoli24.it", "fan"]]
+  },
+  {
+    "id": "roma", "team": "AS Roma", "team_fa": "آاس رم", "country": "italy", "country_label": "ایتالیا", "flag": "🇮🇹", "language": "Italian", "language_label": "ایتالیایی", "hl": "it", "gl": "IT", "ceid": "IT:it",
+    "sources": [["AS Roma", "asroma.com", "club"], ["Il Messaggero", "ilmessaggero.it", "local"], ["RomaPress", "romapress.net", "fan"], ["Voce Giallorossa", "vocegiallorossa.it", "fan"], ["Chiesa di Totti", "chiesaditotti.com", "fan"]]
+  },
+  {
+    "id": "lazio", "team": "Lazio", "team_fa": "لاتزیو", "country": "italy", "country_label": "ایتالیا", "flag": "🇮🇹", "language": "Italian", "language_label": "ایتالیایی", "hl": "it", "gl": "IT", "ceid": "IT:it",
+    "sources": [["SS Lazio", "sslazio.it", "club"], ["Il Messaggero", "ilmessaggero.it", "local"], ["La Lazio Siamo Noi", "lalaziosiamonoi.it", "fan"], ["LazioPress", "laziopress.it", "fan"], ["Lazio News 24", "lazionews24.com", "fan"]]
+  },
+  {
+    "id": "bayern", "team": "Bayern Munich", "team_fa": "بایرن مونیخ", "country": "germany", "country_label": "آلمان", "flag": "🇩🇪", "language": "German", "language_label": "آلمانی", "hl": "de", "gl": "DE", "ceid": "DE:de",
+    "sources": [["FC Bayern", "fcbayern.com", "club"], ["Kicker", "kicker.de", "local"], ["Abendzeitung München", "abendzeitung-muenchen.de", "local"], ["Bavarian Football Works", "bavarianfootballworks.com", "fan"], ["FCBinside", "fcbinside.de", "fan"]]
+  },
+  {
+    "id": "dortmund", "team": "Borussia Dortmund", "team_fa": "بوروسیا دورتموند", "country": "germany", "country_label": "آلمان", "flag": "🇩🇪", "language": "German", "language_label": "آلمانی", "hl": "de", "gl": "DE", "ceid": "DE:de",
+    "sources": [["Borussia Dortmund", "bvb.de", "club"], ["Ruhr Nachrichten", "ruhrnachrichten.de", "local"], ["Kicker", "kicker.de", "local"], ["Fear The Wall", "fearthewall.com", "fan"], ["BVB Buzz", "bvbbuzz.com", "fan"]]
+  },
+  {
+    "id": "leverkusen", "team": "Bayer Leverkusen", "team_fa": "بایر لورکوزن", "country": "germany", "country_label": "آلمان", "flag": "🇩🇪", "language": "German", "language_label": "آلمانی", "hl": "de", "gl": "DE", "ceid": "DE:de",
+    "sources": [["Bayer 04", "bayer04.de", "club"], ["Kölner Stadt-Anzeiger", "ksta.de", "local"], ["Kicker", "kicker.de", "local"], ["90min Deutschland", "90min.de", "fan"], ["Transfermarkt", "transfermarkt.de", "fan"]]
+  },
+  {
+    "id": "rb-leipzig", "team": "RB Leipzig", "team_fa": "لایپزیش", "country": "germany", "country_label": "آلمان", "flag": "🇩🇪", "language": "German", "language_label": "آلمانی", "hl": "de", "gl": "DE", "ceid": "DE:de",
+    "sources": [["RB Leipzig", "rbleipzig.com", "club"], ["Leipziger Volkszeitung", "lvz.de", "local"], ["Kicker", "kicker.de", "local"], ["RBLive", "rblive.de", "fan"], ["Transfermarkt", "transfermarkt.de", "fan"]]
+  },
+  {
+    "id": "schalke", "team": "Schalke 04", "team_fa": "شالکه", "country": "germany", "country_label": "آلمان", "flag": "🇩🇪", "language": "German", "language_label": "آلمانی", "hl": "de", "gl": "DE", "ceid": "DE:de",
+    "sources": [["Schalke 04", "schalke04.de", "club"], ["WAZ", "waz.de", "local"], ["Kicker", "kicker.de", "local"], ["Schalke News", "schalke-news.de", "fan"], ["Westline", "westline.de", "fan"]]
+  },
+  {
+    "id": "psg", "team": "Paris Saint-Germain", "team_fa": "پاری‌سن‌ژرمن", "country": "france", "country_label": "فرانسه", "flag": "🇫🇷", "language": "French", "language_label": "فرانسوی", "hl": "fr", "gl": "FR", "ceid": "FR:fr",
+    "sources": [["Paris Saint-Germain", "psg.fr", "club"], ["Le Parisien", "leparisien.fr", "local"], ["Culture PSG", "culturepsg.com", "fan"], ["Canal Supporters", "canal-supporters.com", "fan"], ["PSG Talk", "psgtalk.com", "fan"]]
+  },
+  {
+    "id": "marseille", "team": "Olympique Marseille", "team_fa": "مارسی", "country": "france", "country_label": "فرانسه", "flag": "🇫🇷", "language": "French", "language_label": "فرانسوی", "hl": "fr", "gl": "FR", "ceid": "FR:fr",
+    "sources": [["Olympique de Marseille", "om.fr", "club"], ["La Provence", "laprovence.com", "local"], ["Foot Marseille", "footmarseille.com", "fan"], ["Le Phocéen", "lephoceen.fr", "fan"], ["Marseille Mercato", "marseillemercato.fr", "fan"]]
+  },
+  {
+    "id": "lyon", "team": "Olympique Lyonnais", "team_fa": "لیون", "country": "france", "country_label": "فرانسه", "flag": "🇫🇷", "language": "French", "language_label": "فرانسوی", "hl": "fr", "gl": "FR", "ceid": "FR:fr",
+    "sources": [["Olympique Lyonnais", "ol.fr", "club"], ["Le Progrès", "leprogres.fr", "local"], ["Olympique et Lyonnais", "olympique-et-lyonnais.com", "fan"], ["Coeur Lyonnais", "coeurlyonnais.com", "fan"], ["Foot Mercato", "footmercato.net", "fan"]]
+  },
+  {
+    "id": "monaco", "team": "AS Monaco", "team_fa": "موناکو", "country": "france", "country_label": "فرانسه", "flag": "🇫🇷", "language": "French", "language_label": "فرانسوی", "hl": "fr", "gl": "FR", "ceid": "FR:fr",
+    "sources": [["AS Monaco", "asmonaco.com", "club"], ["Nice-Matin", "nicematin.com", "local"], ["ASM Supporters", "asm-supporters.fr", "fan"], ["Planète ASM", "planete-asm.fr", "fan"], ["Get French Football News", "getfootballnewsfrance.com", "fan"]]
+  },
+  {
+    "id": "lille", "team": "Lille OSC", "team_fa": "لیل", "country": "france", "country_label": "فرانسه", "flag": "🇫🇷", "language": "French", "language_label": "فرانسوی", "hl": "fr", "gl": "FR", "ceid": "FR:fr",
+    "sources": [["LOSC", "losc.fr", "club"], ["La Voix du Nord", "lavoixdunord.fr", "local"], ["Le Petit Lillois", "lepetitlillois.com", "fan"], ["Allez le LOSC", "allezlelosc.fr", "fan"], ["Get French Football News", "getfootballnewsfrance.com", "fan"]]
+  },
+  {
+    "id": "ajax", "team": "Ajax", "team_fa": "آژاکس", "country": "netherlands", "country_label": "هلند", "flag": "🇳🇱", "language": "Dutch", "language_label": "هلندی", "hl": "nl", "gl": "NL", "ceid": "NL:nl",
+    "sources": [["Ajax", "ajax.nl", "club"], ["Het Parool", "parool.nl", "local"], ["Ajax Showtime", "ajaxshowtime.com", "fan"], ["Ajax Life", "ajaxlife.nl", "fan"], ["Ajax1", "ajax1.nl", "fan"]]
+  },
+  {
+    "id": "psv", "team": "PSV Eindhoven", "team_fa": "پی‌اس‌وی آیندهوون", "country": "netherlands", "country_label": "هلند", "flag": "🇳🇱", "language": "Dutch", "language_label": "هلندی", "hl": "nl", "gl": "NL", "ceid": "NL:nl",
+    "sources": [["PSV", "psv.nl", "club"], ["Eindhovens Dagblad", "ed.nl", "local"], ["PSV Fans", "psvfans.nl", "fan"], ["PSV Inside", "psvinside.nl", "fan"], ["VoetbalPrimeur", "voetbalprimeur.nl", "fan"]]
+  },
+  {
+    "id": "feyenoord", "team": "Feyenoord", "team_fa": "فاینورد", "country": "netherlands", "country_label": "هلند", "flag": "🇳🇱", "language": "Dutch", "language_label": "هلندی", "hl": "nl", "gl": "NL", "ceid": "NL:nl",
+    "sources": [["Feyenoord", "feyenoord.nl", "club"], ["Algemeen Dagblad", "ad.nl", "local"], ["FR12", "fr12.nl", "fan"], ["Feyenoord Pings", "feyenoordpings.nl", "fan"], ["1908.nl", "1908.nl", "fan"]]
+  },
+  {
+    "id": "benfica", "team": "Benfica", "team_fa": "بنفیکا", "country": "portugal", "country_label": "پرتغال", "flag": "🇵🇹", "language": "Portuguese", "language_label": "پرتغالی", "hl": "pt-PT", "gl": "PT", "ceid": "PT:pt-150",
+    "sources": [["SL Benfica", "slbenfica.pt", "club"], ["A Bola", "abola.pt", "local"], ["Record", "record.pt", "local"], ["Ser Benfiquista", "serbenfiquista.com", "fan"], ["Notícias ao Minuto", "noticiasaominuto.com", "fan"]]
+  },
+  {
+    "id": "porto", "team": "FC Porto", "team_fa": "پورتو", "country": "portugal", "country_label": "پرتغال", "flag": "🇵🇹", "language": "Portuguese", "language_label": "پرتغالی", "hl": "pt-PT", "gl": "PT", "ceid": "PT:pt-150",
+    "sources": [["FC Porto", "fcporto.pt", "club"], ["O Jogo", "ojogo.pt", "local"], ["Record", "record.pt", "local"], ["Porto Canal", "portocanal.sapo.pt", "local"], ["Sou Portista", "souportista.com", "fan"]]
+  },
+  {
+    "id": "sporting", "team": "Sporting CP", "team_fa": "اسپورتینگ لیسبون", "country": "portugal", "country_label": "پرتغال", "flag": "🇵🇹", "language": "Portuguese", "language_label": "پرتغالی", "hl": "pt-PT", "gl": "PT", "ceid": "PT:pt-150",
+    "sources": [["Sporting CP", "sporting.pt", "club"], ["A Bola", "abola.pt", "local"], ["Record", "record.pt", "local"], ["Leonino", "leonino.pt", "fan"], ["Sporting 160", "sporting160.pt", "fan"]]
+  },
+  {
+    "id": "galatasaray", "team": "Galatasaray", "team_fa": "گالاتاسرای", "country": "turkey", "country_label": "ترکیه", "flag": "🇹🇷", "language": "Turkish", "language_label": "ترکی", "hl": "tr", "gl": "TR", "ceid": "TR:tr",
+    "sources": [["Galatasaray", "galatasaray.org", "club"], ["Fanatik", "fanatik.com.tr", "local"], ["Sporx", "sporx.com", "local"], ["Webaslan", "webaslan.com", "fan"], ["ultrAslan", "ultraslan.com", "fan"]]
+  },
+  {
+    "id": "fenerbahce", "team": "Fenerbahce", "team_fa": "فنرباغچه", "country": "turkey", "country_label": "ترکیه", "flag": "🇹🇷", "language": "Turkish", "language_label": "ترکی", "hl": "tr", "gl": "TR", "ceid": "TR:tr",
+    "sources": [["Fenerbahçe", "fenerbahce.org", "club"], ["Fanatik", "fanatik.com.tr", "local"], ["Sporx", "sporx.com", "local"], ["Super FB", "superfb.com", "fan"], ["12 Numara", "12numara.org", "fan"]]
+  },
+  {
+    "id": "besiktas", "team": "Besiktas", "team_fa": "بشیکتاش", "country": "turkey", "country_label": "ترکیه", "flag": "🇹🇷", "language": "Turkish", "language_label": "ترکی", "hl": "tr", "gl": "TR", "ceid": "TR:tr",
+    "sources": [["Beşiktaş", "bjk.com.tr", "club"], ["Fanatik", "fanatik.com.tr", "local"], ["Sporx", "sporx.com", "local"], ["Haber 1903", "haber1903.com", "fan"], ["Kara Kartal", "karakartal.com", "fan"]]
+  },
+  {
+    "id": "celtic", "team": "Celtic", "team_fa": "سلتیک", "country": "scotland", "country_label": "اسکاتلند", "flag": "🏴", "language": "English", "language_label": "انگلیسی", "hl": "en-GB", "gl": "GB", "ceid": "GB:en",
+    "sources": [["Celtic FC", "celticfc.com", "club"], ["Daily Record", "dailyrecord.co.uk", "local"], ["Celtic Quick News", "celticquicknews.co.uk", "fan"], ["The Celtic Star", "thecelticstar.com", "fan"], ["Video Celts", "videocelts.com", "fan"]]
+  }
+]

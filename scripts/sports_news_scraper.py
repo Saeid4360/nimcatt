@@ -21,6 +21,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
@@ -70,6 +71,27 @@ ENTITY_TAGS = {
     "lionel messi": "لیونل مسی", "messi": "لیونل مسی",
     "cristiano ronaldo": "کریستیانو رونالدو", "ronaldo": "کریستیانو رونالدو",
 }
+SOURCE_TYPE_LABELS = {
+    "major": "رسانه معتبر",
+    "local": "رسانه محلی",
+    "analysis": "منبع تحلیلی",
+    "club": "رسانه رسمی باشگاه",
+    "fan": "رسانه هواداری",
+}
+TEAM_SEARCH_ALIASES = {
+    "Manchester United": ["Man Utd"], "Manchester City": ["Man City"],
+    "Tottenham Hotspur": ["Tottenham", "Spurs"], "Newcastle United": ["Newcastle"],
+    "Aston Villa": ["Villa"], "FC Barcelona": ["Barcelona", "Barça"],
+    "Atletico Madrid": ["Atlético Madrid", "Atleti"], "Athletic Club": ["Athletic Bilbao"],
+    "Sevilla FC": ["Sevilla"], "Valencia CF": ["Valencia"],
+    "Inter Milan": ["Inter"], "AC Milan": ["Milan"], "AS Roma": ["Roma"],
+    "Bayern Munich": ["Bayern", "Bayern München"], "Borussia Dortmund": ["Dortmund", "BVB"],
+    "Bayer Leverkusen": ["Leverkusen"], "RB Leipzig": ["Leipzig"],
+    "Paris Saint-Germain": ["PSG"], "Olympique Marseille": ["Marseille", "OM"],
+    "Olympique Lyonnais": ["Lyon", "OL"], "Lille OSC": ["Lille", "LOSC"],
+    "PSV Eindhoven": ["PSV"], "Sporting CP": ["Sporting"],
+    "Fenerbahce": ["Fenerbahçe"], "Besiktas": ["Beşiktaş"],
+}
 
 
 class FirstImageParser(HTMLParser):
@@ -82,6 +104,22 @@ class FirstImageParser(HTMLParser):
             return
         values = dict(attrs)
         self.src = values.get("src") or values.get("data-src") or ""
+
+
+class FeedLinkParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.urls: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "link":
+            return
+        values = {key.lower(): value or "" for key, value in attrs}
+        rel = values.get("rel", "").casefold()
+        media_type = values.get("type", "").casefold()
+        href = values.get("href", "")
+        if href and "alternate" in rel and ("rss" in media_type or "atom" in media_type):
+            self.urls.append(href)
 
 
 def local_name(tag: str) -> str:
@@ -143,6 +181,62 @@ def fetch(url: str, timeout: int, user_agent: str = USER_AGENT) -> bytes:
     )
     with urllib.request.urlopen(request, timeout=timeout, context=SSL_CONTEXT) as response:
         return response.read()
+
+
+def is_feed_payload(payload: bytes) -> bool:
+    try:
+        root = ET.fromstring(payload)
+    except ET.ParseError:
+        return False
+    return any(local_name(node.tag) in {"item", "entry"} for node in root.iter())
+
+
+def discover_feed(source: dict[str, Any], timeout: int, cache: dict[str, str]) -> tuple[str, bytes]:
+    """Locate a publisher-provided RSS/Atom feed without using a news aggregator."""
+    website_url = source["website_url"].rstrip("/")
+    domain = urllib.parse.urlsplit(website_url).netloc.casefold().removeprefix("www.")
+    cached_url = cache.get(domain)
+    if cached_url:
+        try:
+            payload = fetch(cached_url, timeout, source.get("user_agent", USER_AGENT))
+            if is_feed_payload(payload):
+                return cached_url, payload
+        except (urllib.error.URLError, TimeoutError, OSError):
+            pass
+
+    discovered: list[str] = []
+    try:
+        homepage = fetch(website_url, timeout, source.get("user_agent", USER_AGENT))
+        if is_feed_payload(homepage):
+            cache[domain] = website_url
+            return website_url, homepage
+        parser = FeedLinkParser()
+        parser.feed(homepage.decode("utf-8", errors="ignore"))
+        discovered.extend(urllib.parse.urljoin(website_url + "/", url) for url in parser.urls)
+    except (urllib.error.URLError, TimeoutError, OSError):
+        pass
+
+    if "sbnation.com" in domain:
+        discovered.append(f"{website_url}/rss/index.xml")
+    discovered.extend([
+        f"{website_url}/feed/",
+        f"{website_url}/rss",
+        f"{website_url}/rss.xml",
+        f"{website_url}/feed.xml",
+    ])
+    attempted: set[str] = set()
+    for candidate in discovered:
+        if candidate in attempted:
+            continue
+        attempted.add(candidate)
+        try:
+            payload = fetch(candidate, timeout, source.get("user_agent", USER_AGENT))
+            if is_feed_payload(payload):
+                cache[domain] = candidate
+                return candidate, payload
+        except (urllib.error.URLError, TimeoutError, OSError):
+            continue
+    raise ValueError("فید RSS/Atom عمومی برای این دامنه پیدا نشد")
 
 
 def child_text(node: ET.Element, names: set[str]) -> str:
@@ -222,6 +316,51 @@ def detect_tags(title: str, summary: str, category: str, country_label: str) -> 
     return tags[:5]
 
 
+def merged_tags(source: dict[str, Any], title: str, summary: str, category: str) -> list[str]:
+    tags = [clean_text(str(tag), 42) for tag in source.get("fixed_tags", []) if tag]
+    tags.extend(detect_tags(title, summary, category, source["country_label"]))
+    return list(dict.fromkeys(tags))[:5]
+
+
+def expand_team_sources(catalog: list[dict[str, Any]], limit_per_source: int) -> list[dict[str, Any]]:
+    """Expand the compact team catalog into direct publisher feed monitors."""
+    expanded: list[dict[str, Any]] = []
+    for team in catalog:
+        required = {
+            "id", "team", "team_fa", "country", "country_label", "flag",
+            "language", "language_label", "hl", "gl", "ceid", "sources",
+        }
+        if not required.issubset(team):
+            continue
+        for index, row in enumerate(team["sources"], start=1):
+            if not isinstance(row, list) or len(row) != 3:
+                continue
+            publisher, domain, source_type = row
+            expanded.append({
+                "id": f"team-{team['id']}-{index}",
+                "name": f"{team['team_fa']} · {publisher}",
+                "publisher": publisher,
+                "domain": domain,
+                "country": team["country"],
+                "country_label": team["country_label"],
+                "flag": team["flag"],
+                "language": team["language"],
+                "language_label": team["language_label"],
+                "website_url": f"https://{domain}",
+                "format": "auto_feed",
+                "icon": team["team_fa"][:2],
+                "source_type": source_type,
+                "source_type_label": SOURCE_TYPE_LABELS.get(source_type, "رسانه فوتبال"),
+                "team_id": team["id"],
+                "team_label": team["team_fa"],
+                "fixed_tags": [team["team_fa"]],
+                "include_terms": ([team["team"]] + TEAM_SEARCH_ALIASES.get(team["team"], [])) if source_type == "local" else [],
+                "limit_per_source": limit_per_source,
+                "max_age_hours": 336,
+            })
+    return expanded
+
+
 def relative_time(published: datetime, now: datetime) -> str:
     seconds = max(0, int((now - published).total_seconds()))
     if seconds < 3600:
@@ -254,28 +393,48 @@ def parse_feed(source: dict[str, Any], payload: bytes, limit: int, max_age: time
         category = classify(title, summary, source.get("source_type", ""))
         stable_id = hashlib.sha1(link.encode("utf-8")).hexdigest()[:12]
         provider_only = bool(source.get("provider_only"))
+        source_type = source.get("source_type", "major")
+        include_terms = [str(term).casefold() for term in source.get("include_terms", [])]
+        if include_terms and not any(term in f"{title} {summary}".casefold() for term in include_terms):
+            continue
+        publisher = clean_text(child_text(node, {"source"}), 100) if source.get("format") == "google_news_rss" else ""
+        team_label = source.get("team_label", "")
+        if team_label:
+            eyebrow = f"{team_label} · {source.get('source_type_label', 'رسانه فوتبال')}"
+        else:
+            eyebrow = f"{source['country_label']} · دریافت خودکار"
+        if source_type == "club":
+            why = "این مطلب از کانال رسمی باشگاه دریافت شده است و پیش از انتشار فارسی باید بازبینی شود."
+        elif source_type == "fan":
+            why = "این مطلب از رسانه هواداری دریافت شده و ادعاهای آن باید با منبع مستقل بررسی شود."
+        else:
+            why = "این خبر مستقیماً از فید رسانه دریافت شده و پیش از انتشار نهایی باید در تحریریه بازبینی شود."
         items.append({
             "id": f"live-{stable_id}",
             "country": source["country"],
             "flag": f"{source['flag']} {source['country_label']}",
             "cat": category,
-            "eyebrow": f"{source['country_label']} · دریافت خودکار",
+            "eyebrow": eyebrow,
             "title": title,
             "summary": summary or "برای خواندن جزئیات، منبع اصلی را باز کنید.",
-            "why": "این عنوان و خلاصه بدون تغییر از ESPN ارائه شده است." if provider_only else "این خبر مستقیماً از فید رسمی رسانه دریافت شده و پیش از انتشار نهایی باید در تحریریه بازبینی شود.",
+            "why": "این عنوان و خلاصه بدون تغییر از ESPN ارائه شده است." if provider_only else why,
             "source": source["name"],
+            "publisher": publisher or source.get("publisher", source["name"]),
             "sourceId": source["id"],
-            "sourceType": source.get("source_type", "major"),
+            "sourceType": source_type,
             "sourceTypeLabel": source.get("source_type_label", "رسانه معتبر"),
+            "teamId": source.get("team_id", ""),
+            "teamLabel": team_label,
             "icon": source["icon"],
             "lang": source["language_label"],
             "time": relative_time(published, now),
             "publishedAt": published.isoformat(),
             "cred": "ارائه‌شده توسط ESPN" if provider_only else "در انتظار ترجمه",
             "credClass": "trusted" if provider_only else "rumor",
-            "tags": detect_tags(title, summary, category, source["country_label"]),
+            "tags": merged_tags(source, title, summary, category),
             "image": extract_image(node, raw_summary),
             "url": link,
+            "websiteUrl": source.get("website_url", ""),
             "needsTranslation": not provider_only,
             "providerOnly": provider_only,
         })
@@ -319,7 +478,7 @@ def parse_espn_json(source: dict[str, Any], payload: bytes, limit: int, max_age:
             "publishedAt": published.isoformat(),
             "cred": "ارائه‌شده توسط ESPN",
             "credClass": "trusted",
-            "tags": detect_tags(title, summary, category, source["country_label"]),
+            "tags": merged_tags(source, title, summary, category),
             "image": image,
             "url": link,
             "needsTranslation": False,
@@ -422,54 +581,101 @@ def main() -> int:
     project = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description="Collect football news into the Football Nama MVP")
     parser.add_argument("--config", type=Path, default=project / "config/sources.json")
+    parser.add_argument("--team-config", type=Path, default=project / "config/team_source_catalog.json")
     parser.add_argument("--output", type=Path, default=project / "dist/data/news.js")
     parser.add_argument("--status", type=Path, default=project / "dist/data/status.json")
     parser.add_argument("--archive", type=Path, default=project / "var/news_archive.json")
     parser.add_argument("--cache", type=Path, default=project / "var/translation_cache.json")
+    parser.add_argument("--feed-cache", type=Path, default=project / "var/team_feed_cache.json")
     parser.add_argument("--limit-per-source", type=int, default=20)
+    parser.add_argument("--team-limit-per-source", type=int, default=3)
     parser.add_argument("--max-items", type=int, default=280)
     parser.add_argument("--max-age-hours", type=int, default=96)
     parser.add_argument("--fresh", action="store_true", help="Rebuild without merging the previous archive")
     parser.add_argument("--timeout", type=int, default=25)
+    parser.add_argument("--workers", type=int, default=10)
     parser.add_argument("--translate", action="store_true", help="Translate with OPENAI_API_KEY")
     parser.add_argument("--model", default=os.environ.get("OPENAI_TRANSLATION_MODEL", "gpt-5.6-luna"))
     args = parser.parse_args()
 
     sources = read_json(args.config, [])
+    team_catalog = read_json(args.team_config, [])
+    team_sources = expand_team_sources(team_catalog, args.team_limit_per_source)
+    direct_feeds: dict[str, dict[str, Any]] = {}
+    for source in sources:
+        host = urllib.parse.urlsplit(source.get("website_url", "")).netloc.casefold().removeprefix("www.")
+        if host and source.get("feed_url"):
+            direct_feeds[host] = source
+    for source in team_sources:
+        direct = direct_feeds.get(source.get("domain", "").casefold().removeprefix("www."))
+        if direct:
+            source["feed_url"] = direct["feed_url"]
+            source["format"] = direct.get("format", "rss")
+    sources.extend(team_sources)
     if not sources:
         print(f"No sources found in {args.config}", file=sys.stderr)
         return 2
 
-    collected: list[dict[str, Any]] = []
-    results: list[dict[str, Any]] = []
-    for source in sources:
+    feed_cache = read_json(args.feed_cache, {})
+
+    def collect(index: int, source: dict[str, Any]) -> tuple[int, list[dict[str, Any]], dict[str, Any]]:
         try:
             max_age = timedelta(hours=int(source.get("max_age_hours", args.max_age_hours)))
-            payload = fetch(source["feed_url"], args.timeout, source.get("user_agent", USER_AGENT))
-            if source.get("format") == "espn_json":
-                items = parse_espn_json(source, payload, args.limit_per_source, max_age)
+            if source.get("format") == "auto_feed":
+                feed_url, payload = discover_feed(source, args.timeout, feed_cache)
             else:
-                items = parse_feed(source, payload, args.limit_per_source, max_age)
-            collected.extend(items)
-            results.append({
+                feed_url = source["feed_url"]
+                payload = fetch(feed_url, args.timeout, source.get("user_agent", USER_AGENT))
+            per_source_limit = int(source.get("limit_per_source", args.limit_per_source))
+            if source.get("format") == "espn_json":
+                items = parse_espn_json(source, payload, per_source_limit, max_age)
+            else:
+                items = parse_feed(source, payload, per_source_limit, max_age)
+            result = {
                 "source": source["name"],
                 "ok": True,
                 "items": len(items),
                 "sourceType": source.get("source_type", "major"),
                 "sourceTypeLabel": source.get("source_type_label", "رسانه معتبر"),
                 "country": source.get("country_label", "بین‌المللی"),
-            })
-            print(f"[ok] {source['name']}: {len(items)} items")
-        except (urllib.error.URLError, TimeoutError, ET.ParseError, KeyError, ValueError) as exc:
-            results.append({
+                "team": source.get("team_label", ""),
+                "websiteUrl": source.get("website_url", ""),
+                "feedUrl": feed_url,
+            }
+            return index, items, result
+        except (urllib.error.URLError, TimeoutError, ET.ParseError, KeyError, ValueError, OSError) as exc:
+            result = {
                 "source": source.get("name", "unknown"),
                 "ok": False,
                 "error": str(exc)[:180],
                 "sourceType": source.get("source_type", "major"),
                 "sourceTypeLabel": source.get("source_type_label", "رسانه معتبر"),
                 "country": source.get("country_label", "بین‌المللی"),
-            })
-            print(f"[error] {source.get('name', 'unknown')}: {exc}", file=sys.stderr)
+                "team": source.get("team_label", ""),
+                "websiteUrl": source.get("website_url", ""),
+            }
+            return index, [], result
+
+    completed: list[tuple[list[dict[str, Any]], dict[str, Any]] | None] = [None] * len(sources)
+    worker_count = max(1, min(args.workers, len(sources)))
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        futures = [executor.submit(collect, index, source) for index, source in enumerate(sources)]
+        for future in as_completed(futures):
+            index, items, result = future.result()
+            completed[index] = (items, result)
+            stream = sys.stdout if result["ok"] else sys.stderr
+            detail = f"{result.get('items', 0)} items" if result["ok"] else result.get("error", "unknown error")
+            print(f"[{'ok' if result['ok'] else 'error'}] {result['source']}: {detail}", file=stream)
+
+    collected: list[dict[str, Any]] = []
+    results: list[dict[str, Any]] = []
+    for output in completed:
+        if output is None:
+            continue
+        items, result = output
+        collected.extend(items)
+        results.append(result)
+    atomic_write(args.feed_cache, json.dumps(feed_cache, ensure_ascii=False, indent=2, sort_keys=True))
 
     existing = [] if args.fresh else read_json(args.archive, [])
     by_key: dict[str, dict[str, Any]] = {}

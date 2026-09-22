@@ -505,7 +505,7 @@ function staticResponse(pathname) {
   if (Object.hasOwn(BINARY_ASSETS, pathname)) {
     const bytes = Uint8Array.from(atob(BINARY_ASSETS[pathname]), (character) => character.charCodeAt(0));
     return new Response(bytes, {
-      headers: { "content-type": "font/woff2", "cache-control": "public, max-age=31536000, immutable" },
+      headers: { "content-type": pathname.endsWith(".png") ? "image/png" : "font/woff2", "cache-control": "public, max-age=31536000, immutable" },
     });
   }
   return null;

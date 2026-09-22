@@ -10,6 +10,7 @@ const textAssets = {
   "/": await readFile(resolve(distRoot, "index.html"), "utf8"),
   "/index.html": await readFile(resolve(distRoot, "index.html"), "utf8"),
   "/data/news.js": await readFile(resolve(distRoot, "data/news.js"), "utf8"),
+  "/data/opta-stats.js": await readFile(resolve(distRoot, "data/opta-stats.js"), "utf8"),
   "/data/status.json": await readFile(resolve(distRoot, "data/status.json"), "utf8"),
   "/data/statsbomb-open-players.json": await readFile(resolve(distRoot, "data/statsbomb-open-players.json"), "utf8"),
 };

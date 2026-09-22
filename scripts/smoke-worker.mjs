@@ -101,6 +101,17 @@ assert.match(homepage, /id="statsView"/);
 assert.match(homepage, /آمار و رکوردهای لیگ برتر انگلیس/);
 assert.match(homepage, /theanalyst\.com\/competition\/premier-league\/stats/);
 assert.match(homepage, /function showStats\(\)/);
+assert.match(homepage, /id="statsLeagueSelect"/);
+assert.match(homepage, /function renderStatsPage/);
+assert.match(homepage, /data\/opta-stats\.js/);
+
+const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
+assert.equal(optaStatsAsset.status, 200);
+const optaStatsSource = await optaStatsAsset.text();
+assert.match(optaStatsSource, /"esp\.1"/);
+assert.match(optaStatsSource, /"ita\.1"/);
+assert.match(optaStatsSource, /"ger\.1"/);
+assert.match(optaStatsSource, /"fra\.1"/);
 
 const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);

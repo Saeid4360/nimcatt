@@ -52,6 +52,10 @@ NON_FOOTBALL_WORDS = {
     "formula 1", "grand prix", "tennis", "boxing", "golf", "leicestershire",
     "nfl", "fcs", "fcs football", "college football", "baseball", "basketball", "nba",
     "ice hockey", "cycling", "motogp", "horse racing", "six nations",
+    "basketball", "baloncesto", "básquet", "pallacanestro", "basketbal",
+    "tenis", "tennis", "pádel", "padel", "golf", "ciclismo", "wielrennen",
+    "formule 1", "formel 1", "formula uno", "motociclismo", "rugby",
+    "hockey", "handball", "handbal", "atletismo", "athlétisme", "leichtathletik",
 }
 ENTITY_TAGS = {
     "arsenal": "آرسنال", "chelsea": "چلسی", "liverpool": "لیورپول",
@@ -423,7 +427,7 @@ def main() -> int:
     parser.add_argument("--archive", type=Path, default=project / "var/news_archive.json")
     parser.add_argument("--cache", type=Path, default=project / "var/translation_cache.json")
     parser.add_argument("--limit-per-source", type=int, default=20)
-    parser.add_argument("--max-items", type=int, default=200)
+    parser.add_argument("--max-items", type=int, default=280)
     parser.add_argument("--max-age-hours", type=int, default=96)
     parser.add_argument("--fresh", action="store_true", help="Rebuild without merging the previous archive")
     parser.add_argument("--timeout", type=int, default=25)

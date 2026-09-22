@@ -173,6 +173,12 @@ assert.match(newsAgentData, /"sourceType":"local"/);
 assert.match(newsAgentData, /"sourceType":"analysis"/);
 assert.match(newsAgentData, /Opta Analyst/);
 assert.match(newsAgentData, /Scouted Football/);
+assert.match(newsAgentData, /CBS Sports Soccer/);
+assert.match(newsAgentData, /Yahoo Sports Soccer/);
+assert.match(newsAgentData, /Sportschau Fußball/);
+assert.match(newsAgentData, /Sky Sport Italia/);
+assert.match(newsAgentData, /The Coaches' Voice/);
+assert.match(newsAgentData, /"count":230/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);

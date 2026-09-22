@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-22T16:25:05.657882+00:00",
-  "count": 134,
+  "generatedAt": "2026-09-22T17:58:39.315510+00:00",
+  "count": 230,
   "sources": [
     {
       "source": "BBC Sport",
@@ -152,6 +152,102 @@
       "items": 8,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
+      "country": "بین‌المللی"
+    },
+    {
+      "source": "CBS Sports Soccer",
+      "ok": true,
+      "items": 8,
+      "sourceType": "major",
+      "sourceTypeLabel": "رسانه معتبر",
+      "country": "بین‌المللی"
+    },
+    {
+      "source": "Yahoo Sports Soccer",
+      "ok": true,
+      "items": 8,
+      "sourceType": "major",
+      "sourceTypeLabel": "رسانه معتبر",
+      "country": "بین‌المللی"
+    },
+    {
+      "source": "football.london",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "انگلیس"
+    },
+    {
+      "source": "FourFourTwo",
+      "ok": true,
+      "items": 8,
+      "sourceType": "analysis",
+      "sourceTypeLabel": "مجله و تحلیل",
+      "country": "انگلیس"
+    },
+    {
+      "source": "Sportschau Fußball",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "آلمان"
+    },
+    {
+      "source": "Relevo",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "اسپانیا"
+    },
+    {
+      "source": "Tuttomercatoweb",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "ایتالیا"
+    },
+    {
+      "source": "Sky Sport Italia",
+      "ok": true,
+      "items": 8,
+      "sourceType": "major",
+      "sourceTypeLabel": "رسانه معتبر",
+      "country": "ایتالیا"
+    },
+    {
+      "source": "Le Parisien Football",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "فرانسه"
+    },
+    {
+      "source": "NU.nl Voetbal",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "هلند"
+    },
+    {
+      "source": "De Telegraaf Voetbal",
+      "ok": true,
+      "items": 8,
+      "sourceType": "local",
+      "sourceTypeLabel": "رسانه محلی",
+      "country": "هلند"
+    },
+    {
+      "source": "The Coaches' Voice",
+      "ok": true,
+      "items": 8,
+      "sourceType": "analysis",
+      "sourceTypeLabel": "تحلیل مربیگری",
       "country": "بین‌المللی"
     }
   ]

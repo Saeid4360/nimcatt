@@ -5,12 +5,14 @@ const projectRoot = resolve(import.meta.dirname, "..");
 const distRoot = resolve(projectRoot, "dist");
 const runtimePath = resolve(projectRoot, "worker/runtime.js");
 const outputPath = resolve(distRoot, "server/index.js");
+const persianNames = JSON.parse(await readFile(resolve(distRoot, "data/persian-names.json"), "utf8"));
 
 const textAssets = {
   "/": await readFile(resolve(distRoot, "index.html"), "utf8"),
   "/index.html": await readFile(resolve(distRoot, "index.html"), "utf8"),
   "/data/news.js": await readFile(resolve(distRoot, "data/news.js"), "utf8"),
   "/data/opta-stats.js": await readFile(resolve(distRoot, "data/opta-stats.js"), "utf8"),
+  "/data/persian-names.js": await readFile(resolve(distRoot, "data/persian-names.js"), "utf8"),
   "/data/status.json": await readFile(resolve(distRoot, "data/status.json"), "utf8"),
   "/data/statsbomb-open-players.json": await readFile(resolve(distRoot, "data/statsbomb-open-players.json"), "utf8"),
 };
@@ -36,6 +38,8 @@ const runtime = await readFile(runtimePath, "utf8");
 const source = [
   `const TEXT_ASSETS = ${JSON.stringify(textAssets)};`,
   `const BINARY_ASSETS = ${JSON.stringify(binaryAssets)};`,
+  `const PLAYER_NAME_FA_CATALOG = ${JSON.stringify(persianNames.players)};`,
+  `const TEAM_NAME_FA_CATALOG = ${JSON.stringify(persianNames.teams)};`,
   runtime,
 ].join("\n");
 

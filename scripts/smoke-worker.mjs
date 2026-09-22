@@ -127,6 +127,9 @@ assert.match(homepage, /id="statsChartY"/);
 assert.match(homepage, /function renderStatsScatter/);
 assert.match(homepage, /slice\(0,50\)/);
 assert.match(homepage, /میانگین رتبه نسبی هر دو شاخص/);
+assert.match(homepage, /data\/persian-names\.js/);
+assert.match(homepage, /NIMKAT_PLAYER_NAMES_FA/);
+assert.match(homepage, /NIMKAT_TEAM_NAMES_FA/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);
@@ -140,6 +143,17 @@ assert.match(optaStatsSource, /OPTA_STATS_METRICS/);
 assert.match(optaStatsSource, /"goalkeeping"/);
 assert.match(optaStatsSource, /"sequences"/);
 
+const persianNamesAsset = await worker.fetch(new Request("https://nimkat.test/data/persian-names.js"), env, ctx);
+assert.equal(persianNamesAsset.status, 200);
+const persianNamesSource = await persianNamesAsset.text();
+assert.match(persianNamesSource, /window\.NIMKAT_PLAYER_NAMES_FA=/);
+assert.match(persianNamesSource, /window\.NIMKAT_TEAM_NAMES_FA=/);
+assert.match(persianNamesSource, /"bruno fernandes":"برونو فرناندز"/);
+assert.match(persianNamesSource, /"rayan cherki":"رایان شرکی"/);
+assert.match(persianNamesSource, /"joao pedro":"ژوائو پدرو"/);
+assert.doesNotMatch(persianNamesSource, /بازیکن فوتبال، زاده/);
+assert.match(persianNamesSource, /"bayern munchen":"بایرن مونیخ"/);
+
 const workerSource = await (await import("node:fs/promises")).readFile(new URL("../worker/runtime.js", import.meta.url), "utf8");
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS players/);
 assert.match(workerSource, /CREATE TABLE IF NOT EXISTS player_match_stats/);
@@ -151,6 +165,9 @@ assert.match(workerSource, /async function ingestMatchPayload/);
 assert.match(workerSource, /async function hydratePlayerMedia/);
 assert.match(workerSource, /async function localizePlayerDataset/);
 assert.match(workerSource, /advanced_metrics_require_licensed_feed/);
+assert.match(workerSource, /PLAYER_NAME_FA_CATALOG/);
+assert.match(workerSource, /TEAM_NAME_FA_CATALOG/);
+assert.match(workerSource, /nimkat-persian-catalog/);
 
 let upstreamRequests = 0;
 const nativeFetch = globalThis.fetch;

@@ -271,6 +271,8 @@ function persianEntityName(name, type = "player") {
   const normalized = normalizedLatinName(name);
   const overrides = type === "team" ? TEAM_NAME_FA_OVERRIDES : PLAYER_NAME_FA_OVERRIDES;
   if (overrides[normalized]) return { name: overrides[normalized], source: "editorial-alias", verified: 1 };
+  const catalog = type === "team" ? TEAM_NAME_FA_CATALOG : PLAYER_NAME_FA_CATALOG;
+  if (catalog[normalized]) return { name: catalog[normalized], source: "nimkat-persian-catalog", verified: 0 };
   const display = normalized.split(/([ -])/).map((part) => part === " " ? " " : part === "-" ? "‌" : transliterateNamePart(part)).join("").trim();
   return { name: display || String(name || ""), source: "nimkat-transliteration", verified: 0 };
 }

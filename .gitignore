@@ -7,3 +7,4 @@ var/translation_cache.json
 node_modules/
 dist/server/
 dist/.openai/
+scripts/.persian-names-cache.json

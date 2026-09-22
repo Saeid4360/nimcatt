@@ -140,6 +140,8 @@ assert.match(homepage, /height=isMobile\?350:360/);
 assert.match(homepage, /data\/persian-names\.js/);
 assert.match(homepage, /NIMKAT_PLAYER_NAMES_FA/);
 assert.match(homepage, /NIMKAT_TEAM_NAMES_FA/);
+assert.match(homepage, /function alignScoreDateInsideBoard/);
+assert.doesNotMatch(homepage, /latest\.scrollIntoView/);
 assert.match(homepage, /data\/editorial-series\.js/);
 
 const editorialAsset = await worker.fetch(new Request("https://nimkat.test/data/editorial-series.js"), env, ctx);

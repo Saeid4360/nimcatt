@@ -122,6 +122,11 @@ assert.doesNotMatch(homepage, /class="nav-link" data-filter="transfer">نقل‌
 assert.doesNotMatch(homepage, /class="nav-link" data-filter="analysis">تحلیل/);
 assert.match(homepage, /function isVideoStory/);
 assert.match(homepage, /params\.get\('page'\)==='live'/);
+assert.match(homepage, /id="statsChartX"/);
+assert.match(homepage, /id="statsChartY"/);
+assert.match(homepage, /function renderStatsScatter/);
+assert.match(homepage, /slice\(0,50\)/);
+assert.match(homepage, /میانگین رتبه نسبی هر دو شاخص/);
 
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);

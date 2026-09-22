@@ -48,6 +48,18 @@
     "icon": "K"
   },
   {
+    "id": "marca-football",
+    "name": "Marca",
+    "country": "spain",
+    "country_label": "اسپانیا",
+    "flag": "🇪🇸",
+    "language": "Spanish",
+    "language_label": "اسپانیایی",
+    "feed_url": "https://e00-marca.uecdn.es/rss/futbol.xml",
+    "website_url": "https://www.marca.com/futbol.html",
+    "icon": "M"
+  },
+  {
     "id": "espn-soccer",
     "name": "ESPN",
     "country": "international",

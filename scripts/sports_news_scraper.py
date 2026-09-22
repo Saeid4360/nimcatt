@@ -172,6 +172,16 @@ def is_football_item(title: str, summary: str) -> bool:
     return not any(has_term(text, word) for word in NON_FOOTBALL_WORDS)
 
 
+def is_source_item_allowed(source_id: str, url: str) -> bool:
+    """Apply narrow publisher-specific rules when a feed mixes several sports."""
+    if source_id == "sky-football":
+        try:
+            return "/football/" in urllib.parse.urlsplit(url).path.casefold()
+        except ValueError:
+            return False
+    return True
+
+
 def classify(title: str, summary: str) -> str:
     text = f"{title} {summary}".casefold()
     if any(has_term(text, word) for word in TRANSFER_WORDS):
@@ -217,6 +227,8 @@ def parse_feed(source: dict[str, Any], payload: bytes, limit: int, max_age: time
         raw_summary = child_text(node, {"description", "summary", "encoded", "content"})
         summary = clean_text(raw_summary, 520)
         if not is_football_item(title, summary):
+            continue
+        if not is_source_item_allowed(source.get("id", ""), link):
             continue
         published = parse_date(child_text(node, {"pubdate", "published", "updated", "date"}))
         if not title or not link or now - published > max_age:
@@ -395,6 +407,7 @@ def main() -> int:
     parser.add_argument("--limit-per-source", type=int, default=20)
     parser.add_argument("--max-items", type=int, default=200)
     parser.add_argument("--max-age-hours", type=int, default=96)
+    parser.add_argument("--fresh", action="store_true", help="Rebuild without merging the previous archive")
     parser.add_argument("--timeout", type=int, default=25)
     parser.add_argument("--translate", action="store_true", help="Translate with OPENAI_API_KEY")
     parser.add_argument("--model", default=os.environ.get("OPENAI_TRANSLATION_MODEL", "gpt-5.6-luna"))
@@ -422,10 +435,12 @@ def main() -> int:
             results.append({"source": source.get("name", "unknown"), "ok": False, "error": str(exc)[:180]})
             print(f"[error] {source.get('name', 'unknown')}: {exc}", file=sys.stderr)
 
-    existing = read_json(args.archive, [])
+    existing = [] if args.fresh else read_json(args.archive, [])
     by_key: dict[str, dict[str, Any]] = {}
     for item in collected + existing:
         if not is_football_item(item.get("title", ""), item.get("summary", "")):
+            continue
+        if not is_source_item_allowed(item.get("sourceId", ""), item.get("url", "")):
             continue
         key = normalized_url(item.get("url", "")) or re.sub(r"\W+", "", item.get("title", "").casefold())
         if key and key not in by_key:

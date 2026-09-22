@@ -141,6 +141,16 @@ assert.match(homepage, /data\/persian-names\.js/);
 assert.match(homepage, /NIMKAT_PLAYER_NAMES_FA/);
 assert.match(homepage, /NIMKAT_TEAM_NAMES_FA/);
 
+const agentPageResponse = await worker.fetch(new Request("https://nimkat.test/news-agent.html"), env, ctx);
+assert.equal(agentPageResponse.status, 200);
+const agentPage = await agentPageResponse.text();
+assert.match(agentPage, /خبرخوان نیمکت/);
+assert.match(agentPage, /id="agentSearch"/);
+assert.match(agentPage, /id="sourceFilter"/);
+assert.match(agentPage, /window\.LIVE_NEWS/);
+assert.match(agentPage, /\/data\/news\.js/);
+assert.match(agentPage, /لینک منبع اصلی/);
+
 const optaStatsAsset = await worker.fetch(new Request("https://nimkat.test/data/opta-stats.js"), env, ctx);
 assert.equal(optaStatsAsset.status, 200);
 const optaStatsSource = await optaStatsAsset.text();

@@ -85,28 +85,43 @@
     .score-retry { padding:7px 11px; border:1px solid var(--line); border-radius:5px; background:#fff; cursor:pointer; font:inherit; }
     @keyframes score-spin { to { transform:rotate(360deg); } }
 
-    .match-view { max-width:1000px; }
-    .match-detail-shell { overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
-    .match-detail-hero { padding:23px 40px 28px; color:#fff; background:radial-gradient(circle at 50% 15%,rgba(244,73,88,.17),transparent 35%),linear-gradient(125deg,#18202b,#101317); }
-    .match-detail-top { display:flex; align-items:center; justify-content:space-between; gap:15px; color:#bcc5cf; font-size:12px; font-weight:800; }
+    .match-view { max-width:1080px; }
+    .match-detail-shell { overflow:visible; border:0; border-radius:0; background:transparent; }
+    .match-detail-hero { position:relative; overflow:hidden; padding:0 42px 24px; border:1px solid #dfe3e8; border-radius:13px 13px 0 0; color:#171d27; background:#fff; box-shadow:0 11px 34px rgba(23,29,39,.055); }
+    .match-detail-hero::before { content:""; position:absolute; top:0; right:0; left:0; height:4px; background:linear-gradient(90deg,#392144 0%,#da1f58 48%,#ef7a39 100%); }
+    .match-detail-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin:0 -42px; padding:14px 42px 12px; border-bottom:1px solid #edf0f3; color:#596574; background:#fafbfc; font-size:11px; font-weight:850; }
     .match-detail-top span:last-child { display:inline-flex; align-items:center; gap:7px; }
     .match-detail-top img { width:26px; height:26px; object-fit:contain; }
-    .match-detail-board { display:grid; grid-template-columns:minmax(0,1fr) minmax(130px,190px) minmax(0,1fr); align-items:center; gap:20px; margin:29px 0 20px; }
+    .match-detail-board { display:grid; grid-template-columns:minmax(0,1fr) minmax(150px,210px) minmax(0,1fr); align-items:center; gap:24px; margin:28px 0 17px; }
     .match-detail-team { display:flex; align-items:center; flex-direction:column; gap:9px; text-align:center; min-width:0; }
-    .match-detail-team img { width:82px; height:82px; padding:10px; border-radius:17px; object-fit:contain; background:#fff; }
-    .match-detail-team strong { font-size:17px; line-height:1.5; }
-    .match-detail-team small { color:#aebac5; font-size:11px; }
+    .match-detail-team img { width:86px; height:86px; padding:6px; object-fit:contain; filter:drop-shadow(0 7px 10px rgba(24,31,42,.12)); }
+    .match-detail-team strong { color:#1d2530; font-size:18px; line-height:1.5; }
+    .match-detail-team small { min-height:19px; color:#8a949f; font-size:10px; font-weight:750; direction:ltr; }
     .match-detail-center { text-align:center; }
-    .match-detail-center strong { display:block; font-size:41px; font-weight:900; line-height:1.35; white-space:nowrap; font-variant-numeric:tabular-nums; }
-    .match-detail-center span { display:block; margin-top:4px; color:#ff7989; font-size:12px; font-weight:900; }
-    .match-detail-meta { display:flex; justify-content:center; flex-wrap:wrap; gap:7px 17px; padding-top:16px; border-top:1px solid rgba(255,255,255,.14); color:#bac5cf; font-size:12px; }
-    .match-detail-tabs { display:flex; gap:5px; overflow-x:auto; padding:14px 28px 0; border-bottom:1px solid var(--line); }
-    .match-detail-tab { padding:10px 18px 13px; border:0; border-bottom:3px solid transparent; background:transparent; color:#69717a; cursor:pointer; white-space:nowrap; font-size:14px; font-weight:800; }
-    .match-detail-tab.active { border-bottom-color:var(--red); color:#1a1e23; }
+    .match-detail-center strong { display:block; color:#191f29; font-size:44px; font-weight:900; line-height:1.25; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .match-detail-center span { display:inline-block; margin-top:5px; padding:4px 9px; border-radius:99px; background:#fbe9ee; color:#b81743; font-size:10px; font-weight:900; }
+    .match-detail-meta { display:flex; justify-content:center; flex-wrap:wrap; gap:7px 19px; padding-top:14px; border-top:1px solid #ebedf0; color:#687482; font-size:11px; }
+    .match-detail-tabs { position:relative; z-index:2; display:flex; justify-content:center; gap:5px; overflow-x:auto; margin-top:10px; padding:7px; border:1px solid #dfe4e8; border-radius:10px; background:#fff; box-shadow:0 6px 18px rgba(25,34,45,.05); }
+    .match-detail-tab { min-width:112px; padding:9px 16px; border:0; border-radius:7px; background:transparent; color:#66717d; cursor:pointer; white-space:nowrap; font-size:12px; font-weight:850; }
+    .match-detail-tab.active { background:#21162c; color:#fff; }
     .match-detail-tab:hover { color:var(--red); }
-    .match-detail-body { min-height:260px; padding:26px 38px 36px; }
+    .match-detail-body { min-height:260px; margin-top:10px; padding:24px 38px 34px; border:1px solid #e0e4e8; border-radius:11px; background:#fff; }
     .match-detail-panel[hidden] { display:none; }
-    .match-detail-section-title { margin:0 0 20px; font-size:20px; }
+    .match-detail-section-title { display:flex; align-items:center; gap:9px; margin:0 0 20px; color:#202832; font-size:18px; }
+    .match-detail-section-title::before { content:""; width:4px; height:20px; border-radius:99px; background:linear-gradient(#d91d55,#8b2b79); }
+    .match-flow { margin-top:18px; padding:14px 18px 15px; border:1px solid #e3e7eb; border-radius:10px; background:#fafbfc; }
+    .match-flow-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; color:#6c7783; font-size:9px; font-weight:780; }
+    .match-flow-head strong { color:#2b3540; font-size:10px; }
+    .match-flow-track { position:relative; height:38px; direction:ltr; }
+    .match-flow-line { position:absolute; top:18px; right:0; left:0; height:3px; border-radius:99px; background:linear-gradient(90deg,#25364c 0 50%,#c72554 50% 100%); opacity:.22; }
+    .match-flow-half { position:absolute; top:12px; left:50%; width:1px; height:16px; background:#aab2bb; }
+    .match-flow-marker { position:absolute; z-index:1; top:11px; display:grid; place-items:center; width:17px; height:17px; border:2px solid #fff; border-radius:50%; background:#293b51; color:#fff; transform:translateX(-50%); box-shadow:0 0 0 1px #bfc7cf; }
+    .match-flow-marker.away { background:#d02254; }
+    .match-flow-marker.goal { width:21px; height:21px; top:9px; }
+    .match-flow-marker.yellow { border-radius:3px; background:#e4ae22; }
+    .match-flow-marker.red { border-radius:3px; background:#bd243e; }
+    .match-flow-marker svg { width:11px; height:11px; }
+    .match-flow-axis { display:flex; justify-content:space-between; margin-top:2px; color:#929aa3; font-size:8px; direction:ltr; }
     .match-report-intro { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:-4px 0 19px; padding:11px 15px; border:1px solid #e7ebef; border-radius:9px; background:#f8fafb; color:#5a6877; font-size:12px; line-height:1.8; }
     .match-report-intro span:first-child { color:#263241; font-weight:800; }
     .match-report-intro span:last-child { text-align:left; }
@@ -689,16 +704,18 @@
       .score-team-line img { width:24px; height:24px; }
       .score-meta { font-size:10px; }
       .score-scroll { width:21px; height:32px; font-size:18px; }
-      .match-detail-hero { padding:19px 18px; }
-      .match-detail-board { grid-template-columns:minmax(0,1fr) 84px minmax(0,1fr); gap:7px; margin:24px 0 15px; }
-      .match-detail-team img { width:55px; height:55px; padding:7px; border-radius:12px; }
+      .match-detail-hero { padding:0 14px 16px; }
+      .match-detail-top { margin:0 -14px; padding:11px 14px 9px; }
+      .match-detail-board { grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr); gap:7px; margin:20px 0 13px; }
+      .match-detail-team img { width:56px; height:56px; padding:4px; }
       .match-detail-team strong { font-size:12px; }
       .match-detail-center strong { font-size:23px; }
       .match-detail-center span { font-size:10px; }
       .match-detail-meta { font-size:10px; }
-      .match-detail-tabs { padding:10px 14px 0; }
-      .match-detail-tab { padding:9px 12px; font-size:12px; }
-      .match-detail-body { padding:20px 17px 28px; }
+      .match-detail-tabs { justify-content:flex-start; margin-top:8px; padding:5px; }
+      .match-detail-tab { min-width:92px; padding:8px 10px; font-size:10px; }
+      .match-detail-body { margin-top:8px; padding:18px 14px 24px; }
+      .match-flow { padding:11px 12px 12px; }
       .match-report-intro { display:block; }
       .match-report-intro span { display:block; text-align:right!important; }
       .match-report-intro span + span { margin-top:2px; }
@@ -1959,6 +1976,11 @@
       return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[kind]||shapes.phase}</svg>`;
     }
     function matchEventMinute(event,type){const raw=String(event.clock?.displayValue||'').replace(/[′']/g,'').trim();return raw?`${faNumber(raw)}′`:type==='kickoff'?'۰′':'—';}
+    function matchFlowMarkup(events,home,away){
+      const markers=(events||[]).map(event=>{const type=event.type?.type||'',raw=String(event.clock?.displayValue||'').replace(/[′']/g,''),minute=Number.parseInt(raw,10);if(!Number.isFinite(minute)||(!/goal/i.test(type)&&!['yellow-card','red-card','second-yellow-card'].includes(type)))return null;const isAway=String(event.team?.id||'')===String(away.team?.id||''),kind=/goal/i.test(type)?'goal':type==='yellow-card'?'yellow':'red';return {event,minute,isAway,kind};}).filter(Boolean),duration=markers.some(item=>item.minute>90)?120:90;
+      const marker=item=>`<span class="match-flow-marker ${item.isAway?'away':'home'} ${item.kind}" style="left:${Math.max(1,Math.min(99,100*item.minute/duration)).toFixed(1)}%" title="${esc(matchEventMinute(item.event,item.event.type?.type||''))}" aria-label="${esc(matchEventMinute(item.event,item.event.type?.type||''))}">${matchEventIcon(item.kind)}</span>`;
+      return `<div class="match-flow" aria-label="خط زمانی رویدادهای بازی"><div class="match-flow-head"><strong>خط زمانی مسابقه</strong><span>${markers.length?`${faNumber(markers.length)} رویداد مهم`:'رویداد مهمی ثبت نشده'}</span></div><div class="match-flow-track"><i class="match-flow-line"></i><i class="match-flow-half"></i>${markers.map(marker).join('')}</div><div class="match-flow-axis"><span>۰′</span><span>${faNumber(duration/2)}′</span><span>${faNumber(duration)}′</span></div></div>`;
+    }
     function matchEventReport(event,type,players,teamName){
       const name=value=>`<bdi dir="auto">${esc(value)}</bdi>`,actor=players[0]?name(players[0]):'',team=teamName?` ${esc(teamName)}`:'',text=String(event.text||'');
       if(/goal/i.test(type)){
@@ -2016,11 +2038,11 @@
       const parts=parseMatchRef(ref),competition=data.header?.competitions?.[0],teams=competition?.competitors||[],home=teams.find(team=>team.homeAway==='home')||teams[0],away=teams.find(team=>team.homeAway==='away')||teams[1];if(!parts||!home||!away)throw new Error('Match data missing');
       const meta=Object.values(SCORE_TOURNAMENT_META).find(entry=>entry.slug===parts.slug),date=new Date(competition.date||data.header.date),state=competition.status?.type?.state||'pre',status=scoreStatus({date:date.toISOString(),competitions:[{status:competition.status}]}),homeName=persianTeamName(home.team?.displayName||home.team?.shortDisplayName||''),awayName=persianTeamName(away.team?.displayName||away.team?.shortDisplayName||''),homeLogo=safeImage(home.team?.logos?.[0]?.href||home.team?.logo),awayLogo=safeImage(away.team?.logos?.[0]?.href||away.team?.logo),venue=data.gameInfo?.venue?.fullName||competition.venue?.fullName||'ورزشگاه اعلام نشده',league=translatedLeague(competition.altGameNote||data.header?.league?.name||parts.slug),dateText=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:IRAN_TIME_ZONE}).format(date),score=state==='pre'?esc(scoreTime(date)):matchScorePair(home.score,away.score),sourceUrl=`https://www.espn.com/soccer/match/_/gameId/${parts.id}`;
       const eventTypes=new Set(['kickoff','halftime','start-2nd-half','end-regular-time','substitution','yellow-card','red-card','second-yellow-card']),events=(data.keyEvents||[]).filter(event=>eventTypes.has(event.type?.type)||/goal/i.test(event.type?.type||'')),eventMarkup=events.length?`<div class="match-event-timeline" role="list">${events.map(event=>matchEventCard(event,home,away,homeName,awayName,homeLogo,awayLogo)).join('')}</div>`:'<div class="match-detail-empty">هنوز رویدادی برای این بازی ثبت نشده است. با آغاز مسابقه، گل‌ها، کارت‌ها و تعویض‌ها اینجا نمایش داده می‌شوند.</div>',reportMarkup=matchReportMarkup(data,homeName,awayName);
-      const statsMarkup=matchStatsMarkup(data,home,away,homeName,awayName,homeLogo,awayLogo);
-      const rosterFor=team=>(data.rosters||[]).find(entry=>String(entry.team?.id)===String(team.team?.id)),rosterCard=(team,name)=>{const roster=rosterFor(team),players=roster?.roster||[],starters=players.filter(player=>player.starter),bench=players.filter(player=>!player.starter),rows=officialPitchRows(starters,roster?.formation),benchMarkup=bench.length?`<h4>بازیکنان ذخیره</h4>${bench.map(player=>`<div class="match-detail-player"><b>${esc(faNumber(player.jersey||'–'))}</b><span>${esc(persianPlayerName(player.athlete?.displayName||''))}</span><small>${esc(player.position?.abbreviation||'')}</small></div>`).join('')}`:'';return `<section class="match-detail-lineup"><h3>${esc(name)}${roster?.formation?` · ${esc(roster.formation)}`:''}</h3>${rows?'<span class="lineup-status">ترکیب رسمی · نمایش روی زمین</span>':''}${lineupPitch(rows,team.homeAway,name,starters.length?'چینش زمین از منبع در دسترس نیست؛ آرایش رسمی این تیم مشخص نشده است.':'ترکیب رسمی این تیم هنوز اعلام نشده است.',team.team?.displayName||'')}${benchMarkup}</section>`;},lineupMarkup=`<div class="match-detail-lineups">${rosterCard(home,homeName)}${rosterCard(away,awayName)}</div>`;
+      const statsMarkup=matchStatsMarkup(data,home,away,homeName,awayName,homeLogo,awayLogo),flowMarkup=matchFlowMarkup(events,home,away);
+      const rosterFor=team=>(data.rosters||[]).find(entry=>String(entry.team?.id)===String(team.team?.id)),homeRoster=rosterFor(home),awayRoster=rosterFor(away),rosterCard=(team,name)=>{const roster=rosterFor(team),players=roster?.roster||[],starters=players.filter(player=>player.starter),bench=players.filter(player=>!player.starter),rows=officialPitchRows(starters,roster?.formation),benchMarkup=bench.length?`<h4>بازیکنان ذخیره</h4>${bench.map(player=>`<div class="match-detail-player"><b>${esc(faNumber(player.jersey||'–'))}</b><span>${esc(persianPlayerName(player.athlete?.displayName||''))}</span><small>${esc(player.position?.abbreviation||'')}</small></div>`).join('')}`:'';return `<section class="match-detail-lineup"><h3>${esc(name)}${roster?.formation?` · ${esc(roster.formation)}`:''}</h3>${rows?'<span class="lineup-status">ترکیب رسمی · نمایش روی زمین</span>':''}${lineupPitch(rows,team.homeAway,name,starters.length?'چینش زمین از منبع در دسترس نیست؛ آرایش رسمی این تیم مشخص نشده است.':'ترکیب رسمی این تیم هنوز اعلام نشده است.',team.team?.displayName||'')}${benchMarkup}</section>`;},lineupMarkup=`<div class="match-detail-lineups">${rosterCard(home,homeName)}${rosterCard(away,awayName)}</div>`;
       const tab=(key,label)=>`<button class="match-detail-tab${selectedMatchTab===key?' active':''}" type="button" role="tab" data-match-tab="${key}" aria-selected="${selectedMatchTab===key?'true':'false'}">${label}</button>`,panel=(key,title,content)=>`<section class="match-detail-panel" role="tabpanel" data-match-panel="${key}" ${selectedMatchTab===key?'':'hidden'}><h2 class="match-detail-section-title">${title}</h2>${content}</section>`;
       document.title=`${homeName} – ${awayName} | نیمکت`;document.querySelector('meta[name="description"]').setAttribute('content',`جزئیات، نتیجه و آمار بازی ${homeName} و ${awayName} به وقت ایران از پایگاه داده نیمکت.`);
-      document.getElementById('matchContent').innerHTML=`<header class="match-detail-hero"><div class="match-detail-top"><span>${esc(league)}</span><span>${meta?.logo?`<img src="${esc(meta.logo)}" alt="" onerror="this.remove()">`:''} جزئیات بازی</span></div><div class="match-detail-board"><div class="match-detail-team"><a class="match-detail-team-link" href="${esc(teamHref(parts.slug,home.team?.id)||'#')}" aria-label="صفحه تیم ${esc(homeName)}">${homeLogo?`<img src="${esc(homeLogo)}" alt="نشان ${esc(homeName)}">`:''}<strong>${esc(homeName)}</strong></a><small>میزبان</small></div><div class="match-detail-center"><strong>${score}</strong><span>${esc(state==='pre'?'شروع به وقت ایران':status.label)}</span></div><div class="match-detail-team"><a class="match-detail-team-link" href="${esc(teamHref(parts.slug,away.team?.id)||'#')}" aria-label="صفحه تیم ${esc(awayName)}">${awayLogo?`<img src="${esc(awayLogo)}" alt="نشان ${esc(awayName)}">`:''}<strong>${esc(awayName)}</strong></a><small>میهمان</small></div></div><div class="match-detail-meta"><span>${esc(dateText)} · ${esc(scoreTime(date))} ایران</span><span>${esc(venue)}</span></div></header><div class="match-detail-tabs" role="tablist" aria-label="جزئیات مسابقه">${tab('events','رویدادها')}${tab('report','گزارش بازی')}${tab('stats','آمار')}${tab('lineups','ترکیب‌ها')}</div><div class="match-detail-body">${panel('events','اتفاقات بازی',eventMarkup)}${panel('report','گزارش بازی',reportMarkup)}${panel('stats','آمار دو تیم',statsMarkup)}${panel('lineups','بازیکنان و ترکیب رسمی',lineupMarkup)}</div><footer class="match-detail-source"><span>داده‌های مسابقه: پایگاه داده نیمکت · منبع اولیه ESPN · عکس بازیکنان: <a href="https://www.thesportsdb.com/" target="_blank" rel="noopener">TheSportsDB</a> · ساعت‌ها به وقت ایران</span><span><button class="score-retry" type="button" data-match-retry>بروزرسانی</button> <a href="${esc(sourceUrl)}" target="_blank" rel="noopener">مشاهده منبع ↗</a></span></footer>`;
+      document.getElementById('matchContent').innerHTML=`<header class="match-detail-hero"><div class="match-detail-top"><span>${esc(league)}</span><span>${meta?.logo?`<img src="${esc(meta.logo)}" alt="" onerror="this.remove()">`:''} مرکز مسابقه نیمکت</span></div><div class="match-detail-board"><div class="match-detail-team"><a class="match-detail-team-link" href="${esc(teamHref(parts.slug,home.team?.id)||'#')}" aria-label="صفحه تیم ${esc(homeName)}">${homeLogo?`<img src="${esc(homeLogo)}" alt="نشان ${esc(homeName)}">`:''}<strong>${esc(homeName)}</strong></a><small>${esc(homeRoster?.formation||'میزبان')}</small></div><div class="match-detail-center"><strong>${score}</strong><span>${esc(state==='pre'?'شروع به وقت ایران':status.label)}</span></div><div class="match-detail-team"><a class="match-detail-team-link" href="${esc(teamHref(parts.slug,away.team?.id)||'#')}" aria-label="صفحه تیم ${esc(awayName)}">${awayLogo?`<img src="${esc(awayLogo)}" alt="نشان ${esc(awayName)}">`:''}<strong>${esc(awayName)}</strong></a><small>${esc(awayRoster?.formation||'میهمان')}</small></div></div><div class="match-detail-meta"><span>${esc(dateText)} · ${esc(scoreTime(date))} ایران</span><span>${esc(venue)}</span></div>${flowMarkup}</header><div class="match-detail-tabs" role="tablist" aria-label="جزئیات مسابقه">${tab('events','رویدادها')}${tab('report','گزارش فارسی')}${tab('stats','آمار بازی')}${tab('lineups','ترکیب‌ها')}</div><div class="match-detail-body">${panel('events','خط زمانی رویدادها',eventMarkup)}${panel('report','گزارش زنده فارسی',reportMarkup)}${panel('stats','مقایسه آماری دو تیم',statsMarkup)}${panel('lineups','ترکیب و آرایش دو تیم',lineupMarkup)}</div><footer class="match-detail-source"><span>داده‌های مسابقه: پایگاه داده نیمکت · منبع اولیه ESPN · عکس بازیکنان: <a href="https://www.thesportsdb.com/" target="_blank" rel="noopener">TheSportsDB</a> · ساعت‌ها به وقت ایران</span><span><button class="score-retry" type="button" data-match-retry>بروزرسانی</button> <a href="${esc(sourceUrl)}" target="_blank" rel="noopener">مشاهده منبع ↗</a></span></footer>`;
       if(selectedMatchTab==='lineups')hydrateLineupPhotos(document.getElementById('matchContent'));
     }
     async function loadMatchDetails(ref,showLoading=true){const parts=parseMatchRef(ref),root=document.getElementById('matchContent'),requestId=++matchRequestId;if(!parts)return;if(showLoading)root.innerHTML='<div class="score-state"><span class="score-loader" aria-hidden="true"></span><span>خواندن جزئیات بازی از پایگاه داده نیمکت…</span></div>';try{const data=await fetchSportsJson(`${ESPN_SOCCER_API}/${parts.slug}/summary?event=${parts.id}`,'match');if(requestId!==matchRequestId||activeMatchRef!==ref)return;renderMatchDetails(data,ref);}catch(error){if(requestId!==matchRequestId)return;if(!showLoading)return;root.innerHTML='<div class="match-detail-empty">جزئیات ذخیره‌شده بازی فعلاً در دسترس نیست.<br><button class="score-retry" type="button" data-match-retry>تلاش دوباره</button></div>';}}

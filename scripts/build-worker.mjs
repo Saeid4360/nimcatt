@@ -5,6 +5,7 @@ const projectRoot = resolve(import.meta.dirname, "..");
 const distRoot = resolve(projectRoot, "dist");
 const runtimePath = resolve(projectRoot, "worker/runtime.js");
 const outputPath = resolve(distRoot, "server/index.js");
+const hostingOutputPath = resolve(distRoot, ".openai/hosting.json");
 const persianNames = JSON.parse(await readFile(resolve(distRoot, "data/persian-names.json"), "utf8"));
 
 const textAssets = {
@@ -51,4 +52,6 @@ const source = [
 
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, source);
+await mkdir(dirname(hostingOutputPath), { recursive: true });
+await writeFile(hostingOutputPath, await readFile(resolve(projectRoot, ".openai/hosting.json")));
 console.log(`Built ${outputPath}`);

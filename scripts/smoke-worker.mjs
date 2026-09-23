@@ -150,9 +150,12 @@ const headlineFeaturesAsset = await worker.fetch(new Request("https://nimkat.tes
 assert.equal(headlineFeaturesAsset.status, 200);
 const headlineFeaturesSource = await headlineFeaturesAsset.text();
 assert.match(headlineFeaturesSource, /window\.HEADLINE_FEATURES/);
-assert.equal((headlineFeaturesSource.match(/id: '/g) || []).length, 17);
+assert.equal((headlineFeaturesSource.match(/id: '/g) || []).length, 32);
 assert.match(headlineFeaturesSource, /کاهش ۲۲٫۷ درصدی درآمد/);
 assert.match(headlineFeaturesSource, /آژاکس و تابستان پرخطر/);
+assert.match(headlineFeaturesSource, /بازگشت مانچینی به نیمکت ایتالیا/);
+assert.match(headlineFeaturesSource, /جدول واقعی لیگ برتر با معیار xG/);
+assert.match(headlineFeaturesSource, /فشار مالی روی بارسلونا/);
 
 const editorialAsset = await worker.fetch(new Request("https://nimkat.test/data/editorial-series.js"), env, ctx);
 assert.equal(editorialAsset.status, 200);

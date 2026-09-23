@@ -646,30 +646,43 @@ async function refreshNewsFeed(env) {
   return payload;
 }
 
+function newsFeedClientPayload(payload, url) {
+  const items = Array.isArray(payload?.news) ? payload.news : [];
+  const requestedLimit = Number.parseInt(url.searchParams.get("limit") || "96", 10);
+  const requestedOffset = Number.parseInt(url.searchParams.get("offset") || "0", 10);
+  const limit = Math.min(120, Math.max(12, Number.isFinite(requestedLimit) ? requestedLimit : 96));
+  const offset = Math.min(items.length, Math.max(0, Number.isFinite(requestedOffset) ? requestedOffset : 0));
+  const news = items.slice(offset, offset + limit);
+  return {
+    ...payload,
+    news,
+    meta: { ...(payload?.meta || {}), count: Number(payload?.meta?.count) || items.length, returned: news.length, offset },
+    pagination: { offset, limit, total: items.length, hasMore: offset + news.length < items.length },
+  };
+}
+
 async function newsFeedResponse(request, env, ctx) {
   const seed = newsSeed();
-  if (!env.DB) return jsonResponse({ news: seed.news, meta: seed.meta, cacheStatus: "static", error: "پایگاه داده متصل نیست." });
   const url = new URL(request.url);
+  if (!env.DB) return jsonResponse(newsFeedClientPayload({ news: seed.news, meta: seed.meta, cacheStatus: "static", error: "پایگاه داده متصل نیست." }, url));
   const force = url.searchParams.get("refresh") === "1";
   const now = Math.floor(Date.now() / 1000);
   const cached = await readCached(env, NEWS_FEED_CACHE_KEY);
   if (force) {
-    try { return jsonResponse(await refreshNewsFeed(env)); }
-    catch (error) {
-      if (cached?.payload) return jsonResponse({ ...JSON.parse(cached.payload), cacheStatus: "stale", error: "دریافت تازه کامل نشد؛ آخرین خروجی ذخیره‌شده نمایش داده شد." });
-      return jsonResponse({ news: seed.news, meta: seed.meta, cacheStatus: "static", error: "دریافت تازه کامل نشد؛ خروجی اولیه نمایش داده شد." });
-    }
+    ctx.waitUntil(refreshNewsFeed(env).catch((error) => recordError(env, NEWS_FEED_CACHE_KEY, error?.message || error)));
+    const current = cached?.payload ? JSON.parse(cached.payload) : { news: seed.news, meta: seed.meta };
+    return jsonResponse(newsFeedClientPayload({ ...current, cacheStatus: "refreshing" }, url));
   }
   if (cached?.payload) {
     const payload = JSON.parse(cached.payload);
     if (Number(cached.expires_at) <= now) {
       ctx.waitUntil(refreshNewsFeed(env).catch((error) => recordError(env, NEWS_FEED_CACHE_KEY, error?.message || error)));
-      return jsonResponse({ ...payload, cacheStatus: "stale" });
+      return jsonResponse(newsFeedClientPayload({ ...payload, cacheStatus: "stale" }, url));
     }
-    return jsonResponse({ ...payload, cacheStatus: "hit" });
+    return jsonResponse(newsFeedClientPayload({ ...payload, cacheStatus: "hit" }, url));
   }
   ctx.waitUntil(refreshNewsFeed(env).catch((error) => recordError(env, NEWS_FEED_CACHE_KEY, error?.message || error)));
-  return jsonResponse({ news: seed.news, meta: seed.meta, cacheStatus: "warming" });
+  return jsonResponse(newsFeedClientPayload({ news: seed.news, meta: seed.meta, cacheStatus: "warming" }, url));
 }
 
 function staticResponse(pathname) {

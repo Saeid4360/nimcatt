@@ -45,7 +45,7 @@
     .search{position:relative}.search svg{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:#84908a}.search input,.source-select{width:100%;height:42px;border:1px solid var(--line);background:#fafbfa;border-radius:10px;color:var(--ink);outline:none}.search input{padding:0 40px 0 13px}.search input:focus,.source-select:focus{border-color:#76a997;box-shadow:0 0 0 3px rgba(14,107,77,.08)}
     .source-select{padding:0 12px;cursor:pointer}
     .chips{display:flex;gap:6px}.chip{height:38px;border:0;border-radius:9px;padding:0 12px;background:#edf0ee;color:#525c57;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}.chip.active{background:var(--ink);color:white}
-    .reload{height:38px;border:1px solid #b8c6bf;background:white;border-radius:9px;padding:0 13px;color:var(--green);cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}
+    .reload-wrap{display:flex;align-items:center;gap:8px;min-width:0}.reload{height:38px;border:1px solid #b8c6bf;background:white;border-radius:9px;padding:0 13px;color:var(--green);cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}.reload:disabled{opacity:.65;cursor:wait}.live-status{font-size:10px;color:var(--muted);white-space:nowrap}.live-status.ok{color:var(--green)}.live-status.error{color:var(--danger)}
     .content-head{display:flex;align-items:center;justify-content:space-between;margin:24px 2px 12px}.content-head h2{font-size:18px;margin:0}.result-count{font-size:12px;color:var(--muted)}
     .news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
     .story{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;min-height:390px;transition:transform .2s,box-shadow .2s,border-color .2s}
@@ -81,7 +81,7 @@
       <select class="source-select" id="sourceFilter" aria-label="انتخاب منبع"><option value="all">همه منابع</option></select>
       <select class="source-select" id="sourceTypeFilter" aria-label="نوع منبع"><option value="all">همه نوع منابع</option><option value="major">رسانه‌های معتبر</option><option value="local">رسانه‌های محلی</option><option value="analysis">منابع تحلیلی</option><option value="club">رسانه رسمی باشگاه</option><option value="fan">رسانه‌های هواداری</option></select>
       <div class="chips" id="categoryFilters"><button class="chip active" data-category="all">همه</button><button class="chip" data-category="news">خبر</button><button class="chip" data-category="transfer">نقل‌وانتقالات</button><button class="chip" data-category="analysis">تحلیل</button></div>
-      <button class="reload" id="reloadAgent" type="button">دریافت آخرین خروجی</button>
+      <div class="reload-wrap"><button class="reload" id="reloadAgent" type="button">تازه‌سازی خبرها</button><span class="live-status" id="liveStatus" role="status" aria-live="polite">در حال اتصال…</span></div>
     </section>
     <div class="content-head"><h2>خروجی عامل</h2><span class="result-count" id="resultCount"></span></div>
     <section class="news-grid" id="newsGrid"><div class="empty" id="emptyState">خبری مطابق این فیلتر پیدا نشد.</div></section>
@@ -94,7 +94,7 @@
       let meta=window.LIVE_NEWS_META||{sources:[],generatedAt:null};
       const grid=document.getElementById('newsGrid'),empty=document.getElementById('emptyState');
       const search=document.getElementById('agentSearch'),team=document.getElementById('teamFilter'),source=document.getElementById('sourceFilter'),sourceType=document.getElementById('sourceTypeFilter');
-      const reload=document.getElementById('reloadAgent');
+      const reload=document.getElementById('reloadAgent'),liveStatus=document.getElementById('liveStatus');
       const fa=new Intl.NumberFormat('fa-IR');
       const state={category:'all'};
       const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
@@ -111,7 +111,7 @@
         document.getElementById('generatedAt').textContent=`به‌روزرسانی: ${generated}`;
         const sources=Array.isArray(meta.sources)?meta.sources:[];
         document.getElementById('sourceHealth').innerHTML=sources.length?sources.map(item=>`<div class="source-pill" title="${escapeHtml(item.ok?'فید فعال':item.error||'فید در دسترس نیست')}"><span>${escapeHtml(item.source)}</span><small>${escapeHtml(item.country||'')} · ${escapeHtml(item.sourceTypeLabel||'رسانه معتبر')}</small><span class="dot ${item.ok?'':'off'}" title="${item.ok?'فعال':'خطا'}"></span></div>`).join(''):'<span class="generated">گزارش وضعیت موجود نیست</span>';
-        document.getElementById('totalMetric').textContent=fa.format(news.length);
+        document.getElementById('totalMetric').textContent=fa.format(Number(meta.count)||news.length);
         document.getElementById('sourceMetric').textContent=fa.format(sources.length||sourceNames.length);
         document.getElementById('healthyMetric').textContent=fa.format(sources.filter(item=>item.ok).length||sourceNames.length);
       }
@@ -137,21 +137,25 @@
       }
       search.addEventListener('input',render);team.addEventListener('change',render);source.addEventListener('change',render);sourceType.addEventListener('change',render);
       document.getElementById('categoryFilters').addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(!button)return;state.category=button.dataset.category;document.querySelectorAll('.chip').forEach(node=>node.classList.toggle('active',node===button));render()});
-      let warmRetry=0;
+      const LIVE_LIMIT=96;
+      let warmRetry=0,retryTimer=0;
+      function setLiveStatus(message,tone=''){liveStatus.textContent=message;liveStatus.className=`live-status ${tone}`.trim()}
       async function loadLive(force=false){
-        reload.disabled=true;reload.textContent=force?'در حال دریافت…':'در حال همگام‌سازی…';
+        clearTimeout(retryTimer);reload.disabled=true;reload.textContent=force?'در حال درخواست…':'در حال اتصال…';setLiveStatus(force?'دریافت از منابع آغاز شد…':'در حال دریافت خبرها…');
         try{
-          const response=await fetch(`/api/news-feed${force?'?refresh=1':''}`,{cache:'no-store'});
+          const response=await fetch(`/api/news-feed?limit=${LIVE_LIMIT}${force?'&refresh=1':''}`,{cache:'no-store'});
           if(!response.ok)throw new Error(`HTTP ${response.status}`);
           const payload=await response.json();
           if(Array.isArray(payload.news))news=payload.news;if(payload.meta)meta=payload.meta;
           syncSummary();render();
-          if(payload.error)reload.title=payload.error;
-          if(!force&&['warming','stale'].includes(payload.cacheStatus)&&warmRetry<2){warmRetry++;setTimeout(()=>loadLive(false),7000);}
-        }catch(error){reload.title='اتصال به خبرخوان زنده برقرار نشد؛ آخرین خروجی ذخیره‌شده نمایش داده می‌شود.';}
-        finally{reload.disabled=false;reload.textContent='دریافت خبرهای تازه';}
+          const waiting=['warming','stale','refreshing'].includes(payload.cacheStatus);
+          setLiveStatus(waiting?'در حال دریافت نسخه تازه…':'خبرخوان متصل است',waiting?'':'ok');
+          if(payload.error){reload.title=payload.error;setLiveStatus(payload.error,'error')}
+          if(waiting&&warmRetry<3){warmRetry++;retryTimer=setTimeout(()=>loadLive(false),force?7500:5000)}else if(!waiting){warmRetry=0}
+        }catch(error){reload.title='اتصال به خبرخوان زنده برقرار نشد؛ آخرین خروجی ذخیره‌شده نمایش داده می‌شود.';setLiveStatus('اتصال زنده برقرار نشد؛ خروجی ذخیره‌شده فعال است','error');}
+        finally{reload.disabled=false;reload.textContent='تازه‌سازی خبرها';}
       }
-      reload.addEventListener('click',()=>loadLive(true));
+      reload.addEventListener('click',()=>{warmRetry=0;loadLive(true)});
       syncSummary();render();loadLive(false);
     })();
   </script>

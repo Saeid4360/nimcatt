@@ -26,6 +26,7 @@ const fontNames = [
   "IRANSansXFaNum-DemiBold.woff2",
   "IRANSansXFaNum-Medium.woff2",
   "IRANSansXFaNum-Regular.woff2",
+  "NotoSansArabic-Condensed-Bold.ttf",
 ];
 const binaryAssets = {};
 for (const name of fontNames) {

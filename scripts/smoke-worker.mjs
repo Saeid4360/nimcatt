@@ -140,6 +140,8 @@ assert.match(homepage, /height=isMobile\?350:360/);
 assert.match(homepage, /data\/persian-names\.js/);
 assert.match(homepage, /NIMKAT_PLAYER_NAMES_FA/);
 assert.match(homepage, /NIMKAT_TEAM_NAMES_FA/);
+assert.match(homepage, /font-family:'NimkatHeadline'/);
+assert.match(homepage, /NotoSansArabic-Condensed-Bold\.ttf/);
 assert.match(homepage, /function alignScoreDateInsideBoard/);
 assert.doesNotMatch(homepage, /latest\.scrollIntoView/);
 assert.match(homepage, /data\/editorial-series\.js/);

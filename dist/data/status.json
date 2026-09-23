@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-22T20:06:09.828480+00:00",
-  "count": 258,
+  "generatedAt": "2026-09-23T22:43:35.598826+00:00",
+  "count": 794,
   "sources": [
     {
       "source": "BBC Sport",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
       "country": "انگلیس",
@@ -16,7 +16,7 @@
     {
       "source": "The Guardian",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
       "country": "انگلیس",
@@ -27,7 +27,7 @@
     {
       "source": "Sky Sports",
       "ok": true,
-      "items": 6,
+      "items": 5,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
       "country": "انگلیس",
@@ -38,7 +38,7 @@
     {
       "source": "Kicker",
       "ok": true,
-      "items": 8,
+      "items": 19,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
@@ -49,7 +49,7 @@
     {
       "source": "Marca",
       "ok": true,
-      "items": 1,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
@@ -60,7 +60,7 @@
     {
       "source": "AS",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
@@ -71,7 +71,7 @@
     {
       "source": "Mundo Deportivo",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
@@ -82,7 +82,7 @@
     {
       "source": "Football Italia",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "ایتالیا",
@@ -93,7 +93,7 @@
     {
       "source": "Get French Football News",
       "ok": true,
-      "items": 8,
+      "items": 10,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "فرانسه",
@@ -104,7 +104,7 @@
     {
       "source": "RMC Sport",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "فرانسه",
@@ -115,7 +115,7 @@
     {
       "source": "L'Équipe",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "فرانسه",
@@ -126,7 +126,7 @@
     {
       "source": "Voetbal International",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "هلند",
@@ -137,7 +137,7 @@
     {
       "source": "VoetbalPrimeur",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "هلند",
@@ -148,7 +148,7 @@
     {
       "source": "NOS Voetbal",
       "ok": true,
-      "items": 8,
+      "items": 16,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "هلند",
@@ -159,7 +159,7 @@
     {
       "source": "Opta Analyst",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "analysis",
       "sourceTypeLabel": "تحلیل داده",
       "country": "بین‌المللی",
@@ -181,7 +181,7 @@
     {
       "source": "Spielverlagerung",
       "ok": true,
-      "items": 7,
+      "items": 8,
       "sourceType": "analysis",
       "sourceTypeLabel": "تحلیل تاکتیکی",
       "country": "آلمان",
@@ -192,7 +192,7 @@
     {
       "source": "Scouted Football",
       "ok": true,
-      "items": 8,
+      "items": 9,
       "sourceType": "analysis",
       "sourceTypeLabel": "استعدادیابی و تحلیل",
       "country": "بین‌المللی",
@@ -203,7 +203,7 @@
     {
       "source": "ESPN",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
       "country": "بین‌المللی",
@@ -214,7 +214,7 @@
     {
       "source": "CBS Sports Soccer",
       "ok": true,
-      "items": 8,
+      "items": 11,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
       "country": "بین‌المللی",
@@ -225,7 +225,7 @@
     {
       "source": "Yahoo Sports Soccer",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
       "country": "بین‌المللی",
@@ -236,7 +236,7 @@
     {
       "source": "football.london",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "انگلیس",
@@ -247,7 +247,7 @@
     {
       "source": "FourFourTwo",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "analysis",
       "sourceTypeLabel": "مجله و تحلیل",
       "country": "انگلیس",
@@ -258,7 +258,7 @@
     {
       "source": "Sportschau Fußball",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
@@ -269,7 +269,7 @@
     {
       "source": "Relevo",
       "ok": true,
-      "items": 8,
+      "items": 9,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
@@ -280,7 +280,7 @@
     {
       "source": "Tuttomercatoweb",
       "ok": true,
-      "items": 8,
+      "items": 19,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "ایتالیا",
@@ -291,7 +291,7 @@
     {
       "source": "Sky Sport Italia",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "major",
       "sourceTypeLabel": "رسانه معتبر",
       "country": "ایتالیا",
@@ -302,7 +302,7 @@
     {
       "source": "Le Parisien Football",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "فرانسه",
@@ -313,7 +313,7 @@
     {
       "source": "NU.nl Voetbal",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "هلند",
@@ -324,7 +324,7 @@
     {
       "source": "De Telegraaf Voetbal",
       "ok": true,
-      "items": 8,
+      "items": 20,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "هلند",
@@ -335,7 +335,7 @@
     {
       "source": "The Coaches' Voice",
       "ok": true,
-      "items": 8,
+      "items": 10,
       "sourceType": "analysis",
       "sourceTypeLabel": "تحلیل مربیگری",
       "country": "بین‌المللی",
@@ -355,18 +355,19 @@
     },
     {
       "source": "آرسنال · football.london",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "انگلیس",
       "team": "آرسنال",
-      "websiteUrl": "https://football.london"
+      "websiteUrl": "https://football.london",
+      "feedUrl": "https://www.football.london/?service=rss"
     },
     {
       "source": "آرسنال · Arseblog",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -377,7 +378,7 @@
     {
       "source": "آرسنال · Pain in the Arsenal",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -388,7 +389,7 @@
     {
       "source": "آرسنال · Just Arsenal",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -408,18 +409,19 @@
     },
     {
       "source": "چلسی · football.london",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "انگلیس",
       "team": "چلسی",
-      "websiteUrl": "https://football.london"
+      "websiteUrl": "https://football.london",
+      "feedUrl": "https://www.football.london/?service=rss"
     },
     {
       "source": "چلسی · We Ain't Got No History",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -430,7 +432,7 @@
     {
       "source": "چلسی · The Chelsea Chronicle",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -461,7 +463,7 @@
     {
       "source": "لیورپول · Liverpool Echo",
       "ok": true,
-      "items": 0,
+      "items": 2,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "انگلیس",
@@ -472,7 +474,7 @@
     {
       "source": "لیورپول · This Is Anfield",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -483,7 +485,7 @@
     {
       "source": "لیورپول · Empire of the Kop",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -494,7 +496,7 @@
     {
       "source": "لیورپول · The Liverpool Offside",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -526,7 +528,7 @@
     {
       "source": "منچستریونایتد · Stretty News",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -537,7 +539,7 @@
     {
       "source": "منچستریونایتد · The Peoples Person",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -548,7 +550,7 @@
     {
       "source": "منچستریونایتد · United in Focus",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -580,7 +582,7 @@
     {
       "source": "منچسترسیتی · City Xtra",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -602,7 +604,7 @@
     {
       "source": "منچسترسیتی · Man City Square",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -622,18 +624,19 @@
     },
     {
       "source": "تاتنهام · football.london",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "انگلیس",
       "team": "تاتنهام",
-      "websiteUrl": "https://football.london"
+      "websiteUrl": "https://football.london",
+      "feedUrl": "https://www.football.london/?service=rss"
     },
     {
       "source": "تاتنهام · Cartilage Free Captain",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -644,7 +647,7 @@
     {
       "source": "تاتنهام · Spurs Web",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -655,7 +658,7 @@
     {
       "source": "تاتنهام · Hotspur HQ",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -676,7 +679,7 @@
     {
       "source": "نیوکاسل · Chronicle Live",
       "ok": true,
-      "items": 0,
+      "items": 2,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "انگلیس",
@@ -687,7 +690,7 @@
     {
       "source": "نیوکاسل · NUFC Blog",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -698,7 +701,7 @@
     {
       "source": "نیوکاسل · Coming Home Newcastle",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -720,7 +723,7 @@
     {
       "source": "استون ویلا · Aston Villa",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "club",
       "sourceTypeLabel": "رسانه رسمی باشگاه",
       "country": "انگلیس",
@@ -752,7 +755,7 @@
     {
       "source": "استون ویلا · A Villa Fan",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
@@ -762,13 +765,14 @@
     },
     {
       "source": "استون ویلا · Claret Villans",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "انگلیس",
       "team": "استون ویلا",
-      "websiteUrl": "https://claretvillans.com"
+      "websiteUrl": "https://claretvillans.com",
+      "feedUrl": "https://claretvillans.com/feed"
     },
     {
       "source": "رئال مادرید · Real Madrid",
@@ -782,38 +786,41 @@
     },
     {
       "source": "رئال مادرید · Marca",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "رئال مادرید",
-      "websiteUrl": "https://marca.com"
+      "websiteUrl": "https://marca.com",
+      "feedUrl": "https://e00-marca.uecdn.es/rss/futbol.xml"
     },
     {
       "source": "رئال مادرید · AS",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 1,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "رئال مادرید",
-      "websiteUrl": "https://as.com"
+      "websiteUrl": "https://as.com",
+      "feedUrl": "https://feeds.as.com/mrss-s/pages/as/site/as.com/section/futbol/portada"
     },
     {
       "source": "رئال مادرید · Managing Madrid",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسپانیا",
       "team": "رئال مادرید",
-      "websiteUrl": "https://managingmadrid.com"
+      "websiteUrl": "https://managingmadrid.com",
+      "feedUrl": "https://managingmadrid.com/rss/index.xml"
     },
     {
       "source": "رئال مادرید · Madrid Universal",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسپانیا",
@@ -833,13 +840,14 @@
     },
     {
       "source": "بارسلونا · Mundo Deportivo",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "بارسلونا",
-      "websiteUrl": "https://mundodeportivo.com"
+      "websiteUrl": "https://mundodeportivo.com",
+      "feedUrl": "https://www.mundodeportivo.com/rss/futbol"
     },
     {
       "source": "بارسلونا · Sport",
@@ -853,23 +861,25 @@
     },
     {
       "source": "بارسلونا · Barca Blaugranes",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسپانیا",
       "team": "بارسلونا",
-      "websiteUrl": "https://barcablaugranes.com"
+      "websiteUrl": "https://barcablaugranes.com",
+      "feedUrl": "https://barcablaugranes.com/rss/index.xml"
     },
     {
       "source": "بارسلونا · Barca Universal",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسپانیا",
       "team": "بارسلونا",
-      "websiteUrl": "https://barcauniversal.com"
+      "websiteUrl": "https://barcauniversal.com",
+      "feedUrl": "https://barcauniversal.com/feed/"
     },
     {
       "source": "اتلتیکومادرید · Atletico de Madrid",
@@ -883,38 +893,41 @@
     },
     {
       "source": "اتلتیکومادرید · Marca",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "اتلتیکومادرید",
-      "websiteUrl": "https://marca.com"
+      "websiteUrl": "https://marca.com",
+      "feedUrl": "https://e00-marca.uecdn.es/rss/futbol.xml"
     },
     {
       "source": "اتلتیکومادرید · AS",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "اتلتیکومادرید",
-      "websiteUrl": "https://as.com"
+      "websiteUrl": "https://as.com",
+      "feedUrl": "https://feeds.as.com/mrss-s/pages/as/site/as.com/section/futbol/portada"
     },
     {
       "source": "اتلتیکومادرید · Into the Calderon",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسپانیا",
       "team": "اتلتیکومادرید",
-      "websiteUrl": "https://intothecalderon.com"
+      "websiteUrl": "https://intothecalderon.com",
+      "feedUrl": "https://intothecalderon.com/rss/index.xml"
     },
     {
       "source": "اتلتیکومادرید · Atletikos",
       "ok": true,
-      "items": 2,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسپانیا",
@@ -934,13 +947,14 @@
     },
     {
       "source": "اتلتیک بیلبائو · El Correo",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "اتلتیک بیلبائو",
-      "websiteUrl": "https://elcorreo.com"
+      "websiteUrl": "https://elcorreo.com",
+      "feedUrl": "https://www.elcorreo.com/rss/2.0/?section="
     },
     {
       "source": "اتلتیک بیلبائو · Deia",
@@ -954,13 +968,14 @@
     },
     {
       "source": "اتلتیک بیلبائو · Mundo Deportivo",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "اتلتیک بیلبائو",
-      "websiteUrl": "https://mundodeportivo.com"
+      "websiteUrl": "https://mundodeportivo.com",
+      "feedUrl": "https://www.mundodeportivo.com/rss/futbol"
     },
     {
       "source": "اتلتیک بیلبائو · El Desmarque Bizkaia",
@@ -984,23 +999,25 @@
     },
     {
       "source": "سویا · Diario de Sevilla",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "سویا",
-      "websiteUrl": "https://diariodesevilla.es"
+      "websiteUrl": "https://diariodesevilla.es",
+      "feedUrl": "https://www.diariodesevilla.es/rss/"
     },
     {
       "source": "سویا · Estadio Deportivo",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "سویا",
-      "websiteUrl": "https://estadiodeportivo.com"
+      "websiteUrl": "https://estadiodeportivo.com",
+      "feedUrl": "https://www.estadiodeportivo.com/sitemaps/rss.xml"
     },
     {
       "source": "سویا · Sevilla FC News",
@@ -1024,13 +1041,14 @@
     },
     {
       "source": "والنسیا · Valencia CF",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "club",
       "sourceTypeLabel": "رسانه رسمی باشگاه",
       "country": "اسپانیا",
       "team": "والنسیا",
-      "websiteUrl": "https://valenciacf.com"
+      "websiteUrl": "https://valenciacf.com",
+      "feedUrl": "https://valenciacf.com/rss"
     },
     {
       "source": "والنسیا · Superdeporte",
@@ -1054,13 +1072,14 @@
     },
     {
       "source": "والنسیا · Valencia Plaza",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسپانیا",
       "team": "والنسیا",
-      "websiteUrl": "https://valenciaplaza.com"
+      "websiteUrl": "https://valenciaplaza.com",
+      "feedUrl": "https://valenciaplaza.com/feed/"
     },
     {
       "source": "والنسیا · El Desmarque Valencia",
@@ -1094,33 +1113,36 @@
     },
     {
       "source": "یوونتوس · Juventus News 24",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "یوونتوس",
-      "websiteUrl": "https://juventusnews24.com"
+      "websiteUrl": "https://juventusnews24.com",
+      "feedUrl": "https://juventusnews24.com/feed/"
     },
     {
       "source": "یوونتوس · Juve FC",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "یوونتوس",
-      "websiteUrl": "https://juvefc.com"
+      "websiteUrl": "https://juvefc.com",
+      "feedUrl": "https://www.juvefc.com/feed/"
     },
     {
       "source": "یوونتوس · Black & White & Read All Over",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "یوونتوس",
-      "websiteUrl": "https://blackwhitereadallover.com"
+      "websiteUrl": "https://blackwhitereadallover.com",
+      "feedUrl": "https://blackwhitereadallover.com/rss/index.xml"
     },
     {
       "source": "اینتر · Inter",
@@ -1144,23 +1166,25 @@
     },
     {
       "source": "اینتر · FC Inter News",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "اینتر",
-      "websiteUrl": "https://fcinternews.it"
+      "websiteUrl": "https://fcinternews.it",
+      "feedUrl": "https://www.fcinternews.it/rss"
     },
     {
       "source": "اینتر · Sempre Inter",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "اینتر",
-      "websiteUrl": "https://sempreinter.com"
+      "websiteUrl": "https://sempreinter.com",
+      "feedUrl": "https://sempreinter.com/feed/"
     },
     {
       "source": "اینتر · Serpents of Madonnina",
@@ -1194,33 +1218,36 @@
     },
     {
       "source": "آث میلان · Milan News",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "آث میلان",
-      "websiteUrl": "https://milannews.it"
+      "websiteUrl": "https://milannews.it",
+      "feedUrl": "https://milannews.it/rss"
     },
     {
       "source": "آث میلان · Sempre Milan",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "آث میلان",
-      "websiteUrl": "https://sempremilan.com"
+      "websiteUrl": "https://sempremilan.com",
+      "feedUrl": "https://sempremilan.com/feed"
     },
     {
       "source": "آث میلان · Rossoneri Blog",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 2,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "آث میلان",
-      "websiteUrl": "https://rossoneriblog.com"
+      "websiteUrl": "https://rossoneriblog.com",
+      "feedUrl": "https://rossoneriblog.com/rss.xml"
     },
     {
       "source": "ناپولی · SSC Napoli",
@@ -1234,23 +1261,25 @@
     },
     {
       "source": "ناپولی · Il Mattino",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 2,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "ایتالیا",
       "team": "ناپولی",
-      "websiteUrl": "https://ilmattino.it"
+      "websiteUrl": "https://ilmattino.it",
+      "feedUrl": "https://www.ilmattino.it/rss/home.xml"
     },
     {
       "source": "ناپولی · Tutto Napoli",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "ناپولی",
-      "websiteUrl": "https://tuttonapoli.net"
+      "websiteUrl": "https://tuttonapoli.net",
+      "feedUrl": "https://www.tuttonapoli.net/rss"
     },
     {
       "source": "ناپولی · Napoli Magazine",
@@ -1264,13 +1293,14 @@
     },
     {
       "source": "ناپولی · Calcio Napoli 24",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "ناپولی",
-      "websiteUrl": "https://calcionapoli24.it"
+      "websiteUrl": "https://calcionapoli24.it",
+      "feedUrl": "https://www.calcionapoli24.it/feed/"
     },
     {
       "source": "آاس رم · AS Roma",
@@ -1284,43 +1314,47 @@
     },
     {
       "source": "آاس رم · Il Messaggero",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "ایتالیا",
       "team": "آاس رم",
-      "websiteUrl": "https://ilmessaggero.it"
+      "websiteUrl": "https://ilmessaggero.it",
+      "feedUrl": "https://www.ilmessaggero.it/rss/home.xml"
     },
     {
       "source": "آاس رم · RomaPress",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "آاس رم",
-      "websiteUrl": "https://romapress.net"
+      "websiteUrl": "https://romapress.net",
+      "feedUrl": "https://romapress.net/feed/"
     },
     {
       "source": "آاس رم · Voce Giallorossa",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "آاس رم",
-      "websiteUrl": "https://vocegiallorossa.it"
+      "websiteUrl": "https://vocegiallorossa.it",
+      "feedUrl": "https://www.vocegiallorossa.it/rss"
     },
     {
       "source": "آاس رم · Chiesa di Totti",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "آاس رم",
-      "websiteUrl": "https://chiesaditotti.com"
+      "websiteUrl": "https://chiesaditotti.com",
+      "feedUrl": "https://chiesaditotti.com/rss/index.xml"
     },
     {
       "source": "لاتزیو · SS Lazio",
@@ -1334,43 +1368,47 @@
     },
     {
       "source": "لاتزیو · Il Messaggero",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 1,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "ایتالیا",
       "team": "لاتزیو",
-      "websiteUrl": "https://ilmessaggero.it"
+      "websiteUrl": "https://ilmessaggero.it",
+      "feedUrl": "https://www.ilmessaggero.it/rss/home.xml"
     },
     {
       "source": "لاتزیو · La Lazio Siamo Noi",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "لاتزیو",
-      "websiteUrl": "https://lalaziosiamonoi.it"
+      "websiteUrl": "https://lalaziosiamonoi.it",
+      "feedUrl": "https://www.lalaziosiamonoi.it/rss"
     },
     {
       "source": "لاتزیو · LazioPress",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "لاتزیو",
-      "websiteUrl": "https://laziopress.it"
+      "websiteUrl": "https://laziopress.it",
+      "feedUrl": "https://www.laziopress.it/feed?gn"
     },
     {
       "source": "لاتزیو · Lazio News 24",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ایتالیا",
       "team": "لاتزیو",
-      "websiteUrl": "https://lazionews24.com"
+      "websiteUrl": "https://lazionews24.com",
+      "feedUrl": "https://lazionews24.com/feed/"
     },
     {
       "source": "بایرن مونیخ · FC Bayern",
@@ -1384,13 +1422,14 @@
     },
     {
       "source": "بایرن مونیخ · Kicker",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 1,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
       "team": "بایرن مونیخ",
-      "websiteUrl": "https://kicker.de"
+      "websiteUrl": "https://kicker.de",
+      "feedUrl": "https://newsfeed.kicker.de/news/fussball"
     },
     {
       "source": "بایرن مونیخ · Abendzeitung München",
@@ -1404,23 +1443,25 @@
     },
     {
       "source": "بایرن مونیخ · Bavarian Football Works",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "آلمان",
       "team": "بایرن مونیخ",
-      "websiteUrl": "https://bavarianfootballworks.com"
+      "websiteUrl": "https://bavarianfootballworks.com",
+      "feedUrl": "https://bavarianfootballworks.com/rss/index.xml"
     },
     {
       "source": "بایرن مونیخ · FCBinside",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "آلمان",
       "team": "بایرن مونیخ",
-      "websiteUrl": "https://fcbinside.de"
+      "websiteUrl": "https://fcbinside.de",
+      "feedUrl": "https://fcbinside.de/feed/"
     },
     {
       "source": "بوروسیا دورتموند · Borussia Dortmund",
@@ -1434,43 +1475,47 @@
     },
     {
       "source": "بوروسیا دورتموند · Ruhr Nachrichten",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
       "team": "بوروسیا دورتموند",
-      "websiteUrl": "https://ruhrnachrichten.de"
+      "websiteUrl": "https://ruhrnachrichten.de",
+      "feedUrl": "https://www.ruhrnachrichten.de/feed/"
     },
     {
       "source": "بوروسیا دورتموند · Kicker",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 1,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
       "team": "بوروسیا دورتموند",
-      "websiteUrl": "https://kicker.de"
+      "websiteUrl": "https://kicker.de",
+      "feedUrl": "https://newsfeed.kicker.de/news/fussball"
     },
     {
       "source": "بوروسیا دورتموند · Fear The Wall",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "آلمان",
       "team": "بوروسیا دورتموند",
-      "websiteUrl": "https://fearthewall.com"
+      "websiteUrl": "https://fearthewall.com",
+      "feedUrl": "https://fearthewall.com/rss/index.xml"
     },
     {
       "source": "بوروسیا دورتموند · BVB Buzz",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "آلمان",
       "team": "بوروسیا دورتموند",
-      "websiteUrl": "https://bvbbuzz.com"
+      "websiteUrl": "https://bvbbuzz.com",
+      "feedUrl": "https://bvbbuzz.com/feed"
     },
     {
       "source": "بایر لورکوزن · Bayer 04",
@@ -1494,23 +1539,25 @@
     },
     {
       "source": "بایر لورکوزن · Kicker",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
       "team": "بایر لورکوزن",
-      "websiteUrl": "https://kicker.de"
+      "websiteUrl": "https://kicker.de",
+      "feedUrl": "https://newsfeed.kicker.de/news/fussball"
     },
     {
       "source": "بایر لورکوزن · 90min Deutschland",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "آلمان",
       "team": "بایر لورکوزن",
-      "websiteUrl": "https://90min.de"
+      "websiteUrl": "https://90min.de",
+      "feedUrl": "https://www.90min.de/feed"
     },
     {
       "source": "بایر لورکوزن · Transfermarkt",
@@ -1544,13 +1591,14 @@
     },
     {
       "source": "لایپزیش · Kicker",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
       "team": "لایپزیش",
-      "websiteUrl": "https://kicker.de"
+      "websiteUrl": "https://kicker.de",
+      "feedUrl": "https://newsfeed.kicker.de/news/fussball"
     },
     {
       "source": "لایپزیش · RBLive",
@@ -1574,43 +1622,47 @@
     },
     {
       "source": "شالکه · Schalke 04",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "club",
       "sourceTypeLabel": "رسانه رسمی باشگاه",
       "country": "آلمان",
       "team": "شالکه",
-      "websiteUrl": "https://schalke04.de"
+      "websiteUrl": "https://schalke04.de",
+      "feedUrl": "https://schalke04.de/feed/"
     },
     {
       "source": "شالکه · WAZ",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
       "team": "شالکه",
-      "websiteUrl": "https://waz.de"
+      "websiteUrl": "https://waz.de",
+      "feedUrl": "https://www.waz.de/rss"
     },
     {
       "source": "شالکه · Kicker",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "آلمان",
       "team": "شالکه",
-      "websiteUrl": "https://kicker.de"
+      "websiteUrl": "https://kicker.de",
+      "feedUrl": "https://newsfeed.kicker.de/news/fussball"
     },
     {
       "source": "شالکه · Schalke News",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "آلمان",
       "team": "شالکه",
-      "websiteUrl": "https://schalke-news.de"
+      "websiteUrl": "https://schalke-news.de",
+      "feedUrl": "https://schalke-news.de/feed/"
     },
     {
       "source": "شالکه · Westline",
@@ -1624,53 +1676,58 @@
     },
     {
       "source": "پاری‌سن‌ژرمن · Paris Saint-Germain",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "club",
       "sourceTypeLabel": "رسانه رسمی باشگاه",
       "country": "فرانسه",
       "team": "پاری‌سن‌ژرمن",
-      "websiteUrl": "https://psg.fr"
+      "websiteUrl": "https://psg.fr",
+      "feedUrl": "https://api.psg.fr/en/judo/"
     },
     {
       "source": "پاری‌سن‌ژرمن · Le Parisien",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 2,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "فرانسه",
       "team": "پاری‌سن‌ژرمن",
-      "websiteUrl": "https://leparisien.fr"
+      "websiteUrl": "https://leparisien.fr",
+      "feedUrl": "https://www.leparisien.fr/sports/football/rss.xml"
     },
     {
       "source": "پاری‌سن‌ژرمن · Culture PSG",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "پاری‌سن‌ژرمن",
-      "websiteUrl": "https://culturepsg.com"
+      "websiteUrl": "https://culturepsg.com",
+      "feedUrl": "https://www.culturepsg.com/news?rss"
     },
     {
       "source": "پاری‌سن‌ژرمن · Canal Supporters",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "پاری‌سن‌ژرمن",
-      "websiteUrl": "https://canal-supporters.com"
+      "websiteUrl": "https://canal-supporters.com",
+      "feedUrl": "https://canal-supporters.com/feed/"
     },
     {
       "source": "پاری‌سن‌ژرمن · PSG Talk",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "پاری‌سن‌ژرمن",
-      "websiteUrl": "https://psgtalk.com"
+      "websiteUrl": "https://psgtalk.com",
+      "feedUrl": "https://psgtalk.com/feed/"
     },
     {
       "source": "مارسی · Olympique de Marseille",
@@ -1694,13 +1751,14 @@
     },
     {
       "source": "مارسی · Foot Marseille",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "مارسی",
-      "websiteUrl": "https://footmarseille.com"
+      "websiteUrl": "https://footmarseille.com",
+      "feedUrl": "https://footmarseille.com/feed/"
     },
     {
       "source": "مارسی · Le Phocéen",
@@ -1714,13 +1772,14 @@
     },
     {
       "source": "مارسی · Marseille Mercato",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "مارسی",
-      "websiteUrl": "https://marseillemercato.fr"
+      "websiteUrl": "https://marseillemercato.fr",
+      "feedUrl": "https://www.marseillemercato.fr/feed/"
     },
     {
       "source": "لیون · Olympique Lyonnais",
@@ -1734,23 +1793,25 @@
     },
     {
       "source": "لیون · Le Progrès",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "فرانسه",
       "team": "لیون",
-      "websiteUrl": "https://leprogres.fr"
+      "websiteUrl": "https://leprogres.fr",
+      "feedUrl": "https://leprogres.fr/rss"
     },
     {
       "source": "لیون · Olympique et Lyonnais",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "لیون",
-      "websiteUrl": "https://olympique-et-lyonnais.com"
+      "websiteUrl": "https://olympique-et-lyonnais.com",
+      "feedUrl": "https://www.olympique-et-lyonnais.com/feed"
     },
     {
       "source": "لیون · Coeur Lyonnais",
@@ -1784,23 +1845,25 @@
     },
     {
       "source": "موناکو · Nice-Matin",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "فرانسه",
       "team": "موناکو",
-      "websiteUrl": "https://nicematin.com"
+      "websiteUrl": "https://nicematin.com",
+      "feedUrl": "https://nicematin.com/rss"
     },
     {
       "source": "موناکو · ASM Supporters",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "موناکو",
-      "websiteUrl": "https://asm-supporters.fr"
+      "websiteUrl": "https://asm-supporters.fr",
+      "feedUrl": "https://asm-supporters.fr/feed/"
     },
     {
       "source": "موناکو · Planète ASM",
@@ -1814,23 +1877,25 @@
     },
     {
       "source": "موناکو · Get French Football News",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "موناکو",
-      "websiteUrl": "https://getfootballnewsfrance.com"
+      "websiteUrl": "https://getfootballnewsfrance.com",
+      "feedUrl": "https://www.getfootballnewsfrance.com/feed/"
     },
     {
       "source": "لیل · LOSC",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "club",
       "sourceTypeLabel": "رسانه رسمی باشگاه",
       "country": "فرانسه",
       "team": "لیل",
-      "websiteUrl": "https://losc.fr"
+      "websiteUrl": "https://losc.fr",
+      "feedUrl": "https://losc.fr/rss.xml"
     },
     {
       "source": "لیل · La Voix du Nord",
@@ -1844,13 +1909,14 @@
     },
     {
       "source": "لیل · Le Petit Lillois",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "لیل",
-      "websiteUrl": "https://lepetitlillois.com"
+      "websiteUrl": "https://lepetitlillois.com",
+      "feedUrl": "https://lepetitlillois.com/feed/"
     },
     {
       "source": "لیل · Allez le LOSC",
@@ -1864,13 +1930,14 @@
     },
     {
       "source": "لیل · Get French Football News",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "فرانسه",
       "team": "لیل",
-      "websiteUrl": "https://getfootballnewsfrance.com"
+      "websiteUrl": "https://getfootballnewsfrance.com",
+      "feedUrl": "https://www.getfootballnewsfrance.com/feed/"
     },
     {
       "source": "آژاکس · Ajax",
@@ -1884,33 +1951,36 @@
     },
     {
       "source": "آژاکس · Het Parool",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 1,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "هلند",
       "team": "آژاکس",
-      "websiteUrl": "https://parool.nl"
+      "websiteUrl": "https://parool.nl",
+      "feedUrl": "https://parool.nl/rss.xml"
     },
     {
       "source": "آژاکس · Ajax Showtime",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "هلند",
       "team": "آژاکس",
-      "websiteUrl": "https://ajaxshowtime.com"
+      "websiteUrl": "https://ajaxshowtime.com",
+      "feedUrl": "https://www.ajaxshowtime.com/sitemap/news.xml"
     },
     {
       "source": "آژاکس · Ajax Life",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "هلند",
       "team": "آژاکس",
-      "websiteUrl": "https://ajaxlife.nl"
+      "websiteUrl": "https://ajaxlife.nl",
+      "feedUrl": "https://ajaxlife.nl/feed/"
     },
     {
       "source": "آژاکس · Ajax1",
@@ -1954,23 +2024,25 @@
     },
     {
       "source": "پی‌اس‌وی آیندهوون · PSV Inside",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "هلند",
       "team": "پی‌اس‌وی آیندهوون",
-      "websiteUrl": "https://psvinside.nl"
+      "websiteUrl": "https://psvinside.nl",
+      "feedUrl": "https://psvinside.nl/feed.xml"
     },
     {
       "source": "پی‌اس‌وی آیندهوون · VoetbalPrimeur",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "هلند",
       "team": "پی‌اس‌وی آیندهوون",
-      "websiteUrl": "https://voetbalprimeur.nl"
+      "websiteUrl": "https://voetbalprimeur.nl",
+      "feedUrl": "https://www.voetbalprimeur.nl/rss.xml"
     },
     {
       "source": "فاینورد · Feyenoord",
@@ -1984,23 +2056,25 @@
     },
     {
       "source": "فاینورد · Algemeen Dagblad",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 1,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "هلند",
       "team": "فاینورد",
-      "websiteUrl": "https://ad.nl"
+      "websiteUrl": "https://ad.nl",
+      "feedUrl": "https://ad.nl/rss.xml"
     },
     {
       "source": "فاینورد · FR12",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "هلند",
       "team": "فاینورد",
-      "websiteUrl": "https://fr12.nl"
+      "websiteUrl": "https://fr12.nl",
+      "feedUrl": "https://www.fr12.nl/sitemap/news.xml"
     },
     {
       "source": "فاینورد · Feyenoord Pings",
@@ -2014,13 +2088,14 @@
     },
     {
       "source": "فاینورد · 1908.nl",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "هلند",
       "team": "فاینورد",
-      "websiteUrl": "https://1908.nl"
+      "websiteUrl": "https://1908.nl",
+      "feedUrl": "https://1908.nl/rss.xml"
     },
     {
       "source": "بنفیکا · SL Benfica",
@@ -2034,43 +2109,47 @@
     },
     {
       "source": "بنفیکا · A Bola",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 1,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "پرتغال",
       "team": "بنفیکا",
-      "websiteUrl": "https://abola.pt"
+      "websiteUrl": "https://abola.pt",
+      "feedUrl": "https://www.abola.pt/rss-articles.xml"
     },
     {
       "source": "بنفیکا · Record",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "پرتغال",
       "team": "بنفیکا",
-      "websiteUrl": "https://record.pt"
+      "websiteUrl": "https://record.pt",
+      "feedUrl": "https://record.pt/rss"
     },
     {
       "source": "بنفیکا · Ser Benfiquista",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "پرتغال",
       "team": "بنفیکا",
-      "websiteUrl": "https://serbenfiquista.com"
+      "websiteUrl": "https://serbenfiquista.com",
+      "feedUrl": "https://serbenfiquista.com/rss.xml"
     },
     {
       "source": "بنفیکا · Notícias ao Minuto",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "پرتغال",
       "team": "بنفیکا",
-      "websiteUrl": "https://noticiasaominuto.com"
+      "websiteUrl": "https://noticiasaominuto.com",
+      "feedUrl": "https://www.noticiasaominuto.com/rss/ultima-hora"
     },
     {
       "source": "پورتو · FC Porto",
@@ -2094,13 +2173,14 @@
     },
     {
       "source": "پورتو · Record",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "پرتغال",
       "team": "پورتو",
-      "websiteUrl": "https://record.pt"
+      "websiteUrl": "https://record.pt",
+      "feedUrl": "https://record.pt/rss"
     },
     {
       "source": "پورتو · Porto Canal",
@@ -2124,43 +2204,47 @@
     },
     {
       "source": "اسپورتینگ لیسبون · Sporting CP",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "club",
       "sourceTypeLabel": "رسانه رسمی باشگاه",
       "country": "پرتغال",
       "team": "اسپورتینگ لیسبون",
-      "websiteUrl": "https://sporting.pt"
+      "websiteUrl": "https://sporting.pt",
+      "feedUrl": "https://sporting.pt/rss.xml"
     },
     {
       "source": "اسپورتینگ لیسبون · A Bola",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "پرتغال",
       "team": "اسپورتینگ لیسبون",
-      "websiteUrl": "https://abola.pt"
+      "websiteUrl": "https://abola.pt",
+      "feedUrl": "https://www.abola.pt/rss-articles.xml"
     },
     {
       "source": "اسپورتینگ لیسبون · Record",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "پرتغال",
       "team": "اسپورتینگ لیسبون",
-      "websiteUrl": "https://record.pt"
+      "websiteUrl": "https://record.pt",
+      "feedUrl": "https://record.pt/rss"
     },
     {
       "source": "اسپورتینگ لیسبون · Leonino",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "پرتغال",
       "team": "اسپورتینگ لیسبون",
-      "websiteUrl": "https://leonino.pt"
+      "websiteUrl": "https://leonino.pt",
+      "feedUrl": "https://leonino.pt/feed"
     },
     {
       "source": "اسپورتینگ لیسبون · Sporting 160",
@@ -2204,13 +2288,14 @@
     },
     {
       "source": "گالاتاسرای · Webaslan",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ترکیه",
       "team": "گالاتاسرای",
-      "websiteUrl": "https://webaslan.com"
+      "websiteUrl": "https://webaslan.com",
+      "feedUrl": "https://www.webaslan.com/_xml/rss.php"
     },
     {
       "source": "گالاتاسرای · ultrAslan",
@@ -2314,63 +2399,69 @@
     },
     {
       "source": "بشیکتاش · Kara Kartal",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "ترکیه",
       "team": "بشیکتاش",
-      "websiteUrl": "https://karakartal.com"
+      "websiteUrl": "https://karakartal.com",
+      "feedUrl": "https://karakartal.com/_xml/rss.php"
     },
     {
       "source": "سلتیک · Celtic FC",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "club",
       "sourceTypeLabel": "رسانه رسمی باشگاه",
       "country": "اسکاتلند",
       "team": "سلتیک",
-      "websiteUrl": "https://celticfc.com"
+      "websiteUrl": "https://celticfc.com",
+      "feedUrl": "https://celticfc.com/rss.xml"
     },
     {
       "source": "سلتیک · Daily Record",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 0,
       "sourceType": "local",
       "sourceTypeLabel": "رسانه محلی",
       "country": "اسکاتلند",
       "team": "سلتیک",
-      "websiteUrl": "https://dailyrecord.co.uk"
+      "websiteUrl": "https://dailyrecord.co.uk",
+      "feedUrl": "https://www.dailyrecord.co.uk/rss.xml"
     },
     {
       "source": "سلتیک · Celtic Quick News",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسکاتلند",
       "team": "سلتیک",
-      "websiteUrl": "https://celticquicknews.co.uk"
+      "websiteUrl": "https://celticquicknews.co.uk",
+      "feedUrl": "https://www.celticquicknews.co.uk/feed/"
     },
     {
       "source": "سلتیک · The Celtic Star",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسکاتلند",
       "team": "سلتیک",
-      "websiteUrl": "https://thecelticstar.com"
+      "websiteUrl": "https://thecelticstar.com",
+      "feedUrl": "https://thecelticstar.com/feed/"
     },
     {
       "source": "سلتیک · Video Celts",
-      "ok": false,
-      "error": "فید RSS/Atom عمومی برای این دامنه پیدا نشد",
+      "ok": true,
+      "items": 3,
       "sourceType": "fan",
       "sourceTypeLabel": "رسانه هواداری",
       "country": "اسکاتلند",
       "team": "سلتیک",
-      "websiteUrl": "https://videocelts.com"
+      "websiteUrl": "https://videocelts.com",
+      "feedUrl": "https://videocelts.com/feed/"
     }
   ]
 }

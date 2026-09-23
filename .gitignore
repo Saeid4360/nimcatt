@@ -3,6 +3,7 @@ __pycache__/
 .env
 .env.*
 var/translation_cache.json
+var/local_news_refresh.log
 .DS_Store
 node_modules/
 dist/server/

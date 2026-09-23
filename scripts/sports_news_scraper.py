@@ -60,8 +60,8 @@ NON_FOOTBALL_WORDS = {
 }
 WOMENS_FOOTBALL_WORDS = {
     "women", "women's", "women’s", "female", "wsl", "uwcl", "wcl", "lionesses",
-    "frauen", "frauen-bundesliga", "frauenteam", "femmes", "féminine", "féminines",
-    "feminine", "femenina", "femenino", "femeninas", "liga f", "femminile",
+    "frauen", "frauen-bundesliga", "frauenteam", "femmes", "féminin", "féminine", "féminines",
+    "feminin", "feminine", "femenina", "femenino", "femeninas", "liga f", "femminile",
     "femminili", "azzurrine", "vrouwen", "vrouwenteam", "dames", "feminino",
     "feminina", "kadın", "kadin",
 }
@@ -279,7 +279,7 @@ def extract_image(node: ET.Element, description_html: str) -> str:
 
 
 def has_term(text: str, term: str) -> bool:
-    return re.search(rf"(?<![\w-]){re.escape(term)}(?![\w-])", text, re.I) is not None
+    return re.search(rf"(?<!\w){re.escape(term)}(?!\w)", text, re.I) is not None
 
 
 def is_football_item(title: str, summary: str, url: str = "") -> bool:

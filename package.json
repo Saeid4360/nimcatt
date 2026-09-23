@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build-worker.mjs",
+    "dev": "python3 scripts/local_news_server.py",
     "data:statsbomb": "node scripts/build-statsbomb-open.mjs",
     "db:generate": "drizzle-kit generate",
     "test": "node scripts/smoke-worker.mjs"
